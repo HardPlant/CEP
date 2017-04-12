@@ -27,10 +27,8 @@ implementation {
   
   BlinkTimerM.Boot -> MainC;
   BlinkTimerM.Leds -> LedsC;
-  BlinkTimerM.Timer->TimerMilliC; 
-
-  components InteractionC;
-  BlinkTimerM.Interaction -> InteractionC;
+  BlinkTimerM.Timer1->TimerMilliC; 
+  BlinkTimerM.Timer2->TimerMilliC; 
   
 }
 
