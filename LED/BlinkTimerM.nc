@@ -33,27 +33,24 @@ implementation {
 	call Timer.startPeriodic(1000);
 
   }
-   
-  event void Timer.fired()  {
+  task void setLCDData(int number)
+  {
     Cmd_struct_t CMD_Frame;
     char SetDataBuff[32];
 
     CMD_Frame.CMDType = PACKET_CONTROL;
     CMD_Frame.CMD_Data.OptConfig.packetType = PACKET_CONTROL;
     CMD_Frame.CMD_Data.OptConfig.optType = OPT_TEXTLCD;
+  	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine1;
 
-    if(TestSeq%2==0)
-	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine1;
-    else
-	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine2;
-
-    sprintf(SetDataBuff, "Recv Seq:%d      ", TestSeq++);
+    sprintf(SetDataBuff, "         %d      ", number);
     memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
 
     call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
     return;
   }
-  
+  event void Timer.fired()  {
+
       time++;
       LedToggler = 0;
       if(time % 3 == 0)
@@ -71,5 +68,6 @@ implementation {
         call Leds.led2On();
       }
       if(time % 10 ==0) call Leds.led2Off();
+      call setLCDData(time);
   }
 }
