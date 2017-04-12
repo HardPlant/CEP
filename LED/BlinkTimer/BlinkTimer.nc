@@ -17,59 +17,16 @@
 /*                                                                            */
 /******************************************************************************/
 
-module BlinkTimerM {
-  uses {
-	interface Boot;
-	interface Timer<TMilli>;
-	interface Leds;
-  interface Interaction;
-  }
+
+configuration BlinkTimer {
 }
+
 implementation {
-  nx_uint8_t LedToggler;
-  nx_uint8_t time;
 
-  event void Boot.booted() {
-	call Timer.startPeriodic(1000);
-
-  }
-   
-  event void Timer.fired()  {
-    Cmd_struct_t CMD_Frame;
-    char SetDataBuff[32];
-
-    CMD_Frame.CMDType = PACKET_CONTROL;
-    CMD_Frame.CMD_Data.OptConfig.packetType = PACKET_CONTROL;
-    CMD_Frame.CMD_Data.OptConfig.optType = OPT_TEXTLCD;
-
-    if(TestSeq%2==0)
-	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine1;
-    else
-	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine2;
-
-    sprintf(SetDataBuff, "Recv Seq:%d      ", TestSeq++);
-    memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
-
-    call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
-    return;
-  }
+  components MainC, BlinkTimerM, LedsC, new TimerMilliC();
   
-      time++;
-      LedToggler = 0;
-      if(time % 3 == 0)
-      {
-        call Leds.led0On();
-      }
-      if(time % 4 ==0) call Leds.led0Off();
-      if(time % 5 == 0)
-      {
-        call Leds.led1On();
-      }
-      if(time % 6 ==0) call Leds.led1Off();
-      if(time % 9 == 0)
-      {
-        call Leds.led2On();
-      }
-      if(time % 10 ==0) call Leds.led2Off();
-  }
+  BlinkTimerM.Boot -> MainC;
+  BlinkTimerM.Leds -> LedsC;
+  BlinkTimerM.Timer->TimerMilliC;
 }
+
