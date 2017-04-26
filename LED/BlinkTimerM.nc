@@ -20,54 +20,39 @@
 module BlinkTimerM {
   uses {
 	interface Boot;
-	interface Timer<TMilli>;
 	interface Leds;
   }
+	uses interface Timer<TMilli> as Timer1;
+  uses interface Timer<TMilli> as Timer2;
 }
 implementation {
-  struct bitfield{ // char = 1Byte = 8bit
-    unsigend char time:5; // 6bit : 0~127 // LCD of 3,5,9 : 45
-    unsigned char isRedToggled:1;
-    unsigned char isBlueToggled:1;
-    unsigned char isGreenToggled:1;
-  };
-  struct bitfield LEDController;
+  nx_uint8_t LedToggler;
+  nx_uint8_t time;
 
   event void Boot.booted() {
-	call Timer.startPeriodic(1000);
+	call Timer2.startPeriodic(500);
+	call Timer1.startPeriodic(1000);
   }
-   
-  event void Timer.fired()  {
-    if(LEDController.isRedToggled
-      |LEDController.isBlueToggled
-      |LEDController.isGreendToggled)
+  event void Timer1.fired()  {
+
+      time++;
+      LedToggler = 0;
+      if(time % 3 == 0)
       {
-        
+        call Leds.led0On();
       }
-    else
-    {
-      LEDController.time++;
-      isRedToggled = 0;
-      isBlueToggled = 0;
-      isGreenToggled = 0;
-      if(LEDController.time % 3 == 0)
+      if(time % 5 == 0)
       {
-        call Leds.led0Toggle()
-        isRedToggled = 1;
-      };
-      if(LEDController.time % 5 == 0)
+        call Leds.led1On();
+      }
+      if(time % 9 == 0)
       {
-        call Leds.led1Toggle()
-        isBlueToggled = 1;
-      };
-      if(LEDController.time % 9 == 0)
-      {
-        call Leds.led2Toggle()
-        isGreenToggled = 1;
-      };
-    }
+        call Leds.led2On();
+      }
   }
-  
+  event void Timer2.fired(){
+      call Leds.led0Off();
+      call Leds.led1Off();
+      call Leds.led2Off();
+  }
 }
-
-
