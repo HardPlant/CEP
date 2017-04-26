@@ -13,5 +13,4 @@ interface LedController {
 
    //Morse Wait
    command void morseWaitLed0();
-   
 }
