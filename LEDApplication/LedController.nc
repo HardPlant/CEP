@@ -1,6 +1,8 @@
 
 interface LedController {
-    command void setMorse(uint8_t num);
+    command void test();
+
+    command void setNumber(uint8_t num);
 
    //Morse Short
     command void morseShortLed0();
@@ -13,4 +15,6 @@ interface LedController {
 
    //Morse Wait
    command void morseWaitLed0();
+
+   
 }

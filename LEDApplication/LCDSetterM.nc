@@ -65,7 +65,7 @@ module LCDSetterM {
     myAppType = appType;
     myOptType = optType;
 
-    call Timer.startPeriodic(Default_Sampling_Time);
+    call Timer.startPeriodic(1000);
   }
 
   event void Interaction.getSensorDataDone(App_struct_t *App_Payload, uint8_t App_size){
