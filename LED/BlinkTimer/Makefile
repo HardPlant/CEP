@@ -1,0 +1,2 @@
+COMPONENT=BlinkTimer
+include $(MAKERULES)
