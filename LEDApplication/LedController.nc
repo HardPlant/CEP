@@ -4,17 +4,9 @@ interface LedController {
 
     command void setNumber(uint8_t num);
 
-   //Morse Short
-    command void morseShortLed0();
-    command void morseShortLed1();
-    command void morseShortLed2();
-    
-   //Morse Long
-
-   command void morseLongLed0();
-
-   //Morse Wait
-   command void morseWaitLed0();
-
+   //Blink
+    command void BlinkLed0();
+    command void BlinkLed1();
+    command void BlinkLed2();
    
 }

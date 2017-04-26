@@ -14,8 +14,8 @@ configuration LedControllerC {
   LedControllerM.LedTimer1 -> LedTimer1;
   LedControllerM.LedTimer2 -> LedTimer2;
 
-  components new TimerMilliC() as TestTimer;
-  LedControllerM.TestTimer -> TestTimer;
+  components new TimerMilliC() as CompleteTimer;
+  LedControllerM.CompleteTimer -> CompleteTimer;
 
   components new TimerMilliC() as MorseTimer;
   LedControllerM.MorseTimer -> MorseTimer;
