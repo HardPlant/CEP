@@ -40,6 +40,7 @@ implementation {
       call Timer.stop();
       call LedController.setNumber(time);
     }
+    time++;
   }
 
   event void Boot.booted() {
@@ -73,8 +74,7 @@ implementation {
       call LedController.BlinkLed1();
     }
     call LCDSetter.setLCD(time);
-    
-    time++;
+
     post checkToggles();
   }
 
