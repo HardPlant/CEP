@@ -2211,8 +2211,9 @@ static inline  void BlinkAppM$checkToggles$runTask(void);
 
 
 
+
 static inline  void BlinkAppM$Boot$booted(void);
-#line 57
+#line 58
 static inline  void BlinkAppM$Timer$fired(void);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void HplAtm128Timer0AsyncC$Compare$fired(void);
@@ -8508,9 +8509,9 @@ inline static  void BlinkAppM$LedController$BlinkLed0(void){
 #line 8
 }
 #line 8
-# 57 "BlinkAppM.nc"
+# 58 "BlinkAppM.nc"
 static inline  void BlinkAppM$Timer$fired(void)
-#line 57
+#line 58
 {
   BlinkAppM$toggles = 0;
 
@@ -8531,7 +8532,6 @@ static inline  void BlinkAppM$Timer$fired(void)
     }
   BlinkAppM$LCDSetter$setLCD(BlinkAppM$time);
 
-  BlinkAppM$time++;
   BlinkAppM$checkToggles$postTask();
 }
 
@@ -9416,6 +9416,7 @@ static inline  void BlinkAppM$checkToggles$runTask(void)
       BlinkAppM$Timer$stop();
       BlinkAppM$LedController$setNumber(BlinkAppM$time);
     }
+  BlinkAppM$time++;
 }
 
 # 83 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer0AsyncC.nc"
@@ -9663,9 +9664,9 @@ inline static  void BlinkAppM$LedController$test(void){
 #line 3
 }
 #line 3
-# 45 "BlinkAppM.nc"
+# 46 "BlinkAppM.nc"
 static inline  void BlinkAppM$Boot$booted(void)
-#line 45
+#line 46
 {
   if (!1) 
     {

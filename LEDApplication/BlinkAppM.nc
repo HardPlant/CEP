@@ -57,21 +57,23 @@ implementation {
 
   event void Timer.fired(){
     toggles = 0;
-
-    if(time % 3 == 0)
+    if(time != 0)
     {
-      toggles |= 1; // bitmap 001
-      call LedController.BlinkLed0();
-    }
-    if(time % 5 == 0)
-    {
-      toggles |= 2; // bitmap 010
-      call LedController.BlinkLed2();
-    }
-    if(time % 9 == 0)
-    {
-      toggles |= 4; // bitmap 100
-      call LedController.BlinkLed1();
+      if(time % 3 == 0)
+      {
+        toggles |= 1; // bitmap 001
+        call LedController.BlinkLed0();
+      }
+      if(time % 5 == 0)
+      {
+        toggles |= 2; // bitmap 010
+        call LedController.BlinkLed2();
+      }
+      if(time % 9 == 0)
+      {
+        toggles |= 4; // bitmap 100
+        call LedController.BlinkLed1();
+      }
     }
     call LCDSetter.setLCD(time);
 
