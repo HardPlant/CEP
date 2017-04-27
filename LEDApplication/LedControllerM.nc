@@ -39,7 +39,7 @@ uint8_t numToShow = 0;
 
   //******모듈 시작 함수. 전달받은 값을 모스 부호로 출력한다. (2자리까지 가능)
   command void LedController.setNumber(uint8_t num){
-    if(num>100) return call LCDSetter.setLCD(-1);
+    if(num>100) return call LCDSetter.setLCD(100);
     
     numToShow = num;
     _setNumber(numToShow);
@@ -119,7 +119,6 @@ uint8_t numToShow = 0;
     current = morseCode[CodeIndex];
 
     setDigit(2-currentMorseIndex);
-    call LCDSetter.setLCD(*current);
 
     switch( *current ) {
       case ' ': /* pause */
