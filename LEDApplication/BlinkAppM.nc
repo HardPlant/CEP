@@ -29,7 +29,7 @@ module BlinkAppM {
 }
 implementation {
   #define BASIC_TIME 1000
-  #define TEST 1
+  #define TEST 0
 
   uint8_t toggles; // |0 = Red, |2 = Green, |4 = Yellow
   uint8_t time = 0;
@@ -43,7 +43,7 @@ implementation {
   }
 
   event void Boot.booted() {
-    if(TEST)
+    if(!TEST) // !를 붙여 테스트를 시작한다.
     {
     call LedController.test();
     }
@@ -56,7 +56,6 @@ implementation {
 
   event void Timer.fired(){
     time++;
-    call LCDSetter.setLCD(time);
     toggles = 0;
 
     if(time % 3 == 0)
@@ -74,6 +73,7 @@ implementation {
       toggles |= 4; // bitmap 100
       call LedController.BlinkLed1();
     }
+    call LCDSetter.setLCD(time);
     post checkToggles();
   }
 
