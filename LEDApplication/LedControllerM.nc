@@ -118,7 +118,7 @@ uint8_t numToShow = 0;
     if( !current )
     current = morseCode[CodeIndex];
 
-    setDigit(2-currentMorseIndex);
+    setDigit(MAX_DIGIT-currentMorseIndex);
 
     switch( *current ) {
       case ' ': /* pause */
@@ -183,6 +183,7 @@ uint8_t numToShow = 0;
     call Leds.led2On();
     call LedTimer2.startOneShot(MORSE_UNIT);
   }
+
 //**** Digits
 //* 2진수로 0~7까지의 범위를 나타낼 수 있다.
 //****
@@ -199,6 +200,7 @@ uint8_t numToShow = 0;
     call Leds.led1Off();
     call Leds.led2Off();
   }
+  
 //**** LedTimer Events
 //* LedTimer 이벤트이다.
 //****

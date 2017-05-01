@@ -44,13 +44,13 @@ implementation {
   }
 
   event void Boot.booted() {
+    call LCDSetter.init();
     if(!TEST) // TEST
     {
     call LedController.test();
     } 
     else
     {
-    call LCDSetter.init();
     call Timer.startPeriodic(BASIC_TIME);
     }
   }
