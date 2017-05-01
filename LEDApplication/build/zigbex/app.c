@@ -1292,13 +1292,21 @@ static   Atm128TimerControl_t HplAtm128Timer0AsyncC$TimerCtrl$getControl(void);
 
 static   Atm128_TIFR_t HplAtm128Timer0AsyncC$TimerCtrl$getInterruptFlag(void);
 #line 37
+<<<<<<< HEAD
 static   void HplAtm128Timer0AsyncC$TimerCtrl$setControl(Atm128TimerControl_t arg_0x7eb21c00);
+=======
+static   void HplAtm128Timer0AsyncC$TimerCtrl$setControl(Atm128TimerControl_t arg_0x7eb21030);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t HplAtm128Timer0AsyncC$Init$init(void);
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void HplAtm128Timer0AsyncC$Compare$reset(void);
 #line 45
+<<<<<<< HEAD
 static   void HplAtm128Timer0AsyncC$Compare$set(HplAtm128Timer0AsyncC$Compare$size_type arg_0x7eb12bd8);
+=======
+static   void HplAtm128Timer0AsyncC$Compare$set(HplAtm128Timer0AsyncC$Compare$size_type arg_0x7eb13010);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -1318,9 +1326,15 @@ static   bool HplAtm128Timer0AsyncC$Timer$test(void);
 #line 52
 static   HplAtm128Timer0AsyncC$Timer$timer_size HplAtm128Timer0AsyncC$Timer$get(void);
 #line 95
+<<<<<<< HEAD
 static   void HplAtm128Timer0AsyncC$Timer$setScale(uint8_t arg_0x7eb30010);
 #line 58
 static   void HplAtm128Timer0AsyncC$Timer$set(HplAtm128Timer0AsyncC$Timer$timer_size arg_0x7eb33358);
+=======
+static   void HplAtm128Timer0AsyncC$Timer$setScale(uint8_t arg_0x7eb31428);
+#line 58
+static   void HplAtm128Timer0AsyncC$Timer$set(HplAtm128Timer0AsyncC$Timer$timer_size arg_0x7eb347b0);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -1337,7 +1351,11 @@ static  error_t /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Init$init(voi
 # 61 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
 static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$overflow(void);
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
+<<<<<<< HEAD
 static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$startAt(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$size_type arg_0x7eb61678, /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$size_type arg_0x7eb61808);
+=======
+static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$startAt(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$size_type arg_0x7eb62ac0, /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$size_type arg_0x7eb62c50);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$stop(void);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
@@ -1358,7 +1376,11 @@ static   void /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$overflow
 # 98 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
 static   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$getNow(void);
 #line 92
+<<<<<<< HEAD
 static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type arg_0x7eb61678, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type arg_0x7eb61808);
+=======
+static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type arg_0x7eb62ac0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type arg_0x7eb62c50);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 105
 static   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$getAlarm(void);
 #line 62
@@ -1376,7 +1398,11 @@ static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$fired(void);
 # 125 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  uint32_t /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$getNow(void);
 #line 118
+<<<<<<< HEAD
 static  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startOneShotAt(uint32_t arg_0x7ebd39b8, uint32_t arg_0x7ebd3b48);
+=======
+static  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startOneShotAt(uint32_t arg_0x7ebd35f0, uint32_t arg_0x7ebd3780);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 67
 static  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$stop(void);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
@@ -1386,6 +1412,7 @@ static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$fir
 #line 72
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$default$fired(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+<<<<<<< HEAD
 uint8_t arg_0x7e9873a0);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(
@@ -1393,6 +1420,15 @@ static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPe
 uint8_t arg_0x7e9873a0, 
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 uint32_t arg_0x7ebd56d8);
+=======
+uint8_t arg_0x7e991cd8);
+# 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(
+# 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+uint8_t arg_0x7e991cd8, 
+# 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+uint32_t arg_0x7ebe0238);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -1403,16 +1439,26 @@ uint32_t arg_0x7ebd56d8);
 
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+<<<<<<< HEAD
 uint8_t arg_0x7e9873a0, 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 uint32_t arg_0x7ebd5ca8);
+=======
+uint8_t arg_0x7e991cd8, 
+# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
 
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$stop(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+<<<<<<< HEAD
 uint8_t arg_0x7e9873a0);
+=======
+uint8_t arg_0x7e991cd8);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 71 "/opt/tinyos-2.x/tos/lib/timer/Counter.nc"
 static   void /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC$0$Counter$overflow(void);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
@@ -1471,10 +1517,17 @@ static  void LCDSetterM$Interaction$StartDoneConfiguration(uint8_t arg_0x7e7c206
 
 
 
+<<<<<<< HEAD
 static  void LCDSetterM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7c2e48, uint8_t arg_0x7e7c0010);
 
 
 static  void LCDSetterM$Interaction$Urgency_Data(uint8_t *arg_0x7e7c0af8, uint8_t arg_0x7e7c0c80);
+=======
+static  void LCDSetterM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7c2e48, uint8_t arg_0x7e7c1010);
+
+
+static  void LCDSetterM$Interaction$Urgency_Data(uint8_t *arg_0x7e7c1af8, uint8_t arg_0x7e7c1c80);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void LCDSetterM$TryToSetTimer$runTask(void);
 #line 64
@@ -1496,7 +1549,11 @@ static  void InteractionM$ProcessCMD$runTask(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  void InteractionM$Read_Ultrared$readDone(error_t arg_0x7e770668, InteractionM$Read_Ultrared$val_t arg_0x7e7707f0);
 # 28 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
+<<<<<<< HEAD
 static  void InteractionM$Interaction$Process_CMD(void *arg_0x7e7c04b8, uint8_t arg_0x7e7c0640);
+=======
+static  void InteractionM$Interaction$Process_CMD(void *arg_0x7e7c14b8, uint8_t arg_0x7e7c1640);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 24
 static  void InteractionM$Interaction$SetSamplingTime(uint16_t arg_0x7e7c2690);
 #line 21
@@ -1529,7 +1586,11 @@ static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht1
 #line 100
 static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$readStatusRegDone(error_t arg_0x7e6a3730, uint8_t arg_0x7e6a38b8);
 #line 54
+<<<<<<< HEAD
 static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$resetDone(error_t arg_0x7e6a5820);
+=======
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$resetDone(error_t arg_0x7e6a6820);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 69
 static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureTemperatureDone(error_t arg_0x7e6a40f8, uint16_t arg_0x7e6a4288);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
@@ -1543,7 +1604,11 @@ static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht1
 #line 100
 static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$readStatusRegDone(error_t arg_0x7e6a3730, uint8_t arg_0x7e6a38b8);
 #line 54
+<<<<<<< HEAD
 static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$resetDone(error_t arg_0x7e6a5820);
+=======
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$resetDone(error_t arg_0x7e6a6820);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 69
 static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureTemperatureDone(error_t arg_0x7e6a40f8, uint16_t arg_0x7e6a4288);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
@@ -1587,7 +1652,11 @@ static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$S
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
 uint8_t arg_0x7e672200, 
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
+<<<<<<< HEAD
 error_t arg_0x7e6a5820);
+=======
+error_t arg_0x7e6a6820);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 69
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$measureTemperatureDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
@@ -1939,10 +2008,17 @@ static   void CommunicationWithOPTM$HPLUART$rxDone(uint8_t arg_0x7e39f6b0);
 #line 47
 static   void CommunicationWithOPTM$HPLUART$txDone(void);
 # 26 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
+<<<<<<< HEAD
 static  void CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e7617c0, uint8_t arg_0x7e761948);
 static  void CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e761de8, uint8_t arg_0x7e760010, uint8_t arg_0x7e760198, uint8_t arg_0x7e760320, uint8_t *arg_0x7e7604d0, uint8_t arg_0x7e760660);
 #line 25
 static  void CommunicationWithOPTM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e761338);
+=======
+static  void CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e7627c0, uint8_t arg_0x7e762948);
+static  void CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e762de8, uint8_t arg_0x7e760010, uint8_t arg_0x7e760198, uint8_t arg_0x7e760320, uint8_t *arg_0x7e7604d0, uint8_t arg_0x7e760660);
+#line 25
+static  void CommunicationWithOPTM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e762338);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 22
 static  void CommunicationWithOPTM$CommunicationWithOPT$SendConfigureMSG(void);
 #line 21
@@ -2191,7 +2267,11 @@ static  void BlinkAppM$LedController$setNumber(uint8_t arg_0x7ebe4a00);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t BlinkAppM$checkToggles$postTask(void);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void BlinkAppM$Timer$startPeriodic(uint32_t arg_0x7ebd56d8);
+=======
+static  void BlinkAppM$Timer$startPeriodic(uint32_t arg_0x7ebe0238);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 67
 static  void BlinkAppM$Timer$stop(void);
 # 37 "BlinkAppM.nc"
@@ -2304,9 +2384,15 @@ void __vector_15(void) __attribute((signal))   ;
 
 void __vector_16(void) __attribute((signal))   ;
 # 95 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
+<<<<<<< HEAD
 static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$setScale(uint8_t arg_0x7eb30010);
 #line 58
 static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$set(/*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$timer_size arg_0x7eb33358);
+=======
+static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$setScale(uint8_t arg_0x7eb31428);
+#line 58
+static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$set(/*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$timer_size arg_0x7eb347b0);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -2334,7 +2420,11 @@ static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$fired(void);
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$reset(void);
 #line 45
+<<<<<<< HEAD
 static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$set(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$size_type arg_0x7eb12bd8);
+=======
+static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$set(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$size_type arg_0x7eb13010);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -2417,7 +2507,11 @@ static   bool /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Counter
 
 static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Counter$overflow(void);
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
+<<<<<<< HEAD
 static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb61678, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb61808);
+=======
+static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb62ac0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb62c50);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$stop(void);
 # 68 "/opt/tinyos-2.x/tos/lib/timer/TransformAlarmCounterC.nc"
@@ -2479,7 +2573,11 @@ static   error_t /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$fired$postTask(
 # 98 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
 static   /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$getNow(void);
 #line 92
+<<<<<<< HEAD
 static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$startAt(/*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb61678, /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb61808);
+=======
+static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$startAt(/*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb62ac0, /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb62c50);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 105
 static   /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$getAlarm(void);
 #line 62
@@ -2520,7 +2618,11 @@ static   error_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFro
 # 125 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$getNow(void);
 #line 118
+<<<<<<< HEAD
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$startOneShotAt(uint32_t arg_0x7ebd39b8, uint32_t arg_0x7ebd3b48);
+=======
+static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$startOneShotAt(uint32_t arg_0x7ebd35f0, uint32_t arg_0x7ebd3780);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 67
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$stop(void);
 
@@ -2529,7 +2631,11 @@ static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$sto
 
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$fired(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+<<<<<<< HEAD
 uint8_t arg_0x7e9873a0);
+=======
+uint8_t arg_0x7e991cd8);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 60
 enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_unnamed4329 {
 #line 60
@@ -2601,12 +2707,20 @@ static inline   void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer
 # 47 "/opt/tinyos-2.x/tos/lib/timer/CounterToLocalTimeC.nc"
 static inline   void /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC$0$Counter$overflow(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void LedControllerM$LedTimer1$startOneShot(uint32_t arg_0x7ebd5ca8);
+=======
+static  void LedControllerM$LedTimer1$startOneShot(uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 2 "LCDSetter.nc"
 static  void LedControllerM$LCDSetter$init(void);
 static  void LedControllerM$LCDSetter$setLCD(uint8_t arg_0x7ebf03e8);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void LedControllerM$MorseTimer$startOneShot(uint32_t arg_0x7ebd5ca8);
+=======
+static  void LedControllerM$MorseTimer$startOneShot(uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -2617,7 +2731,13 @@ static  void LedControllerM$LedController$reset(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void LedControllerM$CompleteTimer$startOneShot(uint32_t arg_0x7ebd5ca8);
 #line 62
+<<<<<<< HEAD
 static  void LedControllerM$LedTimer2$startOneShot(uint32_t arg_0x7ebd5ca8);
+=======
+static  void LedControllerM$CompleteTimer$startOneShot(uint32_t arg_0x7ebe0808);
+#line 62
+static  void LedControllerM$LedTimer2$startOneShot(uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 50 "/opt/tinyos-2.x/tos/interfaces/Leds.nc"
 static   void LedControllerM$Leds$led0Off(void);
 
@@ -2642,7 +2762,11 @@ static   void LedControllerM$Leds$led0On(void);
 #line 78
 static   void LedControllerM$Leds$led2On(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void LedControllerM$LedTimer0$startOneShot(uint32_t arg_0x7ebd5ca8);
+=======
+static  void LedControllerM$LedTimer0$startOneShot(uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 23 "LedControllerM.nc"
 static void LedControllerM$setDigit(uint8_t mask);
 static void LedControllerM$_setNumber(uint8_t num);
@@ -2663,7 +2787,7 @@ uint8_t LedControllerM$numToShow = 0;
 
 
 static  void LedControllerM$LedController$setNumber(uint8_t num);
-#line 53
+#line 54
 static uint8_t LedControllerM$isCleared = 0;
 
 
@@ -2672,7 +2796,7 @@ static uint8_t LedControllerM$CompleteTimerIterator = 0;
 
 
 static inline  void LedControllerM$CompleteTimer$fired(void);
-#line 84
+#line 85
 static void LedControllerM$_setNumber(uint8_t num);
 
 
@@ -2684,7 +2808,7 @@ static void LedControllerM$_setNumber(uint8_t num);
 
 
 static inline  void LedControllerM$MorseTimer$fired(void);
-#line 174
+#line 177
 static inline  void LedControllerM$LedController$BlinkLed0(void);
 
 
@@ -2799,7 +2923,11 @@ static inline   void LedsP$Leds$led2Off(void);
 
 static   uint8_t LedsP$Leds$get(void);
 # 28 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
+<<<<<<< HEAD
 static  void LCDSetterM$Interaction$Process_CMD(void *arg_0x7e7c04b8, uint8_t arg_0x7e7c0640);
+=======
+static  void LCDSetterM$Interaction$Process_CMD(void *arg_0x7e7c14b8, uint8_t arg_0x7e7c1640);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 24
 static  void LCDSetterM$Interaction$SetSamplingTime(uint16_t arg_0x7e7c2690);
 #line 21
@@ -2811,7 +2939,11 @@ static   error_t LCDSetterM$TryToConfigure$postTask(void);
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBG.nc"
 static   void LCDSetterM$SCSuartDBG$UARTSend(uint8_t *arg_0x7e7b3a70, uint8_t arg_0x7e7b3bf8);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void LCDSetterM$Timer$startPeriodic(uint32_t arg_0x7ebd56d8);
+=======
+static  void LCDSetterM$Timer$startPeriodic(uint32_t arg_0x7ebe0238);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 43 "LCDSetterM.nc"
 enum LCDSetterM$__nesc_unnamed4332 {
 #line 43
@@ -2865,7 +2997,11 @@ static inline  void LCDSetterM$Timer$fired(void);
 #line 96
 static inline  void LCDSetterM$LCDSetter$setLCD(uint8_t num);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7ebd56d8);
+=======
+static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7ebe0238);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -2874,7 +3010,11 @@ static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7ebd56d8
 
 
 
+<<<<<<< HEAD
 static  void InteractionM$SensorCheckTimer$startOneShot(uint32_t arg_0x7ebd5ca8);
+=======
+static  void InteractionM$SensorCheckTimer$startOneShot(uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -2885,7 +3025,11 @@ static   error_t InteractionM$SendBasicSensor$postTask(void);
 #line 56
 static   error_t InteractionM$Event_Urgency_Data$postTask(void);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void InteractionM$C328_Reset_Timer$startPeriodic(uint32_t arg_0x7ebd56d8);
+=======
+static  void InteractionM$C328_Reset_Timer$startPeriodic(uint32_t arg_0x7ebe0238);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 67
 static  void InteractionM$C328_Reset_Timer$stop(void);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
@@ -2899,19 +3043,33 @@ static  void InteractionM$Interaction$StartDoneConfiguration(uint8_t arg_0x7e7c2
 
 
 
+<<<<<<< HEAD
 static  void InteractionM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7c2e48, uint8_t arg_0x7e7c0010);
 
 
 static  void InteractionM$Interaction$Urgency_Data(uint8_t *arg_0x7e7c0af8, uint8_t arg_0x7e7c0c80);
+=======
+static  void InteractionM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7c2e48, uint8_t arg_0x7e7c1010);
+
+
+static  void InteractionM$Interaction$Urgency_Data(uint8_t *arg_0x7e7c1af8, uint8_t arg_0x7e7c1c80);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t InteractionM$Read_Photo$read(void);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t InteractionM$Set_C328_Restart_Timer_START$postTask(void);
 # 26 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
+<<<<<<< HEAD
 static  void InteractionM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e7617c0, uint8_t arg_0x7e761948);
 static  void InteractionM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e761de8, uint8_t arg_0x7e760010, uint8_t arg_0x7e760198, uint8_t arg_0x7e760320, uint8_t *arg_0x7e7604d0, uint8_t arg_0x7e760660);
 #line 25
 static  void InteractionM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e761338);
+=======
+static  void InteractionM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e7627c0, uint8_t arg_0x7e762948);
+static  void InteractionM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e762de8, uint8_t arg_0x7e760010, uint8_t arg_0x7e760198, uint8_t arg_0x7e760320, uint8_t *arg_0x7e7604d0, uint8_t arg_0x7e760660);
+#line 25
+static  void InteractionM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e762338);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 22
 static  void InteractionM$CommunicationWithOPT$SendConfigureMSG(void);
 #line 21
@@ -2926,7 +3084,11 @@ static   error_t InteractionM$TryToGetSensorData$postTask(void);
 #line 56
 static   error_t InteractionM$TaskGetSensorDataDone$postTask(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void InteractionM$ConfigTimeout$startOneShot(uint32_t arg_0x7ebd5ca8);
+=======
+static  void InteractionM$ConfigTimeout$startOneShot(uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -3210,7 +3372,11 @@ static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$S
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
 uint8_t arg_0x7e672200, 
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
+<<<<<<< HEAD
 error_t arg_0x7e6a5820);
+=======
+error_t arg_0x7e6a6820);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 69
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureTemperatureDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
@@ -3228,7 +3394,11 @@ static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$
 static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$DATA$set(void);
 static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$DATA$clr(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$startOneShot(uint32_t arg_0x7ebd5ca8);
+=======
+static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$startOneShot(uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 
 
 
@@ -3382,7 +3552,11 @@ static   void HplSensirionSht11P$DATA$makeInput(void);
 #line 30
 static   void HplSensirionSht11P$DATA$clr(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void HplSensirionSht11P$Timer$startOneShot(uint32_t arg_0x7ebd5ca8);
+=======
+static  void HplSensirionSht11P$Timer$startOneShot(uint32_t arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 49 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/HplSensirionSht11P.nc"
 enum HplSensirionSht11P$__nesc_unnamed4345 {
 #line 49
@@ -6161,9 +6335,15 @@ static inline  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$
 }
 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void HplSensirionSht11P$Timer$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(10U, arg_0x7ebd5ca8);
+=======
+inline static  void HplSensirionSht11P$Timer$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(10U, arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 }
 #line 62
@@ -7661,9 +7841,15 @@ static inline  void CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG
 }
 
 # 27 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e761de8, uint8_t arg_0x7e760010, uint8_t arg_0x7e760198, uint8_t arg_0x7e760320, uint8_t *arg_0x7e7604d0, uint8_t arg_0x7e760660){
 #line 27
   CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG(arg_0x7e761de8, arg_0x7e760010, arg_0x7e760198, arg_0x7e760320, arg_0x7e7604d0, arg_0x7e760660);
+=======
+inline static  void InteractionM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e762de8, uint8_t arg_0x7e760010, uint8_t arg_0x7e760198, uint8_t arg_0x7e760320, uint8_t *arg_0x7e7604d0, uint8_t arg_0x7e760660){
+#line 27
+  CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG(arg_0x7e762de8, arg_0x7e760010, arg_0x7e760198, arg_0x7e760320, arg_0x7e7604d0, arg_0x7e760660);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 27
 }
 #line 27
@@ -7681,9 +7867,15 @@ inline static   void InteractionM$SCSuartDBG$UARTSend(uint8_t *arg_0x7e7b3a70, u
 }
 #line 30
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7ebd56d8){
 #line 53
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(8U, arg_0x7ebd56d8);
+=======
+inline static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7ebe0238){
+#line 53
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(8U, arg_0x7ebe0238);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 53
 }
 #line 53
@@ -7695,9 +7887,15 @@ inline static  void InteractionM$SensorCheckTimer$stop(void){
 }
 #line 67
 # 25 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e761338){
 #line 25
   CommunicationWithOPTM$CommunicationWithOPT$RequestSensorMSG(arg_0x7e761338);
+=======
+inline static  void InteractionM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e762338){
+#line 25
+  CommunicationWithOPTM$CommunicationWithOPT$RequestSensorMSG(arg_0x7e762338);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 25
 }
 #line 25
@@ -7806,9 +8004,15 @@ static inline  void CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(ui
 }
 
 # 26 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e7617c0, uint8_t arg_0x7e761948){
 #line 26
   CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(arg_0x7e7617c0, arg_0x7e761948);
+=======
+inline static  void InteractionM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e7627c0, uint8_t arg_0x7e762948){
+#line 26
+  CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(arg_0x7e7627c0, arg_0x7e762948);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 26
 }
 #line 26
@@ -7852,9 +8056,15 @@ static inline  void LCDSetterM$Interaction$Urgency_Data(uint8_t *Urgency_Payload
 }
 
 # 29 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$Interaction$Urgency_Data(uint8_t *arg_0x7e7c0af8, uint8_t arg_0x7e7c0c80){
 #line 29
   LCDSetterM$Interaction$Urgency_Data(arg_0x7e7c0af8, arg_0x7e7c0c80);
+=======
+inline static  void InteractionM$Interaction$Urgency_Data(uint8_t *arg_0x7e7c1af8, uint8_t arg_0x7e7c1c80){
+#line 29
+  LCDSetterM$Interaction$Urgency_Data(arg_0x7e7c1af8, arg_0x7e7c1c80);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 29
 }
 #line 29
@@ -7866,9 +8076,15 @@ static inline  void InteractionM$Event_Urgency_Data$runTask(void)
 }
 
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$C328_Reset_Timer$startPeriodic(uint32_t arg_0x7ebd56d8){
 #line 53
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(9U, arg_0x7ebd56d8);
+=======
+inline static  void InteractionM$C328_Reset_Timer$startPeriodic(uint32_t arg_0x7ebe0238){
+#line 53
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(9U, arg_0x7ebe0238);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 53
 }
 #line 53
@@ -7903,9 +8119,15 @@ static inline  void LCDSetterM$Interaction$getSensorDataDone(App_struct_t *App_P
 }
 
 # 26 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7c2e48, uint8_t arg_0x7e7c0010){
 #line 26
   LCDSetterM$Interaction$getSensorDataDone(arg_0x7e7c2e48, arg_0x7e7c0010);
+=======
+inline static  void InteractionM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7c2e48, uint8_t arg_0x7e7c1010){
+#line 26
+  LCDSetterM$Interaction$getSensorDataDone(arg_0x7e7c2e48, arg_0x7e7c1010);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 26
 }
 #line 26
@@ -7918,9 +8140,15 @@ static inline  void InteractionM$TaskGetSensorDataDone$runTask(void)
 }
 
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void LCDSetterM$Timer$startPeriodic(uint32_t arg_0x7ebd56d8){
 #line 53
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(6U, arg_0x7ebd56d8);
+=======
+inline static  void LCDSetterM$Timer$startPeriodic(uint32_t arg_0x7ebe0238){
+#line 53
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(6U, arg_0x7ebe0238);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 53
 }
 #line 53
@@ -7984,9 +8212,15 @@ static inline  void InteractionM$TaskStartDoneConfiguration$runTask(void)
 }
 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$SensorCheckTimer$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(8U, arg_0x7ebd5ca8);
+=======
+inline static  void InteractionM$SensorCheckTimer$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(8U, arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 }
 #line 62
@@ -8021,9 +8255,15 @@ static inline  void LCDSetterM$TryToSetTimer$runTask(void)
 }
 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void InteractionM$ConfigTimeout$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(7U, arg_0x7ebd5ca8);
+=======
+inline static  void InteractionM$ConfigTimeout$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(7U, arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 }
 #line 62
@@ -8211,9 +8451,15 @@ static inline  void LCDSetterM$TryToConfigure$runTask(void)
 }
 
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
+<<<<<<< HEAD
 inline static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$startAt(/*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb61678, /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb61808){
 #line 92
   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(arg_0x7eb61678, arg_0x7eb61808);
+=======
+inline static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$startAt(/*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb62ac0, /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb62c50){
+#line 92
+  /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(arg_0x7eb62ac0, arg_0x7eb62c50);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 92
 }
 #line 92
@@ -8233,9 +8479,15 @@ static inline  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startO
 }
 
 # 118 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$startOneShotAt(uint32_t arg_0x7ebd39b8, uint32_t arg_0x7ebd3b48){
 #line 118
   /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startOneShotAt(arg_0x7ebd39b8, arg_0x7ebd3b48);
+=======
+inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$startOneShotAt(uint32_t arg_0x7ebd35f0, uint32_t arg_0x7ebd3780){
+#line 118
+  /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startOneShotAt(arg_0x7ebd35f0, arg_0x7ebd3780);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 118
 }
 #line 118
@@ -8367,9 +8619,15 @@ inline static  void BlinkAppM$LCDSetter$setLCD(uint8_t arg_0x7ebf03e8){
 }
 #line 3
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void LedControllerM$LedTimer1$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(1U, arg_0x7ebd5ca8);
+=======
+inline static  void LedControllerM$LedTimer1$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(1U, arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 }
 #line 62
@@ -8405,9 +8663,9 @@ inline static   void LedControllerM$Leds$led1On(void){
 #line 61
 }
 #line 61
-# 178 "LedControllerM.nc"
+# 181 "LedControllerM.nc"
 static inline  void LedControllerM$LedController$BlinkLed1(void)
-#line 178
+#line 181
 {
   LedControllerM$Leds$led1On();
   LedControllerM$LedTimer1$startOneShot(1200 / 6);
@@ -8421,9 +8679,15 @@ inline static  void BlinkAppM$LedController$BlinkLed1(void){
 }
 #line 9
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void LedControllerM$LedTimer2$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(2U, arg_0x7ebd5ca8);
+=======
+inline static  void LedControllerM$LedTimer2$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(2U, arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 }
 #line 62
@@ -8459,9 +8723,9 @@ inline static   void LedControllerM$Leds$led2On(void){
 #line 78
 }
 #line 78
-# 182 "LedControllerM.nc"
+# 185 "LedControllerM.nc"
 static inline  void LedControllerM$LedController$BlinkLed2(void)
-#line 182
+#line 185
 {
   LedControllerM$Leds$led2On();
   LedControllerM$LedTimer2$startOneShot(1200 / 6);
@@ -8475,9 +8739,15 @@ inline static  void BlinkAppM$LedController$BlinkLed2(void){
 }
 #line 10
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void LedControllerM$LedTimer0$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(3U, arg_0x7ebd5ca8);
+=======
+inline static  void LedControllerM$LedTimer0$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(3U, arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 }
 #line 62
@@ -8513,9 +8783,9 @@ inline static   void LedControllerM$Leds$led0On(void){
 #line 45
 }
 #line 45
-# 174 "LedControllerM.nc"
+# 177 "LedControllerM.nc"
 static inline  void LedControllerM$LedController$BlinkLed0(void)
-#line 174
+#line 177
 {
   LedControllerM$Leds$led0On();
   LedControllerM$LedTimer0$startOneShot(1200 / 6);
@@ -8573,9 +8843,15 @@ inline static   void LedControllerM$Leds$led1Off(void){
 #line 66
 }
 #line 66
+<<<<<<< HEAD
 # 210 "LedControllerM.nc"
 static inline  void LedControllerM$LedTimer1$fired(void)
 #line 210
+=======
+# 213 "LedControllerM.nc"
+static inline  void LedControllerM$LedTimer1$fired(void)
+#line 213
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 {
   LedControllerM$Leds$led1Off();
 }
@@ -8597,9 +8873,15 @@ inline static   void LedControllerM$Leds$led2Off(void){
 #line 83
 }
 #line 83
+<<<<<<< HEAD
 # 213 "LedControllerM.nc"
 static inline  void LedControllerM$LedTimer2$fired(void)
 #line 213
+=======
+# 216 "LedControllerM.nc"
+static inline  void LedControllerM$LedTimer2$fired(void)
+#line 216
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 {
   LedControllerM$Leds$led2Off();
 }
@@ -8621,13 +8903,20 @@ inline static   void LedControllerM$Leds$led0Off(void){
 #line 50
 }
 #line 50
+<<<<<<< HEAD
 # 207 "LedControllerM.nc"
 static inline  void LedControllerM$LedTimer0$fired(void)
 #line 207
+=======
+# 210 "LedControllerM.nc"
+static inline  void LedControllerM$LedTimer0$fired(void)
+#line 210
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 {
   LedControllerM$Leds$led0Off();
 }
 
+<<<<<<< HEAD
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 inline static  void BlinkAppM$Timer$startPeriodic(uint32_t arg_0x7ebd56d8){
 #line 53
@@ -8652,13 +8941,18 @@ inline static  void LedControllerM$LedController$reset(void){
 # 198 "LedControllerM.nc"
 static inline void LedControllerM$clearDigit(void)
 #line 198
+=======
+#line 201
+static inline void LedControllerM$clearDigit(void)
+#line 201
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 {
   LedControllerM$Leds$led0Off();
   LedControllerM$Leds$led1Off();
   LedControllerM$Leds$led2Off();
 }
 
-#line 60
+#line 61
 static inline  void LedControllerM$CompleteTimer$fired(void)
 {
   if (LedControllerM$isCleared == 0) 
@@ -8704,7 +8998,7 @@ inline static  void LedControllerM$MorseTimer$stop(void){
 #line 67
 }
 #line 67
-# 94 "LedControllerM.nc"
+# 95 "LedControllerM.nc"
 static inline  void LedControllerM$MorseTimer$fired(void)
 {
   const static char morseCode[10][10] = { 
@@ -8722,6 +9016,10 @@ static inline  void LedControllerM$MorseTimer$fired(void)
   const static char *current;
   uint8_t CodeIndex = LedControllerM$currentMorseNumber[LedControllerM$currentMorseIndex];
 
+#line 111
+  if (CodeIndex == -1) {
+    LedControllerM$currentMorseIndex = 2;
+    }
   if (LedControllerM$currentMorseIndex >= 2) {
       LedControllerM$CompleteTimerIterator = 4;
       LedControllerM$MorseTimer$stop();
@@ -8805,9 +9103,15 @@ static inline  void InteractionM$Interaction$Process_CMD(void *PayLoad, uint8_t 
 }
 
 # 28 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
+<<<<<<< HEAD
 inline static  void LCDSetterM$Interaction$Process_CMD(void *arg_0x7e7c04b8, uint8_t arg_0x7e7c0640){
 #line 28
   InteractionM$Interaction$Process_CMD(arg_0x7e7c04b8, arg_0x7e7c0640);
+=======
+inline static  void LCDSetterM$Interaction$Process_CMD(void *arg_0x7e7c14b8, uint8_t arg_0x7e7c1640){
+#line 28
+  InteractionM$Interaction$Process_CMD(arg_0x7e7c14b8, arg_0x7e7c1640);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 28
 }
 #line 28
@@ -9035,25 +9339,41 @@ static inline   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Lo
 }
 
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
+<<<<<<< HEAD
 inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$resetDone(uint8_t arg_0x7e672200, error_t arg_0x7e6a5820){
+=======
+inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$resetDone(uint8_t arg_0x7e672200, error_t arg_0x7e6a6820){
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 54
   switch (arg_0x7e672200) {
 #line 54
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$TEMP_KEY:
 #line 54
+<<<<<<< HEAD
       /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$resetDone(arg_0x7e6a5820);
+=======
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$resetDone(arg_0x7e6a6820);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 54
       break;
 #line 54
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$HUM_KEY:
 #line 54
+<<<<<<< HEAD
       /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$resetDone(arg_0x7e6a5820);
+=======
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$resetDone(arg_0x7e6a6820);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 54
       break;
 #line 54
     default:
 #line 54
+<<<<<<< HEAD
       /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$resetDone(arg_0x7e672200, arg_0x7e6a5820);
+=======
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$resetDone(arg_0x7e672200, arg_0x7e6a6820);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 54
       break;
 #line 54
@@ -9098,9 +9418,15 @@ static inline   void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer
 }
 
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$fired(uint8_t arg_0x7e9873a0){
 #line 72
   switch (arg_0x7e9873a0) {
+=======
+inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$fired(uint8_t arg_0x7e991cd8){
+#line 72
+  switch (arg_0x7e991cd8) {
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 72
     case 0U:
 #line 72
@@ -9176,7 +9502,11 @@ inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$
 #line 72
     default:
 #line 72
+<<<<<<< HEAD
       /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$default$fired(arg_0x7e9873a0);
+=======
+      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$default$fired(arg_0x7e991cd8);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 72
       break;
 #line 72
@@ -9253,6 +9583,16 @@ inline static   bool LedsP$Led2$get(void){
 #line 32
 }
 #line 32
+<<<<<<< HEAD
+=======
+# 3 "LCDSetter.nc"
+inline static  void LedControllerM$LCDSetter$setLCD(uint8_t arg_0x7ebf03e8){
+#line 3
+  LCDSetterM$LCDSetter$setLCD(arg_0x7ebf03e8);
+#line 3
+}
+#line 3
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 131 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer0AsyncC.nc"
 static inline   void HplAtm128Timer0AsyncC$Compare$start(void)
 #line 131
@@ -9296,9 +9636,15 @@ static inline   void HplAtm128Timer0AsyncC$Compare$set(uint8_t t)
 }
 
 # 45 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
+<<<<<<< HEAD
 inline static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$set(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$size_type arg_0x7eb12bd8){
 #line 45
   HplAtm128Timer0AsyncC$Compare$set(arg_0x7eb12bd8);
+=======
+inline static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$set(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$size_type arg_0x7eb13010){
+#line 45
+  HplAtm128Timer0AsyncC$Compare$set(arg_0x7eb13010);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 45
 }
 #line 45
@@ -9363,9 +9709,15 @@ static inline   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$start
 }
 
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
+<<<<<<< HEAD
 inline static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb61678, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb61808){
 #line 92
   /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$startAt(arg_0x7eb61678, arg_0x7eb61808);
+=======
+inline static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb62ac0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb62c50){
+#line 92
+  /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$startAt(arg_0x7eb62ac0, arg_0x7eb62c50);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 92
 }
 #line 92
@@ -9489,9 +9841,15 @@ static inline   void HplAtm128Timer0AsyncC$Timer$setScale(uint8_t s)
 }
 
 # 95 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
+<<<<<<< HEAD
 inline static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$setScale(uint8_t arg_0x7eb30010){
 #line 95
   HplAtm128Timer0AsyncC$Timer$setScale(arg_0x7eb30010);
+=======
+inline static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$setScale(uint8_t arg_0x7eb31428){
+#line 95
+  HplAtm128Timer0AsyncC$Timer$setScale(arg_0x7eb31428);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 95
 }
 #line 95
@@ -9520,9 +9878,15 @@ static inline   void HplAtm128Timer0AsyncC$Timer$set(uint8_t t)
 }
 
 # 58 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
+<<<<<<< HEAD
 inline static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$set(/*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$timer_size arg_0x7eb33358){
 #line 58
   HplAtm128Timer0AsyncC$Timer$set(arg_0x7eb33358);
+=======
+inline static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$set(/*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$timer_size arg_0x7eb347b0){
+#line 58
+  HplAtm128Timer0AsyncC$Timer$set(arg_0x7eb347b0);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 58
 }
 #line 58
@@ -9648,6 +10012,16 @@ inline static  error_t RealMainP$SoftwareInit$init(void){
 #line 51
 }
 #line 51
+<<<<<<< HEAD
+=======
+# 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+inline static  void BlinkAppM$Timer$startPeriodic(uint32_t arg_0x7ebe0238){
+#line 53
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(0U, arg_0x7ebe0238);
+#line 53
+}
+#line 53
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 73 "/opt/tinyos-2.x/tos/interfaces/StdControl.nc"
 inline static  error_t LCDSetterM$SCSuartDBGstd$start(void){
 #line 73
@@ -11540,9 +11914,15 @@ static error_t /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0
 }
 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(11U, arg_0x7ebd5ca8);
+=======
+static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(11U, arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 }
 #line 62
@@ -11839,6 +12219,7 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$fireTimers(uin
 }
 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void LedControllerM$CompleteTimer$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(4U, arg_0x7ebd5ca8);
@@ -11873,14 +12254,56 @@ static void LedControllerM$setDigit(uint8_t mask)
     }
   else {
 #line 196
+=======
+static  void LedControllerM$CompleteTimer$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(4U, arg_0x7ebe0808);
+#line 62
+}
+#line 62
+# 193 "LedControllerM.nc"
+static void LedControllerM$setDigit(uint8_t mask)
+#line 193
+{
+  if (mask & 4) {
+#line 194
+    LedControllerM$Leds$led0On();
+    }
+  else {
+#line 195
+    LedControllerM$Leds$led1Off();
+    }
+#line 196
+  if (mask & 2) {
+#line 196
+    LedControllerM$Leds$led1On();
+    }
+  else {
+#line 197
+    LedControllerM$Leds$led1Off();
+    }
+#line 198
+  if (mask & 1) {
+#line 198
+    LedControllerM$Leds$led2On();
+    }
+  else {
+#line 199
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
     LedControllerM$Leds$led2Off();
     }
 }
 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+<<<<<<< HEAD
 static  void LedControllerM$MorseTimer$startOneShot(uint32_t arg_0x7ebd5ca8){
 #line 62
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(5U, arg_0x7ebd5ca8);
+=======
+static  void LedControllerM$MorseTimer$startOneShot(uint32_t arg_0x7ebe0808){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(5U, arg_0x7ebe0808);
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 #line 62
 }
 #line 62
@@ -11910,6 +12333,39 @@ static   uint8_t LedsP$Leds$get(void)
   return rval;
 }
 
+<<<<<<< HEAD
+=======
+# 41 "LedControllerM.nc"
+static  void LedControllerM$LedController$setNumber(uint8_t num)
+#line 41
+{
+  if (num > 100) {
+#line 42
+    return LedControllerM$LCDSetter$setLCD(100);
+    }
+  LedControllerM$numToShow = num;
+  memset(LedControllerM$currentMorseNumber, -1, sizeof LedControllerM$currentMorseNumber);
+  LedControllerM$_setNumber(LedControllerM$numToShow);
+  LedControllerM$currentMorseIndex = 0;
+  LedControllerM$setDigit(LedControllerM$currentMorseIndex);
+  LedControllerM$MorseTimer$startOneShot(1000);
+}
+
+#line 85
+static void LedControllerM$_setNumber(uint8_t num)
+#line 85
+{
+  if (num > 10) {
+#line 86
+    LedControllerM$_setNumber(num / 10);
+    }
+#line 87
+  LedControllerM$currentMorseNumber[LedControllerM$currentMorseIndex] = num % 10;
+  LedControllerM$currentMorseNumber[LedControllerM$currentMorseIndex] = num % 10;
+  LedControllerM$currentMorseIndex++;
+}
+
+>>>>>>> 05e95a3b75a5fa1dd5165a6997d69d4814604cbe
 # 221 "/opt/tinyos-2.x/tos/lib/timer/TransformAlarmCounterC.nc"
 static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type t0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type dt)
 {
