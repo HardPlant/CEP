@@ -37,7 +37,7 @@ implementation {
 //**** 모드 부호로 표현할 변수.
 uint8_t numToShow = 0;
 
-  //******모듈 시작 함수. 전달받은 값을 모스 부호로 출력한다. (2자리까지 가능)
+  //******모듈 시작 함수. 전달받은 값을 모스 부호로 출력한다. (MAX_DIGIT자리까지 가능)
   command void LedController.setNumber(uint8_t num){
     if(num>100) return call LCDSetter.setLCD(100);
     
