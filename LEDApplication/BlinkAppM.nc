@@ -54,6 +54,9 @@ implementation {
     call Timer.startPeriodic(BASIC_TIME);
     }
   }
+  event void LedController.reset(){
+    call Timer.startPeriodic(BASIC_TIME);
+  }
 
   event void Timer.fired(){
     toggles = 0;

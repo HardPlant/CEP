@@ -76,7 +76,7 @@ uint8_t numToShow = 0;
       call CompleteTimer.startOneShot(MORSE_UNIT*3);
     }
     else{ // 0이면 처음부터 다시 실행한다.
-      call LedController.setNumber(numToShow);
+      signal LedController.reset();
     }
   }
 
