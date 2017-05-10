@@ -1,0 +1,3 @@
+COMPONENT=OscilloscopeAppC
+//CFLAGS += -DDEFINED_TOS_AM_GROUP=0x23
+include $(MAKERULES)
