@@ -28,6 +28,8 @@ module TempSensorM
   uses {
 	interface Read<uint16_t> as Read_Humidity;
 	interface Read<uint16_t> as Read_Temp;
+  interface Read<uint16_t> as Read_UR;
+    interface LedController;
   }
 }
 implementation
@@ -39,7 +41,7 @@ implementation
 
   // Use LEDs to report various status issues.
   command void TempSensor.start() {
-	  while (call Read_Temp.read() != SUCCESS);
+	  call Read_Temp.read();
   }
 
 
@@ -47,27 +49,37 @@ implementation
     if (result == SUCCESS)
     {
       atomic T_temp = data;
+      call LedController.BlinkLed0();
       call Read_Humidity.read();
     }
     else
     {
-      call Read_Temp.read();
     }
   }
 
   event void Read_Humidity.readDone(error_t result, uint16_t data) {
-	if (result == SUCCESS)
-	{
-		atomic T_humi = data;
-		calc_SHT11(T_humi, T_temp);
-		signal TempSensor.done(mytemp, myhumi);
-	}
-	else
-	{
-		call Read_Temp.read();
-	}
+    if (result == SUCCESS)
+    {
+      atomic T_humi = data;
+      call LedController.BlinkLed1();
+      calc_SHT11(T_humi, T_temp);
+      call Read_UR.read();
+    }
+    else
+    {
+    }
   }
-  
+    event void Read_UR.readDone(error_t result, uint16_t data) {
+    if (result == SUCCESS)
+    {
+      call LedController.BlinkLed2();
+      signal TempSensor.done(mytemp, myhumi, data);
+    }
+    else
+    {
+    }
+  }
+
   void calc_SHT11(uint16_t p_humidity ,uint16_t p_temperature)
   //----------------------------------------------------------------------------------------
   // calculates temperature [C] and humidity [%RH]

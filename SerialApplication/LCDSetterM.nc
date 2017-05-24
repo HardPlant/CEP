@@ -36,7 +36,7 @@ module LCDSetterM {
 
   norace App_struct_t AP_Frame;
   norace uint8_t MsgBuff[64], myAppType, myOptType, LCDDisplayType;
-  norace float LCDvalue, LCDavg, LCDstdev;
+  norace uint16_t LCDvalue, LCDavg, LCDstdev;
 
   void SensorsPrint (uint8_t App_size);
 
@@ -66,7 +66,7 @@ module LCDSetterM {
     myAppType = appType;
     myOptType = optType;
 
-    call Timer.startPeriodic(1000);
+    call Timer.startPeriodic(500);
   }
 
   event void Interaction.getSensorDataDone(App_struct_t *App_Payload, uint8_t App_size){
@@ -87,29 +87,34 @@ typedef enum {TEMP, HUMID, UR} TYPE;
   event void Timer.fired(){
     Cmd_struct_t CMD_Frame;
     char SetDataBuff[32];
-
+    static uint8_t turn = 0;
     CMD_Frame.CMDType = PACKET_CONTROL;
     CMD_Frame.CMD_Data.OptConfig.packetType = PACKET_CONTROL;
     CMD_Frame.CMD_Data.OptConfig.optType = OPT_TEXTLCD;
-  	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine1;
 
     //Upper Line
-    sprintf(SetDataBuff, "%s   |   AVG   |   StDev ", getType());
-    memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
+    if(turn == 0)
+    {
+  	  CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine1;
+      sprintf(SetDataBuff, "%s AVG StDev ", getType());
+      memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
 
-    call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
-    
+      call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
+      turn = 1;
+    }
     //Lower Line
-  	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine2;
+  	else{
+      CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine2;
 
-    sprintf(SetDataBuff, " %f   |   %f   |   %f    ", LCDvalue, LCDavg, LCDstdev);
-    memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
+      sprintf(SetDataBuff, "%d %d %d", LCDvalue, LCDavg, LCDstdev);
+      memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
 
-    call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
-
+      call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
+      turn = 0;
+    }
     return;
   }
-  command void LCDSetter.setLCD(uint8_t type, float value, float avg, float stdev)
+  command void LCDSetter.setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
   {
       LCDDisplayType=type;
       LCDvalue = value;

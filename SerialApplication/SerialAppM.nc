@@ -16,7 +16,7 @@ module SerialAppM {
   }
 }
 implementation {
-    float* getValues(uint16_t newValue);
+    uint16_t* getValues(uint16_t newValue);
 
     typedef enum {TEMP, HUMID, UR} TYPE;
     uint8_t turn;
@@ -29,49 +29,63 @@ implementation {
     }
     event void Boot.booted() {
         initC();
+        turn = TEMP;
+        call LedController.BlinkLed0();
+        call LedController.BlinkLed1();
+        call LedController.BlinkLed2();
         call Timer.startPeriodic(1000);
     }
 
     event void Timer.fired(){
+        call LedController.BlinkLed0();
+        call TempSensor.start();
     }
-    event void TempSensor.done(uint16_t temp, uint16_t humid){
+    event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{ // getValues 호출부터 setLCD까지 배열의 값이 바뀌지 않아야 함.
             if(turn == TEMP){
-                float* values = getValues(temp);//결과 배열 = 포인터
+                uint16_t* values = getValues(temp);//결과 배열 = 포인터
                 call LCDSetter.setLCD(turn,values[0],values[1],values[2]);
                 turn = HUMID;
             }
             if(turn == HUMID){
-                float* values = getValues(humid);//결과 배열 = 포인터
+                uint16_t* values = getValues(humid);//결과 배열 = 포인터
                 call LCDSetter.setLCD(turn,values[0],values[1],values[2]);
                 turn = UR;
+            }            
+            if(turn == UR){
+                uint16_t* values = getValues(ur);//결과 배열 = 포인터
+                call LCDSetter.setLCD(turn,values[0],values[1],values[2]);
+                turn = TEMP;
             }
         }
     }
 
-    float* getValues(uint16_t newValue){
-        static uint8_t con_i = 0;
-        static float ret_avg = 0;
-        static float ret_std = 0;
-        static float delta = 0;
-        static float values[3];
-        static float m2 = 0;
-        float delta2;
+    uint16_t* getValues(uint16_t newValue){
+        static uint8_t con_i[3] = {0,};
+        static float ret_avg[3] = {0,};
+        static float ret_std[3] = {0,};
+        static float m2[3] = {0,};
+        uint16_t values[3] = {0,};
+        
+        float delta = 0;
+        float delta2 = 0;
+        
+        
+        delta = newValue - ret_avg[turn];
+        con_i[turn]++;
 
-        delta = (float)newValue - ret_avg;
-        con_i++;
-        ret_avg += delta / con_i;
-        if(con_i == 1){ }
+        ret_avg[turn] += delta / con_i[turn];
+        if(con_i[turn] == 1){ } //continues
         else {
             // Welford's algorithm
-            delta2 = (float)newValue - ret_avg;
-            m2 += delta * delta2;
-            ret_std = sqrt(m2/(con_i-1));
+            delta2 = newValue - ret_avg[turn];
+            m2[turn] += delta * delta2;
+            ret_std[turn] = sqrt(m2[turn]/(con_i[turn]-1));
         }
         
-        values[0] = (float)newValue;
-        values[1] = ret_avg;
-        values[2] = ret_std;
+        values[0] = newValue;
+        values[1] = (uint16_t)ret_avg[turn];
+        values[2] = (uint16_t)ret_std[turn];
 
         return values;
     }

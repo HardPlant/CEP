@@ -29,4 +29,10 @@ implementation
   components new TimerMilliC(), new SensirionSht11C() as Sensor;
   TempSensorM.Read_Humidity -> Sensor.Humidity;
   TempSensorM.Read_Temp -> Sensor.Temperature;
+
+  components new UltraredSensorC() as URSensor;
+  TempSensorM.Read_UR -> URSensor;
+
+  components LedControllerC;
+  TempSensorM.LedController -> LedControllerC;
 }

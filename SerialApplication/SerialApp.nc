@@ -20,9 +20,6 @@ implementation
   components TempSensorC;
   SerialAppM.TempSensor -> TempSensorC;
 /*
-  //UltraRed Sensor
-  components URSensorC;
-  SerialAppM.URSensor -> URSensorC;
 
   //BaseStation
   components BaseStation;
