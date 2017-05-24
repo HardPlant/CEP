@@ -18,8 +18,6 @@
 /******************************************************************************/
 
 #include "Timer.h"
-#include <stdio.h>
-#include "Oscilloscope.h"
 //#define GET_HUMIDITY_DATA 0	// 온도를 구하는데 습도가 필요하므로, 분리 효율이 떨어진다.
 
 module TempSensorM
@@ -28,7 +26,6 @@ module TempSensorM
     interface TempSensor;
   }
   uses {
-	interface Timer<TMilli>;
 	interface Read<uint16_t> as Read_Humidity;
 	interface Read<uint16_t> as Read_Temp;
   }
@@ -41,24 +38,21 @@ implementation
   uint16_t T_temp,T_humi;
 
   // Use LEDs to report various status issues.
-  event void TempSensor.init() {
-	  call Timer.startPeriodic(1000);
+  event void TempSensor.start() {
+	  while (call Read_Temp.read() != SUCCESS);
   }
 
-  event void Timer.fired() {
-	if (call Read_Temp.read() != SUCCESS)
-  }
 
   event void Read_Temp.readDone(error_t result, uint16_t data) {
-	if (result == SUCCESS)
-	{
-		atomic T_temp = data;
-		call Read_Humidity.read()
-	}
-	else
-	{
-		call Read_Temp.read()
-	}
+    if (result == SUCCESS)
+    {
+      atomic T_temp = data;
+      call Read_Humidity.read()
+    }
+    else
+    {
+      call Read_Temp.read()
+    }
   }
 
   event void Read_Humidity.readDone(error_t result, uint16_t data) {
@@ -66,7 +60,7 @@ implementation
 	{
 		atomic T_humi = data;
 		calc_SHT11(T_humi, T_temp);
-		signal TempSensor.Done(mytemp, myhumi);
+		signal TempSensor.done(mytemp, myhumi);
 	}
 	else
 	{

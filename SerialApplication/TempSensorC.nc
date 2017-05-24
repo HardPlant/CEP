@@ -17,13 +17,16 @@
 /*                                                                            */
 /******************************************************************************/
 
-configuration TempSensorC { }
+configuration TempSensorC{
+    provides interface TempSensor;
+}
 implementation
 {
-  components TempSensorC, MainC
-    new TimerMilliC(), new SensirionSht11C() as Sensor
+  components TempSensorM;
 
-  TempSensorC.Timer -> TimerMilliC;
+  TempSensor = TempSensorM;
+
+  components new TimerMilliC(), new SensirionSht11C() as Sensor;
   TempSensorC.Read_Humidity -> Sensor.Humidity;
   TempSensorC.Read_Temp -> Sensor.Temperature;
 }
