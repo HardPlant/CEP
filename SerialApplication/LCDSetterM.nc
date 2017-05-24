@@ -106,7 +106,7 @@ typedef enum {TEMP, HUMID, UR} TYPE;
   	else{
       CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine2;
 
-      sprintf(SetDataBuff, "%d %d %d", LCDvalue, LCDavg, LCDstdev);
+      sprintf(SetDataBuff, "%4d %4d %6d", LCDvalue, LCDavg, LCDstdev);
       memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
 
       call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
