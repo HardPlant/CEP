@@ -65,6 +65,13 @@ module BaseStationM {
 
 implementation
 {
+    struct message{
+        nx_uint16_t value;
+        nx_uint16_t avg;
+        nx_uint16_t stdev;
+        nx_uint16_t version;
+    } Packet;
+    Packet packet;
   message_t  radioBuf;
   uint8_t    radioIn, radioOut;
   bool       radioBusy, radioFull;
@@ -85,7 +92,9 @@ implementation
 
     call RadioControl.start();
   }
-
+  command void sendData(Packet msg){
+    packet = msg;
+  }
   event void RadioControl.stopDone(error_t error) {}
   
   event void RadioControl.startDone(error_t error) {}
@@ -107,7 +116,7 @@ implementation
     am_addr_t addr;
     message_t* msg;
     
-    msg = radioQueue[radioOut];
+    msg = radioBuf;
     len = call RadioPacket.payloadLength(msg);
     addr = call RadioAMPacket.destination(msg);
    id = call RadioAMPacket.type(msg);

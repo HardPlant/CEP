@@ -13,24 +13,25 @@ module SerialAppM {
   }
 }
 implementation {
+    typedef enum {TEMP, HUMID, UR} TYPE;
+
     uint8_t con_i[3] = {0,};
     float ret_avg[3] = {0,};
     float ret_std[3] = {0,};
     float m2[3] = {0,};
-    uint16_t* getValues(uint16_t newValue);
+    void setValues(uint16_t newValue);
+
     struct message{
-        nx_uint16_t value;
-        nx_uint16_t avg;
-        nx_uint16_t stdev;
+        nx_uint16_t temp;
+        nx_uint16_t humid;
+        nx_uint16_t ur;
         nx_uint16_t version;
-    }
-    typedef enum {TEMP, HUMID, UR} TYPE;
+    } Packet;
     uint8_t turn;
 
     void initC(){
         call LCDSetter.init();
-        /*call URSensor.init();
-        call BaseStation.init();*/
+        /*call BaseStation.init();*/
 
     }
     event void Boot.booted() {
@@ -48,14 +49,17 @@ implementation {
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{
             if(turn == TEMP){
+                setValues(temp);
                 call LCDSetter.setLCD(turn,temp, ret_avg[turn],ret_std[turn]);
                 turn = HUMID;
             }
             else if(turn == HUMID){
+                setValues(humid);
                 call LCDSetter.setLCD(turn,humid, ret_avg[turn],ret_std[turn]);
                 turn = UR;
             }            
             else if(turn == UR){
+                setValues(ur);
                 call LCDSetter.setLCD(turn,ur, ret_avg[turn],ret_std[turn]);
                 turn = TEMP;
             }
@@ -64,8 +68,15 @@ implementation {
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
         setMessage(temp,humid,ur);
     }
+    event void BaseStation.recv(message_t *msg, void *payload, uint8_t len){
+        Packet packet;
+        packet.value = (Packet*)msg->value;
+        packet.avg = (Packet*)msg->avg;
+        packet.stdev = (Packet*)msg->stdev;
 
-    uint16_t* getValues(uint16_t newValue){
+        
+    }
+    void setValues(uint16_t newValue){
         
         float delta = 0;
         float delta2 = 0;
