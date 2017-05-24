@@ -65,27 +65,22 @@
  */
 
 configuration BaseStationC {
+    provides interface BaseStation;
 }
 implementation {
-  components MainC, BaseStationP, LedsC;
-  components ActiveMessageC as Radio, SerialActiveMessageC as Serial;
-  
-  MainC.Boot <- BaseStationP;
+  components BaseStationM, LedsC;
+  components ActiveMessageC as Radio;
 
-  BaseStationP.RadioControl -> Radio;
-  BaseStationP.SerialControl -> Serial;
+  BaseStation = BaseStationM;
   
-  BaseStationP.UartSend -> Serial;
-  BaseStationP.UartReceive -> Serial;
-  BaseStationP.UartPacket -> Serial;
-  BaseStationP.UartAMPacket -> Serial;
+  BaseStationM.RadioControl -> Radio;
   
-  BaseStationP.RadioSend -> Radio;
-  BaseStationP.RadioReceive -> Radio.Receive;
-  BaseStationP.RadioPacket -> Radio;
-  BaseStationP.RadioAMPacket -> Radio;
+  BaseStationM.RadioSend -> Radio;
+  BaseStationM.RadioReceive -> Radio.Receive;
+  BaseStationM.RadioPacket -> Radio;
+  BaseStationM.RadioAMPacket -> Radio;
   
-  BaseStationP.Leds -> LedsC;
+  BaseStationM.Leds -> LedsC;
   
   Serial.Leds -> LedsC;
 }
