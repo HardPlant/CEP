@@ -65,7 +65,7 @@ module BaseStationM {
 
 implementation
 {
-    struct message{
+    typedef struct message{
         nx_uint16_t value;
         nx_uint16_t avg;
         nx_uint16_t stdev;
@@ -73,27 +73,10 @@ implementation
     } Packet;
     Packet packet;
   message_t  radioBuf;
-  uint8_t    radioIn, radioOut;
-  bool       radioBusy, radioFull;
-
-  task void radioSendTask();
-
-/////////////////////////////////////////////////////////////////LED////////////////////////////////////////////////////////
-  void dropBlink() {
-    call Leds.led2Toggle();
-  }
-
-  void failBlink() {
-	  call Leds.led2Toggle();
-  }
 
   command void BaseStation.init() {
     uint8_t i;
-
     call RadioControl.start();
-  }
-  command void sendData(Packet msg){
-    packet = msg;
   }
   event void RadioControl.stopDone(error_t error) {}
   
@@ -103,33 +86,19 @@ implementation
   event message_t *RadioReceive.receive[am_id_t id](message_t *msg,
 						    void *payload,
 						    uint8_t len) {
-    message_t *ret = msg;
-
-    return ret;
+    signal BaseStation.recvPacket((void*)msg);
+    return msg;
   }
 
-  uint8_t tmpLen;
-  
-  task void radioSendTask() {
-    uint8_t len;
+  command void BaseStation.sendPacket(void* msg, uint8_t len){
     am_id_t id;
     am_addr_t addr;
-    message_t* msg;
-    
-    msg = radioBuf;
     len = call RadioPacket.payloadLength(msg);
+    id = call RadioAMPacket.type(msg);
     addr = call RadioAMPacket.destination(msg);
-   id = call RadioAMPacket.type(msg);
-    if (call RadioSend.send[id](addr, msg, len) == SUCCESS){
-       call Leds.led0Toggle();
-     }
-    else
-      {
-	failBlink();
-	post radioSendTask();
-      }
-  
- 
+
+    call RadioSend.send[id](addr, msg, len);
   }
 
   event void RadioSend.sendDone[am_id_t id](message_t* msg, error_t error) {}  
+}

@@ -21,7 +21,7 @@ implementation {
     float m2[3] = {0,};
     void setValues(uint16_t newValue);
 
-    struct message{
+    typedef struct message{
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;
@@ -31,7 +31,7 @@ implementation {
 
     void initC(){
         call LCDSetter.init();
-        /*call BaseStation.init();*/
+        call BaseStation.init();
 
     }
     event void Boot.booted() {
@@ -66,15 +66,17 @@ implementation {
         }
     }
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
-        setMessage(temp,humid,ur);
-    }
-    event void BaseStation.recv(message_t *msg, void *payload, uint8_t len){
         Packet packet;
-        packet.value = (Packet*)msg->value;
-        packet.avg = (Packet*)msg->avg;
-        packet.stdev = (Packet*)msg->stdev;
+        packet.temp = temp;
+        packet.humid = humid;
+        packet.ur = ur;
 
-        
+        call BaseStation.sendPacket((void*)&packet, sizeof(packet));
+    }
+    event void BaseStation.recvPacket(void* msg){
+        Packet* packet = (Packet*)msg;
+        setMessage(packet->temp,packet->humid, packet->ur);
+
     }
     void setValues(uint16_t newValue){
         
