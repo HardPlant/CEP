@@ -19,9 +19,5 @@ configuration LedControllerC {
 
   components new TimerMilliC() as MorseTimer;
   LedControllerM.MorseTimer -> MorseTimer;
-
-  // LCD
-  components LCDSetterC;
-  LedControllerM.LCDSetter -> LCDSetterC;
   
 }

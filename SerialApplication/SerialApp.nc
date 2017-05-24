@@ -2,31 +2,30 @@
 configuration SerialApp { }
 implementation
 {
-  components SerialApp, MainC,
-
-  SerialApp.Boot -> MainC;
+  components SerialAppM, MainC;
+  SerialAppM.Boot -> MainC;
   //Timer
   components new TimerMilliC();
-  SerialApp.Timer -> TimerMilliC;
+  SerialAppM.Timer -> TimerMilliC;
 
   // LED
   components LedControllerC;
-  SerialApp.LedController -> LedControllerC;
+  SerialAppM.LedController -> LedControllerC;
 
   // LCD
   components LCDSetterC;
-  SerialApp.LCDSetter -> LCDSetterC;
+  SerialAppM.LCDSetter -> LCDSetterC;
 
   //Temp&Humid Sensor
   components TempSensorC;
-  SerialApp.TempSensor -> TempSensorC;
+  SerialAppM.TempSensor -> TempSensorC;
 /*
   //UltraRed Sensor
   components URSensorC;
-  SerialApp.URSensor -> URSensorC;
+  SerialAppM.URSensor -> URSensorC;
 
   //BaseStation
   components BaseStation;
-  SerialApp.BaseStation -> BaseStationC;*/
+  SerialAppM.BaseStation -> BaseStationC;*/
  
 }

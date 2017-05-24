@@ -38,7 +38,7 @@ implementation
   uint16_t T_temp,T_humi;
 
   // Use LEDs to report various status issues.
-  event void TempSensor.start() {
+  command void TempSensor.start() {
 	  while (call Read_Temp.read() != SUCCESS);
   }
 
@@ -47,11 +47,11 @@ implementation
     if (result == SUCCESS)
     {
       atomic T_temp = data;
-      call Read_Humidity.read()
+      call Read_Humidity.read();
     }
     else
     {
-      call Read_Temp.read()
+      call Read_Temp.read();
     }
   }
 
@@ -64,7 +64,7 @@ implementation
 	}
 	else
 	{
-		call Read_Temp.read()
+		call Read_Temp.read();
 	}
   }
   

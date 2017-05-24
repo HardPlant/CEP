@@ -10,7 +10,6 @@ module LedControllerM {
     interface Timer<TMilli> as MorseTimer;
 
     interface Timer<TMilli> as CompleteTimer;
-    interface LCDSetter;
   }
 }
 
@@ -26,7 +25,6 @@ implementation {
 
   //******Test Entry*********
   command void LedController.test(){
-    call LCDSetter.init();
     call LedController.setNumber(45);
   }
   
@@ -39,7 +37,6 @@ uint8_t numToShow = 0;
 
   //******모듈 시작 함수. 전달받은 값을 모스 부호로 출력한다. (MAX_DIGIT자리까지 가능)
   command void LedController.setNumber(uint8_t num){
-    if(num>100) return call LCDSetter.setLCD(100);
     
     numToShow = num;
     _setNumber(numToShow);
@@ -76,7 +73,6 @@ uint8_t numToShow = 0;
       call CompleteTimer.startOneShot(MORSE_UNIT*3);
     }
     else{ // 0이면 처음부터 다시 실행한다.
-      signal LedController.reset();
     }
   }
 

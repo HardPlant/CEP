@@ -27,6 +27,6 @@ implementation
   TempSensor = TempSensorM;
 
   components new TimerMilliC(), new SensirionSht11C() as Sensor;
-  TempSensorC.Read_Humidity -> Sensor.Humidity;
-  TempSensorC.Read_Temp -> Sensor.Temperature;
+  TempSensorM.Read_Humidity -> Sensor.Humidity;
+  TempSensorM.Read_Temp -> Sensor.Temperature;
 }
