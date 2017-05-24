@@ -17,21 +17,24 @@
 /*                                                                            */
 /******************************************************************************/
 
-configuration TempSensorAppC { }
-implementation
-{
-  components TempSensorC, MainC, LedsC,
-    new TimerMilliC(), new SensirionSht11C() as Sensor,
-    SerialActiveMessageC as Comm;
+includes Opt_App;
 
-  TempSensorC.Boot -> MainC;
-  TempSensorC.Timer -> TimerMilliC;
-  TempSensorC.Read_Humidity -> Sensor.Humidity;
-  TempSensorC.Read_Temp -> Sensor.Temperature;
-  TempSensorC.Leds -> LedsC;
-  
-  TempSensorC.SerialControl -> Comm;
-  TempSensorC.AMSend  -> Comm.AMSend[AM_TempSensor];
-  TempSensorC.Receive -> Comm.Receive[AM_TempSensor];
- 
+configuration LCDSetterC {
+    provides interface LCDSetter;
+}
+implementation {
+  components LCDSetterM, new TimerMilliC();
+
+  LCDSetterM.Timer -> TimerMilliC;
+
+  LCDSetter = LCDSetterM;
+
+  // Interaction Components
+  components InteractionC;
+  LCDSetterM.Interaction -> InteractionC;
+
+  components SCSuartDBGC;
+  LCDSetterM.SCSuartDBGstd -> SCSuartDBGC;
+  LCDSetterM.SCSuartDBG -> SCSuartDBGC;
+
 }

@@ -17,21 +17,14 @@
 /*                                                                            */
 /******************************************************************************/
 
-configuration TempSensorAppC { }
-implementation
-{
-  components TempSensorC, MainC, LedsC,
-    new TimerMilliC(), new SensirionSht11C() as Sensor,
-    SerialActiveMessageC as Comm;
 
-  TempSensorC.Boot -> MainC;
-  TempSensorC.Timer -> TimerMilliC;
-  TempSensorC.Read_Humidity -> Sensor.Humidity;
-  TempSensorC.Read_Temp -> Sensor.Temperature;
-  TempSensorC.Leds -> LedsC;
-  
-  TempSensorC.SerialControl -> Comm;
-  TempSensorC.AMSend  -> Comm.AMSend[AM_TempSensor];
-  TempSensorC.Receive -> Comm.Receive[AM_TempSensor];
- 
+configuration StDevC {
+    provides interface StDev;
+}
+implementation {
+  components StDevM, new TimerMilliC();
+
+  StDevM.Timer -> TimerMilliC;
+
+  StDev = StDevM;
 }
