@@ -1,5 +1,4 @@
 interface TempSensor{
     command void init();
-    command void getTemp();
-    command void getHumid();
+    event void TempSensor.Done(uint16_t mytemp, uint16_t myhumi);
 }
