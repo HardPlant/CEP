@@ -81,6 +81,4 @@ implementation {
   BaseStationM.RadioAMPacket -> Radio;
   
   BaseStationM.Leds -> LedsC;
-  
-  Serial.Leds -> LedsC;
 }

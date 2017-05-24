@@ -19,10 +19,9 @@ implementation
   //Temp&Humid Sensor
   components TempSensorC;
   SerialAppM.TempSensor -> TempSensorC;
-/*
 
   //BaseStation
-  components BaseStation;
-  SerialAppM.BaseStation -> BaseStationC;*/
+  components BaseStationC;
+  SerialAppM.BaseStation -> BaseStationC;
  
 }

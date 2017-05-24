@@ -65,13 +65,7 @@ module BaseStationM {
 
 implementation
 {
-  
-  enum {
-    RADIO_QUEUE_LEN = 12,
-  };
-
-  message_t  radioQueueBufs[RADIO_QUEUE_LEN];
-  message_t  *radioQueue[RADIO_QUEUE_LEN];
+  message_t  radioBuf;
   uint8_t    radioIn, radioOut;
   bool       radioBusy, radioFull;
 
@@ -86,23 +80,15 @@ implementation
 	  call Leds.led2Toggle();
   }
 
-  event void BaseStation.init() {
+  command void BaseStation.init() {
     uint8_t i;
-
-    for (i = 0; i < RADIO_QUEUE_LEN; i++)
-      radioQueue[i] = &radioQueueBufs[i];
-    radioIn = radioOut = 0;
-    radioBusy = FALSE;
-    radioFull = TRUE;
 
     call RadioControl.start();
   }
 
-  event void RadioControl.startDone(error_t error) {
-    if (error == SUCCESS) {
-      radioFull = FALSE;
-    }
-  }
+  event void RadioControl.stopDone(error_t error) {}
+  
+  event void RadioControl.startDone(error_t error) {}
 
   uint8_t count = 0;
   event message_t *RadioReceive.receive[am_id_t id](message_t *msg,
@@ -110,26 +96,6 @@ implementation
 						    uint8_t len) {
     message_t *ret = msg;
 
-    atomic {
-      if (!uartFull)
-	{
-	  ret = uartQueue[uartIn];
-	  uartQueue[uartIn] = msg;
-
-	  uartIn = (uartIn + 1) % UART_QUEUE_LEN;
-	
-	  if (uartIn == uartOut)
-	    uartFull = TRUE;
-
-	  if (!uartBusy)
-	    {
-	      post uartSendTask();
-	      uartBusy = TRUE;
-	    }
-	}
-      else
-	dropBlink();
-    }
     return ret;
   }
 
@@ -141,22 +107,12 @@ implementation
     am_addr_t addr;
     message_t* msg;
     
-    atomic
-      if (radioIn == radioOut && !radioFull)
-	{
-	  radioBusy = FALSE;
-	  return;
-	}
-
     msg = radioQueue[radioOut];
-    len = call UartPacket.payloadLength(msg);
-    addr = call UartAMPacket.destination(msg);
-   id = call UartAMPacket.type(msg);					
- 
-  
+    len = call RadioPacket.payloadLength(msg);
+    addr = call RadioAMPacket.destination(msg);
+   id = call RadioAMPacket.type(msg);
     if (call RadioSend.send[id](addr, msg, len) == SUCCESS){
-     /////////////////////////////////////////////////////////////////LED////////////////////////////////////////////////////////
-      call Leds.led0Toggle();
+       call Leds.led0Toggle();
      }
     else
       {
@@ -167,19 +123,4 @@ implementation
  
   }
 
-  event void RadioSend.sendDone[am_id_t id](message_t* msg, error_t error) {
-    if (error != SUCCESS)
-      failBlink();
-    else
-      atomic
-	if (msg == radioQueue[radioOut])
-	  {
-	    if (++radioOut >= RADIO_QUEUE_LEN)
-	      radioOut = 0;
-	    if (radioFull)
-	      radioFull = FALSE;
-	  }
-    
-    post radioSendTask();
-  }
-}  
+  event void RadioSend.sendDone[am_id_t id](message_t* msg, error_t error) {}  

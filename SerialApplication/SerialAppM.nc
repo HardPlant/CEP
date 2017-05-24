@@ -8,8 +8,7 @@ module SerialAppM {
   interface LedController;
   interface LCDSetter;
   interface TempSensor;
-  /*
-  interface BaseStation;*/
+  interface BaseStation;
 
   }
 }
@@ -19,7 +18,12 @@ implementation {
     float ret_std[3] = {0,};
     float m2[3] = {0,};
     uint16_t* getValues(uint16_t newValue);
-
+    struct message{
+        nx_uint16_t value;
+        nx_uint16_t avg;
+        nx_uint16_t stdev;
+        nx_uint16_t version;
+    }
     typedef enum {TEMP, HUMID, UR} TYPE;
     uint8_t turn;
 
@@ -41,7 +45,7 @@ implementation {
         call LedController.BlinkLed2();
         call TempSensor.start();
     }
-    event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
+    void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{
             if(turn == TEMP){
                 call LCDSetter.setLCD(turn,temp, ret_avg[turn],ret_std[turn]);
@@ -56,6 +60,9 @@ implementation {
                 turn = TEMP;
             }
         }
+    }
+    event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
+        setMessage(temp,humid,ur);
     }
 
     uint16_t* getValues(uint16_t newValue){
