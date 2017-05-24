@@ -45,6 +45,7 @@
 
 #include "AM.h"
 #include "Serial.h"
+#include "Oscilloscope.h"
 
 module BaseStationM {
     provides{
@@ -64,6 +65,7 @@ module BaseStationM {
 
 implementation
 {
+  
   enum {
     RADIO_QUEUE_LEN = 12,
   };

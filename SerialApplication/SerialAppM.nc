@@ -9,8 +9,6 @@ module SerialAppM {
   interface LCDSetter;
   interface TempSensor;
   /*
-
-  interface URSensor;
   interface BaseStation;*/
 
   }
