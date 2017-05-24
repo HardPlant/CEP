@@ -35,7 +35,8 @@ module LCDSetterM {
  #define MyOPT_Type OPT_TEXTLCD
 
   norace App_struct_t AP_Frame;
-  norace uint8_t MsgBuff[64], myAppType, myOptType, LCDDisplayInt=0;
+  norace uint8_t MsgBuff[64], myAppType, myOptType, LCDDisplayType;
+  norace float LCDvalue, LCDavg, LCDstdev;
 
   void SensorsPrint (uint8_t App_size);
 
@@ -77,7 +78,11 @@ module LCDSetterM {
   }
 
   //////////////////////////////////////////////////////////
-
+  char* getType(){
+    if(LCDDisplayType == 0) return "TEMP ";
+    if(LCDDisplayType == 1) return "HUMID";
+    if(LCDDisplayType == 2) return "URed ";
+  }
   event void Timer.fired(){
     Cmd_struct_t CMD_Frame;
     char SetDataBuff[32];
@@ -85,19 +90,31 @@ module LCDSetterM {
     CMD_Frame.CMDType = PACKET_CONTROL;
     CMD_Frame.CMD_Data.OptConfig.packetType = PACKET_CONTROL;
     CMD_Frame.CMD_Data.OptConfig.optType = OPT_TEXTLCD;
-	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine1;
+  	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine1;
 
-    sprintf(SetDataBuff, "         %d      ", LCDDisplayInt);
+    //Upper Line
+    sprintf(SetDataBuff, "%s   |   AVG   |   StDev ", getType());
     memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
 
     call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
+    
+    //Lower Line
+  	CMD_Frame.CMD_Data.OptConfig.subCmd1 = LCDLine2;
+
+    sprintf(SetDataBuff, " %f   |   %f   |   %f    ", LCDvalue, LCDavg, LCDstdev);
+    memcpy(CMD_Frame.CMD_Data.OptConfig.ConfigData.GeneralData, SetDataBuff, 16);
+
+    call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
+
     return;
   }
-  command void LCDSetter.setLCD(uint8_t num)
+  command void LCDSetter.setLCD(uint8_t type, float value, float avg, float stdev)
   {
-      LCDDisplayInt=num;
+      LCDDisplayType=type;
+      LCDvalue = value;
+      LCDavg = avg;
+      LCDstdev = stdev;
   }
-
   //////////////////////////////////////////////////////////
 
 }

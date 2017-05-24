@@ -1,4 +1,6 @@
 
+
+
 //////////////////////////////////////HUMID&TEMP
 configuration OscilloscopeAppC { }
 implementation
@@ -19,23 +21,6 @@ implementation
  
 }
 
-//////////////////////////////////////Sensors_Serials
-configuration OscilloscopeAppC { }
-implementation
-{
-  components OscilloscopeC, MainC,  LedsC,
-    new TimerMilliC(), new PhotoSensorC() as Sensor 
-   ,SerialActiveMessageC as Comm;
-
-  OscilloscopeC.Boot -> MainC;
-  OscilloscopeC.SerialControl -> Comm;
-  OscilloscopeC.AMSend ->	 Comm.AMSend[AM_OSCILLOSCOPE];
-  OscilloscopeC.Receive ->  Comm.Receive[AM_OSCILLOSCOPE];
-  OscilloscopeC.Timer -> TimerMilliC;
-  OscilloscopeC.Read -> Sensor;
-  OscilloscopeC.Leds -> LedsC;
-
-}
 //////////////////////////////////////UltraSensor
 configuration OscilloscopeAppC { }
 implementation
