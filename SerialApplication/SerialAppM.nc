@@ -44,19 +44,16 @@ implementation {
         call TempSensor.start();
     }
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
-        atomic{ // getValues 호출부터 setLCD까지 배열의 값이 바뀌지 않아야 함.
+        atomic{
             if(turn == TEMP){
-                uint16_t* values = getValues(temp);//결과 배열 = 포인터
                 call LCDSetter.setLCD(turn,temp, ret_avg[turn],ret_std[turn]);
                 turn = HUMID;
             }
             else if(turn == HUMID){
-                uint16_t* values = getValues(humid);//결과 배열 = 포인터
                 call LCDSetter.setLCD(turn,humid, ret_avg[turn],ret_std[turn]);
                 turn = UR;
             }            
             else if(turn == UR){
-                uint16_t* values = getValues(ur);//결과 배열 = 포인터
                 call LCDSetter.setLCD(turn,ur, ret_avg[turn],ret_std[turn]);
                 turn = TEMP;
             }
