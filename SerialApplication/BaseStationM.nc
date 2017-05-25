@@ -76,12 +76,11 @@ implementation
     Packet packet;
   message_t  radioBuf;
   
-  
   command void BaseStation.init() {
     uint8_t i;
     call RadioControl.start();
   }
-
+  
   command uint8_t BaseStation.getDeviceRole(){
     return role;
   }

@@ -20,7 +20,7 @@
 #include "Timer.h"
 #include <stdio.h>
 #include "Oscilloscope.h"
-#define GET_HUMIDITY_DATA 0	//0ÀÌ¸é ¿Âµµ  1ÀÌ¸é ½Àµµ
+#define GET_HUMIDITY_DATA 0	//0ï¿½Ì¸ï¿½ ï¿½Âµï¿½  1ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 module OscilloscopeC
 {
@@ -46,7 +46,16 @@ implementation
   uint16_t T_temp,T_humi;
  
   /* Current local state - interval, version and accumulated readings */
-  oscilloscope_t local;
+  /*
+	typedef nx_struct oscilloscope {
+  nx_uint16_t version; /* Version of the interval. */
+  nx_uint16_t interval; /* Samping period. */
+  nx_uint16_t id; /* Mote id of sending mote. */
+  nx_uint16_t count; /* The readings are samples count * NREADINGS onwards */
+  nx_uint16_t readings[NREADINGS];
+} oscilloscope_t;
+	*/
+	oscilloscope_t local;
 
   uint8_t reading; /* 0 to NREADINGS */
 
@@ -200,7 +209,8 @@ implementation
     if(rh_true>100)rh_true=100; //cut if the value is outside of
     if(rh_true<0.1)rh_true=0.1; //the physical possible range
     mytemp=(uint16_t)t_C; //return temperature [C]
-    myhumi=(uint16_t)rh_true; //return humidity[%RH]
+    myhumi=(uint16_t)rh_true; //return humidity[%RH]
+
   }
 
 
