@@ -14,6 +14,9 @@ module SerialAppM {
 }
 implementation {
     typedef enum {TEMP, HUMID, UR} TYPE;
+    typedef enum {TX, RX} ROLE;
+    
+    uint8_t deviceRole;
 
     uint8_t con_i[3] = {0,};
     float ret_avg[3] = {0,};
@@ -21,6 +24,7 @@ implementation {
     float m2[3] = {0,};
     void setValues(uint16_t newValue);
     void IntervalBlink(uint8_t interval);
+
     typedef struct message{
         nx_uint16_t temp;
         nx_uint16_t humid;
@@ -29,17 +33,17 @@ implementation {
     } Packet;
     uint8_t turn;
 
-    void initC(){
+    event void Boot.booted() {
         call LCDSetter.init();
         call BaseStation.init();
-
     }
-    event void Boot.booted() {
-        initC();
+    event void BaseStation.initDone(){
+        deviceRole = call BaseStation.getDeviceRole();
+        if(deviceRole == TX){
         turn = TEMP;
         call Timer.startPeriodic(3000);
+        }
     }
-
     event void Timer.fired(){
         call LedController.BlinkLed0();
         call LedController.BlinkLed1();

@@ -65,6 +65,8 @@ module BaseStationM {
 
 implementation
 {
+    typedef enum {TX, RX} ROLE;
+    uint8_t role;
     typedef struct message{
         nx_uint16_t value;
         nx_uint16_t avg;
@@ -73,11 +75,17 @@ implementation
     } Packet;
     Packet packet;
   message_t  radioBuf;
-
+  
+  
   command void BaseStation.init() {
     uint8_t i;
     call RadioControl.start();
   }
+
+  command uint8_t BaseStation.getDeviceRole(){
+    return role;
+  }
+    
   event void RadioControl.stopDone(error_t error) {}
   
   event void RadioControl.startDone(error_t error) {}
