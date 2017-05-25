@@ -14,7 +14,7 @@ module SerialAppM {
 }
 implementation {
     typedef enum {TEMP, HUMID, UR} TYPE;
-    typedef enum {TX, RX} ROLE;
+    typedef enum {RX,TX} ROLE;
     
     uint8_t deviceRole;
 
@@ -25,7 +25,7 @@ implementation {
     void setValues(uint16_t newValue);
     void IntervalBlink(uint8_t interval);
 
-    typedef struct message{
+    typedef nx_struct message{
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;

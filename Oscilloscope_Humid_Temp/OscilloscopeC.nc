@@ -26,8 +26,8 @@ module OscilloscopeC
 {
   uses {
 	interface Boot;
-	interface SplitControl as SerialControl;
-	interface AMSend;
+	interface SplitControl as SerialControl; // Radio/Serial 허용?
+	interface AMSend; // SerialActiveMessageC
 	interface Receive;
 	interface Timer<TMilli>;
 	interface Read<uint16_t> as Read_Humidity;
@@ -73,8 +73,8 @@ implementation
   void report_received() { call Leds.led2Toggle(); }
 
   event void Boot.booted() {
-	local.interval = 1000;
-	local.id = TOS_NODE_ID;
+	local.interval = 1000; // 시작 시 : interval, id 초기화
+	local.id = TOS_NODE_ID; // 어딘가에 정의된 상수. 
 	if (call SerialControl.start() != SUCCESS)
 		report_problem();
   }
@@ -85,6 +85,7 @@ implementation
   }
 
   event void SerialControl.startDone(error_t error) {
+		//SerialControl 시작 성공 시 타이머 시작.
 	startTimer();
   }
 
@@ -93,23 +94,23 @@ implementation
 
   event message_t* Receive.receive(message_t* msg, void* payload, uint8_t len) {
 
-	oscilloscope_t *omsg = payload;
-	report_received();
+		oscilloscope_t *omsg = payload; //message_t = 상태, payload = 실제 데이터?
+		report_received();
 
-	if (omsg->version > local.version)
-	{
-		local.version = omsg->version;
-		local.interval = omsg->interval;
-		startTimer();
-	}
+		if (omsg->version > local.version) // 메시지 버전 체크.
+		{
+			local.version = omsg->version;
+			local.interval = omsg->interval;
+			startTimer(); // reading = 0, interval만큼 타이머 시작.
+		}
 
-	if (omsg->count > local.count)
-	{
-		local.count = omsg->count;
-		suppress_count_change = TRUE;
-	}
+		if (omsg->count > local.count) // time sync 필요?
+		{
+			local.count = omsg->count;
+			suppress_count_change = TRUE;
+		}
 
-	return msg;
+		return msg;
   }
 
   /* At each sample period:
