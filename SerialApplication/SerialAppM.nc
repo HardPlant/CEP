@@ -20,7 +20,7 @@ implementation {
     float ret_std[3] = {0,};
     float m2[3] = {0,};
     void setValues(uint16_t newValue);
-
+    void IntervalBlink(uint8_t interval);
     typedef struct message{
         nx_uint16_t temp;
         nx_uint16_t humid;
@@ -46,24 +46,33 @@ implementation {
         call LedController.BlinkLed2();
         call TempSensor.start();
     }
+    
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{
-            if(turn == TEMP){
+            if(turn == TEMP){           
                 setValues(temp);
+                IntervalBlink(temp - ret_avg[turn]);
                 call LCDSetter.setLCD(turn,temp, ret_avg[turn],ret_std[turn]);
                 turn = HUMID;
             }
             else if(turn == HUMID){
                 setValues(humid);
+                IntervalBlink(humid - ret_avg[turn]);
                 call LCDSetter.setLCD(turn,humid, ret_avg[turn],ret_std[turn]);
                 turn = UR;
             }            
             else if(turn == UR){
                 setValues(ur);
+                IntervalBlink(humid - ret_avg[turn]);
                 call LCDSetter.setLCD(turn,ur, ret_avg[turn],ret_std[turn]);
                 turn = TEMP;
             }
         }
+    }
+    void IntervalBlink(uint8_t interval){
+        if(turn == TEMP)  return call LedController.IntervalBlinkLed0(interval);
+        if(turn == HUMID) return call LedController.IntervalBlinkLed1(interval);
+        if(turn == UR)    return call LedController.IntervalBlinkLed2(interval);
     }
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
         Packet packet;
