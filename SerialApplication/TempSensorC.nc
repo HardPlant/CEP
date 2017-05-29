@@ -33,6 +33,4 @@ implementation
   components new UltraredSensorC() as URSensor;
   TempSensorM.Read_UR -> URSensor;
 
-  components LedControllerC;
-  TempSensorM.LedController -> LedControllerC;
 }

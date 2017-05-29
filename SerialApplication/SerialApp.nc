@@ -20,8 +20,8 @@ implementation
   components TempSensorC;
   SerialAppM.TempSensor -> TempSensorC;
 
-  //BaseStation
-  components BaseStationC;
-  SerialAppM.BaseStation -> BaseStationC;
- 
+  //ComSat
+  components ComSatC;
+  SerialAppM.ComSat -> ComSatC;
+
 }

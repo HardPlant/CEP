@@ -29,7 +29,6 @@ module TempSensorM
 	interface Read<uint16_t> as Read_Humidity;
 	interface Read<uint16_t> as Read_Temp;
   interface Read<uint16_t> as Read_UR;
-    interface LedController;
   }
 }
 implementation
@@ -49,7 +48,6 @@ implementation
     if (result == SUCCESS)
     {
       atomic T_temp = data;
-      call LedController.BlinkLed0();
       call Read_Humidity.read();
     }
     else
@@ -61,7 +59,6 @@ implementation
     if (result == SUCCESS)
     {
       atomic T_humi = data;
-      call LedController.BlinkLed1();
       calc_SHT11(T_humi, T_temp);
       call Read_UR.read();
     }
@@ -72,7 +69,6 @@ implementation
     event void Read_UR.readDone(error_t result, uint16_t data) {
     if (result == SUCCESS)
     {
-      call LedController.BlinkLed2();
       signal TempSensor.done(mytemp, myhumi, data);
     }
     else

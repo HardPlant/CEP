@@ -8,7 +8,7 @@ module SerialAppM {
   interface LedController;
   interface LCDSetter;
   interface TempSensor;
-  interface BaseStation;
+  interface ComSat;
 
   }
 }
@@ -35,22 +35,17 @@ implementation {
 
     event void Boot.booted() {
         call LCDSetter.init();
-        call BaseStation.init();
+        /*call ComSat.init();*/
+        call Timer.startOneShot(3000);
     }
-    event void BaseStation.initDone(){
-        deviceRole = call BaseStation.getDeviceRole();
-        if(deviceRole == TX){
-        turn = TEMP;
-        call Timer.startPeriodic(3000);
-        }
-    }
+
     event void Timer.fired(){
-        call LedController.BlinkLed0();
-        call LedController.BlinkLed1();
-        call LedController.BlinkLed2();
         call TempSensor.start();
     }
-    
+    event void LedController.BlinkDone(){
+        call Timer.startOneShot(3000);
+    }
+
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{
             if(turn == TEMP){           
@@ -67,7 +62,7 @@ implementation {
             }            
             else if(turn == UR){
                 setValues(ur);
-                IntervalBlink(humid - ret_avg[turn]);
+                IntervalBlink(ur - ret_avg[turn]);
                 call LCDSetter.setLCD(turn,ur, ret_avg[turn],ret_std[turn]);
                 turn = TEMP;
             }
@@ -79,17 +74,15 @@ implementation {
         if(turn == UR)    return call LedController.IntervalBlinkLed2(interval);
     }
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
+        /*
         Packet packet;
         packet.temp = temp;
         packet.humid = humid;
         packet.ur = ur;
 
-        call BaseStation.sendPacket((void*)&packet, sizeof(packet));
-    }
-    event void BaseStation.recvPacket(void* msg){
-        Packet* packet = (Packet*)msg;
-        setMessage(packet->temp,packet->humid, packet->ur);
+        call ComSat.sendPacket((void*)&packet, sizeof(packet));*/
 
+        setMessage(temp,humid,ur);
     }
     void setValues(uint16_t newValue){
         
@@ -107,5 +100,8 @@ implementation {
             m2[turn] += delta * delta2;
             ret_std[turn] = sqrt(m2[turn]/(con_i[turn]-1));
         }
+    }
+
+    event void ComSat.Received(void* data){
     }
 }
