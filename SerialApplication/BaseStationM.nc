@@ -70,7 +70,7 @@ module BaseStationM {
         interface BaseStation;
     }
   uses {
-    interface SplitControl as RadioControl;
+    interface SplitControl as RadioControl; // AMC component's Radiopower contorl
 
     interface AMSend as RadioSend[am_id_t id];
     interface Receive as RadioReceive[am_id_t id];
@@ -81,8 +81,39 @@ module BaseStationM {
   }
 }
 
-implementation
-{
+implementation{
+  message_t output;
+  task void sendDataPacket(){
+    sensor_data_t* packet
+      = (sensor_data_t*)call Packet.getPayload(&output, sizeof(packet_t));
+    packet->temp = temp;
+    ..
+    if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t)) != SUCCESS)
+      post sendDataPacket();
+  }
+  event void AMSend.sendDone(message_t *msg, error_t err){
+    if(err = SUCCESS){
+
+    }
+    else{
+      post send();
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*{
     typedef enum {RX,TX} ROLE;
     uint8_t role;
     typedef nx_struct message{
@@ -127,4 +158,4 @@ implementation
   }
 
   event void RadioSend.sendDone[am_id_t id](message_t* msg, error_t error) {}  
-}
+}*/
