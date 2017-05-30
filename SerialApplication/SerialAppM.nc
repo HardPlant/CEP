@@ -13,6 +13,12 @@ module SerialAppM {
   }
 }
 implementation {
+////////////Function primitives
+    task void sendPacket();
+    void setValues(uint16_t newValue);
+    void IntervalBlink(uint8_t interval);
+    void setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
+    
     typedef enum {TEMP, HUMID, UR} TYPE;
     typedef enum {RX,TX} ROLE;
     
@@ -22,8 +28,6 @@ implementation {
     float ret_avg[3] = {0,};
     float ret_std[3] = {0,};
     float m2[3] = {0,};
-    void setValues(uint16_t newValue);
-    void IntervalBlink(uint8_t interval);
 
     typedef nx_struct message{
         nx_uint16_t temp;
@@ -31,6 +35,7 @@ implementation {
         nx_uint16_t ur;
         nx_uint16_t version;
     } Packet;
+    Packet packet;
     uint8_t turn;
 
     event void Boot.booted() {
@@ -38,15 +43,38 @@ implementation {
         call ComSat.init();
     }
 
-    event void ComSatM.initDone(){
-        call Timer.startOneShot(3000);
+    event void ComSat.initDone(uint8_t role){
+        deviceRole = role;
+        call Timer.startOneShot(1000);
     }
     event void Timer.fired(){
+        if (deviceRole != TX) return;
+
         call TempSensor.start();
+        call Timer.startOneShot(8000);
     }
-    event void LedController.BlinkDone(){
-        call Timer.startOneShot(3000);
+    ////TX
+    event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
+        packet.temp = temp;
+        packet.humid = humid;
+        packet.ur = ur;
+        post sendPacket();
     }
+    task void sendPacket(){
+        call LedController.BlinkLed0();
+        call LedController.BlinkLed1();
+        call LedController.BlinkLed2();
+        call ComSat.sendData((void*)&packet);
+    }
+    ////RX
+    
+    event void ComSat.received(void* data){
+        if(deviceRole != RX) return;
+        memcpy(&packet,data, sizeof(Packet));
+        setMessage(packet.temp, packet.humid, packet.ur);
+    }
+
+    event void LedController.BlinkDone(){}
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{
             if(turn == TEMP){           
@@ -73,18 +101,7 @@ implementation {
         if(turn == TEMP)  return call LedController.IntervalBlinkLed0(interval);
         if(turn == HUMID) return call LedController.IntervalBlinkLed1(interval);
         if(turn == UR)    return call LedController.IntervalBlinkLed2(interval);
-    }
-    event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
-        /*
-        Packet packet;
-        packet.temp = temp;
-        packet.humid = humid;
-        packet.ur = ur;
-
-        call ComSat.sendPacket((void*)&packet, sizeof(packet));*/
-
-        setMessage(temp,humid,ur);
-    }
+    } 
     void setValues(uint16_t newValue){
         
         float delta = 0;
@@ -101,8 +118,5 @@ implementation {
             m2[turn] += delta * delta2;
             ret_std[turn] = sqrt(m2[turn]/(con_i[turn]-1));
         }
-    }
-
-    event void ComSat.Received(void* data){
     }
 }
