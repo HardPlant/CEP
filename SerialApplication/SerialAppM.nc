@@ -35,17 +35,18 @@ implementation {
 
     event void Boot.booted() {
         call LCDSetter.init();
-        /*call ComSat.init();*/
-        call Timer.startOneShot(3000);
+        call ComSat.init();
     }
 
+    event void ComSatM.initDone(){
+        call Timer.startOneShot(3000);
+    }
     event void Timer.fired(){
         call TempSensor.start();
     }
     event void LedController.BlinkDone(){
         call Timer.startOneShot(3000);
     }
-
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{
             if(turn == TEMP){           

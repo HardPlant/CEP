@@ -1,3 +1,4 @@
+#include "Oscilloscope.h" // id 식별을 위해
 module ComSatM
 {
     provides{
@@ -5,14 +6,13 @@ module ComSatM
     }
   uses {
     interface SplitControl as RadioControl;
-    interface AMPacket;
     interface AMSend;
     interface Receive;
+    interface Random;
   }
 }
 implementation
 {
-    #include <stdlib.h>
 //////////////////////////////  Structs
     typedef nx_struct{
         nx_int16_t priority;
@@ -30,7 +30,7 @@ implementation
     uint8_t deviceRole;
     uint8_t isRolePhase = 1;
     message_t output;
-    uint16_t devicePriority;
+    priority_t devicePriority;
 
     sensor_data_t currentData;
 ////////////////////////////// Function prototype
@@ -60,12 +60,13 @@ implementation
     }
 
     task void setPriority(){
-        srand(time(NULL));
-        uint16_t random = rand();
-        devicePriority = random;
-        priority_t* data
-         = (priority_t*) call Packet.getPayload(&output, sizeof(priority_t));
-         data->priority = random();
+        devicePriority.priority = call Random.rand16();
+        /*
+        priority_t* data = (priority_t*) call AMSend.getPayload(&output);
+        data->priority = devicePriority;
+        */
+        memcpy(call AMSend.getPayload(&output), &devicePriority, sizeof(devicePriority));
+
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(priority_t) != SUCCESS))
             post setPriority();
     }
@@ -80,30 +81,50 @@ implementation
     }
 
     task void sendDataTask(){
-        sensor_data_t* data
-         = (sensor_data_t*) call Packet.getPayload(&output, sizeof(sensor_data_t));
-        data->temp = currentData.temp;
-        data->humid = currentData.humid;
-        data->ur = currentData.ur;
-        data->version = currentData.version;
+        // getPayload로 output의 payload 영역을 구해, 그곳에 페이로드를 작성한다.
+        /* memcpy로 다음과 같은 일을 한다.
+            sensor_data_t* data = (sensor_data_t*) call AMSend.getPayload(&output);
+            data->temp = currentData.temp;
+            data->humid = currentData.humid;
+            data->ur = currentData.ur;
+            data->version = currentData.version;
+        */
+        memcpy(call AMSend.getPayload(&output), &currentData, sizeof(currentData));
+
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
             post sendDataTask();
     }
 
     event void AMSend.sendDone(message_t *msg, error_t err) {}
+
     event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
+        // 상태를 가진 간단한 router.
         if(isRolePhase) priorityReceived(payload);
         else dataReceived(payload);
         return msg;
     }
 
     void priorityReceived(void *payload){
+        // 장비 역할을 정하고 initDone()을 발생한다.
         priority_t* data = (priority_t*)payload;
-        if(devicePriority < data->priority) deviceRole = TX;
+        if(devicePriority.priority == data->priority){
+            //우선도가 같으면 재시도한다.
+            post setPriority(); // retry
+            return;
+        }
+        if(devicePriority.priority < data->priority)
+        {
+            deviceRole = TX;
+        }
+        else // devicePriority > data->priority
+        {
+            deviceRole = RX;
+        }
         isRolePhase = 0;
+        signal ComSat.initDone(deviceRole);
     }
     void dataReceived(void *payload){
-        sensor_data_t* data = (sensor_data_t*)payload;
-        signal ComSat.Received(data);
+        /*sensor_data_t* data = (sensor_data_t*)payload;*/
+        signal ComSat.received(payload);
     }
 }
