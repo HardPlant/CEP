@@ -13,8 +13,14 @@ module SerialAppM {
   }
 }
 implementation {
+    #define PACKET_QUEUE_LEN 12
+    #define TRUE 1
+    #define FALSE 0
+    #define BOOL char
+
 ////////////Function primitives
     task void sendPacket();
+    task void setData();
     void setValues(uint16_t newValue);
     void IntervalBlink(uint8_t interval);
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
@@ -37,8 +43,26 @@ implementation {
     } Packet;
     Packet packet;
     uint8_t turn;
+    Packet packetQueue[PACKET_QUEUE_LEN];
+    uint8_t packetIndex;
+    uint8_t currentPacketIndex;
+    BOOL isUsingLEDs;
 
 ////////////Entry
+    void packetInsert(Packet* pkt);
+    Packet* packetPop();
+    
+    void packetInsert(Packet* pkt){
+        if(pkt == NULL) return;
+        memcpy(&(packetQueue[packetIndex]),pkt, sizeof(Packet));
+        packetIndex = (packetIndex + 1) % PACKET_QUEUE_LEN;
+
+    }
+    Packet* packetPop(){
+        Packet* result = &(packetQueue[currentPacketIndex]);
+        currentPacketIndex = (currentPacketIndex + 1) % PACKET_QUEUE_LEN;
+        return result;
+    }
 
     event void Boot.booted() {
         call LCDSetter.init();
@@ -72,13 +96,24 @@ implementation {
     
     event void ComSat.received(void* data){
         if(deviceRole != RX) return;
+        packetInsert((Packet*)data);
+        post setData();
+    }
+    task void setData(){
+        if(isUsingLEDs == TRUE) post setData();
+        Packet* data = packetPop();
+        if(data == NULL) return;
         memcpy(&packet,data, sizeof(Packet));
         setMessage(packet.temp, packet.humid, packet.ur);
     }
 
-    event void LedController.BlinkDone(){}
+    event void LedController.BlinkDone(){
+        // IntervalBlink가 끝날 때까지 LED를 block한다.
+        isUsingLEDs = FALSE;
+    }
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{
+            isUsingLEDs = TRUE;
             if(turn == TEMP){           
                 setValues(temp);
                 IntervalBlink(temp - ret_avg[turn]);
