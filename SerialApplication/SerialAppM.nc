@@ -17,17 +17,6 @@ implementation {
     #define TRUE 1
     #define FALSE 0
     #define BOOL char
-
-////////////Function primitives
-    task void sendPacket();
-    task void setData();
-    void setValues(uint16_t newValue);
-    void IntervalBlink(uint8_t interval);
-    void setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
-    
-    void packetInsert(Packet* pkt);
-    Packet* packetPop();
-
 ////////////Globals
     typedef enum {TEMP, HUMID, UR} TYPE;
     typedef enum {RX,TX} ROLE;
@@ -45,6 +34,7 @@ implementation {
         nx_uint16_t ur;
         nx_uint16_t version;
     } Packet;
+    
     Packet packet;
     uint8_t turn;
     uint16_t currentVersion;
@@ -52,6 +42,16 @@ implementation {
     uint8_t packetIndex;
     uint8_t currentPacketIndex;
     BOOL isUsingLEDs;
+
+////////////Function primitives
+    task void sendPacket();
+    task void setData();
+    void setValues(uint16_t newValue);
+    void IntervalBlink(uint8_t interval);
+    void setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
+    
+    void packetInsert(Packet* pkt);
+    Packet* packetPop();
 
 ////////////Entry
 
@@ -108,7 +108,7 @@ implementation {
         if(pkt->version <= packet.version) return;
 
         currentVersion = pkt->version;
-        
+
         memcpy(&(packetQueue[packetIndex]),pkt, sizeof(Packet));
         packetIndex = (packetIndex + 1) % PACKET_QUEUE_LEN;
 

@@ -31,3 +31,12 @@
 # Debug files
 *.dSYM/
 *.su
+
+# Builds
+BaseStation/build/*
+LED/build/*
+LEDApplication/build/*
+LedAnother/build/*
+OscilloscopeUltraredRF/build/*
+Oscilloscope_Humid_Temp/build/*
+SerialApplication/build/*
