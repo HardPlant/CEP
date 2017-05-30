@@ -15,7 +15,7 @@ module LEDControllerM {
 
 implementation {
   #define MORSE_UNIT 200
-  #define stdMillSec 2500
+  #define stdMillSec 6000
   //******Test Entry*********
   command void LEDController.test(){}
   
