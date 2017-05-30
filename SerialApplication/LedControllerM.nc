@@ -39,29 +39,36 @@ implementation {
 //**** IntervalBlinks
 //* 주기로 깜빡인다.
 //****
+uint16_t setInterval(uint16_t interval){
+  uint32_t diff = (interval)*(interval);
+  if(diff + 100 > stdMillSec ) return 100;
+  else return (stdMillSec - diff);
+}
+
 uint8_t currentCount[3];
-uint8_t currentInterval[3];
-    command void LedController.IntervalBlinkLed0(uint8_t interval){
+uint16_t currentInterval[3];
+    command void LedController.IntervalBlinkLed0(uint16_t interval){
       if(interval == 0) interval = 1;
 
       currentCount[0] = maxCount;
-      currentInterval[0] = stdMillSec/interval;
+      currentInterval[0] = setInterval(interval);
       call LedIntervalTimer0.startOneShot(currentInterval[0]);
     }
-    command void LedController.IntervalBlinkLed1(uint8_t interval){
+    command void LedController.IntervalBlinkLed1(uint16_t interval){
       if(interval == 0) interval = 1;
 
       currentCount[1] = maxCount;
-      currentInterval[1] = stdMillSec/interval;
+      currentInterval[1] = setInterval(interval);
       call LedIntervalTimer1.startOneShot(currentInterval[1]);
     }
-    command void LedController.IntervalBlinkLed2(uint8_t interval){
+    command void LedController.IntervalBlinkLed2(uint16_t interval){
       if(interval == 0) interval = 1;
 
       currentCount[2] = maxCount;
-      currentInterval[2] = stdMillSec/interval;
+      currentInterval[2] = setInterval(interval);
       call LedIntervalTimer2.startOneShot(currentInterval[2]);
     }
+
     task void led0Blink(){
       call Leds.led0Toggle();
       if(currentCount[0]-- > 0 ){

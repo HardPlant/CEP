@@ -100,9 +100,13 @@ implementation {
         post setData();
     }
     task void setData(){
-        if(isUsingLEDs == TRUE) post setData();
-        Packet* data = packetPop();
+        Packet* data;
+        if(isUsingLEDs == TRUE)
+            post setData();
+
+        data = packetPop();
         if(data == NULL) return;
+
         memcpy(&packet,data, sizeof(Packet));
         setMessage(packet.temp, packet.humid, packet.ur);
     }
@@ -116,7 +120,7 @@ implementation {
             isUsingLEDs = TRUE;
             if(turn == TEMP){           
                 setValues(temp);
-                IntervalBlink(temp - ret_avg[turn]);
+                IntervalBlink(temp - ret_avg[turn]); // float->uint16_t로 캐스팅됨
                 call LCDSetter.setLCD(turn,temp, ret_avg[turn],ret_std[turn]);
                 turn = HUMID;
             }
