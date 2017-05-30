@@ -35,8 +35,11 @@ implementation
     sensor_data_t currentData;
 ////////////////////////////// Function prototype
     task void start();
+
     task void setPriority();
     void priorityReceived(void *payload);
+
+    task void sendDataTask();
     void dataReceived(void *payload);
 ////////////////////////////// 
 
@@ -46,7 +49,7 @@ implementation
 
     task void start(){
         if(call RadioControl.start() != SUCCESS);
-        post start();
+        post start(); // restarts task
     }
 
     event void RadioControl.startDone(error_t error) {
@@ -66,6 +69,16 @@ implementation
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(priority_t) != SUCCESS))
             post setPriority();
     }
+
+    command void ComSat.sendData(void* pData){
+        sensor_data_t* data = (sensor_data_t*)pData;
+        currentData.temp = data->temp;
+        currentData.humid = data->humid;
+        currentData.ur = data->ur;
+        currentData.version = data->version;
+        post sendDataTask();
+    }
+
     task void sendDataTask(){
         sensor_data_t* data
          = (sensor_data_t*) call Packet.getPayload(&output, sizeof(sensor_data_t));
@@ -76,14 +89,6 @@ implementation
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
             post sendDataTask();
     }
-    command void ComSat.sendData(void* pData){
-        sensor_data_t* data = (sensor_data_t*)pData;
-        currentData.temp = data->temp;
-        currentData.humid = data->humid;
-        currentData.ur = data->ur;
-        currentData.version = data->version;
-        post sendDataTask();
-    }
 
     event void AMSend.sendDone(message_t *msg, error_t err) {}
     event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
@@ -91,6 +96,7 @@ implementation
         else dataReceived(payload);
         return msg;
     }
+
     void priorityReceived(void *payload){
         priority_t* data = (priority_t*)payload;
         if(devicePriority < data->priority) deviceRole = TX;
@@ -100,6 +106,4 @@ implementation
         sensor_data_t* data = (sensor_data_t*)payload;
         signal ComSat.Received(data);
     }
-
-
 }
