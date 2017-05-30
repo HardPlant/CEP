@@ -2,10 +2,10 @@
   <wiring>
     <wire loc="6:SerialApp.nc">
       <from><interface-ref name="Boot" scoped="" ref="0x7ef83190"/></from>
-      <to><interface-ref name="Boot" scoped="" ref="0x7eec1d18"/></to>
+      <to><interface-ref name="Boot" scoped="" ref="0x7eec0108"/></to>
     </wire>
     <wire loc="57:/opt/tinyos-2.x/tos/system/MainC.nc">
-      <from><interface-ref name="Boot" scoped="" ref="0x7eec1d18"/></from>
+      <from><interface-ref name="Boot" scoped="" ref="0x7eec0108"/></from>
       <to><interface-ref name="Boot" scoped="" ref="0x7eb75300"/></to>
     </wire>
     <wire loc="9:SerialApp.nc">
@@ -65,47 +65,47 @@
       </to>
     </wire>
     <wire loc="41:/opt/tinyos-2.x/tos/system/RandomC.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7dc73040"/></to>
     </wire>
     <wire>
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7d867548"/></to>
     </wire>
     <wire loc="83:/opt/tinyos-2.x/tos/chips/cc2420/CC2420CsmaC.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7e11bee0"/></to>
     </wire>
     <wire loc="84:/opt/tinyos-2.x/tos/chips/cc2420/CC2420CsmaC.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7e0be578"/></to>
     </wire>
     <wire loc="85:/opt/tinyos-2.x/tos/chips/cc2420/CC2420CsmaC.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7dd43cf0"/></to>
     </wire>
     <wire loc="86:/opt/tinyos-2.x/tos/chips/cc2420/CC2420CsmaC.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7dcc8750"/></to>
     </wire>
     <wire loc="63:/opt/tinyos-2.x/tos/chips/atm128/HplAtm128UartC.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Uart0Init" scoped="" ref="0x7e32adc8"/></to>
     </wire>
     <wire loc="64:/opt/tinyos-2.x/tos/chips/atm128/HplAtm128UartC.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Uart1Init" scoped="" ref="0x7e326608"/></to>
     </wire>
     <wire>
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7d9369f0"/></to>
     </wire>
     <wire>
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7d975800"/></to>
     </wire>
     <wire loc="42:/opt/tinyos-2.x/tos/system/TimerMilliP.nc">
-      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></from>
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></from>
       <to><interface-ref name="Init" scoped="" ref="0x7eb42060"/></to>
     </wire>
     <wire loc="52:/opt/tinyos-2.x/tos/system/MainC.nc">
@@ -126,7 +126,7 @@
     </wire>
     <wire loc="56:/opt/tinyos-2.x/tos/system/MainC.nc">
       <from><interface-ref name="SoftwareInit" scoped="" ref="0x7eb75ee8"/></from>
-      <to><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></to>
+      <to><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></to>
     </wire>
     <wire loc="26:/opt/tinyos-2.x/tos/platforms/mica/InitOneP.nc">
       <from><interface-ref name="SubInit" scoped="" ref="0x7ee82ad8"/></from>
@@ -7957,24 +7957,24 @@
         <function-ref name="stop" scoped="" ref="0x7ef90b38"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="SoftwareInit" ref="0x7eea3490" loc="47:/opt/tinyos-2.x/tos/system/MainC.nc">
+    <interface provided="0" name="SoftwareInit" ref="0x7eea3868" loc="47:/opt/tinyos-2.x/tos/system/MainC.nc">
       <component-ref qname="MainC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3490"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="SoftwareInit" scoped="" ref="0x7eea3868"/></type-interface>
       <instance>
         <interfacedef-ref qname="Init"/>
       </instance>
       <interface-functions>
-        <function-ref name="init" scoped="" ref="0x7eea3668"/>
+        <function-ref name="init" scoped="" ref="0x7eea3a40"/>
       </interface-functions>
     </interface>
-    <interface provided="1" name="Boot" ref="0x7eec1d18" loc="46:/opt/tinyos-2.x/tos/system/MainC.nc">
+    <interface provided="1" name="Boot" ref="0x7eec0108" loc="46:/opt/tinyos-2.x/tos/system/MainC.nc">
       <component-ref qname="MainC"/>
-      <type-interface size="I:2" alignment="I:1"><interface-ref name="Boot" scoped="" ref="0x7eec1d18"/></type-interface>
+      <type-interface size="I:2" alignment="I:1"><interface-ref name="Boot" scoped="" ref="0x7eec0108"/></type-interface>
       <instance>
         <interfacedef-ref qname="Boot"/>
       </instance>
       <interface-functions>
-        <function-ref name="booted" scoped="" ref="0x7eec1ef0"/>
+        <function-ref name="booted" scoped="" ref="0x7eec02e0"/>
       </interface-functions>
     </interface>
     <interface provided="0" name="SubInit" ref="0x7ee82ad8" loc="43:/opt/tinyos-2.x/tos/platforms/mica/PlatformC.nc">
@@ -21300,7 +21300,7 @@
         <short>&#10;</short>
         <long>&#10; @author Phil Levis&#10; @author David Gay&#10; Revision:  $Revision: 1.1.2.13 $&#10;&#10; Defines global error codes for error_t in TinyOS.&#10;</long>
       </documentation>
-      <function command="" provided="0" name="init" ref="0x7eea32d8" loc="51:/opt/tinyos-2.x/tos/interfaces/Init.nc">
+      <function command="" provided="0" name="init" ref="0x7eea36b0" loc="51:/opt/tinyos-2.x/tos/interfaces/Init.nc">
         <documentation loc="42:/opt/tinyos-2.x/tos/interfaces/Init.nc">
           <short>&#10; Initialize this component.</short>
           <long>&#10; Initialize this component. Initialization should not assume that&#10; any component is running: init() cannot call any commands besides&#10; those that initialize other components.  &#10; &#10; @return SUCCESS if initialized properly, FAIL otherwise.&#10; @see TEP 107: Boot Sequence&#10;&#10;</long>

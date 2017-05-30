@@ -13,4 +13,7 @@ implementation {
   components RandomC;
   ComSatM.Random -> RandomC;
   
+  //Timer
+  components new TimerMilliC();
+  ComSatM.Timer -> TimerMilliC;
 }

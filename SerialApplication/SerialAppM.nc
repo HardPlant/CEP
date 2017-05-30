@@ -18,7 +18,7 @@ implementation {
     void setValues(uint16_t newValue);
     void IntervalBlink(uint8_t interval);
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
-    
+////////////Globals
     typedef enum {TEMP, HUMID, UR} TYPE;
     typedef enum {RX,TX} ROLE;
     
@@ -37,6 +37,8 @@ implementation {
     } Packet;
     Packet packet;
     uint8_t turn;
+
+////////////Entry
 
     event void Boot.booted() {
         call LCDSetter.init();

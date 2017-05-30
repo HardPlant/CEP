@@ -5,6 +5,7 @@ module ComSatM
         interface ComSat;
     }
   uses {
+    interface Timer<TMilli>;
     interface SplitControl as RadioControl;
     interface AMSend;
     interface Receive;
@@ -58,7 +59,7 @@ implementation
 
     event void RadioControl.stopDone(error_t error) {
     }
-
+//////Role Routine
     task void setPriority(){
         devicePriority.priority = call Random.rand16();
         /*
@@ -70,7 +71,7 @@ implementation
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(priority_t) != SUCCESS))
             post setPriority();
     }
-
+    //TX
     command void ComSat.sendData(void* pData){
         sensor_data_t* data = (sensor_data_t*)pData;
         currentData.temp = data->temp;
@@ -99,13 +100,16 @@ implementation
 
     event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
         // 상태를 가진 간단한 router.
-        if(isRolePhase) priorityReceived(payload);
-        else dataReceived(payload);
+        if(isRolePhase)
+            priorityReceived(payload);
+        else
+            dataReceived(payload);
         return msg;
     }
 
     void priorityReceived(void *payload){
         // 장비 역할을 정하고 initDone()을 발생한다.
+        // 한 번 receive()할 때 마다 
         priority_t* data = (priority_t*)payload;
         if(devicePriority.priority == data->priority){
             //우선도가 같으면 재시도한다.
@@ -121,8 +125,12 @@ implementation
             deviceRole = RX;
         }
         isRolePhase = 0;
+        call Timer.startOneShot(1000);
+    }
+    event void Timer.fired(){
         signal ComSat.initDone(deviceRole);
     }
+    ////////////////////RX
     void dataReceived(void *payload){
         /*sensor_data_t* data = (sensor_data_t*)payload;*/
         signal ComSat.received(payload);
