@@ -1,108 +1,95 @@
-module LedControllerM {
-  provides interface LedController;
+module LEDControllerM {
+  provides interface LEDController;
   uses
   {
     interface Leds;
-    interface Timer<TMilli> as LedTimer0;
-    interface Timer<TMilli> as LedTimer1;
-    interface Timer<TMilli> as LedTimer2;
+    interface Timer<TMilli> as LEDTimer0;
+    interface Timer<TMilli> as LEDTimer1;
+    interface Timer<TMilli> as LEDTimer2;
 
-    interface Timer<TMilli> as LedIntervalTimer0;
-    interface Timer<TMilli> as LedIntervalTimer1;
-    interface Timer<TMilli> as LedIntervalTimer2;
+    interface Timer<TMilli> as LEDIntervalTimer0;
+    interface Timer<TMilli> as LEDIntervalTimer1;
+    interface Timer<TMilli> as LEDIntervalTimer2;
   }
 }
 
 implementation {
   #define MORSE_UNIT 200
-  #define maxCount 4 // Must be even number because of implementation
-  #define stdMillSec 1000
-
+  #define stdMillSec 2500
   //******Test Entry*********
-  command void LedController.test(){}
+  command void LEDController.test(){}
   
-//**** Blinks
-//* Led0,1,2를 깜빡이게 해 준다.
-//****
-  command void LedController.BlinkLed0(){
-    call Leds.led0On();
-    call LedTimer0.startOneShot(MORSE_UNIT);
-  }
-  command void LedController.BlinkLed1(){
-    call Leds.led1On();
-    call LedTimer1.startOneShot(MORSE_UNIT);
-  }
-  command void LedController.BlinkLed2(){
-    call Leds.led2On();
-    call LedTimer2.startOneShot(MORSE_UNIT);
-  }
+
 //**** IntervalBlinks
 //* 주기로 깜빡인다.
-//****
-uint16_t setInterval(uint16_t interval){
-  uint32_t diff = (interval)*(interval);
-  if(diff + 100 > stdMillSec ) return 100;
-  else return (stdMillSec - diff);
-}
+//*********************************************
+    uint8_t currentCount[3];
+    uint16_t currentInterval[3];
 
-uint8_t currentCount[3];
-uint16_t currentInterval[3];
-    command void LedController.IntervalBlinkLed0(uint16_t interval){
+//LED0 (LED1, LED2와 코드 동일)
+    command void LEDController.IntervalBlinkLed0(uint16_t interval){
       if(interval == 0) interval = 1;
 
-      currentCount[0] = maxCount;
-      currentInterval[0] = setInterval(interval);
-      call LedIntervalTimer0.startOneShot(currentInterval[0]);
-    }
-    command void LedController.IntervalBlinkLed1(uint16_t interval){
-      if(interval == 0) interval = 1;
-
-      currentCount[1] = maxCount;
-      currentInterval[1] = setInterval(interval);
-      call LedIntervalTimer1.startOneShot(currentInterval[1]);
-    }
-    command void LedController.IntervalBlinkLed2(uint16_t interval){
-      if(interval == 0) interval = 1;
-
-      currentCount[2] = maxCount;
-      currentInterval[2] = setInterval(interval);
-      call LedIntervalTimer2.startOneShot(currentInterval[2]);
-    }
-
-    task void led0Blink(){
-      call Leds.led0Toggle();
-      if(currentCount[0]-- > 0 ){
-        call LedIntervalTimer0.startOneShot(currentInterval[0]);
-      }
-      else
-      {
-        call Leds.led0Off();
-        signal LedController.BlinkDone();
-      }
-    }
-
-    task void led1Blink(){
-      call Leds.led1Toggle();
-      if(currentCount[1]-- > 0 ){
-        call Leds.led1Toggle();
-        call LedIntervalTimer1.startOneShot(currentInterval[1]);
-      }
-      else
-      {
-        call Leds.led1Off();
-        signal LedController.BlinkDone();
-      }
+      currentCount[0] = interval;
+      currentInterval[0] = stdMillSec / interval;
+      led0Blink(currentInterval[0]);
     }
     
-    task void led2Blink(){
-      call Leds.led2Toggle();
-      if(currentCount[2]-- > 0 ){
-        call LedIntervalTimer2.startOneShot(currentInterval[2]);
+    void led0Blink(uint16_t interval){
+      call Leds.led0On();
+      call LEDIntervalTimer0.startOneShot(interval);
+    }
+    event void LEDIntervalTimer0.fired(){
+      call Leds.led0Off();
+      if(--currentCount[0] > 0){
+        led0Blink(currentInterval[0]);
       }
-      else
-      {
-        call Leds.led2Off();
-        signal LedController.BlinkDone();
+      else{
+        signal LEDController.BlinkDone();
+      }
+    }
+///////////////////////////////////////////////
+    command void LEDController.IntervalBlinkLed1(uint16_t interval){
+      if(interval == 0) interval = 1;
+
+      currentCount[1] = interval;
+      currentInterval[1] = stdMillSec / interval;
+      led1Blink(currentInterval[1]);
+    }
+    
+    void led1Blink(uint16_t interval){
+      call Leds.led1On();
+      call LEDIntervalTimer1.startOneShot(interval);
+    }
+    event void LEDIntervalTimer1.fired(){
+      call Leds.led0Off();
+      if(--currentCount[1] > 0){
+        led0Blink(currentInterval[1]);
+      }
+      else{
+        signal LEDController.BlinkDone();
+      }
+    }
+
+    command void LEDController.IntervalBlinkLed2(uint16_t interval){
+      if(interval == 0) interval = 1;
+
+      currentCount[2] = interval;
+      currentInterval[2] = stdMillSec / interval;
+      led2Blink(currentInterval[2]);
+    }
+
+    void led2Blink(uint16_t interval){
+      call Leds.led2On();
+      call LEDIntervalTimer2.startOneShot(interval);
+    }
+    event void LEDIntervalTimer2.fired(){
+      call Leds.led0Off();
+      if(--currentCount[2] > 0){
+        led0Blink(currentInterval[2]);
+      }
+      else{
+        signal LEDController.BlinkDone();
       }
     }
     
@@ -122,30 +109,31 @@ uint16_t currentInterval[3];
     call Leds.led1Off();
     call Leds.led2Off();
   }
-  
-//**** LedTimer Events
-//* LedTimer 이벤트이다.
+
+//**** Blinks
+//* Led0,1,2를 깜빡이게 해 준다.
 //****
-  event void LedTimer0.fired(){
+  command void LEDController.BlinkLed0(){
+    call Leds.led0On();
+    call LEDTimer0.startOneShot(MORSE_UNIT);
+  }
+  event void LEDTimer0.fired(){
     call Leds.led0Off();
   }
-  event void LedTimer1.fired(){
+  command void LEDController.BlinkLed1(){
+    call Leds.led1On();
+    call LEDTimer1.startOneShot(MORSE_UNIT);
+  }
+  
+  event void LEDTimer1.fired(){
     call Leds.led1Off();
   }
-  event void LedTimer2.fired(){
+
+  command void LEDController.BlinkLed2(){
+    call Leds.led2On();
+    call LEDTimer2.startOneShot(MORSE_UNIT);
+  }
+
+  event void LEDTimer2.fired(){
     call Leds.led2Off();
   }  
-
-//**** LedTimer Events
-//* LedTimer 이벤트이다.
-//****
-  event void LedIntervalTimer0.fired(){
-    post led0Blink();
-  }
-  event void LedIntervalTimer1.fired(){
-    post led1Blink();
-  }
-  event void LedIntervalTimer2.fired(){
-    post led2Blink();
-  }
-}

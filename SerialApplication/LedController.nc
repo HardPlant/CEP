@@ -1,5 +1,5 @@
 
-interface LedController {
+interface LEDController {
     command void test();
 
    //Blink

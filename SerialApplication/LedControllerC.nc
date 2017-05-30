@@ -1,22 +1,22 @@
-configuration LedControllerC {
-    provides interface LedController;
+configuration LEDControllerC {
+    provides interface LEDController;
 } implementation {
 
-  components LedControllerM;
+  components LEDControllerM;
 
-  LedController = LedControllerM;
+  LEDController = LEDControllerM;
 
   components LedsC;
-  LedControllerM.Leds -> LedsC;
+  LEDControllerM.Leds -> LedsC;
 
-  components new TimerMilliC() as LedTimer1,new TimerMilliC() as LedTimer2 ,new TimerMilliC() as LedTimer0;
-  LedControllerM.LedTimer0 -> LedTimer0;
-  LedControllerM.LedTimer1 -> LedTimer1;
-  LedControllerM.LedTimer2 -> LedTimer2;
+  components new TimerMilliC() as LEDTimer1,new TimerMilliC() as LEDTimer2 ,new TimerMilliC() as LEDTimer0;
+  LEDControllerM.LEDTimer0 -> LEDTimer0;
+  LEDControllerM.LEDTimer1 -> LEDTimer1;
+  LEDControllerM.LEDTimer2 -> LEDTimer2;
 
   components new TimerMilliC() as IntervalTimer1,new TimerMilliC() as IntervalTimer2 ,new TimerMilliC() as IntervalTimer0;
-  LedControllerM.LedIntervalTimer0 -> IntervalTimer0;
-  LedControllerM.LedIntervalTimer1 -> IntervalTimer1;
-  LedControllerM.LedIntervalTimer2 -> IntervalTimer2;
+  LEDControllerM.LEDIntervalTimer0 -> IntervalTimer0;
+  LEDControllerM.LEDIntervalTimer1 -> IntervalTimer1;
+  LEDControllerM.LEDIntervalTimer2 -> IntervalTimer2;
   
 }
