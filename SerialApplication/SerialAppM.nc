@@ -24,6 +24,10 @@ implementation {
     void setValues(uint16_t newValue);
     void IntervalBlink(uint8_t interval);
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
+    
+    void packetInsert(Packet* pkt);
+    Packet* packetPop();
+
 ////////////Globals
     typedef enum {TEMP, HUMID, UR} TYPE;
     typedef enum {RX,TX} ROLE;
@@ -43,26 +47,13 @@ implementation {
     } Packet;
     Packet packet;
     uint8_t turn;
+    uint16_t currentVersion;
     Packet packetQueue[PACKET_QUEUE_LEN];
     uint8_t packetIndex;
     uint8_t currentPacketIndex;
     BOOL isUsingLEDs;
 
 ////////////Entry
-    void packetInsert(Packet* pkt);
-    Packet* packetPop();
-    
-    void packetInsert(Packet* pkt){
-        if(pkt == NULL) return;
-        memcpy(&(packetQueue[packetIndex]),pkt, sizeof(Packet));
-        packetIndex = (packetIndex + 1) % PACKET_QUEUE_LEN;
-
-    }
-    Packet* packetPop(){
-        Packet* result = &(packetQueue[currentPacketIndex]);
-        currentPacketIndex = (currentPacketIndex + 1) % PACKET_QUEUE_LEN;
-        return result;
-    }
 
     event void Boot.booted() {
         call LCDSetter.init();
@@ -84,6 +75,7 @@ implementation {
         packet.temp = temp;
         packet.humid = humid;
         packet.ur = ur;
+        packet.version = currentVersion++;
         post sendPacket();
     }
     task void sendPacket(){
@@ -109,6 +101,22 @@ implementation {
 
         memcpy(&packet,data, sizeof(Packet));
         setMessage(packet.temp, packet.humid, packet.ur);
+    }
+
+    void packetInsert(Packet* pkt){
+        if(pkt == NULL) return;
+        if(pkt->version <= packet.version) return;
+
+        currentVersion = pkt->version;
+        
+        memcpy(&(packetQueue[packetIndex]),pkt, sizeof(Packet));
+        packetIndex = (packetIndex + 1) % PACKET_QUEUE_LEN;
+
+    }
+    Packet* packetPop(){
+        Packet* result = &(packetQueue[currentPacketIndex]);
+        currentPacketIndex = (currentPacketIndex + 1) % PACKET_QUEUE_LEN;
+        return result;
     }
 
     event void LedController.BlinkDone(){
