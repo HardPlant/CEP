@@ -5,7 +5,7 @@ module SerialAppM {
   
   interface Timer<TMilli>;
 
-  interface LedController;
+  interface LEDController;
   interface LCDSetter;
   interface TempSensor;
   interface ComSat;
@@ -18,7 +18,7 @@ implementation {
     #define FALSE 0
     #define BOOL char
 ////////////Globals
-    typedef enum {TEMP, HUMID, UR} TYPE;
+    typedef enum {TEMP, HUMID, UR, Priority, TXD} TYPE;
     typedef enum {RX,TX} ROLE;
     
     uint8_t deviceRole;
@@ -29,6 +29,7 @@ implementation {
     float m2[3] = {0,};
 
     typedef nx_struct message{
+        nx_uint8_t isRolePhase;
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;
@@ -72,6 +73,8 @@ implementation {
     }
     ////TX
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
+        call LCDSetter.setLCD(TXD,temp, humid,ur);
+        packet.isRolePhase = FALSE;
         packet.temp = temp;
         packet.humid = humid;
         packet.ur = ur;
@@ -79,9 +82,8 @@ implementation {
         post sendPacket();
     }
     task void sendPacket(){
-        call LedController.BlinkLed0();
-        call LedController.BlinkLed1();
-        call LedController.BlinkLed2();
+        call LEDController.BlinkLed1();
+        call LEDController.BlinkLed2();
         call ComSat.sendData((void*)&packet);
     }
     ////RX
@@ -93,8 +95,10 @@ implementation {
     }
     task void setData(){
         Packet* data;
-        if(isUsingLEDs == TRUE)
+        if(isUsingLEDs == TRUE){
             post setData();
+            return;
+        }
 
         data = packetPop();
         if(data == NULL) return;
@@ -119,7 +123,7 @@ implementation {
         return result;
     }
 
-    event void LedController.BlinkDone(){
+    event void LEDController.BlinkDone(){
         // IntervalBlink가 끝날 때까지 LED를 block한다.
         isUsingLEDs = FALSE;
     }
@@ -147,9 +151,9 @@ implementation {
         }
     }
     void IntervalBlink(uint8_t interval){
-        if(turn == TEMP)  return call LedController.IntervalBlinkLed0(interval);
-        if(turn == HUMID) return call LedController.IntervalBlinkLed1(interval);
-        if(turn == UR)    return call LedController.IntervalBlinkLed2(interval);
+        if(turn == TEMP) call LEDController.IntervalBlinkLed0(interval);
+        else if(turn == HUMID) call LEDController.IntervalBlinkLed1(interval);
+        else if(turn == UR)    call LEDController.IntervalBlinkLed2(interval);
     } 
     void setValues(uint16_t newValue){
         

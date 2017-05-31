@@ -9,8 +9,8 @@ implementation
   SerialAppM.Timer -> TimerMilliC;
 
   // LED
-  components LedControllerC;
-  SerialAppM.LedController -> LedControllerC;
+  components LEDControllerC;
+  SerialAppM.LEDController -> LEDControllerC;
 
   // LCD
   components LCDSetterC;

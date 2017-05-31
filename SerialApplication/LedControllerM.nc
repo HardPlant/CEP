@@ -18,7 +18,10 @@ implementation {
   #define stdMillSec 6000
   //******Test Entry*********
   command void LEDController.test(){}
-  
+  //////////////////////Function Proto
+  void led0Blink(uint16_t interval);
+  void led1Blink(uint16_t interval);
+  void led2Blink(uint16_t interval);
 
 //**** IntervalBlinks
 //* 주기로 깜빡인다.
@@ -136,4 +139,5 @@ implementation {
 
   event void LEDTimer2.fired(){
     call Leds.led2Off();
-  }  
+  }
+}  

@@ -10,10 +10,17 @@ implementation {
   ComSatM.AMSend ->Comm.AMSend[AM_OSCILLOSCOPE]; // Oscilloscope.h에 정의
   ComSatM.Receive -> Comm.Receive[AM_OSCILLOSCOPE]; //
 
-  components RandomC;
-  ComSatM.Random -> RandomC;
   
   //Timer
   components new TimerMilliC();
   ComSatM.Timer -> TimerMilliC;
+  ComSatM.PriorityTimer -> TimerMilliC;
+  ComSatM.ElapsedTimer -> TimerMilliC;
+  
+  // LED
+  components LEDControllerC;
+  ComSatM.LEDController -> LEDControllerC;
+  // LCD
+  components LCDSetterC;
+  ComSatM.LCDSetter -> LCDSetterC;
 }
