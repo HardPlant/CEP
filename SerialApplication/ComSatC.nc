@@ -18,4 +18,9 @@ implementation {
   // LED
   components LEDControllerC;
   ComSatM.LEDController -> LEDControllerC;
+  
+  // LCD
+  components LCDSetterC;
+  ComSatM.LCDSetter -> LCDSetterC;
+
 }

@@ -10,6 +10,7 @@ module ComSatM
     interface AMSend;
     interface Receive;
     interface LEDController;
+    interface LCDSetter;
   }
 }
 implementation
@@ -46,6 +47,7 @@ implementation
     }
     event void ElapsedTimer.fired(){
         devicePriority++;
+        call LCDSetter.setLCD2(devicePriority);
         if(devicePriority == 100000){
             call ElapsedTimer.stop(); // 오버플로우 방지
             isTX = 1; // 사실상 TX
