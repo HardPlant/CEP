@@ -59,7 +59,7 @@ implementation {
         call ComSat.init();
     }
 
-    event void ComSat.initDone(uint8_t role){
+    event void ComSat.initDone(){
         call Timer.startOneShot(1000);
     }
     event void Timer.fired(){

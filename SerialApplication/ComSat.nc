@@ -1,6 +1,6 @@
 interface ComSat{
     command void init();
-    event void initDone(uint8_t type);
+    event void initDone();
     command void sendData(void* data);
     event void received(void* data);
 }

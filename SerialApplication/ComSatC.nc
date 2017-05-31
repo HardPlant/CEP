@@ -13,7 +13,6 @@ implementation {
   
   //Timer
   components new TimerMilliC();
-  ComSatM.Timer -> TimerMilliC;
   ComSatM.ElapsedTimer -> TimerMilliC;
   
   // LED

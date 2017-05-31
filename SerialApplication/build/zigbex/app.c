@@ -104,6 +104,15 @@ static __inline uint16_t __nesc_ntoh_leuint16(const void *source);
 
 
 static __inline uint16_t __nesc_hton_leuint16(void *target, uint16_t value);
+#line 294
+static __inline uint32_t __nesc_ntoh_uint32(const void *source);
+
+
+
+
+
+
+static __inline uint32_t __nesc_hton_uint32(void *target, uint32_t value);
 #line 385
 typedef struct { char data[1]; } __attribute__((packed)) nx_int8_t;typedef int8_t __nesc_nxbase_nx_int8_t  ;
 typedef struct { char data[2]; } __attribute__((packed)) nx_int16_t;typedef int16_t __nesc_nxbase_nx_int16_t  ;
@@ -1742,9 +1751,7 @@ typedef uint16_t /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$sub
 enum /*TempSensorC.URSensor.DemoChannel.UltraredProC.AdcReadClientC*/AdcReadClientC$2$__nesc_unnamed4336 {
   AdcReadClientC$2$ID = 2U, AdcReadClientC$2$HAL_ID = 2U
 };
-typedef TMilli ComSatM$PriorityTimer$precision_tag;
 typedef TMilli ComSatM$ElapsedTimer$precision_tag;
-typedef TMilli ComSatM$Timer$precision_tag;
 typedef T32khz CC2420ControlP$StartupTimer$precision_tag;
 typedef uint32_t CC2420ControlP$StartupTimer$size_type;
 typedef uint16_t HplAtm128Timer1P$CompareA$size_type;
@@ -1809,15 +1816,15 @@ static  void SerialAppM$Boot$booted(void);
 # 13 "LEDController.nc"
 static  void SerialAppM$LEDController$BlinkDone(void);
 # 3 "ComSat.nc"
-static  void SerialAppM$ComSat$initDone(uint8_t arg_0x7e031330);
+static  void SerialAppM$ComSat$initDone(void);
 
-static  void SerialAppM$ComSat$received(void *arg_0x7e031c70);
+static  void SerialAppM$ComSat$received(void *arg_0x7ef31ae0);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void SerialAppM$sendPacket$runTask(void);
 #line 64
 static  void SerialAppM$setData$runTask(void);
 # 3 "TempSensor.nc"
-static  void SerialAppM$TempSensor$done(uint16_t arg_0x7e040998, uint16_t arg_0x7e040b28, uint16_t arg_0x7e040cb8);
+static  void SerialAppM$TempSensor$done(uint16_t arg_0x7ef40998, uint16_t arg_0x7ef40b28, uint16_t arg_0x7ef40cb8);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void SerialAppM$Timer$fired(void);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
@@ -1920,17 +1927,17 @@ static   bool /*HplAtm128GeneralIOC.PortE.Bit6*/HplAtm128GeneralIOPinP$38$IO$get
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t MeasureClockC$Init$init(void);
 # 60 "/opt/tinyos-2.x/tos/chips/atm128/timer/Atm128Calibrate.nc"
-static   uint16_t MeasureClockC$Atm128Calibrate$baudrateRegister(uint32_t arg_0x7df61898);
+static   uint16_t MeasureClockC$Atm128Calibrate$baudrateRegister(uint32_t arg_0x7ee62520);
 #line 53
 static   uint8_t MeasureClockC$Atm128Calibrate$adcPrescaler(void);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t SchedulerBasicP$TaskBasic$postTask(
 # 45 "/opt/tinyos-2.x/tos/system/SchedulerBasicP.nc"
-uint8_t arg_0x7e162030);
+uint8_t arg_0x7f062030);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void SchedulerBasicP$TaskBasic$default$runTask(
 # 45 "/opt/tinyos-2.x/tos/system/SchedulerBasicP.nc"
-uint8_t arg_0x7e162030);
+uint8_t arg_0x7f062030);
 # 46 "/opt/tinyos-2.x/tos/interfaces/Scheduler.nc"
 static  void SchedulerBasicP$Scheduler$init(void);
 #line 61
@@ -1954,13 +1961,13 @@ static   Atm128TimerControl_t HplAtm128Timer0AsyncC$TimerCtrl$getControl(void);
 
 static   Atm128_TIFR_t HplAtm128Timer0AsyncC$TimerCtrl$getInterruptFlag(void);
 #line 37
-static   void HplAtm128Timer0AsyncC$TimerCtrl$setControl(Atm128TimerControl_t arg_0x7dbc1030);
+static   void HplAtm128Timer0AsyncC$TimerCtrl$setControl(Atm128TimerControl_t arg_0x7eac2030);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t HplAtm128Timer0AsyncC$Init$init(void);
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void HplAtm128Timer0AsyncC$Compare$reset(void);
 #line 45
-static   void HplAtm128Timer0AsyncC$Compare$set(HplAtm128Timer0AsyncC$Compare$size_type arg_0x7dbb3010);
+static   void HplAtm128Timer0AsyncC$Compare$set(HplAtm128Timer0AsyncC$Compare$size_type arg_0x7eab4010);
 
 
 
@@ -1980,9 +1987,9 @@ static   bool HplAtm128Timer0AsyncC$Timer$test(void);
 #line 52
 static   HplAtm128Timer0AsyncC$Timer$timer_size HplAtm128Timer0AsyncC$Timer$get(void);
 #line 95
-static   void HplAtm128Timer0AsyncC$Timer$setScale(uint8_t arg_0x7dbd0428);
+static   void HplAtm128Timer0AsyncC$Timer$setScale(uint8_t arg_0x7ead1428);
 #line 58
-static   void HplAtm128Timer0AsyncC$Timer$set(HplAtm128Timer0AsyncC$Timer$timer_size arg_0x7dbd37b0);
+static   void HplAtm128Timer0AsyncC$Timer$set(HplAtm128Timer0AsyncC$Timer$timer_size arg_0x7ead47b0);
 
 
 
@@ -1999,7 +2006,7 @@ static  error_t /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Init$init(voi
 # 61 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
 static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$overflow(void);
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$startAt(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$size_type arg_0x7dbf59e0, /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$size_type arg_0x7dbf5b70);
+static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$startAt(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$size_type arg_0x7eb019e0, /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$size_type arg_0x7eb01b70);
 #line 62
 static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$stop(void);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
@@ -2020,7 +2027,7 @@ static   void /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$overflow
 # 98 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
 static   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$getNow(void);
 #line 92
-static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type arg_0x7dbf59e0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type arg_0x7dbf5b70);
+static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type arg_0x7eb019e0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type arg_0x7eb01b70);
 #line 105
 static   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$getAlarm(void);
 #line 62
@@ -2038,27 +2045,27 @@ static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$fired(void);
 # 125 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  uint32_t /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$getNow(void);
 #line 118
-static  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startOneShotAt(uint32_t arg_0x7e072cd0, uint32_t arg_0x7e072e60);
+static  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startOneShotAt(uint32_t arg_0x7ef72cd0, uint32_t arg_0x7ef72e60);
 #line 67
 static  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$stop(void);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFromTimer$runTask(void);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$fired(void);
-#line 125
-static  uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$getNow(
-# 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7da41cd8);
-# 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+#line 72
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$default$fired(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7da41cd8);
+uint8_t arg_0x7e943cd8);
+# 81 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+static  bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$isRunning(
+# 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+uint8_t arg_0x7e943cd8);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7da41cd8, 
+uint8_t arg_0x7e943cd8, 
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-uint32_t arg_0x7e081a70);
+uint32_t arg_0x7ef81a70);
 
 
 
@@ -2069,16 +2076,16 @@ uint32_t arg_0x7e081a70);
 
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7da41cd8, 
+uint8_t arg_0x7e943cd8, 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-uint32_t arg_0x7e080068);
+uint32_t arg_0x7ef80068);
 
 
 
 
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$stop(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7da41cd8);
+uint8_t arg_0x7e943cd8);
 # 71 "/opt/tinyos-2.x/tos/lib/timer/Counter.nc"
 static   void /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC$0$Counter$overflow(void);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
@@ -2087,13 +2094,20 @@ static  void LEDControllerM$LEDTimer1$fired(void);
 static  void LEDControllerM$LEDController$BlinkLed1(void);
 
 
-static  void LEDControllerM$LEDController$IntervalBlinkLed0(uint16_t arg_0x7e053770);
+static  void LEDControllerM$LEDController$IntervalBlinkLed0(uint16_t arg_0x7ef53770);
 #line 8
 static  void LEDControllerM$LEDController$BlinkLed2(void);
 
 
-static  void LEDControllerM$LEDController$IntervalBlinkLed1(uint16_t arg_0x7e053c10);
-static  void LEDControllerM$LEDController$IntervalBlinkLed2(uint16_t arg_0x7e0510c8);
+static  void LEDControllerM$LEDController$IntervalBlinkLed1(uint16_t arg_0x7ef53c10);
+#line 6
+static  void LEDControllerM$LEDController$BlinkLed0(void);
+
+
+
+
+
+static  void LEDControllerM$LEDController$IntervalBlinkLed2(uint16_t arg_0x7ef510c8);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void LEDControllerM$LEDIntervalTimer2$fired(void);
 #line 72
@@ -2132,16 +2146,16 @@ static   void LedsP$Leds$led0On(void);
 static   void LedsP$Leds$led2On(void);
 # 2 "LCDSetter.nc"
 static  void LCDSetterM$LCDSetter$init(void);
-static  void LCDSetterM$LCDSetter$setLCD(uint8_t arg_0x7e061ef0, uint16_t arg_0x7e042090, uint16_t arg_0x7e042220, uint16_t arg_0x7e0423b0);
+static  void LCDSetterM$LCDSetter$setLCD(uint8_t arg_0x7ef61ef0, uint16_t arg_0x7ef42090, uint16_t arg_0x7ef42220, uint16_t arg_0x7ef423b0);
 # 22 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-static  void LCDSetterM$Interaction$StartDoneConfiguration(uint8_t arg_0x7d8768a0, uint8_t arg_0x7d876a28);
+static  void LCDSetterM$Interaction$StartDoneConfiguration(uint8_t arg_0x7e7778a0, uint8_t arg_0x7e777a28);
 
 
 
-static  void LCDSetterM$Interaction$getSensorDataDone(App_struct_t *arg_0x7d8746b8, uint8_t arg_0x7d874848);
+static  void LCDSetterM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7766b8, uint8_t arg_0x7e776848);
 
 
-static  void LCDSetterM$Interaction$Urgency_Data(uint8_t *arg_0x7d873358, uint8_t arg_0x7d8734e0);
+static  void LCDSetterM$Interaction$Urgency_Data(uint8_t *arg_0x7e774358, uint8_t arg_0x7e7744e0);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void LCDSetterM$TryToSetTimer$runTask(void);
 #line 64
@@ -2157,28 +2171,28 @@ static  void InteractionM$Event_Urgency_Data$runTask(void);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void InteractionM$C328_Reset_Timer$fired(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void InteractionM$Read_Humi$readDone(error_t arg_0x7d818f00, InteractionM$Read_Humi$val_t arg_0x7d8170b0);
+static  void InteractionM$Read_Humi$readDone(error_t arg_0x7e719330, InteractionM$Read_Humi$val_t arg_0x7e7194b8);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void InteractionM$ProcessCMD$runTask(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void InteractionM$Read_Ultrared$readDone(error_t arg_0x7d818f00, InteractionM$Read_Ultrared$val_t arg_0x7d8170b0);
+static  void InteractionM$Read_Ultrared$readDone(error_t arg_0x7e719330, InteractionM$Read_Ultrared$val_t arg_0x7e7194b8);
 # 28 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-static  void InteractionM$Interaction$Process_CMD(void *arg_0x7d874cf0, uint8_t arg_0x7d874e78);
+static  void InteractionM$Interaction$Process_CMD(void *arg_0x7e776cf0, uint8_t arg_0x7e776e78);
 #line 24
-static  void InteractionM$Interaction$SetSamplingTime(uint16_t arg_0x7d876ec8);
+static  void InteractionM$Interaction$SetSamplingTime(uint16_t arg_0x7e777ec8);
 #line 21
-static  void InteractionM$Interaction$StartConfiguration(App_struct_t *arg_0x7d876410);
+static  void InteractionM$Interaction$StartConfiguration(App_struct_t *arg_0x7e777410);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void InteractionM$Read_Photo$readDone(error_t arg_0x7d818f00, InteractionM$Read_Photo$val_t arg_0x7d8170b0);
+static  void InteractionM$Read_Photo$readDone(error_t arg_0x7e719330, InteractionM$Read_Photo$val_t arg_0x7e7194b8);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void InteractionM$Set_C328_Restart_Timer_START$runTask(void);
 # 29 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-static   void InteractionM$CommunicationWithOPT$parsing_config(uint8_t *arg_0x7d807370);
+static   void InteractionM$CommunicationWithOPT$parsing_config(uint8_t *arg_0x7e709840);
 
-static   void InteractionM$CommunicationWithOPT$parsing_control(uint8_t *arg_0x7d807d00);
-static   void InteractionM$CommunicationWithOPT$parsing_longDT(uint8_t *arg_0x7d8051f0);
+static   void InteractionM$CommunicationWithOPT$parsing_control(uint8_t *arg_0x7e7081f0);
+static   void InteractionM$CommunicationWithOPT$parsing_longDT(uint8_t *arg_0x7e7086b8);
 #line 30
-static   void InteractionM$CommunicationWithOPT$parsing_sensor(uint8_t *arg_0x7d807838);
+static   void InteractionM$CommunicationWithOPT$parsing_sensor(uint8_t *arg_0x7e709d08);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void InteractionM$TaskStartDoneConfiguration$runTask(void);
 #line 64
@@ -2188,31 +2202,31 @@ static  void InteractionM$TaskGetSensorDataDone$runTask(void);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void InteractionM$ConfigTimeout$fired(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void InteractionM$Read_Temp$readDone(error_t arg_0x7d818f00, InteractionM$Read_Temp$val_t arg_0x7d8170b0);
+static  void InteractionM$Read_Temp$readDone(error_t arg_0x7e719330, InteractionM$Read_Temp$val_t arg_0x7e7194b8);
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureHumidityDone(error_t arg_0x7d756718, uint16_t arg_0x7d7568a8);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureHumidityDone(error_t arg_0x7e658b70, uint16_t arg_0x7e658d00);
 #line 116
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$writeStatusRegDone(error_t arg_0x7d754e78);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$writeStatusRegDone(error_t arg_0x7e6563a0);
 #line 100
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$readStatusRegDone(error_t arg_0x7d754228, uint8_t arg_0x7d7543b0);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$readStatusRegDone(error_t arg_0x7e657730, uint8_t arg_0x7e6578b8);
 #line 54
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$resetDone(error_t arg_0x7d7573e0);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$resetDone(error_t arg_0x7e65a820);
 #line 69
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureTemperatureDone(error_t arg_0x7d757c88, uint16_t arg_0x7d757e18);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureTemperatureDone(error_t arg_0x7e6580f8, uint16_t arg_0x7e658288);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$read(void);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$TempResource$granted(void);
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureHumidityDone(error_t arg_0x7d756718, uint16_t arg_0x7d7568a8);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureHumidityDone(error_t arg_0x7e658b70, uint16_t arg_0x7e658d00);
 #line 116
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$writeStatusRegDone(error_t arg_0x7d754e78);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$writeStatusRegDone(error_t arg_0x7e6563a0);
 #line 100
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$readStatusRegDone(error_t arg_0x7d754228, uint8_t arg_0x7d7543b0);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$readStatusRegDone(error_t arg_0x7e657730, uint8_t arg_0x7e6578b8);
 #line 54
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$resetDone(error_t arg_0x7d7573e0);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$resetDone(error_t arg_0x7e65a820);
 #line 69
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureTemperatureDone(error_t arg_0x7d757c88, uint16_t arg_0x7d757e18);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureTemperatureDone(error_t arg_0x7e6580f8, uint16_t arg_0x7e658288);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$HumResource$granted(void);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
@@ -2226,41 +2240,41 @@ static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$s
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$measureHumidityDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d756718, uint16_t arg_0x7d7568a8);
+error_t arg_0x7e658b70, uint16_t arg_0x7e658d00);
 #line 76
 static  error_t /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureHumidity(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8);
+uint8_t arg_0x7e626200);
 # 61 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
 static  error_t /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureTemperature(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8);
+uint8_t arg_0x7e626200);
 # 116 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$writeStatusRegDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 116 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d754e78);
+error_t arg_0x7e6563a0);
 #line 100
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$readStatusRegDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 100 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d754228, uint8_t arg_0x7d7543b0);
+error_t arg_0x7e657730, uint8_t arg_0x7e6578b8);
 #line 54
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$resetDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d7573e0);
+error_t arg_0x7e65a820);
 #line 69
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$measureTemperatureDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 69 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d757c88, uint16_t arg_0x7d757e18);
+error_t arg_0x7e6580f8, uint16_t arg_0x7e658288);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$fired(void);
 # 79 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
@@ -2280,7 +2294,7 @@ static   void /*HplAtm128InterruptC.IntPin1*/HplAtm128InterruptPinP$1$Irq$clear(
 #line 40
 static   void /*HplAtm128InterruptC.IntPin1*/HplAtm128InterruptPinP$1$Irq$disable(void);
 #line 59
-static   void /*HplAtm128InterruptC.IntPin1*/HplAtm128InterruptPinP$1$Irq$edge(bool arg_0x7d697010);
+static   void /*HplAtm128InterruptC.IntPin1*/HplAtm128InterruptPinP$1$Irq$edge(bool arg_0x7e59a088);
 #line 35
 static   void /*HplAtm128InterruptC.IntPin1*/HplAtm128InterruptPinP$1$Irq$enable(void);
 # 41 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128InterruptSig.nc"
@@ -2306,7 +2320,7 @@ static   void /*HplAtm128InterruptC.IntPin6*/HplAtm128InterruptPinP$6$Irq$clear(
 #line 40
 static   void /*HplAtm128InterruptC.IntPin6*/HplAtm128InterruptPinP$6$Irq$disable(void);
 #line 59
-static   void /*HplAtm128InterruptC.IntPin6*/HplAtm128InterruptPinP$6$Irq$edge(bool arg_0x7d697010);
+static   void /*HplAtm128InterruptC.IntPin6*/HplAtm128InterruptPinP$6$Irq$edge(bool arg_0x7e59a088);
 #line 35
 static   void /*HplAtm128InterruptC.IntPin6*/HplAtm128InterruptPinP$6$Irq$enable(void);
 # 41 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128InterruptSig.nc"
@@ -2324,7 +2338,7 @@ static   error_t /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Int
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$Init$init(void);
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-static   error_t /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$FcfsQueue$enqueue(resource_client_id_t arg_0x7d624010);
+static   error_t /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$FcfsQueue$enqueue(resource_client_id_t arg_0x7e527010);
 #line 43
 static   bool /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$FcfsQueue$isEmpty(void);
 
@@ -2335,7 +2349,7 @@ static   bool /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$FcfsQueue
 
 
 
-static   bool /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$FcfsQueue$isEnqueued(resource_client_id_t arg_0x7d6265e0);
+static   bool /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$FcfsQueue$isEnqueued(resource_client_id_t arg_0x7e5285e0);
 
 
 
@@ -2347,35 +2361,35 @@ static   resource_client_id_t /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQu
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
 static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceRequested$default$requested(
 # 54 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d6156c8);
+uint8_t arg_0x7e5186c8);
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$default$unconfigure(
 # 59 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d614910);
+uint8_t arg_0x7e517910);
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$default$configure(
 # 59 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d614910);
+uint8_t arg_0x7e517910);
 # 56 "/opt/tinyos-2.x/tos/interfaces/ResourceController.nc"
 static   error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceController$release(void);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$release(
 # 53 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d617d40);
+uint8_t arg_0x7e519d40);
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$request(
 # 53 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d617d40);
+uint8_t arg_0x7e519d40);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$default$granted(
 # 53 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d617d40);
+uint8_t arg_0x7e519d40);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$grantedTask$runTask(void);
 # 88 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
-static  void /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$SplitControl$startDone(error_t arg_0x7d6b4168);
+static  void /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$SplitControl$startDone(error_t arg_0x7e5b6330);
 #line 110
-static  void /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$SplitControl$stopDone(error_t arg_0x7d6b4ca0);
+static  void /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$SplitControl$stopDone(error_t arg_0x7e5b6e68);
 # 52 "/opt/tinyos-2.x/tos/lib/power/PowerDownCleanup.nc"
 static   void /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$PowerDownCleanup$default$cleanup(void);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
@@ -2406,17 +2420,17 @@ static  error_t /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0
 
 
 
-static  void /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$subRead$readDone(error_t arg_0x7d818f00, /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$subRead$val_t arg_0x7d8170b0);
+static  void /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$subRead$readDone(error_t arg_0x7e719330, /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$subRead$val_t arg_0x7e7194b8);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t Atm128AdcP$Init$init(void);
 # 110 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcMultiple.nc"
-static   bool Atm128AdcP$Atm128AdcMultiple$default$dataReady(uint16_t arg_0x7d577a68, bool arg_0x7d577bf0, uint8_t arg_0x7d577d78, 
-uint8_t *arg_0x7d576010, uint8_t *arg_0x7d5761c0);
+static   bool Atm128AdcP$Atm128AdcMultiple$default$dataReady(uint16_t arg_0x7e47aa68, bool arg_0x7e47abf0, uint8_t arg_0x7e47ad78, 
+uint8_t *arg_0x7e478010, uint8_t *arg_0x7e4781c0);
 # 61 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcSingle.nc"
-static   bool Atm128AdcP$Atm128AdcSingle$getData(uint8_t arg_0x7d580868, uint8_t arg_0x7d5809f8, 
-bool arg_0x7d580b98, uint8_t arg_0x7d580d28);
+static   bool Atm128AdcP$Atm128AdcSingle$getData(uint8_t arg_0x7e482868, uint8_t arg_0x7e4829f8, 
+bool arg_0x7e482b98, uint8_t arg_0x7e482d28);
 # 147 "/opt/tinyos-2.x/tos/chips/atm128/adc/HplAtm128Adc.nc"
-static   void Atm128AdcP$HplAtm128Adc$dataReady(uint16_t arg_0x7d562120);
+static   void Atm128AdcP$HplAtm128Adc$dataReady(uint16_t arg_0x7e464120);
 # 73 "/opt/tinyos-2.x/tos/interfaces/AsyncStdControl.nc"
 static   error_t Atm128AdcP$AsyncStdControl$start(void);
 
@@ -2433,7 +2447,7 @@ static   Atm128Admux_t HplAtm128AdcP$HplAtm128Adc$getAdmux(void);
 #line 73
 static   void HplAtm128AdcP$HplAtm128Adc$enableAdc(void);
 #line 49
-static   void HplAtm128AdcP$HplAtm128Adc$setAdmux(Atm128Admux_t arg_0x7d568da8);
+static   void HplAtm128AdcP$HplAtm128Adc$setAdmux(Atm128Admux_t arg_0x7e46bda8);
 #line 141
 static   bool HplAtm128AdcP$HplAtm128Adc$cancel(void);
 #line 77
@@ -2448,7 +2462,7 @@ static   void HplAtm128AdcP$HplAtm128Adc$disableAdc(void);
 
 static   void HplAtm128AdcP$HplAtm128Adc$disableInterruption(void);
 #line 60
-static   void HplAtm128AdcP$HplAtm128Adc$setAdcsra(Atm128Adcsra_t arg_0x7d5676f8);
+static   void HplAtm128AdcP$HplAtm128Adc$setAdcsra(Atm128Adcsra_t arg_0x7e46a6f8);
 #line 55
 static   Atm128Adcsra_t HplAtm128AdcP$HplAtm128Adc$getAdcsra(void);
 
@@ -2465,7 +2479,7 @@ static   uint16_t HplAtm128AdcP$HplAtm128Adc$getValue(void);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$Init$init(void);
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-static   error_t /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$RoundRobinQueue$enqueue(resource_client_id_t arg_0x7d624010);
+static   error_t /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$RoundRobinQueue$enqueue(resource_client_id_t arg_0x7e527010);
 #line 43
 static   bool /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$RoundRobinQueue$isEmpty(void);
 
@@ -2476,7 +2490,7 @@ static   bool /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$RoundRob
 
 
 
-static   bool /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$RoundRobinQueue$isEnqueued(resource_client_id_t arg_0x7d6265e0);
+static   bool /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$RoundRobinQueue$isEnqueued(resource_client_id_t arg_0x7e5285e0);
 
 
 
@@ -2488,29 +2502,29 @@ static   resource_client_id_t /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQ
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
 static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceRequested$default$requested(
 # 54 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d6156c8);
+uint8_t arg_0x7e5186c8);
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$default$unconfigure(
 # 59 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d614910);
+uint8_t arg_0x7e517910);
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$default$configure(
 # 59 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d614910);
+uint8_t arg_0x7e517910);
 # 56 "/opt/tinyos-2.x/tos/interfaces/ResourceController.nc"
 static   error_t /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceController$release(void);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$release(
 # 53 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d617d40);
+uint8_t arg_0x7e519d40);
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$request(
 # 53 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d617d40);
+uint8_t arg_0x7e519d40);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$default$granted(
 # 53 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d617d40);
+uint8_t arg_0x7e519d40);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$grantedTask$runTask(void);
 # 52 "/opt/tinyos-2.x/tos/lib/power/PowerDownCleanup.nc"
@@ -2522,57 +2536,57 @@ static   void /*Atm128AdcC.PM.PowerManager*/AsyncPowerManagerP$0$ResourceControl
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t AdcP$Read$read(
 # 48 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4ea610);
+uint8_t arg_0x7e3ed610);
 # 65 "/opt/tinyos-2.x/tos/interfaces/ReadNow.nc"
 static   void AdcP$ReadNow$default$readDone(
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4e9440, 
+uint8_t arg_0x7e3ec440, 
 # 65 "/opt/tinyos-2.x/tos/interfaces/ReadNow.nc"
-error_t arg_0x7d58bb10, AdcP$ReadNow$val_t arg_0x7d58bc98);
+error_t arg_0x7e48db10, AdcP$ReadNow$val_t arg_0x7e48dc98);
 # 32 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
 static   uint8_t AdcP$Atm128AdcConfig$default$getRefVoltage(
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4e8748);
+uint8_t arg_0x7e3ea748);
 # 25 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
 static   uint8_t AdcP$Atm128AdcConfig$default$getChannel(
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4e8748);
+uint8_t arg_0x7e3ea748);
 # 39 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
 static   uint8_t AdcP$Atm128AdcConfig$default$getPrescaler(
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4e8748);
+uint8_t arg_0x7e3ea748);
 # 72 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcSingle.nc"
-static   void AdcP$Atm128AdcSingle$dataReady(uint16_t arg_0x7d57d8b8, bool arg_0x7d57da40);
+static   void AdcP$Atm128AdcSingle$dataReady(uint16_t arg_0x7e4818b8, bool arg_0x7e481a40);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void AdcP$acquiredData$runTask(void);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$read(
 # 24 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4d13a8);
+uint8_t arg_0x7e3d43a8);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  void /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$default$readDone(
 # 24 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4d13a8, 
+uint8_t arg_0x7e3d43a8, 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-error_t arg_0x7d818f00, /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$val_t arg_0x7d8170b0);
+error_t arg_0x7e719330, /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$val_t arg_0x7e7194b8);
 #line 63
 static  void /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$readDone(
 # 26 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4d0250, 
+uint8_t arg_0x7e3d2250, 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-error_t arg_0x7d818f00, /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$val_t arg_0x7d8170b0);
+error_t arg_0x7e719330, /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$val_t arg_0x7e7194b8);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$default$release(
 # 27 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4ce010);
+uint8_t arg_0x7e3d1010);
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$default$request(
 # 27 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4ce010);
+uint8_t arg_0x7e3d1010);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$granted(
 # 27 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4ce010);
+uint8_t arg_0x7e3d1010);
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void PhotoP$ResourceConfigure$unconfigure(void);
 #line 49
@@ -2596,7 +2610,7 @@ static  error_t /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_Shift
 
 
 
-static  void /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$subRead$readDone(error_t arg_0x7d818f00, /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$subRead$val_t arg_0x7d8170b0);
+static  void /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$subRead$readDone(error_t arg_0x7e719330, /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$subRead$val_t arg_0x7e7194b8);
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void UltraredP$ResourceConfigure$unconfigure(void);
 #line 49
@@ -2608,21 +2622,21 @@ static   uint8_t UltraredP$Atm128AdcConfig$getChannel(void);
 #line 39
 static   uint8_t UltraredP$Atm128AdcConfig$getPrescaler(void);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/HplAtm128Uart.nc"
-static   void CommunicationWithOPTM$HPLUART$rxDone(uint8_t arg_0x7d4696b0);
+static   void CommunicationWithOPTM$HPLUART$rxDone(uint8_t arg_0x7e36c6b0);
 #line 47
 static   void CommunicationWithOPTM$HPLUART$txDone(void);
 # 26 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-static  void CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7d808010, uint8_t arg_0x7d808198);
-static  void CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7d808638, uint8_t arg_0x7d8087c0, uint8_t arg_0x7d808948, uint8_t arg_0x7d808ad0, uint8_t *arg_0x7d808c80, uint8_t arg_0x7d808e10);
+static  void CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e711498, uint8_t arg_0x7e711620);
+static  void CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e711ac0, uint8_t arg_0x7e711c48, uint8_t arg_0x7e711dd0, uint8_t arg_0x7e709010, uint8_t *arg_0x7e7091c0, uint8_t arg_0x7e709350);
 #line 25
-static  void CommunicationWithOPTM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7d809ad0);
+static  void CommunicationWithOPTM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e711010);
 #line 22
 static  void CommunicationWithOPTM$CommunicationWithOPT$SendConfigureMSG(void);
 #line 21
 static  void CommunicationWithOPTM$CommunicationWithOPT$start(void);
 
 
-static  void CommunicationWithOPTM$CommunicationWithOPT$SendControlMSG(uint8_t arg_0x7d809168, uint8_t arg_0x7d8092f0, uint8_t arg_0x7d809478, uint8_t *arg_0x7d809628);
+static  void CommunicationWithOPTM$CommunicationWithOPT$SendControlMSG(uint8_t arg_0x7e712660, uint8_t arg_0x7e7127e8, uint8_t arg_0x7e712970, uint8_t *arg_0x7e712b20);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t HplAtm128UartP$Uart0Init$init(void);
 # 42 "/opt/tinyos-2.x/tos/chips/atm128/HplAtm128Uart.nc"
@@ -2634,7 +2648,7 @@ static   error_t HplAtm128UartP$HplUart0$enableTxIntr(void);
 
 
 
-static   void HplAtm128UartP$HplUart0$tx(uint8_t arg_0x7d46abc8);
+static   void HplAtm128UartP$HplUart0$tx(uint8_t arg_0x7e36dbc8);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t HplAtm128UartP$Uart1Init$init(void);
 # 42 "/opt/tinyos-2.x/tos/chips/atm128/HplAtm128Uart.nc"
@@ -2646,7 +2660,7 @@ static   error_t HplAtm128UartP$HplUart1$enableTxIntr(void);
 
 
 
-static   void HplAtm128UartP$HplUart1$tx(uint8_t arg_0x7d46abc8);
+static   void HplAtm128UartP$HplUart1$tx(uint8_t arg_0x7e36dbc8);
 # 73 "/opt/tinyos-2.x/tos/interfaces/StdControl.nc"
 static  error_t HplAtm128UartP$Uart0RxControl$start(void);
 #line 73
@@ -2656,49 +2670,49 @@ static  error_t HplAtm128UartP$Uart1RxControl$start(void);
 #line 73
 static  error_t HplAtm128UartP$Uart0TxControl$start(void);
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBG.nc"
-static   void NoSCSuartDBGC$SCSuartDBG$UARTSend(uint8_t *arg_0x7d866390, uint8_t arg_0x7d866518);
+static   void NoSCSuartDBGC$SCSuartDBG$UARTSend(uint8_t *arg_0x7e768390, uint8_t arg_0x7e768518);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/HplAtm128Uart.nc"
-static   void SCSuartDBGM$HPLUART$rxDone(uint8_t arg_0x7d4696b0);
+static   void SCSuartDBGM$HPLUART$rxDone(uint8_t arg_0x7e36c6b0);
 #line 47
 static   void SCSuartDBGM$HPLUART$txDone(void);
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBGRecv.nc"
-static   void SCSuartDBGM$SCSuartDBGRecv$default$UARTRecv(uint8_t arg_0x7d3a08f8);
+static   void SCSuartDBGM$SCSuartDBGRecv$default$UARTRecv(uint8_t arg_0x7e2a28f8);
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBG.nc"
-static   void SCSuartDBGM$SCSuartDBG$UARTSend(uint8_t *arg_0x7d866390, uint8_t arg_0x7d866518);
+static   void SCSuartDBGM$SCSuartDBG$UARTSend(uint8_t *arg_0x7e768390, uint8_t arg_0x7e768518);
 # 73 "/opt/tinyos-2.x/tos/interfaces/StdControl.nc"
 static  error_t SCSuartDBGM$StdControl$start(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void TempSensorM$Read_UR$readDone(error_t arg_0x7d818f00, TempSensorM$Read_UR$val_t arg_0x7d8170b0);
+static  void TempSensorM$Read_UR$readDone(error_t arg_0x7e719330, TempSensorM$Read_UR$val_t arg_0x7e7194b8);
 # 2 "TempSensor.nc"
 static  void TempSensorM$TempSensor$start(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void TempSensorM$Read_Humidity$readDone(error_t arg_0x7d818f00, TempSensorM$Read_Humidity$val_t arg_0x7d8170b0);
+static  void TempSensorM$Read_Humidity$readDone(error_t arg_0x7e719330, TempSensorM$Read_Humidity$val_t arg_0x7e7194b8);
 #line 63
-static  void TempSensorM$Read_Temp$readDone(error_t arg_0x7d818f00, TempSensorM$Read_Temp$val_t arg_0x7d8170b0);
+static  void TempSensorM$Read_Temp$readDone(error_t arg_0x7e719330, TempSensorM$Read_Temp$val_t arg_0x7e7194b8);
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureHumidityDone(error_t arg_0x7d756718, uint16_t arg_0x7d7568a8);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureHumidityDone(error_t arg_0x7e658b70, uint16_t arg_0x7e658d00);
 #line 116
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$writeStatusRegDone(error_t arg_0x7d754e78);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$writeStatusRegDone(error_t arg_0x7e6563a0);
 #line 100
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$readStatusRegDone(error_t arg_0x7d754228, uint8_t arg_0x7d7543b0);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$readStatusRegDone(error_t arg_0x7e657730, uint8_t arg_0x7e6578b8);
 #line 54
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$resetDone(error_t arg_0x7d7573e0);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$resetDone(error_t arg_0x7e65a820);
 #line 69
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureTemperatureDone(error_t arg_0x7d757c88, uint16_t arg_0x7d757e18);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureTemperatureDone(error_t arg_0x7e6580f8, uint16_t arg_0x7e658288);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$read(void);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$TempResource$granted(void);
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$measureHumidityDone(error_t arg_0x7d756718, uint16_t arg_0x7d7568a8);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$measureHumidityDone(error_t arg_0x7e658b70, uint16_t arg_0x7e658d00);
 #line 116
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$writeStatusRegDone(error_t arg_0x7d754e78);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$writeStatusRegDone(error_t arg_0x7e6563a0);
 #line 100
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$readStatusRegDone(error_t arg_0x7d754228, uint8_t arg_0x7d7543b0);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$readStatusRegDone(error_t arg_0x7e657730, uint8_t arg_0x7e6578b8);
 #line 54
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$resetDone(error_t arg_0x7d7573e0);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$resetDone(error_t arg_0x7e65a820);
 #line 69
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$measureTemperatureDone(error_t arg_0x7d757c88, uint16_t arg_0x7d757e18);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$measureTemperatureDone(error_t arg_0x7e6580f8, uint16_t arg_0x7e658288);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$HumResource$granted(void);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
@@ -2712,73 +2726,65 @@ static  error_t /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read
 
 
 
-static  void /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$subRead$readDone(error_t arg_0x7d818f00, /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$subRead$val_t arg_0x7d8170b0);
+static  void /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$subRead$readDone(error_t arg_0x7e719330, /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$subRead$val_t arg_0x7e7194b8);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void ComSatM$PriorityTimer$fired(void);
-#line 72
 static  void ComSatM$ElapsedTimer$fired(void);
+# 88 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
+static  void ComSatM$RadioControl$startDone(error_t arg_0x7e5b6330);
+#line 110
+static  void ComSatM$RadioControl$stopDone(error_t arg_0x7e5b6e68);
 # 99 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-static  void ComSatM$AMSend$sendDone(message_t *arg_0x7d2d8030, error_t arg_0x7d2d81b8);
+static  void ComSatM$AMSend$sendDone(message_t *arg_0x7e1e05f8, error_t arg_0x7e1e0780);
 # 13 "LEDController.nc"
 static  void ComSatM$LEDController$BlinkDone(void);
-# 88 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
-static  void ComSatM$RadioControl$startDone(error_t arg_0x7d6b4168);
-#line 110
-static  void ComSatM$RadioControl$stopDone(error_t arg_0x7d6b4ca0);
 # 2 "ComSat.nc"
 static  void ComSatM$ComSat$init(void);
 
-static  void ComSatM$ComSat$sendData(void *arg_0x7e0317d0);
+static  void ComSatM$ComSat$sendData(void *arg_0x7ef31640);
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-static  message_t *ComSatM$Receive$receive(message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198);
+static  message_t *ComSatM$Receive$receive(message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void ComSatM$sendDataTask$runTask(void);
 #line 64
-static  void ComSatM$setPriority$runTask(void);
-#line 64
-static  void ComSatM$sendPriority$runTask(void);
-#line 64
 static  void ComSatM$start$runTask(void);
-# 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void ComSatM$Timer$fired(void);
 # 89 "/opt/tinyos-2.x/tos/interfaces/Send.nc"
-static  void CC2420ActiveMessageP$SubSend$sendDone(message_t *arg_0x7d23ddf0, error_t arg_0x7d23b010);
+static  void CC2420ActiveMessageP$SubSend$sendDone(message_t *arg_0x7e15e0d0, error_t arg_0x7e15e258);
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-static  message_t *CC2420ActiveMessageP$SubReceive$receive(message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198);
+static  message_t *CC2420ActiveMessageP$SubReceive$receive(message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0);
 # 69 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
 static  error_t CC2420ActiveMessageP$AMSend$send(
 # 37 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x7d258e78, 
+am_id_t arg_0x7e175228, 
 # 69 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-am_addr_t arg_0x7d2dac58, message_t *arg_0x7d2dae08, uint8_t arg_0x7d2d9010);
+am_addr_t arg_0x7e1e1088, message_t *arg_0x7e1e1238, uint8_t arg_0x7e1e13c0);
 #line 125
 static  void *CC2420ActiveMessageP$AMSend$getPayload(
 # 37 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x7d258e78, 
+am_id_t arg_0x7e175228, 
 # 125 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-message_t *arg_0x7d2d8c68);
+message_t *arg_0x7e1de248);
 #line 99
 static  void CC2420ActiveMessageP$AMSend$default$sendDone(
 # 37 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x7d258e78, 
+am_id_t arg_0x7e175228, 
 # 99 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-message_t *arg_0x7d2d8030, error_t arg_0x7d2d81b8);
+message_t *arg_0x7e1e05f8, error_t arg_0x7e1e0780);
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
 static  message_t *CC2420ActiveMessageP$Snoop$default$receive(
 # 39 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x7d250010, 
+am_id_t arg_0x7e174320, 
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198);
+message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0);
 # 67 "/opt/tinyos-2.x/tos/interfaces/Packet.nc"
-static  uint8_t CC2420ActiveMessageP$Packet$payloadLength(message_t *arg_0x7d27dcc8);
+static  uint8_t CC2420ActiveMessageP$Packet$payloadLength(message_t *arg_0x7e1a1de0);
 #line 108
-static  void *CC2420ActiveMessageP$Packet$getPayload(message_t *arg_0x7d27a0d0, uint8_t *arg_0x7d27a278);
+static  void *CC2420ActiveMessageP$Packet$getPayload(message_t *arg_0x7e19e358, uint8_t *arg_0x7e19e500);
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
 static  message_t *CC2420ActiveMessageP$Receive$default$receive(
 # 38 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x7d251850, 
+am_id_t arg_0x7e175b58, 
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198);
+message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0);
 # 57 "/opt/tinyos-2.x/tos/interfaces/AMPacket.nc"
 static  am_addr_t CC2420ActiveMessageP$AMPacket$address(void);
 
@@ -2790,17 +2796,17 @@ static  am_addr_t CC2420ActiveMessageP$AMPacket$address(void);
 
 
 
-static  am_addr_t CC2420ActiveMessageP$AMPacket$destination(message_t *arg_0x7d277a28);
+static  am_addr_t CC2420ActiveMessageP$AMPacket$destination(message_t *arg_0x7e19bcd8);
 #line 136
-static  am_id_t CC2420ActiveMessageP$AMPacket$type(message_t *arg_0x7d274f08);
+static  am_id_t CC2420ActiveMessageP$AMPacket$type(message_t *arg_0x7e197258);
 #line 125
-static  bool CC2420ActiveMessageP$AMPacket$isForMe(message_t *arg_0x7d2747d8);
+static  bool CC2420ActiveMessageP$AMPacket$isForMe(message_t *arg_0x7e199b10);
 # 79 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
 static  error_t CC2420CsmaP$SplitControl$start(void);
 # 85 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Transmit.nc"
-static   void CC2420CsmaP$CC2420Transmit$sendDone(message_t *arg_0x7d1d6378, error_t arg_0x7d1d6500);
+static   void CC2420CsmaP$CC2420Transmit$sendDone(message_t *arg_0x7e0f9720, error_t arg_0x7e0f98a8);
 # 64 "/opt/tinyos-2.x/tos/interfaces/Send.nc"
-static  error_t CC2420CsmaP$Send$send(message_t *arg_0x7d23ebc0, uint8_t arg_0x7d23ed48);
+static  error_t CC2420CsmaP$Send$send(message_t *arg_0x7e160010, uint8_t arg_0x7e160198);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t CC2420CsmaP$Init$init(void);
 # 76 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Power.nc"
@@ -2810,9 +2816,9 @@ static   void CC2420CsmaP$CC2420Power$startVRegDone(void);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void CC2420CsmaP$Resource$granted(void);
 # 43 "/opt/tinyos-2.x/tos/interfaces/CsmaBackoff.nc"
-static   uint16_t CC2420CsmaP$CsmaBackoff$congestion(message_t *arg_0x7d1d2e88);
+static   uint16_t CC2420CsmaP$CsmaBackoff$congestion(message_t *arg_0x7e0f42a8);
 #line 36
-static   uint16_t CC2420CsmaP$CsmaBackoff$initial(message_t *arg_0x7d1d28d8);
+static   uint16_t CC2420CsmaP$CsmaBackoff$initial(message_t *arg_0x7e0fbcd0);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void CC2420CsmaP$sendDone_task$runTask(void);
 #line 64
@@ -2820,7 +2826,7 @@ static  void CC2420CsmaP$stopDone_task$runTask(void);
 #line 64
 static  void CC2420CsmaP$startDone_task$runTask(void);
 # 53 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Config.nc"
-static  void CC2420ControlP$CC2420Config$default$syncDone(error_t arg_0x7d183568);
+static  void CC2420ControlP$CC2420Config$default$syncDone(error_t arg_0x7e0b29e8);
 # 67 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
 static   void CC2420ControlP$StartupTimer$fired(void);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
@@ -2844,13 +2850,13 @@ static   void CC2420ControlP$InterruptCCA$fired(void);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void CC2420ControlP$syncDone_task$runTask(void);
 # 41 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128TimerCtrl16.nc"
-static   void HplAtm128Timer1P$TimerCtrl$setCtrlCapture(Atm128TimerCtrlCapture_t arg_0x7d0e24d0);
+static   void HplAtm128Timer1P$TimerCtrl$setCtrlCapture(Atm128TimerCtrlCapture_t arg_0x7e010b58);
 #line 37
 static   Atm128TimerCtrlCapture_t HplAtm128Timer1P$TimerCtrl$getCtrlCapture(void);
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void HplAtm128Timer1P$CompareA$reset(void);
 #line 45
-static   void HplAtm128Timer1P$CompareA$set(HplAtm128Timer1P$CompareA$size_type arg_0x7dbb3010);
+static   void HplAtm128Timer1P$CompareA$set(HplAtm128Timer1P$CompareA$size_type arg_0x7eab4010);
 
 
 
@@ -2866,7 +2872,7 @@ static   void HplAtm128Timer1P$CompareA$start(void);
 
 static   void HplAtm128Timer1P$CompareA$stop(void);
 # 79 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Capture.nc"
-static   void HplAtm128Timer1P$Capture$setEdge(bool arg_0x7d0db7d0);
+static   void HplAtm128Timer1P$Capture$setEdge(bool arg_0x7dffde78);
 #line 55
 static   void HplAtm128Timer1P$Capture$reset(void);
 
@@ -2884,9 +2890,9 @@ static   bool HplAtm128Timer1P$Timer$test(void);
 #line 52
 static   HplAtm128Timer1P$Timer$timer_size HplAtm128Timer1P$Timer$get(void);
 #line 95
-static   void HplAtm128Timer1P$Timer$setScale(uint8_t arg_0x7dbd0428);
+static   void HplAtm128Timer1P$Timer$setScale(uint8_t arg_0x7ead1428);
 #line 58
-static   void HplAtm128Timer1P$Timer$set(HplAtm128Timer1P$Timer$timer_size arg_0x7dbd37b0);
+static   void HplAtm128Timer1P$Timer$set(HplAtm128Timer1P$Timer$timer_size arg_0x7ead47b0);
 
 
 
@@ -2903,7 +2909,7 @@ static  error_t /*InitOneP.InitOne*/Atm128TimerInitC$1$Init$init(void);
 # 61 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
 static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$overflow(void);
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$startAt(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$size_type arg_0x7dbf59e0, /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$size_type arg_0x7dbf5b70);
+static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$startAt(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$size_type arg_0x7eb019e0, /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$size_type arg_0x7eb01b70);
 #line 62
 static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$stop(void);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
@@ -2928,9 +2934,9 @@ static   /*Counter32khz32C.Transform32*/TransformCounterC$0$Counter$size_type /*
 # 98 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
 static   /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$size_type /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$getNow(void);
 #line 92
-static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$startAt(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$size_type arg_0x7dbf59e0, /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$size_type arg_0x7dbf5b70);
+static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$startAt(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$size_type arg_0x7eb019e0, /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$size_type arg_0x7eb01b70);
 #line 55
-static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$start(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$size_type arg_0x7dc018c8);
+static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$start(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$size_type arg_0x7eb028c8);
 
 
 
@@ -2952,7 +2958,7 @@ static   error_t /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Captur
 #line 42
 static   error_t /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Capture$captureRisingEdge(void);
 # 51 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Capture.nc"
-static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$captured(/*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$size_type arg_0x7d0dc1d8);
+static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$captured(/*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$size_type arg_0x7dffe880);
 # 64 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128Interrupt.nc"
 static   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm128Interrupt$fired(void);
 # 43 "/opt/tinyos-2.x/tos/interfaces/GpioInterrupt.nc"
@@ -2968,124 +2974,124 @@ static   error_t HplCC2420InterruptsP$CCA$enableRisingEdge(void);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void HplCC2420InterruptsP$CCATask$runTask(void);
 # 71 "/opt/tinyos-2.x/tos/interfaces/SpiPacket.nc"
-static   void CC2420SpiImplP$SpiPacket$sendDone(uint8_t *arg_0x7cf40290, uint8_t *arg_0x7cf40438, uint16_t arg_0x7cf405c8, 
-error_t arg_0x7cf40760);
+static   void CC2420SpiImplP$SpiPacket$sendDone(uint8_t *arg_0x7de60610, uint8_t *arg_0x7de607b8, uint16_t arg_0x7de60948, 
+error_t arg_0x7de60ae0);
 # 62 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
 static   error_t CC2420SpiImplP$Fifo$continueRead(
 # 40 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf54068, 
+uint8_t arg_0x7de74228, 
 # 62 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-uint8_t *arg_0x7cf63d00, uint8_t arg_0x7cf63e88);
+uint8_t *arg_0x7de83eb0, uint8_t arg_0x7de82068);
 #line 91
 static   void CC2420SpiImplP$Fifo$default$writeDone(
 # 40 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf54068, 
+uint8_t arg_0x7de74228, 
 # 91 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-uint8_t *arg_0x7cf60610, uint8_t arg_0x7cf60798, error_t arg_0x7cf60920);
+uint8_t *arg_0x7de80798, uint8_t arg_0x7de80920, error_t arg_0x7de80aa8);
 #line 82
 static   cc2420_status_t CC2420SpiImplP$Fifo$write(
 # 40 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf54068, 
+uint8_t arg_0x7de74228, 
 # 82 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-uint8_t *arg_0x7cf62dd0, uint8_t arg_0x7cf60010);
+uint8_t *arg_0x7de80010, uint8_t arg_0x7de80198);
 #line 51
 static   cc2420_status_t CC2420SpiImplP$Fifo$beginRead(
 # 40 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf54068, 
+uint8_t arg_0x7de74228, 
 # 51 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-uint8_t *arg_0x7cf63568, uint8_t arg_0x7cf636f0);
+uint8_t *arg_0x7de83718, uint8_t arg_0x7de838a0);
 #line 71
 static   void CC2420SpiImplP$Fifo$default$readDone(
 # 40 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf54068, 
+uint8_t arg_0x7de74228, 
 # 71 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-uint8_t *arg_0x7cf624f8, uint8_t arg_0x7cf62680, error_t arg_0x7cf62808);
+uint8_t *arg_0x7de82698, uint8_t arg_0x7de82820, error_t arg_0x7de829a8);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void CC2420SpiImplP$SpiResource$granted(void);
 # 63 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Ram.nc"
 static   cc2420_status_t CC2420SpiImplP$Ram$write(
 # 41 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint16_t arg_0x7cf549f0, 
+uint16_t arg_0x7de74bb0, 
 # 63 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Ram.nc"
-uint8_t arg_0x7d172b18, uint8_t *arg_0x7d172cc0, uint8_t arg_0x7d172e48);
+uint8_t arg_0x7e092090, uint8_t *arg_0x7e092238, uint8_t arg_0x7e0923c0);
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
 static   cc2420_status_t CC2420SpiImplP$Reg$write(
 # 42 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf530f8, 
+uint8_t arg_0x7de73348, 
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
-uint16_t arg_0x7d161100);
+uint16_t arg_0x7e0835d8);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t CC2420SpiImplP$Resource$release(
 # 39 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf556c0);
+uint8_t arg_0x7de75878);
 # 87 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t CC2420SpiImplP$Resource$immediateRequest(
 # 39 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf556c0);
+uint8_t arg_0x7de75878);
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t CC2420SpiImplP$Resource$request(
 # 39 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf556c0);
+uint8_t arg_0x7de75878);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void CC2420SpiImplP$Resource$default$granted(
 # 39 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf556c0);
+uint8_t arg_0x7de75878);
 # 45 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Strobe.nc"
 static   cc2420_status_t CC2420SpiImplP$Strobe$strobe(
 # 43 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf537d8);
+uint8_t arg_0x7de73a28);
 # 59 "/opt/tinyos-2.x/tos/interfaces/SpiPacket.nc"
-static   error_t Atm128SpiP$SpiPacket$send(uint8_t *arg_0x7cf417f8, uint8_t *arg_0x7cf419a0, uint16_t arg_0x7cf41b30);
+static   error_t Atm128SpiP$SpiPacket$send(uint8_t *arg_0x7de61a20, uint8_t *arg_0x7de61bc8, uint16_t arg_0x7de61d58);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void Atm128SpiP$ResourceArbiter$granted(
 # 84 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefa410);
+uint8_t arg_0x7de19870);
 # 34 "/opt/tinyos-2.x/tos/interfaces/SpiByte.nc"
-static   uint8_t Atm128SpiP$SpiByte$write(uint8_t arg_0x7cf43088);
+static   uint8_t Atm128SpiP$SpiByte$write(uint8_t arg_0x7de632b8);
 # 92 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
-static   void Atm128SpiP$Spi$dataReady(uint8_t arg_0x7cef4f08);
+static   void Atm128SpiP$Spi$dataReady(uint8_t arg_0x7de12398);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t Atm128SpiP$Resource$release(
 # 80 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefd010);
+uint8_t arg_0x7de1c490);
 # 87 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t Atm128SpiP$Resource$immediateRequest(
 # 80 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefd010);
+uint8_t arg_0x7de1c490);
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t Atm128SpiP$Resource$request(
 # 80 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefd010);
+uint8_t arg_0x7de1c490);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void Atm128SpiP$Resource$default$granted(
 # 80 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefd010);
+uint8_t arg_0x7de1c490);
 # 72 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
 static   void HplAtm128SpiP$SPI$sleep(void);
 #line 66
 static   void HplAtm128SpiP$SPI$initMaster(void);
 #line 105
-static   void HplAtm128SpiP$SPI$setMasterBit(bool arg_0x7cef1c08);
+static   void HplAtm128SpiP$SPI$setMasterBit(bool arg_0x7de060b8);
 #line 96
-static   void HplAtm128SpiP$SPI$enableInterrupt(bool arg_0x7cef3478);
+static   void HplAtm128SpiP$SPI$enableInterrupt(bool arg_0x7de128e0);
 #line 80
 static   uint8_t HplAtm128SpiP$SPI$read(void);
 #line 125
-static   void HplAtm128SpiP$SPI$setMasterDoubleSpeed(bool arg_0x7cee4680);
+static   void HplAtm128SpiP$SPI$setMasterDoubleSpeed(bool arg_0x7de03a68);
 #line 114
-static   void HplAtm128SpiP$SPI$setClock(uint8_t arg_0x7cee6480);
+static   void HplAtm128SpiP$SPI$setClock(uint8_t arg_0x7de058d0);
 #line 108
-static   void HplAtm128SpiP$SPI$setClockPolarity(bool arg_0x7cef0490);
+static   void HplAtm128SpiP$SPI$setClockPolarity(bool arg_0x7de06910);
 #line 86
-static   void HplAtm128SpiP$SPI$write(uint8_t arg_0x7cef49f8);
+static   void HplAtm128SpiP$SPI$write(uint8_t arg_0x7de13e70);
 #line 99
-static   void HplAtm128SpiP$SPI$enableSpi(bool arg_0x7cef3c48);
+static   void HplAtm128SpiP$SPI$enableSpi(bool arg_0x7de110f8);
 #line 111
-static   void HplAtm128SpiP$SPI$setClockPhase(bool arg_0x7cef0c70);
+static   void HplAtm128SpiP$SPI$setClockPhase(bool arg_0x7de05108);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$Init$init(void);
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-static   error_t /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQueue$enqueue(resource_client_id_t arg_0x7d624010);
+static   error_t /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQueue$enqueue(resource_client_id_t arg_0x7e527010);
 #line 43
 static   bool /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQueue$isEmpty(void);
 
@@ -3096,7 +3102,7 @@ static   bool /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQueue$isEmpty
 
 
 
-static   bool /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQueue$isEnqueued(resource_client_id_t arg_0x7d6265e0);
+static   bool /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQueue$isEnqueued(resource_client_id_t arg_0x7e5285e0);
 
 
 
@@ -3108,43 +3114,43 @@ static   resource_client_id_t /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$F
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
 static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$default$requested(
 # 54 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce67b40);
+uint8_t arg_0x7dd843e8);
 # 51 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
 static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$default$immediateRequested(
 # 54 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce67b40);
+uint8_t arg_0x7dd843e8);
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$default$unconfigure(
 # 58 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce66650);
+uint8_t arg_0x7dd84ed0);
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$default$configure(
 # 58 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce66650);
+uint8_t arg_0x7dd84ed0);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$release(
 # 53 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce67200);
+uint8_t arg_0x7dd85a48);
 # 87 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$immediateRequest(
 # 53 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce67200);
+uint8_t arg_0x7dd85a48);
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$request(
 # 53 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce67200);
+uint8_t arg_0x7dd85a48);
 # 80 "/opt/tinyos-2.x/tos/interfaces/ArbiterInfo.nc"
 static   bool /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ArbiterInfo$inUse(void);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$grantedTask$runTask(void);
 # 50 "/opt/tinyos-2.x/tos/interfaces/GpioCapture.nc"
-static   void CC2420TransmitP$CaptureSFD$captured(uint16_t arg_0x7cfb47f8);
+static   void CC2420TransmitP$CaptureSFD$captured(uint16_t arg_0x7ded4ab8);
 # 67 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
 static   void CC2420TransmitP$BackoffTimer$fired(void);
 # 48 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Transmit.nc"
-static   error_t CC2420TransmitP$Send$sendCCA(message_t *arg_0x7d1ded10);
+static   error_t CC2420TransmitP$Send$sendCCA(message_t *arg_0x7e0fa030);
 # 61 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Receive.nc"
-static   void CC2420TransmitP$CC2420Receive$receive(uint8_t arg_0x7cdfd828, message_t *arg_0x7cdfd9d8);
+static   void CC2420TransmitP$CC2420Receive$receive(uint8_t arg_0x7dd1a470, message_t *arg_0x7dd1a620);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t CC2420TransmitP$Init$init(void);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
@@ -3152,7 +3158,7 @@ static  void CC2420TransmitP$SpiResource$granted(void);
 # 73 "/opt/tinyos-2.x/tos/interfaces/AsyncStdControl.nc"
 static   error_t CC2420TransmitP$AsyncStdControl$start(void);
 # 39 "/opt/tinyos-2.x/tos/interfaces/RadioTimeStamping.nc"
-static   void CC2420TransmitP$TimeStamp$default$transmittedSFD(uint16_t arg_0x7ce15030, message_t *arg_0x7ce151e0);
+static   void CC2420TransmitP$TimeStamp$default$transmittedSFD(uint16_t arg_0x7dd33608, message_t *arg_0x7dd337b8);
 
 
 
@@ -3163,25 +3169,25 @@ static   void CC2420TransmitP$TimeStamp$default$transmittedSFD(uint16_t arg_0x7c
 
 
 
-static   void CC2420TransmitP$TimeStamp$default$receivedSFD(uint16_t arg_0x7ce15710);
+static   void CC2420TransmitP$TimeStamp$default$receivedSFD(uint16_t arg_0x7dd33ce8);
 # 91 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-static   void CC2420TransmitP$TXFIFO$writeDone(uint8_t *arg_0x7cf60610, uint8_t arg_0x7cf60798, error_t arg_0x7cf60920);
+static   void CC2420TransmitP$TXFIFO$writeDone(uint8_t *arg_0x7de80798, uint8_t arg_0x7de80920, error_t arg_0x7de80aa8);
 #line 71
-static   void CC2420TransmitP$TXFIFO$readDone(uint8_t *arg_0x7cf624f8, uint8_t arg_0x7cf62680, error_t arg_0x7cf62808);
+static   void CC2420TransmitP$TXFIFO$readDone(uint8_t *arg_0x7de82698, uint8_t arg_0x7de82820, error_t arg_0x7de829a8);
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void CC2420ReceiveP$receiveDone_task$runTask(void);
 # 53 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Receive.nc"
 static   void CC2420ReceiveP$CC2420Receive$sfd_dropped(void);
 #line 47
-static   void CC2420ReceiveP$CC2420Receive$sfd(uint16_t arg_0x7ce01f08);
+static   void CC2420ReceiveP$CC2420Receive$sfd(uint16_t arg_0x7dd1bb40);
 # 51 "/opt/tinyos-2.x/tos/interfaces/Init.nc"
 static  error_t CC2420ReceiveP$Init$init(void);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void CC2420ReceiveP$SpiResource$granted(void);
 # 91 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-static   void CC2420ReceiveP$RXFIFO$writeDone(uint8_t *arg_0x7cf60610, uint8_t arg_0x7cf60798, error_t arg_0x7cf60920);
+static   void CC2420ReceiveP$RXFIFO$writeDone(uint8_t *arg_0x7de80798, uint8_t arg_0x7de80920, error_t arg_0x7de80aa8);
 #line 71
-static   void CC2420ReceiveP$RXFIFO$readDone(uint8_t *arg_0x7cf624f8, uint8_t arg_0x7cf62680, error_t arg_0x7cf62808);
+static   void CC2420ReceiveP$RXFIFO$readDone(uint8_t *arg_0x7de82698, uint8_t arg_0x7de82820, error_t arg_0x7de829a8);
 # 73 "/opt/tinyos-2.x/tos/interfaces/AsyncStdControl.nc"
 static   error_t CC2420ReceiveP$AsyncStdControl$start(void);
 # 57 "/opt/tinyos-2.x/tos/interfaces/GpioInterrupt.nc"
@@ -3196,22 +3202,15 @@ static  error_t RandomMlcgP$Init$init(void);
 static   am_addr_t ActiveMessageAddressC$amAddress(void);
 # 2 "LCDSetter.nc"
 static  void SerialAppM$LCDSetter$init(void);
-static  void SerialAppM$LCDSetter$setLCD(uint8_t arg_0x7e061ef0, uint16_t arg_0x7e042090, uint16_t arg_0x7e042220, uint16_t arg_0x7e0423b0);
-# 7 "LEDController.nc"
-static  void SerialAppM$LEDController$BlinkLed1(void);
-
-
-static  void SerialAppM$LEDController$IntervalBlinkLed0(uint16_t arg_0x7e053770);
-#line 8
-static  void SerialAppM$LEDController$BlinkLed2(void);
-
-
-static  void SerialAppM$LEDController$IntervalBlinkLed1(uint16_t arg_0x7e053c10);
-static  void SerialAppM$LEDController$IntervalBlinkLed2(uint16_t arg_0x7e0510c8);
+static  void SerialAppM$LCDSetter$setLCD(uint8_t arg_0x7ef61ef0, uint16_t arg_0x7ef42090, uint16_t arg_0x7ef42220, uint16_t arg_0x7ef423b0);
+# 10 "LEDController.nc"
+static  void SerialAppM$LEDController$IntervalBlinkLed0(uint16_t arg_0x7ef53770);
+static  void SerialAppM$LEDController$IntervalBlinkLed1(uint16_t arg_0x7ef53c10);
+static  void SerialAppM$LEDController$IntervalBlinkLed2(uint16_t arg_0x7ef510c8);
 # 2 "ComSat.nc"
 static  void SerialAppM$ComSat$init(void);
 
-static  void SerialAppM$ComSat$sendData(void *arg_0x7e0317d0);
+static  void SerialAppM$ComSat$sendData(void *arg_0x7ef31640);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t SerialAppM$sendPacket$postTask(void);
 #line 56
@@ -3219,35 +3218,27 @@ static   error_t SerialAppM$setData$postTask(void);
 # 2 "TempSensor.nc"
 static  void SerialAppM$TempSensor$start(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void SerialAppM$Timer$startOneShot(uint32_t arg_0x7e080068);
-# 48 "SerialAppM.nc"
+static  void SerialAppM$Timer$startOneShot(uint32_t arg_0x7ef80068);
+# 46 "SerialAppM.nc"
 enum SerialAppM$__nesc_unnamed4342 {
-#line 48
+#line 46
   SerialAppM$sendPacket = 0U
 };
-#line 48
+#line 46
 typedef int SerialAppM$__nesc_sillytask_sendPacket[SerialAppM$sendPacket];
 enum SerialAppM$__nesc_unnamed4343 {
-#line 49
+#line 47
   SerialAppM$setData = 1U
 };
-#line 49
+#line 47
 typedef int SerialAppM$__nesc_sillytask_setData[SerialAppM$setData];
 #line 21
 typedef enum SerialAppM$__nesc_unnamed4344 {
 #line 21
-  SerialAppM$TEMP, SerialAppM$HUMID, SerialAppM$UR, SerialAppM$Priority, SerialAppM$TXD
+  SerialAppM$TEMP, SerialAppM$HUMID, SerialAppM$UR
 } 
 #line 21
 SerialAppM$TYPE;
-typedef enum SerialAppM$__nesc_unnamed4345 {
-#line 22
-  SerialAppM$RX, SerialAppM$TX
-} 
-#line 22
-SerialAppM$ROLE;
-
-uint8_t SerialAppM$deviceRole;
 
 uint8_t SerialAppM$con_i[3] = { 0 };
 float SerialAppM$ret_avg[3] = { 0 };
@@ -3260,9 +3251,9 @@ float SerialAppM$m2[3] = { 0 };
 
 
 
-#line 31
+#line 28
 typedef nx_struct SerialAppM$message {
-  nx_uint8_t isRolePhase;
+  nx_uint32_t priority;
   nx_uint16_t temp;
   nx_uint16_t humid;
   nx_uint16_t ur;
@@ -3270,6 +3261,7 @@ typedef nx_struct SerialAppM$message {
 } __attribute__((packed)) SerialAppM$Packet;
 
 SerialAppM$Packet SerialAppM$packet;
+
 uint8_t SerialAppM$turn;
 uint16_t SerialAppM$currentVersion;
 SerialAppM$Packet SerialAppM$packetQueue[12];
@@ -3294,12 +3286,10 @@ static inline  void SerialAppM$Boot$booted(void);
 
 
 
-static inline  void SerialAppM$ComSat$initDone(uint8_t role);
-
+static inline  void SerialAppM$ComSat$initDone(void);
 
 
 static inline  void SerialAppM$Timer$fired(void);
-
 
 
 
@@ -3312,10 +3302,7 @@ static inline  void SerialAppM$TempSensor$done(uint16_t temp, uint16_t humid, ui
 
 
 
-
-
 static inline  void SerialAppM$sendPacket$runTask(void);
-
 
 
 
@@ -3325,9 +3312,8 @@ static inline  void SerialAppM$ComSat$received(void *data);
 
 
 
-
 static inline  void SerialAppM$setData$runTask(void);
-#line 110
+#line 102
 static inline void SerialAppM$packetInsert(SerialAppM$Packet *pkt);
 
 
@@ -3349,8 +3335,9 @@ static inline  void SerialAppM$LEDController$BlinkDone(void);
 
 
 static inline void SerialAppM$setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
-#line 153
+#line 144
 static void SerialAppM$IntervalBlink(uint8_t interval);
+
 
 
 
@@ -3479,7 +3466,7 @@ static __inline   void /*HplAtm128GeneralIOC.PortD.Bit6*/HplAtm128GeneralIOPinP$
 #line 45
 static __inline   bool /*HplAtm128GeneralIOC.PortE.Bit6*/HplAtm128GeneralIOPinP$38$IO$get(void);
 # 33 "/opt/tinyos-2.x/tos/platforms/mica/MeasureClockC.nc"
-enum MeasureClockC$__nesc_unnamed4346 {
+enum MeasureClockC$__nesc_unnamed4345 {
 
 
   MeasureClockC$MAGIC = 488 / (16 / PLATFORM_MHZ)
@@ -3509,13 +3496,13 @@ int main(void)   ;
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static  void SchedulerBasicP$TaskBasic$runTask(
 # 45 "/opt/tinyos-2.x/tos/system/SchedulerBasicP.nc"
-uint8_t arg_0x7e162030);
+uint8_t arg_0x7f062030);
 # 59 "/opt/tinyos-2.x/tos/interfaces/McuSleep.nc"
 static   void SchedulerBasicP$McuSleep$sleep(void);
 # 50 "/opt/tinyos-2.x/tos/system/SchedulerBasicP.nc"
-enum SchedulerBasicP$__nesc_unnamed4347 {
+enum SchedulerBasicP$__nesc_unnamed4346 {
 
-  SchedulerBasicP$NUM_TASKS = 33U, 
+  SchedulerBasicP$NUM_TASKS = 31U, 
   SchedulerBasicP$NO_TASK = 255
 };
 
@@ -3652,9 +3639,9 @@ void __vector_15(void) __attribute((signal))   ;
 
 void __vector_16(void) __attribute((signal))   ;
 # 95 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
-static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$setScale(uint8_t arg_0x7dbd0428);
+static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$setScale(uint8_t arg_0x7ead1428);
 #line 58
-static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$set(/*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$timer_size arg_0x7dbd37b0);
+static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$set(/*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$timer_size arg_0x7ead47b0);
 
 
 
@@ -3682,7 +3669,7 @@ static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$fired(void);
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$reset(void);
 #line 45
-static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$set(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$size_type arg_0x7dbb3010);
+static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$set(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$size_type arg_0x7eab4010);
 
 
 
@@ -3765,7 +3752,7 @@ static   bool /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Counter
 
 static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Counter$overflow(void);
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7dbf59e0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7dbf5b70);
+static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb019e0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb01b70);
 #line 62
 static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$stop(void);
 # 68 "/opt/tinyos-2.x/tos/lib/timer/TransformAlarmCounterC.nc"
@@ -3774,13 +3761,13 @@ static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFr
 /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$m_dt;
 uint8_t /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$m_skip_overflows;
 
-enum /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$__nesc_unnamed4348 {
+enum /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$__nesc_unnamed4347 {
 
   TransformAlarmCounterC$0$MAX_DELAY_LOG2 = 8 * sizeof(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$from_size_type ) - 1 - 0, 
   TransformAlarmCounterC$0$MAX_DELAY = (/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type )1 << /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$MAX_DELAY_LOG2
 };
 
-enum /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$__nesc_unnamed4349 {
+enum /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$__nesc_unnamed4348 {
 
   TransformAlarmCounterC$0$LOW_SHIFT_RIGHT = 0, 
   TransformAlarmCounterC$0$HIGH_SHIFT_LEFT = 8 * sizeof(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$from_size_type ) - /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$LOW_SHIFT_RIGHT, 
@@ -3827,7 +3814,7 @@ static   error_t /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$fired$postTask(
 # 98 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
 static   /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$getNow(void);
 #line 92
-static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$startAt(/*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7dbf59e0, /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7dbf5b70);
+static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$startAt(/*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb019e0, /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb01b70);
 #line 105
 static   /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$getAlarm(void);
 #line 62
@@ -3835,7 +3822,7 @@ static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$stop(void);
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$fired(void);
 # 63 "/opt/tinyos-2.x/tos/lib/timer/AlarmToTimerC.nc"
-enum /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$__nesc_unnamed4350 {
+enum /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$__nesc_unnamed4349 {
 #line 63
   AlarmToTimerC$0$fired = 2U
 };
@@ -3868,7 +3855,7 @@ static   error_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFro
 # 125 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 static  uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$getNow(void);
 #line 118
-static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$startOneShotAt(uint32_t arg_0x7e072cd0, uint32_t arg_0x7e072e60);
+static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$startOneShotAt(uint32_t arg_0x7ef72cd0, uint32_t arg_0x7ef72e60);
 #line 67
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$stop(void);
 
@@ -3877,16 +3864,16 @@ static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$sto
 
 static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$fired(
 # 37 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7da41cd8);
+uint8_t arg_0x7e943cd8);
 #line 60
-enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_unnamed4351 {
+enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_unnamed4350 {
 #line 60
   VirtualizeTimerC$0$updateFromTimer = 3U
 };
 #line 60
 typedef int /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_sillytask_updateFromTimer[/*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFromTimer];
 #line 42
-enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_unnamed4352 {
+enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_unnamed4351 {
 
   VirtualizeTimerC$0$NUM_TIMERS = 16, 
   VirtualizeTimerC$0$END_OF_LIST = 255
@@ -3900,7 +3887,7 @@ enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_unnamed4352 {
 
 
 #line 48
-typedef struct /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_unnamed4353 {
+typedef struct /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$__nesc_unnamed4352 {
 
   uint32_t t0;
   uint32_t dt;
@@ -3938,26 +3925,29 @@ static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPe
 
 
 
-static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(uint8_t num, uint32_t dt);
+static inline  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(uint8_t num, uint32_t dt);
 
 
 
 
 static inline  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$stop(uint8_t num);
-#line 177
-static inline  uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$getNow(uint8_t num);
+
+
+
+
+static inline  bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$isRunning(uint8_t num);
 #line 192
 static inline   void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$default$fired(uint8_t num);
 # 47 "/opt/tinyos-2.x/tos/lib/timer/CounterToLocalTimeC.nc"
 static inline   void /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC$0$Counter$overflow(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void LEDControllerM$LEDTimer1$startOneShot(uint32_t arg_0x7e080068);
+static  void LEDControllerM$LEDTimer1$startOneShot(uint32_t arg_0x7ef80068);
 # 13 "LEDController.nc"
 static  void LEDControllerM$LEDController$BlinkDone(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void LEDControllerM$LEDIntervalTimer2$startOneShot(uint32_t arg_0x7e080068);
+static  void LEDControllerM$LEDIntervalTimer2$startOneShot(uint32_t arg_0x7ef80068);
 #line 62
-static  void LEDControllerM$LEDIntervalTimer0$startOneShot(uint32_t arg_0x7e080068);
+static  void LEDControllerM$LEDIntervalTimer0$startOneShot(uint32_t arg_0x7ef80068);
 # 50 "/opt/tinyos-2.x/tos/interfaces/Leds.nc"
 static   void LEDControllerM$Leds$led0Off(void);
 
@@ -3983,9 +3973,11 @@ static   void LEDControllerM$Leds$led0On(void);
 #line 78
 static   void LEDControllerM$Leds$led2On(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void LEDControllerM$LEDTimer2$startOneShot(uint32_t arg_0x7e080068);
+static  void LEDControllerM$LEDTimer2$startOneShot(uint32_t arg_0x7ef80068);
 #line 62
-static  void LEDControllerM$LEDIntervalTimer1$startOneShot(uint32_t arg_0x7e080068);
+static  void LEDControllerM$LEDTimer0$startOneShot(uint32_t arg_0x7ef80068);
+#line 62
+static  void LEDControllerM$LEDIntervalTimer1$startOneShot(uint32_t arg_0x7ef80068);
 # 22 "LEDControllerM.nc"
 static inline void LEDControllerM$led0Blink(uint16_t interval);
 static inline void LEDControllerM$led1Blink(uint16_t interval);
@@ -4055,7 +4047,11 @@ static inline void LEDControllerM$led2Blink(uint16_t interval);
 
 
 static inline  void LEDControllerM$LEDIntervalTimer2$fired(void);
-#line 123
+#line 119
+static inline  void LEDControllerM$LEDController$BlinkLed0(void);
+
+
+
 static inline  void LEDControllerM$LEDTimer0$fired(void);
 
 
@@ -4135,27 +4131,27 @@ static inline   void LedsP$Leds$led2On(void);
 
 static inline   void LedsP$Leds$led2Off(void);
 # 28 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-static  void LCDSetterM$Interaction$Process_CMD(void *arg_0x7d874cf0, uint8_t arg_0x7d874e78);
+static  void LCDSetterM$Interaction$Process_CMD(void *arg_0x7e776cf0, uint8_t arg_0x7e776e78);
 #line 24
-static  void LCDSetterM$Interaction$SetSamplingTime(uint16_t arg_0x7d876ec8);
+static  void LCDSetterM$Interaction$SetSamplingTime(uint16_t arg_0x7e777ec8);
 #line 21
-static  void LCDSetterM$Interaction$StartConfiguration(App_struct_t *arg_0x7d876410);
+static  void LCDSetterM$Interaction$StartConfiguration(App_struct_t *arg_0x7e777410);
 # 73 "/opt/tinyos-2.x/tos/interfaces/StdControl.nc"
 static  error_t LCDSetterM$SCSuartDBGstd$start(void);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t LCDSetterM$TryToConfigure$postTask(void);
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBG.nc"
-static   void LCDSetterM$SCSuartDBG$UARTSend(uint8_t *arg_0x7d866390, uint8_t arg_0x7d866518);
+static   void LCDSetterM$SCSuartDBG$UARTSend(uint8_t *arg_0x7e768390, uint8_t arg_0x7e768518);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void LCDSetterM$Timer$startPeriodic(uint32_t arg_0x7e081a70);
+static  void LCDSetterM$Timer$startPeriodic(uint32_t arg_0x7ef81a70);
 # 44 "LCDSetterM.nc"
-enum LCDSetterM$__nesc_unnamed4354 {
+enum LCDSetterM$__nesc_unnamed4353 {
 #line 44
   LCDSetterM$TryToConfigure = 4U
 };
 #line 44
 typedef int LCDSetterM$__nesc_sillytask_TryToConfigure[LCDSetterM$TryToConfigure];
-enum LCDSetterM$__nesc_unnamed4355 {
+enum LCDSetterM$__nesc_unnamed4354 {
 #line 45
   LCDSetterM$TryToSetTimer = 5U
 };
@@ -4201,9 +4197,9 @@ static inline  void LCDSetterM$Interaction$Urgency_Data(uint8_t *Urgency_Payload
 
 
 
-typedef enum LCDSetterM$__nesc_unnamed4356 {
+typedef enum LCDSetterM$__nesc_unnamed4355 {
 #line 81
-  LCDSetterM$TEMP, LCDSetterM$HUMID, LCDSetterM$UR, LCDSetterM$Priority, LCDSetterM$TXD
+  LCDSetterM$TEMP, LCDSetterM$HUMID, LCDSetterM$UR
 } 
 #line 81
 LCDSetterM$TYPE;
@@ -4213,13 +4209,11 @@ static inline char *LCDSetterM$getType(void);
 
 
 
-
-
 static inline  void LCDSetterM$Timer$fired(void);
-#line 120
+#line 118
 static inline  void LCDSetterM$LCDSetter$setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7e081a70);
+static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7ef81a70);
 
 
 
@@ -4228,7 +4222,7 @@ static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7e081a70
 
 
 
-static  void InteractionM$SensorCheckTimer$startOneShot(uint32_t arg_0x7e080068);
+static  void InteractionM$SensorCheckTimer$startOneShot(uint32_t arg_0x7ef80068);
 
 
 
@@ -4239,7 +4233,7 @@ static   error_t InteractionM$SendBasicSensor$postTask(void);
 #line 56
 static   error_t InteractionM$Event_Urgency_Data$postTask(void);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void InteractionM$C328_Reset_Timer$startPeriodic(uint32_t arg_0x7e081a70);
+static  void InteractionM$C328_Reset_Timer$startPeriodic(uint32_t arg_0x7ef81a70);
 #line 67
 static  void InteractionM$C328_Reset_Timer$stop(void);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
@@ -4249,30 +4243,30 @@ static   error_t InteractionM$ProcessCMD$postTask(void);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t InteractionM$Read_Ultrared$read(void);
 # 22 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-static  void InteractionM$Interaction$StartDoneConfiguration(uint8_t arg_0x7d8768a0, uint8_t arg_0x7d876a28);
+static  void InteractionM$Interaction$StartDoneConfiguration(uint8_t arg_0x7e7778a0, uint8_t arg_0x7e777a28);
 
 
 
-static  void InteractionM$Interaction$getSensorDataDone(App_struct_t *arg_0x7d8746b8, uint8_t arg_0x7d874848);
+static  void InteractionM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7766b8, uint8_t arg_0x7e776848);
 
 
-static  void InteractionM$Interaction$Urgency_Data(uint8_t *arg_0x7d873358, uint8_t arg_0x7d8734e0);
+static  void InteractionM$Interaction$Urgency_Data(uint8_t *arg_0x7e774358, uint8_t arg_0x7e7744e0);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t InteractionM$Read_Photo$read(void);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t InteractionM$Set_C328_Restart_Timer_START$postTask(void);
 # 26 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-static  void InteractionM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7d808010, uint8_t arg_0x7d808198);
-static  void InteractionM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7d808638, uint8_t arg_0x7d8087c0, uint8_t arg_0x7d808948, uint8_t arg_0x7d808ad0, uint8_t *arg_0x7d808c80, uint8_t arg_0x7d808e10);
+static  void InteractionM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e711498, uint8_t arg_0x7e711620);
+static  void InteractionM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e711ac0, uint8_t arg_0x7e711c48, uint8_t arg_0x7e711dd0, uint8_t arg_0x7e709010, uint8_t *arg_0x7e7091c0, uint8_t arg_0x7e709350);
 #line 25
-static  void InteractionM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7d809ad0);
+static  void InteractionM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e711010);
 #line 22
 static  void InteractionM$CommunicationWithOPT$SendConfigureMSG(void);
 #line 21
 static  void InteractionM$CommunicationWithOPT$start(void);
 
 
-static  void InteractionM$CommunicationWithOPT$SendControlMSG(uint8_t arg_0x7d809168, uint8_t arg_0x7d8092f0, uint8_t arg_0x7d809478, uint8_t *arg_0x7d809628);
+static  void InteractionM$CommunicationWithOPT$SendControlMSG(uint8_t arg_0x7e712660, uint8_t arg_0x7e7127e8, uint8_t arg_0x7e712970, uint8_t *arg_0x7e712b20);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t InteractionM$TaskStartDoneConfiguration$postTask(void);
 #line 56
@@ -4280,7 +4274,7 @@ static   error_t InteractionM$TryToGetSensorData$postTask(void);
 #line 56
 static   error_t InteractionM$TaskGetSensorDataDone$postTask(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void InteractionM$ConfigTimeout$startOneShot(uint32_t arg_0x7e080068);
+static  void InteractionM$ConfigTimeout$startOneShot(uint32_t arg_0x7ef80068);
 
 
 
@@ -4289,15 +4283,15 @@ static  void InteractionM$ConfigTimeout$stop(void);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t InteractionM$Read_Temp$read(void);
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBG.nc"
-static   void InteractionM$SCSuartDBG$UARTSend(uint8_t *arg_0x7d866390, uint8_t arg_0x7d866518);
+static   void InteractionM$SCSuartDBG$UARTSend(uint8_t *arg_0x7e768390, uint8_t arg_0x7e768518);
 # 56 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Interaction/InteractionM.nc"
-enum InteractionM$__nesc_unnamed4357 {
+enum InteractionM$__nesc_unnamed4356 {
 #line 56
   InteractionM$TaskStartDoneConfiguration = 6U
 };
 #line 56
 typedef int InteractionM$__nesc_sillytask_TaskStartDoneConfiguration[InteractionM$TaskStartDoneConfiguration];
-enum InteractionM$__nesc_unnamed4358 {
+enum InteractionM$__nesc_unnamed4357 {
 #line 57
   InteractionM$TaskGetSensorDataDone = 7U
 };
@@ -4311,35 +4305,35 @@ typedef int InteractionM$__nesc_sillytask_TaskGetSensorDataDone[InteractionM$Tas
 
 
 
-enum InteractionM$__nesc_unnamed4359 {
+enum InteractionM$__nesc_unnamed4358 {
 #line 66
   InteractionM$Set_C328_Restart_Timer_START = 8U
 };
 #line 66
 typedef int InteractionM$__nesc_sillytask_Set_C328_Restart_Timer_START[InteractionM$Set_C328_Restart_Timer_START];
 #line 134
-enum InteractionM$__nesc_unnamed4360 {
+enum InteractionM$__nesc_unnamed4359 {
 #line 134
   InteractionM$Event_Urgency_Data = 9U
 };
 #line 134
 typedef int InteractionM$__nesc_sillytask_Event_Urgency_Data[InteractionM$Event_Urgency_Data];
 #line 211
-enum InteractionM$__nesc_unnamed4361 {
+enum InteractionM$__nesc_unnamed4360 {
 #line 211
   InteractionM$TryToGetSensorData = 10U
 };
 #line 211
 typedef int InteractionM$__nesc_sillytask_TryToGetSensorData[InteractionM$TryToGetSensorData];
 #line 293
-enum InteractionM$__nesc_unnamed4362 {
+enum InteractionM$__nesc_unnamed4361 {
 #line 293
   InteractionM$ProcessCMD = 11U
 };
 #line 293
 typedef int InteractionM$__nesc_sillytask_ProcessCMD[InteractionM$ProcessCMD];
 #line 339
-enum InteractionM$__nesc_unnamed4363 {
+enum InteractionM$__nesc_unnamed4362 {
 #line 339
   InteractionM$SendBasicSensor = 12U
 };
@@ -4469,7 +4463,7 @@ static inline  void InteractionM$Read_Ultrared$readDone(error_t err, uint16_t va
 # 76 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
 static  error_t /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureHumidity(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$readDone(error_t arg_0x7d818f00, /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$val_t arg_0x7d8170b0);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$readDone(error_t arg_0x7e719330, /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$val_t arg_0x7e7194b8);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$TempResource$release(void);
 #line 78
@@ -4481,7 +4475,7 @@ static   error_t /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/Sensirion
 #line 78
 static   error_t /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$HumResource$request(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$readDone(error_t arg_0x7d818f00, /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$val_t arg_0x7d8170b0);
+static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$readDone(error_t arg_0x7e719330, /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$val_t arg_0x7e7194b8);
 # 53 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11ReaderP.nc"
 static inline  error_t /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$read(void);
 
@@ -4544,33 +4538,33 @@ static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureHumidityDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d756718, uint16_t arg_0x7d7568a8);
+error_t arg_0x7e658b70, uint16_t arg_0x7e658d00);
 #line 116
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$writeStatusRegDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 116 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d754e78);
+error_t arg_0x7e6563a0);
 #line 100
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$readStatusRegDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 100 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d754228, uint8_t arg_0x7d7543b0);
+error_t arg_0x7e657730, uint8_t arg_0x7e6578b8);
 #line 54
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$resetDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d7573e0);
+error_t arg_0x7e65a820);
 #line 69
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureTemperatureDone(
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x7d725bb8, 
+uint8_t arg_0x7e626200, 
 # 69 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-error_t arg_0x7d757c88, uint16_t arg_0x7d757e18);
+error_t arg_0x7e6580f8, uint16_t arg_0x7e658288);
 # 33 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
 static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$DATA$makeInput(void);
 #line 32
@@ -4582,20 +4576,20 @@ static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$
 static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$DATA$set(void);
 static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$DATA$clr(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$startOneShot(uint32_t arg_0x7e080068);
+static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$startOneShot(uint32_t arg_0x7ef80068);
 
 
 
 
 static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$stop(void);
 # 102 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
-enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_unnamed4364 {
+enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_unnamed4363 {
 #line 102
   SensirionSht11LogicP$0$readSensor = 13U
 };
 #line 102
 typedef int /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_sillytask_readSensor[/*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$readSensor];
-enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_unnamed4365 {
+enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_unnamed4364 {
 #line 103
   SensirionSht11LogicP$0$signalStatusDone = 14U
 };
@@ -4603,7 +4597,7 @@ enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_un
 typedef int /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_sillytask_signalStatusDone[/*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$signalStatusDone];
 #line 72
 #line 66
-typedef enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_unnamed4366 {
+typedef enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_unnamed4365 {
   SensirionSht11LogicP$0$CMD_MEASURE_TEMPERATURE = 0x3, 
   SensirionSht11LogicP$0$CMD_MEASURE_HUMIDITY = 0x5, 
   SensirionSht11LogicP$0$CMD_READ_STATUS = 0x7, 
@@ -4611,7 +4605,7 @@ typedef enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$_
   SensirionSht11LogicP$0$CMD_SOFT_RESET = 0x1E
 } /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$sht_cmd_t;
 
-enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_unnamed4367 {
+enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$__nesc_unnamed4366 {
   SensirionSht11LogicP$0$TIMEOUT_RESET = 11, 
   SensirionSht11LogicP$0$TIMEOUT_14BIT = 350, 
   SensirionSht11LogicP$0$TIMEOUT_12BIT = 350, 
@@ -4721,9 +4715,9 @@ static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$
 static inline   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$readStatusRegDone(uint8_t client, error_t result, uint8_t val);
 static inline   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$writeStatusRegDone(uint8_t client, error_t result);
 # 88 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
-static  void HplSensirionSht11P$SplitControl$startDone(error_t arg_0x7d6b4168);
+static  void HplSensirionSht11P$SplitControl$startDone(error_t arg_0x7e5b6330);
 #line 110
-static  void HplSensirionSht11P$SplitControl$stopDone(error_t arg_0x7d6b4ca0);
+static  void HplSensirionSht11P$SplitControl$stopDone(error_t arg_0x7e5b6e68);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t HplSensirionSht11P$stopTask$postTask(void);
 # 33 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
@@ -4736,9 +4730,9 @@ static   void HplSensirionSht11P$DATA$makeInput(void);
 #line 30
 static   void HplSensirionSht11P$DATA$clr(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void HplSensirionSht11P$Timer$startOneShot(uint32_t arg_0x7e080068);
+static  void HplSensirionSht11P$Timer$startOneShot(uint32_t arg_0x7ef80068);
 # 49 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/HplSensirionSht11P.nc"
-enum HplSensirionSht11P$__nesc_unnamed4368 {
+enum HplSensirionSht11P$__nesc_unnamed4367 {
 #line 49
   HplSensirionSht11P$stopTask = 15U
 };
@@ -4882,7 +4876,7 @@ static   void /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Atm128
 #line 40
 static   void /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Atm128Interrupt$disable(void);
 #line 59
-static   void /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Atm128Interrupt$edge(bool arg_0x7d697010);
+static   void /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Atm128Interrupt$edge(bool arg_0x7e59a088);
 #line 35
 static   void /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Atm128Interrupt$enable(void);
 # 57 "/opt/tinyos-2.x/tos/interfaces/GpioInterrupt.nc"
@@ -4901,7 +4895,7 @@ static inline   error_t /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterrupt
 
 static inline   void /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Atm128Interrupt$fired(void);
 # 39 "/opt/tinyos-2.x/tos/system/FcfsResourceQueueC.nc"
-enum /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$__nesc_unnamed4369 {
+enum /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$__nesc_unnamed4368 {
 #line 39
   FcfsResourceQueueC$0$NO_ENTRY = 0xFF
 };
@@ -4928,17 +4922,17 @@ static inline   error_t /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
 static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceRequested$requested(
 # 54 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d6156c8);
+uint8_t arg_0x7e5186c8);
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$unconfigure(
 # 59 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d614910);
+uint8_t arg_0x7e517910);
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$configure(
 # 59 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d614910);
+uint8_t arg_0x7e517910);
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-static   error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Queue$enqueue(resource_client_id_t arg_0x7d624010);
+static   error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Queue$enqueue(resource_client_id_t arg_0x7e527010);
 #line 43
 static   bool /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Queue$isEmpty(void);
 #line 60
@@ -4950,23 +4944,23 @@ static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceControlle
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$granted(
 # 53 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d617d40);
+uint8_t arg_0x7e519d40);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$grantedTask$postTask(void);
 # 73 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$__nesc_unnamed4370 {
+enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$__nesc_unnamed4369 {
 #line 73
   ArbiterP$0$grantedTask = 16U
 };
 #line 73
 typedef int /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$__nesc_sillytask_grantedTask[/*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$grantedTask];
 #line 66
-enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$__nesc_unnamed4371 {
+enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$__nesc_unnamed4370 {
 #line 66
   ArbiterP$0$RES_CONTROLLED, ArbiterP$0$RES_GRANTING, ArbiterP$0$RES_IMM_GRANTING, ArbiterP$0$RES_BUSY
 };
 #line 67
-enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$__nesc_unnamed4372 {
+enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$__nesc_unnamed4371 {
 #line 67
   ArbiterP$0$CONTROLLER_ID = 4U
 };
@@ -5015,7 +5009,7 @@ static  error_t /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/Pow
 
 static  error_t /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$StdControl$stop(void);
 # 63 "/opt/tinyos-2.x/tos/lib/power/PowerManagerP.nc"
-enum /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$__nesc_unnamed4373 {
+enum /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$__nesc_unnamed4372 {
 #line 63
   PowerManagerP$0$startTask = 17U
 };
@@ -5025,7 +5019,7 @@ typedef int /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerMa
 
 
 
-enum /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$__nesc_unnamed4374 {
+enum /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$__nesc_unnamed4373 {
 #line 68
   PowerManagerP$0$stopTask = 18U
 };
@@ -5094,7 +5088,7 @@ static inline   error_t /*HplSensirionSht11C.SplitControlPowerManagerC.PowerMana
 
 static inline    void /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$PowerDownCleanup$default$cleanup(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$Read$readDone(error_t arg_0x7d818f00, /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$Read$val_t arg_0x7d8170b0);
+static  void /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$Read$readDone(error_t arg_0x7e719330, /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$Read$val_t arg_0x7e7194b8);
 #line 55
 static  error_t /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$subRead$read(void);
 # 33 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/ADC_ShiftM.nc"
@@ -5104,16 +5098,16 @@ static inline  error_t /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_S
 
 static inline  void /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$subRead$readDone(error_t result, uint16_t val);
 # 110 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcMultiple.nc"
-static   bool Atm128AdcP$Atm128AdcMultiple$dataReady(uint16_t arg_0x7d577a68, bool arg_0x7d577bf0, uint8_t arg_0x7d577d78, 
-uint8_t *arg_0x7d576010, uint8_t *arg_0x7d5761c0);
+static   bool Atm128AdcP$Atm128AdcMultiple$dataReady(uint16_t arg_0x7e47aa68, bool arg_0x7e47abf0, uint8_t arg_0x7e47ad78, 
+uint8_t *arg_0x7e478010, uint8_t *arg_0x7e4781c0);
 # 72 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcSingle.nc"
-static   void Atm128AdcP$Atm128AdcSingle$dataReady(uint16_t arg_0x7d57d8b8, bool arg_0x7d57da40);
+static   void Atm128AdcP$Atm128AdcSingle$dataReady(uint16_t arg_0x7e4818b8, bool arg_0x7e481a40);
 # 44 "/opt/tinyos-2.x/tos/chips/atm128/adc/HplAtm128Adc.nc"
 static   Atm128Admux_t Atm128AdcP$HplAtm128Adc$getAdmux(void);
 #line 73
 static   void Atm128AdcP$HplAtm128Adc$enableAdc(void);
 #line 49
-static   void Atm128AdcP$HplAtm128Adc$setAdmux(Atm128Admux_t arg_0x7d568da8);
+static   void Atm128AdcP$HplAtm128Adc$setAdmux(Atm128Admux_t arg_0x7e46bda8);
 #line 141
 static   bool Atm128AdcP$HplAtm128Adc$cancel(void);
 #line 77
@@ -5128,19 +5122,19 @@ static   void Atm128AdcP$HplAtm128Adc$disableAdc(void);
 
 static   void Atm128AdcP$HplAtm128Adc$disableInterruption(void);
 #line 60
-static   void Atm128AdcP$HplAtm128Adc$setAdcsra(Atm128Adcsra_t arg_0x7d5676f8);
+static   void Atm128AdcP$HplAtm128Adc$setAdcsra(Atm128Adcsra_t arg_0x7e46a6f8);
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/timer/Atm128Calibrate.nc"
 static   uint8_t Atm128AdcP$Atm128Calibrate$adcPrescaler(void);
 # 82 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcP.nc"
 #line 78
-struct Atm128AdcP$__nesc_unnamed4375 {
+struct Atm128AdcP$__nesc_unnamed4374 {
   bool multiple : 1;
   bool precise : 1;
   uint8_t channel : 5;
 } Atm128AdcP$f;
 #line 82
 #line 78
-struct Atm128AdcP$__nesc_unnamed4375 
+struct Atm128AdcP$__nesc_unnamed4374 
 
 
 
@@ -5178,7 +5172,7 @@ bool leftJustify, uint8_t prescaler);
 static inline    bool Atm128AdcP$Atm128AdcMultiple$default$dataReady(uint16_t data, bool precise, uint8_t channel, 
 uint8_t *newChannel, uint8_t *newRefVoltage);
 # 147 "/opt/tinyos-2.x/tos/chips/atm128/adc/HplAtm128Adc.nc"
-static   void HplAtm128AdcP$HplAtm128Adc$dataReady(uint16_t arg_0x7d562120);
+static   void HplAtm128AdcP$HplAtm128Adc$dataReady(uint16_t arg_0x7e464120);
 # 44 "/opt/tinyos-2.x/tos/interfaces/McuPowerState.nc"
 static   void HplAtm128AdcP$McuPowerState$update(void);
 # 41 "/opt/tinyos-2.x/tos/chips/atm128/adc/HplAtm128AdcP.nc"
@@ -5223,7 +5217,7 @@ void __vector_21(void) __attribute((signal))   ;
 
 static inline   bool HplAtm128AdcP$HplAtm128Adc$cancel(void);
 # 39 "/opt/tinyos-2.x/tos/system/RoundRobinResourceQueueC.nc"
-enum /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$__nesc_unnamed4376 {
+enum /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$__nesc_unnamed4375 {
 #line 39
   RoundRobinResourceQueueC$0$NO_ENTRY = 0xFF
 };
@@ -5258,17 +5252,17 @@ static inline   error_t /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
 static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceRequested$requested(
 # 54 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d6156c8);
+uint8_t arg_0x7e5186c8);
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$unconfigure(
 # 59 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d614910);
+uint8_t arg_0x7e517910);
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$configure(
 # 59 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d614910);
+uint8_t arg_0x7e517910);
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-static   error_t /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Queue$enqueue(resource_client_id_t arg_0x7d624010);
+static   error_t /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Queue$enqueue(resource_client_id_t arg_0x7e527010);
 #line 43
 static   bool /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Queue$isEmpty(void);
 #line 60
@@ -5280,23 +5274,23 @@ static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceController$gra
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$granted(
 # 53 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-uint8_t arg_0x7d617d40);
+uint8_t arg_0x7e519d40);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$grantedTask$postTask(void);
 # 73 "/opt/tinyos-2.x/tos/system/ArbiterP.nc"
-enum /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$__nesc_unnamed4377 {
+enum /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$__nesc_unnamed4376 {
 #line 73
   ArbiterP$1$grantedTask = 19U
 };
 #line 73
 typedef int /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$__nesc_sillytask_grantedTask[/*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$grantedTask];
 #line 66
-enum /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$__nesc_unnamed4378 {
+enum /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$__nesc_unnamed4377 {
 #line 66
   ArbiterP$1$RES_CONTROLLED, ArbiterP$1$RES_GRANTING, ArbiterP$1$RES_IMM_GRANTING, ArbiterP$1$RES_BUSY
 };
 #line 67
-enum /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$__nesc_unnamed4379 {
+enum /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$__nesc_unnamed4378 {
 #line 67
   ArbiterP$1$CONTROLLER_ID = 3U
 };
@@ -5356,41 +5350,41 @@ static inline    void /*Atm128AdcC.PM.PowerManager*/AsyncPowerManagerP$0$PowerDo
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  void AdcP$Read$readDone(
 # 48 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4ea610, 
+uint8_t arg_0x7e3ed610, 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-error_t arg_0x7d818f00, AdcP$Read$val_t arg_0x7d8170b0);
+error_t arg_0x7e719330, AdcP$Read$val_t arg_0x7e7194b8);
 # 65 "/opt/tinyos-2.x/tos/interfaces/ReadNow.nc"
 static   void AdcP$ReadNow$readDone(
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4e9440, 
+uint8_t arg_0x7e3ec440, 
 # 65 "/opt/tinyos-2.x/tos/interfaces/ReadNow.nc"
-error_t arg_0x7d58bb10, AdcP$ReadNow$val_t arg_0x7d58bc98);
+error_t arg_0x7e48db10, AdcP$ReadNow$val_t arg_0x7e48dc98);
 # 32 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
 static   uint8_t AdcP$Atm128AdcConfig$getRefVoltage(
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4e8748);
+uint8_t arg_0x7e3ea748);
 # 25 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
 static   uint8_t AdcP$Atm128AdcConfig$getChannel(
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4e8748);
+uint8_t arg_0x7e3ea748);
 # 39 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
 static   uint8_t AdcP$Atm128AdcConfig$getPrescaler(
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-uint8_t arg_0x7d4e8748);
+uint8_t arg_0x7e3ea748);
 # 61 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcSingle.nc"
-static   bool AdcP$Atm128AdcSingle$getData(uint8_t arg_0x7d580868, uint8_t arg_0x7d5809f8, 
-bool arg_0x7d580b98, uint8_t arg_0x7d580d28);
+static   bool AdcP$Atm128AdcSingle$getData(uint8_t arg_0x7e482868, uint8_t arg_0x7e4829f8, 
+bool arg_0x7e482b98, uint8_t arg_0x7e482d28);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t AdcP$acquiredData$postTask(void);
 # 103 "/opt/tinyos-2.x/tos/chips/atm128/adc/AdcP.nc"
-enum AdcP$__nesc_unnamed4380 {
+enum AdcP$__nesc_unnamed4379 {
 #line 103
   AdcP$acquiredData = 20U
 };
 #line 103
 typedef int AdcP$__nesc_sillytask_acquiredData[AdcP$acquiredData];
 #line 57
-enum AdcP$__nesc_unnamed4381 {
+enum AdcP$__nesc_unnamed4380 {
   AdcP$IDLE, 
   AdcP$ACQUIRE_DATA, 
   AdcP$ACQUIRE_DATA_NOW
@@ -5460,21 +5454,21 @@ static inline    void AdcP$ReadNow$default$readDone(uint8_t c, error_t e, uint16
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  void /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$readDone(
 # 24 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4d13a8, 
+uint8_t arg_0x7e3d43a8, 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-error_t arg_0x7d818f00, /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$val_t arg_0x7d8170b0);
+error_t arg_0x7e719330, /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$val_t arg_0x7e7194b8);
 #line 55
 static  error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$read(
 # 26 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4d0250);
+uint8_t arg_0x7e3d2250);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$release(
 # 27 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4ce010);
+uint8_t arg_0x7e3d1010);
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$request(
 # 27 "/opt/tinyos-2.x/tos/system/ArbitratedReadC.nc"
-uint8_t arg_0x7d4ce010);
+uint8_t arg_0x7e3d1010);
 
 
 
@@ -5528,7 +5522,7 @@ static inline   void PhotoP$ResourceConfigure$unconfigure(void);
 static inline   uint8_t ZigbexBusP$Adc0$getChannel(void);
 static inline   uint8_t ZigbexBusP$Adc1$getChannel(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$Read$readDone(error_t arg_0x7d818f00, /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$Read$val_t arg_0x7d8170b0);
+static  void /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$Read$readDone(error_t arg_0x7e719330, /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$Read$val_t arg_0x7e7194b8);
 #line 55
 static  error_t /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$subRead$read(void);
 # 33 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/ADC_ShiftM.nc"
@@ -5565,16 +5559,16 @@ static   error_t CommunicationWithOPTM$HPLUART$enableTxIntr(void);
 
 
 
-static   void CommunicationWithOPTM$HPLUART$tx(uint8_t arg_0x7d46abc8);
+static   void CommunicationWithOPTM$HPLUART$tx(uint8_t arg_0x7e36dbc8);
 # 73 "/opt/tinyos-2.x/tos/interfaces/StdControl.nc"
 static  error_t CommunicationWithOPTM$HplUartTxControl$start(void);
 # 29 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_config(uint8_t *arg_0x7d807370);
+static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_config(uint8_t *arg_0x7e709840);
 
-static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_control(uint8_t *arg_0x7d807d00);
-static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_longDT(uint8_t *arg_0x7d8051f0);
+static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_control(uint8_t *arg_0x7e7081f0);
+static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_longDT(uint8_t *arg_0x7e7086b8);
 #line 30
-static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_sensor(uint8_t *arg_0x7d807838);
+static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_sensor(uint8_t *arg_0x7e709d08);
 # 73 "/opt/tinyos-2.x/tos/interfaces/StdControl.nc"
 static  error_t CommunicationWithOPTM$HplUartRxControl$start(void);
 # 41 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Interaction/CommunicationWithOPTM.nc"
@@ -5617,15 +5611,15 @@ static void CommunicationWithOPTM$UARTSend(uint8_t *data, uint8_t len);
 #line 281
 static inline   void CommunicationWithOPTM$HPLUART$txDone(void);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/HplAtm128Uart.nc"
-static   void HplAtm128UartP$HplUart0$rxDone(uint8_t arg_0x7d4696b0);
+static   void HplAtm128UartP$HplUart0$rxDone(uint8_t arg_0x7e36c6b0);
 #line 47
 static   void HplAtm128UartP$HplUart0$txDone(void);
 
-static   void HplAtm128UartP$HplUart1$rxDone(uint8_t arg_0x7d4696b0);
+static   void HplAtm128UartP$HplUart1$rxDone(uint8_t arg_0x7e36c6b0);
 #line 47
 static   void HplAtm128UartP$HplUart1$txDone(void);
 # 60 "/opt/tinyos-2.x/tos/chips/atm128/timer/Atm128Calibrate.nc"
-static   uint16_t HplAtm128UartP$Atm128Calibrate$baudrateRegister(uint32_t arg_0x7df61898);
+static   uint16_t HplAtm128UartP$Atm128Calibrate$baudrateRegister(uint32_t arg_0x7ee62520);
 # 44 "/opt/tinyos-2.x/tos/interfaces/McuPowerState.nc"
 static   void HplAtm128UartP$McuPowerState$update(void);
 # 87 "/opt/tinyos-2.x/tos/chips/atm128/HplAtm128UartP.nc"
@@ -5708,11 +5702,11 @@ static   error_t SCSuartDBGM$HPLUART$enableTxIntr(void);
 
 
 
-static   void SCSuartDBGM$HPLUART$tx(uint8_t arg_0x7d46abc8);
+static   void SCSuartDBGM$HPLUART$tx(uint8_t arg_0x7e36dbc8);
 # 73 "/opt/tinyos-2.x/tos/interfaces/StdControl.nc"
 static  error_t SCSuartDBGM$HplUartTxControl$start(void);
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBGRecv.nc"
-static   void SCSuartDBGM$SCSuartDBGRecv$UARTRecv(uint8_t arg_0x7d3a08f8);
+static   void SCSuartDBGM$SCSuartDBGRecv$UARTRecv(uint8_t arg_0x7e2a28f8);
 # 46 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBGM.nc"
  bool SCSuartDBGM$state = 0;
  uint8_t SCSuartDBGM$str_buff[127];
@@ -5733,7 +5727,7 @@ static inline    void SCSuartDBGM$SCSuartDBGRecv$default$UARTRecv(uint8_t recv_C
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t TempSensorM$Read_UR$read(void);
 # 3 "TempSensor.nc"
-static  void TempSensorM$TempSensor$done(uint16_t arg_0x7e040998, uint16_t arg_0x7e040b28, uint16_t arg_0x7e040cb8);
+static  void TempSensorM$TempSensor$done(uint16_t arg_0x7ef40998, uint16_t arg_0x7ef40b28, uint16_t arg_0x7ef40cb8);
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
 static  error_t TempSensorM$Read_Humidity$read(void);
 #line 55
@@ -5790,7 +5784,7 @@ static inline void TempSensorM$calc_SHT11(uint16_t p_humidity, uint16_t p_temper
 # 76 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
 static  error_t /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureHumidity(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$readDone(error_t arg_0x7d818f00, /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$val_t arg_0x7d8170b0);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$readDone(error_t arg_0x7e719330, /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$val_t arg_0x7e7194b8);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$TempResource$release(void);
 #line 78
@@ -5802,7 +5796,7 @@ static   error_t /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11Reade
 #line 78
 static   error_t /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$HumResource$request(void);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$readDone(error_t arg_0x7d818f00, /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$val_t arg_0x7d8170b0);
+static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$readDone(error_t arg_0x7e719330, /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$val_t arg_0x7e7194b8);
 # 53 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11ReaderP.nc"
 static inline  error_t /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$read(void);
 
@@ -5850,7 +5844,7 @@ static inline  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11Re
 static inline  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$readStatusRegDone(error_t result, uint8_t val);
 static inline  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$writeStatusRegDone(error_t result);
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-static  void /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read$readDone(error_t arg_0x7d818f00, /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read$val_t arg_0x7d8170b0);
+static  void /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read$readDone(error_t arg_0x7e719330, /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read$val_t arg_0x7e7194b8);
 #line 55
 static  error_t /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$subRead$read(void);
 # 33 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/ADC_ShiftM.nc"
@@ -5859,78 +5853,62 @@ static inline  error_t /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM
 
 
 static inline  void /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$subRead$readDone(error_t result, uint16_t val);
-# 125 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  uint32_t ComSatM$PriorityTimer$getNow(void);
-#line 62
-static  void ComSatM$PriorityTimer$startOneShot(uint32_t arg_0x7e080068);
-#line 62
-static  void ComSatM$ElapsedTimer$startOneShot(uint32_t arg_0x7e080068);
-# 69 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-static  error_t ComSatM$AMSend$send(am_addr_t arg_0x7d2dac58, message_t *arg_0x7d2dae08, uint8_t arg_0x7d2d9010);
-#line 125
-static  void *ComSatM$AMSend$getPayload(message_t *arg_0x7d2d8c68);
+# 81 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+static  bool ComSatM$ElapsedTimer$isRunning(void);
+#line 53
+static  void ComSatM$ElapsedTimer$startPeriodic(uint32_t arg_0x7ef81a70);
+#line 67
+static  void ComSatM$ElapsedTimer$stop(void);
 # 79 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
 static  error_t ComSatM$RadioControl$start(void);
-# 3 "LCDSetter.nc"
-static  void ComSatM$LCDSetter$setLCD(uint8_t arg_0x7e061ef0, uint16_t arg_0x7e042090, uint16_t arg_0x7e042220, uint16_t arg_0x7e0423b0);
+# 69 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
+static  error_t ComSatM$AMSend$send(am_addr_t arg_0x7e1e1088, message_t *arg_0x7e1e1238, uint8_t arg_0x7e1e13c0);
+#line 125
+static  void *ComSatM$AMSend$getPayload(message_t *arg_0x7e1de248);
+# 7 "LEDController.nc"
+static  void ComSatM$LEDController$BlinkLed1(void);
+static  void ComSatM$LEDController$BlinkLed2(void);
+#line 6
+static  void ComSatM$LEDController$BlinkLed0(void);
 # 3 "ComSat.nc"
-static  void ComSatM$ComSat$initDone(uint8_t arg_0x7e031330);
+static  void ComSatM$ComSat$initDone(void);
 
-static  void ComSatM$ComSat$received(void *arg_0x7e031c70);
+static  void ComSatM$ComSat$received(void *arg_0x7ef31ae0);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t ComSatM$sendDataTask$postTask(void);
 #line 56
-static   error_t ComSatM$setPriority$postTask(void);
-#line 56
-static   error_t ComSatM$sendPriority$postTask(void);
-#line 56
 static   error_t ComSatM$start$postTask(void);
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void ComSatM$Timer$startOneShot(uint32_t arg_0x7e080068);
-# 45 "ComSatM.nc"
-enum ComSatM$__nesc_unnamed4382 {
-#line 45
+# 36 "ComSatM.nc"
+enum ComSatM$__nesc_unnamed4381 {
+#line 36
   ComSatM$start = 21U
 };
-#line 45
+#line 36
 typedef int ComSatM$__nesc_sillytask_start[ComSatM$start];
 
-enum ComSatM$__nesc_unnamed4383 {
-#line 47
-  ComSatM$setPriority = 22U
+enum ComSatM$__nesc_unnamed4382 {
+#line 38
+  ComSatM$sendDataTask = 22U
 };
-#line 47
-typedef int ComSatM$__nesc_sillytask_setPriority[ComSatM$setPriority];
-enum ComSatM$__nesc_unnamed4384 {
-#line 48
-  ComSatM$sendPriority = 23U
-};
-#line 48
-typedef int ComSatM$__nesc_sillytask_sendPriority[ComSatM$sendPriority];
-
-
-enum ComSatM$__nesc_unnamed4385 {
-#line 51
-  ComSatM$sendDataTask = 24U
-};
-#line 51
+#line 38
 typedef int ComSatM$__nesc_sillytask_sendDataTask[ComSatM$sendDataTask];
-#line 24
+#line 19
+typedef enum ComSatM$__nesc_unnamed4383 {
+#line 19
+  ComSatM$TEMP, ComSatM$HUMID, ComSatM$UR
+} 
+#line 19
+ComSatM$TYPE;
+
+
+
+
+
+
+
 #line 21
-typedef nx_struct ComSatM$__nesc_unnamed4386 {
-  nx_uint8_t isRolePhase;
-  nx_uint16_t priority;
-} __attribute__((packed)) ComSatM$priority_t;
-
-
-
-
-
-
-
-#line 26
-typedef nx_struct ComSatM$__nesc_unnamed4387 {
-  nx_uint8_t isRolePhase;
+typedef nx_struct ComSatM$__nesc_unnamed4384 {
+  nx_uint32_t priority;
   nx_uint16_t temp;
   nx_uint16_t humid;
   nx_uint16_t ur;
@@ -5938,44 +5916,31 @@ typedef nx_struct ComSatM$__nesc_unnamed4387 {
 } __attribute__((packed)) ComSatM$sensor_data_t;
 
 
-typedef enum ComSatM$__nesc_unnamed4388 {
-#line 35
-  ComSatM$TEMP, ComSatM$HUMID, ComSatM$UR, ComSatM$Priority
-} 
-#line 35
-ComSatM$TYPE;
-typedef enum ComSatM$__nesc_unnamed4389 {
-#line 36
-  ComSatM$RX, ComSatM$TX
-} 
-#line 36
-ComSatM$ROLE;
-
-uint8_t ComSatM$deviceRole;
-uint8_t ComSatM$isRolePhase = 1;
+uint8_t ComSatM$isTX;
 message_t ComSatM$output;
-nx_uint16_t ComSatM$devicePriority;
+nx_uint32_t ComSatM$devicePriority;
 
 ComSatM$sensor_data_t ComSatM$currentData;
 
 
 
 
-
-static inline void ComSatM$priorityReceived(void *payload);
-
-
 static inline void ComSatM$dataReceived(void *payload);
+
 
 
 static inline  void ComSatM$ComSat$init(void);
 
 
 
-
-
-
 static inline  void ComSatM$ElapsedTimer$fired(void);
+
+
+
+
+
+
+
 static inline  void ComSatM$start$runTask(void);
 
 
@@ -5985,37 +5950,11 @@ static inline  void ComSatM$RadioControl$startDone(error_t error);
 
 
 
-
-
 static inline  void ComSatM$RadioControl$stopDone(error_t error);
 
 
-static inline  void ComSatM$setPriority$runTask(void);
 
-
-
-
-
-
-
-
-static inline  void ComSatM$sendPriority$runTask(void);
-
-
-
-
-
-
-
-
-static inline  void ComSatM$PriorityTimer$fired(void);
-
-
-
-
-
-
-
+static inline  void ComSatM$AMSend$sendDone(message_t *msg, error_t err);
 
 static inline  void ComSatM$ComSat$sendData(void *pData);
 
@@ -6028,8 +5967,10 @@ static inline  void ComSatM$ComSat$sendData(void *pData);
 
 
 static inline  void ComSatM$sendDataTask$runTask(void);
-#line 129
-static inline  void ComSatM$AMSend$sendDone(message_t *msg, error_t err);
+#line 99
+static inline  void ComSatM$LEDController$BlinkDone(void);
+
+
 
 static inline  message_t *ComSatM$Receive$receive(message_t *msg, void *payload, uint8_t len);
 
@@ -6040,39 +5981,33 @@ static inline  message_t *ComSatM$Receive$receive(message_t *msg, void *payload,
 
 
 
-static inline void ComSatM$priorityReceived(void *payload);
-#line 165
-static inline  void ComSatM$Timer$fired(void);
-
-
-static inline  void ComSatM$LEDController$BlinkDone(void);
 
 
 static inline void ComSatM$dataReceived(void *payload);
 # 64 "/opt/tinyos-2.x/tos/interfaces/Send.nc"
-static  error_t CC2420ActiveMessageP$SubSend$send(message_t *arg_0x7d23ebc0, uint8_t arg_0x7d23ed48);
+static  error_t CC2420ActiveMessageP$SubSend$send(message_t *arg_0x7e160010, uint8_t arg_0x7e160198);
 # 46 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
 static  am_addr_t CC2420ActiveMessageP$amAddress(void);
 # 99 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
 static  void CC2420ActiveMessageP$AMSend$sendDone(
 # 37 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x7d258e78, 
+am_id_t arg_0x7e175228, 
 # 99 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-message_t *arg_0x7d2d8030, error_t arg_0x7d2d81b8);
+message_t *arg_0x7e1e05f8, error_t arg_0x7e1e0780);
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
 static  message_t *CC2420ActiveMessageP$Snoop$receive(
 # 39 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x7d250010, 
+am_id_t arg_0x7e174320, 
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198);
+message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0);
 #line 67
 static  message_t *CC2420ActiveMessageP$Receive$receive(
 # 38 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x7d251850, 
+am_id_t arg_0x7e175b58, 
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198);
+message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0);
 # 51 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-enum CC2420ActiveMessageP$__nesc_unnamed4390 {
+enum CC2420ActiveMessageP$__nesc_unnamed4385 {
   CC2420ActiveMessageP$CC2420_SIZE = MAC_HEADER_SIZE + MAC_FOOTER_SIZE
 };
 
@@ -6080,7 +6015,7 @@ static inline cc2420_header_t *CC2420ActiveMessageP$getHeader(message_t *msg);
 
 
 
-static  error_t CC2420ActiveMessageP$AMSend$send(am_id_t id, am_addr_t addr, 
+static inline  error_t CC2420ActiveMessageP$AMSend$send(am_id_t id, am_addr_t addr, 
 message_t *msg, 
 uint8_t len);
 #line 78
@@ -6139,15 +6074,15 @@ static inline   void CC2420ActiveMessageP$AMSend$default$sendDone(uint8_t id, me
 
 static inline  uint8_t CC2420ActiveMessageP$Packet$payloadLength(message_t *msg);
 #line 180
-static  void *CC2420ActiveMessageP$Packet$getPayload(message_t *msg, uint8_t *len);
+static inline  void *CC2420ActiveMessageP$Packet$getPayload(message_t *msg, uint8_t *len);
 # 88 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
-static  void CC2420CsmaP$SplitControl$startDone(error_t arg_0x7d6b4168);
+static  void CC2420CsmaP$SplitControl$startDone(error_t arg_0x7e5b6330);
 #line 110
-static  void CC2420CsmaP$SplitControl$stopDone(error_t arg_0x7d6b4ca0);
+static  void CC2420CsmaP$SplitControl$stopDone(error_t arg_0x7e5b6e68);
 # 48 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Transmit.nc"
-static   error_t CC2420CsmaP$CC2420Transmit$sendCCA(message_t *arg_0x7d1ded10);
+static   error_t CC2420CsmaP$CC2420Transmit$sendCCA(message_t *arg_0x7e0fa030);
 # 89 "/opt/tinyos-2.x/tos/interfaces/Send.nc"
-static  void CC2420CsmaP$Send$sendDone(message_t *arg_0x7d23ddf0, error_t arg_0x7d23b010);
+static  void CC2420CsmaP$Send$sendDone(message_t *arg_0x7e15e0d0, error_t arg_0x7e15e258);
 # 41 "/opt/tinyos-2.x/tos/interfaces/Random.nc"
 static   uint16_t CC2420CsmaP$Random$rand16(void);
 # 73 "/opt/tinyos-2.x/tos/interfaces/AsyncStdControl.nc"
@@ -6169,26 +6104,26 @@ static   error_t CC2420CsmaP$sendDone_task$postTask(void);
 #line 56
 static   error_t CC2420CsmaP$startDone_task$postTask(void);
 # 70 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420CsmaP.nc"
-enum CC2420CsmaP$__nesc_unnamed4391 {
+enum CC2420CsmaP$__nesc_unnamed4386 {
 #line 70
-  CC2420CsmaP$startDone_task = 25U
+  CC2420CsmaP$startDone_task = 23U
 };
 #line 70
 typedef int CC2420CsmaP$__nesc_sillytask_startDone_task[CC2420CsmaP$startDone_task];
-enum CC2420CsmaP$__nesc_unnamed4392 {
+enum CC2420CsmaP$__nesc_unnamed4387 {
 #line 71
-  CC2420CsmaP$stopDone_task = 26U
+  CC2420CsmaP$stopDone_task = 24U
 };
 #line 71
 typedef int CC2420CsmaP$__nesc_sillytask_stopDone_task[CC2420CsmaP$stopDone_task];
-enum CC2420CsmaP$__nesc_unnamed4393 {
+enum CC2420CsmaP$__nesc_unnamed4388 {
 #line 72
-  CC2420CsmaP$sendDone_task = 27U
+  CC2420CsmaP$sendDone_task = 25U
 };
 #line 72
 typedef int CC2420CsmaP$__nesc_sillytask_sendDone_task[CC2420CsmaP$sendDone_task];
 #line 56
-enum CC2420CsmaP$__nesc_unnamed4394 {
+enum CC2420CsmaP$__nesc_unnamed4389 {
   CC2420CsmaP$S_PREINIT, 
   CC2420CsmaP$S_STOPPED, 
   CC2420CsmaP$S_STARTING, 
@@ -6270,18 +6205,18 @@ static inline   void CC2420CsmaP$CC2420Transmit$sendDone(message_t *p_msg, error
 
 static inline  void CC2420CsmaP$sendDone_task$runTask(void);
 # 53 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Config.nc"
-static  void CC2420ControlP$CC2420Config$syncDone(error_t arg_0x7d183568);
+static  void CC2420ControlP$CC2420Config$syncDone(error_t arg_0x7e0b29e8);
 # 55 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-static   void CC2420ControlP$StartupTimer$start(CC2420ControlP$StartupTimer$size_type arg_0x7dc018c8);
+static   void CC2420ControlP$StartupTimer$start(CC2420ControlP$StartupTimer$size_type arg_0x7eb028c8);
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
-static   cc2420_status_t CC2420ControlP$MDMCTRL0$write(uint16_t arg_0x7d161100);
+static   cc2420_status_t CC2420ControlP$MDMCTRL0$write(uint16_t arg_0x7e0835d8);
 # 35 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
 static   void CC2420ControlP$RSTN$makeOutput(void);
 #line 29
 static   void CC2420ControlP$RSTN$set(void);
 static   void CC2420ControlP$RSTN$clr(void);
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
-static   cc2420_status_t CC2420ControlP$IOCFG0$write(uint16_t arg_0x7d161100);
+static   cc2420_status_t CC2420ControlP$IOCFG0$write(uint16_t arg_0x7e0835d8);
 # 35 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
 static   void CC2420ControlP$CSN$makeOutput(void);
 #line 29
@@ -6307,13 +6242,13 @@ static   void CC2420ControlP$CC2420Power$startOscillatorDone(void);
 #line 56
 static   void CC2420ControlP$CC2420Power$startVRegDone(void);
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
-static   cc2420_status_t CC2420ControlP$FSCTRL$write(uint16_t arg_0x7d161100);
+static   cc2420_status_t CC2420ControlP$FSCTRL$write(uint16_t arg_0x7e0835d8);
 #line 55
-static   cc2420_status_t CC2420ControlP$IOCFG1$write(uint16_t arg_0x7d161100);
+static   cc2420_status_t CC2420ControlP$IOCFG1$write(uint16_t arg_0x7e0835d8);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void CC2420ControlP$Resource$granted(void);
 # 63 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Ram.nc"
-static   cc2420_status_t CC2420ControlP$PANID$write(uint8_t arg_0x7d172b18, uint8_t *arg_0x7d172cc0, uint8_t arg_0x7d172e48);
+static   cc2420_status_t CC2420ControlP$PANID$write(uint8_t arg_0x7e092090, uint8_t *arg_0x7e092238, uint8_t arg_0x7e0923c0);
 # 45 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Strobe.nc"
 static   cc2420_status_t CC2420ControlP$SRXON$strobe(void);
 # 50 "/opt/tinyos-2.x/tos/interfaces/GpioInterrupt.nc"
@@ -6325,15 +6260,15 @@ static  am_addr_t CC2420ControlP$AMPacket$address(void);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t CC2420ControlP$syncDone_task$postTask(void);
 # 86 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ControlP.nc"
-enum CC2420ControlP$__nesc_unnamed4395 {
+enum CC2420ControlP$__nesc_unnamed4390 {
 #line 86
-  CC2420ControlP$syncDone_task = 28U
+  CC2420ControlP$syncDone_task = 26U
 };
 #line 86
 typedef int CC2420ControlP$__nesc_sillytask_syncDone_task[CC2420ControlP$syncDone_task];
 #line 79
 #line 73
-typedef enum CC2420ControlP$__nesc_unnamed4396 {
+typedef enum CC2420ControlP$__nesc_unnamed4391 {
   CC2420ControlP$S_VREG_STOPPED, 
   CC2420ControlP$S_VREG_STARTING, 
   CC2420ControlP$S_VREG_STARTED, 
@@ -6404,7 +6339,7 @@ static   Atm128_TIFR_t HplAtm128Timer1P$Timer0Ctrl$getInterruptFlag(void);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void HplAtm128Timer1P$CompareA$fired(void);
 # 51 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Capture.nc"
-static   void HplAtm128Timer1P$Capture$captured(HplAtm128Timer1P$Capture$size_type arg_0x7d0dc1d8);
+static   void HplAtm128Timer1P$Capture$captured(HplAtm128Timer1P$Capture$size_type arg_0x7dffe880);
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void HplAtm128Timer1P$CompareB$fired(void);
 #line 49
@@ -6497,9 +6432,9 @@ void __vector_11(void) __attribute((interrupt))   ;
 
 void __vector_14(void) __attribute((interrupt))   ;
 # 95 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
-static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$setScale(uint8_t arg_0x7dbd0428);
+static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$setScale(uint8_t arg_0x7ead1428);
 #line 58
-static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$set(/*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$timer_size arg_0x7dbd37b0);
+static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$set(/*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$timer_size arg_0x7ead47b0);
 
 
 
@@ -6527,7 +6462,7 @@ static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC
 # 53 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
 static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$reset(void);
 #line 45
-static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$set(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$size_type arg_0x7dbb3010);
+static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$set(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$size_type arg_0x7eab4010);
 
 
 
@@ -6610,7 +6545,7 @@ static   void /*Counter32khz32C.Transform32*/TransformCounterC$0$Counter$overflo
 # 56 "/opt/tinyos-2.x/tos/lib/timer/TransformCounterC.nc"
 /*Counter32khz32C.Transform32*/TransformCounterC$0$upper_count_type /*Counter32khz32C.Transform32*/TransformCounterC$0$m_upper;
 
-enum /*Counter32khz32C.Transform32*/TransformCounterC$0$__nesc_unnamed4397 {
+enum /*Counter32khz32C.Transform32*/TransformCounterC$0$__nesc_unnamed4392 {
 
   TransformCounterC$0$LOW_SHIFT_RIGHT = 0, 
   TransformCounterC$0$HIGH_SHIFT_LEFT = 8 * sizeof(/*Counter32khz32C.Transform32*/TransformCounterC$0$from_size_type ) - /*Counter32khz32C.Transform32*/TransformCounterC$0$LOW_SHIFT_RIGHT, 
@@ -6627,7 +6562,7 @@ static inline   void /*Counter32khz32C.Transform32*/TransformCounterC$0$CounterF
 # 67 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
 static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$fired(void);
 #line 92
-static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$startAt(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$size_type arg_0x7dbf59e0, /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$size_type arg_0x7dbf5b70);
+static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$startAt(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$size_type arg_0x7eb019e0, /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$size_type arg_0x7eb01b70);
 #line 62
 static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$stop(void);
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Counter.nc"
@@ -6636,7 +6571,7 @@ static   /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Co
 /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$to_size_type /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$m_t0;
 /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$to_size_type /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$m_dt;
 
-enum /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$__nesc_unnamed4398 {
+enum /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$__nesc_unnamed4393 {
 
   TransformAlarmC$0$MAX_DELAY_LOG2 = 8 * sizeof(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$from_size_type ) - 1 - 0, 
   TransformAlarmC$0$MAX_DELAY = (/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$to_size_type )1 << /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$MAX_DELAY_LOG2
@@ -6672,9 +6607,9 @@ static inline   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/Transfor
 # 22 "/opt/tinyos-2.x/tos/system/NoInitC.nc"
 static inline  error_t NoInitC$Init$init(void);
 # 50 "/opt/tinyos-2.x/tos/interfaces/GpioCapture.nc"
-static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Capture$captured(uint16_t arg_0x7cfb47f8);
+static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Capture$captured(uint16_t arg_0x7ded4ab8);
 # 79 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Capture.nc"
-static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$setEdge(bool arg_0x7d0db7d0);
+static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$setEdge(bool arg_0x7dffde78);
 #line 55
 static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$reset(void);
 
@@ -6712,7 +6647,7 @@ static   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm
 #line 40
 static   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm128Interrupt$disable(void);
 #line 59
-static   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm128Interrupt$edge(bool arg_0x7d697010);
+static   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm128Interrupt$edge(bool arg_0x7e59a088);
 #line 35
 static   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm128Interrupt$enable(void);
 # 57 "/opt/tinyos-2.x/tos/interfaces/GpioInterrupt.nc"
@@ -6731,7 +6666,7 @@ static inline   error_t /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterr
 
 static inline   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm128Interrupt$fired(void);
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-static  void HplCC2420InterruptsP$CCATimer$startOneShot(uint32_t arg_0x7e080068);
+static  void HplCC2420InterruptsP$CCATimer$startOneShot(uint32_t arg_0x7ef80068);
 
 
 
@@ -6746,16 +6681,16 @@ static   void HplCC2420InterruptsP$CCA$fired(void);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t HplCC2420InterruptsP$CCATask$postTask(void);
 # 87 "/opt/tinyos-2.x/tos/platforms/zigbex/chips/cc2420/HplCC2420InterruptsP.nc"
-enum HplCC2420InterruptsP$__nesc_unnamed4399 {
+enum HplCC2420InterruptsP$__nesc_unnamed4394 {
 #line 87
-  HplCC2420InterruptsP$CCATask = 29U
+  HplCC2420InterruptsP$CCATask = 27U
 };
 #line 87
 typedef int HplCC2420InterruptsP$__nesc_sillytask_CCATask[HplCC2420InterruptsP$CCATask];
 #line 113
-enum HplCC2420InterruptsP$__nesc_unnamed4400 {
+enum HplCC2420InterruptsP$__nesc_unnamed4395 {
 #line 113
-  HplCC2420InterruptsP$stopTask = 30U
+  HplCC2420InterruptsP$stopTask = 28U
 };
 #line 113
 typedef int HplCC2420InterruptsP$__nesc_sillytask_stopTask[HplCC2420InterruptsP$stopTask];
@@ -6799,21 +6734,21 @@ static inline   error_t HplCC2420InterruptsP$CCA$disable(void);
 
 static inline  void HplCC2420InterruptsP$CCATimer$fired(void);
 # 59 "/opt/tinyos-2.x/tos/interfaces/SpiPacket.nc"
-static   error_t CC2420SpiImplP$SpiPacket$send(uint8_t *arg_0x7cf417f8, uint8_t *arg_0x7cf419a0, uint16_t arg_0x7cf41b30);
+static   error_t CC2420SpiImplP$SpiPacket$send(uint8_t *arg_0x7de61a20, uint8_t *arg_0x7de61bc8, uint16_t arg_0x7de61d58);
 # 91 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
 static   void CC2420SpiImplP$Fifo$writeDone(
 # 40 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf54068, 
+uint8_t arg_0x7de74228, 
 # 91 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-uint8_t *arg_0x7cf60610, uint8_t arg_0x7cf60798, error_t arg_0x7cf60920);
+uint8_t *arg_0x7de80798, uint8_t arg_0x7de80920, error_t arg_0x7de80aa8);
 #line 71
 static   void CC2420SpiImplP$Fifo$readDone(
 # 40 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf54068, 
+uint8_t arg_0x7de74228, 
 # 71 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-uint8_t *arg_0x7cf624f8, uint8_t arg_0x7cf62680, error_t arg_0x7cf62808);
+uint8_t *arg_0x7de82698, uint8_t arg_0x7de82820, error_t arg_0x7de829a8);
 # 34 "/opt/tinyos-2.x/tos/interfaces/SpiByte.nc"
-static   uint8_t CC2420SpiImplP$SpiByte$write(uint8_t arg_0x7cf43088);
+static   uint8_t CC2420SpiImplP$SpiByte$write(uint8_t arg_0x7de632b8);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t CC2420SpiImplP$SpiResource$release(void);
 #line 87
@@ -6823,9 +6758,9 @@ static   error_t CC2420SpiImplP$SpiResource$request(void);
 #line 92
 static  void CC2420SpiImplP$Resource$granted(
 # 39 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420SpiImplP.nc"
-uint8_t arg_0x7cf556c0);
+uint8_t arg_0x7de75878);
 #line 54
-enum CC2420SpiImplP$__nesc_unnamed4401 {
+enum CC2420SpiImplP$__nesc_unnamed4396 {
   CC2420SpiImplP$RESOURCE_COUNT = 4U, 
   CC2420SpiImplP$NO_HOLDER = 0xff
 };
@@ -6889,44 +6824,44 @@ static inline   cc2420_status_t CC2420SpiImplP$Strobe$strobe(uint8_t addr);
 static inline    void CC2420SpiImplP$Fifo$default$readDone(uint8_t addr, uint8_t *rx_buf, uint8_t rx_len, error_t error);
 static inline    void CC2420SpiImplP$Fifo$default$writeDone(uint8_t addr, uint8_t *tx_buf, uint8_t tx_len, error_t error);
 # 71 "/opt/tinyos-2.x/tos/interfaces/SpiPacket.nc"
-static   void Atm128SpiP$SpiPacket$sendDone(uint8_t *arg_0x7cf40290, uint8_t *arg_0x7cf40438, uint16_t arg_0x7cf405c8, 
-error_t arg_0x7cf40760);
+static   void Atm128SpiP$SpiPacket$sendDone(uint8_t *arg_0x7de60610, uint8_t *arg_0x7de607b8, uint16_t arg_0x7de60948, 
+error_t arg_0x7de60ae0);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t Atm128SpiP$ResourceArbiter$release(
 # 84 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefa410);
+uint8_t arg_0x7de19870);
 # 87 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t Atm128SpiP$ResourceArbiter$immediateRequest(
 # 84 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefa410);
+uint8_t arg_0x7de19870);
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t Atm128SpiP$ResourceArbiter$request(
 # 84 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefa410);
+uint8_t arg_0x7de19870);
 # 72 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
 static   void Atm128SpiP$Spi$sleep(void);
 #line 66
 static   void Atm128SpiP$Spi$initMaster(void);
 #line 96
-static   void Atm128SpiP$Spi$enableInterrupt(bool arg_0x7cef3478);
+static   void Atm128SpiP$Spi$enableInterrupt(bool arg_0x7de128e0);
 #line 80
 static   uint8_t Atm128SpiP$Spi$read(void);
 #line 125
-static   void Atm128SpiP$Spi$setMasterDoubleSpeed(bool arg_0x7cee4680);
+static   void Atm128SpiP$Spi$setMasterDoubleSpeed(bool arg_0x7de03a68);
 #line 114
-static   void Atm128SpiP$Spi$setClock(uint8_t arg_0x7cee6480);
+static   void Atm128SpiP$Spi$setClock(uint8_t arg_0x7de058d0);
 #line 108
-static   void Atm128SpiP$Spi$setClockPolarity(bool arg_0x7cef0490);
+static   void Atm128SpiP$Spi$setClockPolarity(bool arg_0x7de06910);
 #line 86
-static   void Atm128SpiP$Spi$write(uint8_t arg_0x7cef49f8);
+static   void Atm128SpiP$Spi$write(uint8_t arg_0x7de13e70);
 #line 99
-static   void Atm128SpiP$Spi$enableSpi(bool arg_0x7cef3c48);
+static   void Atm128SpiP$Spi$enableSpi(bool arg_0x7de110f8);
 #line 111
-static   void Atm128SpiP$Spi$setClockPhase(bool arg_0x7cef0c70);
+static   void Atm128SpiP$Spi$setClockPhase(bool arg_0x7de05108);
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void Atm128SpiP$Resource$granted(
 # 80 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128SpiP.nc"
-uint8_t arg_0x7cefd010);
+uint8_t arg_0x7de1c490);
 # 44 "/opt/tinyos-2.x/tos/interfaces/McuPowerState.nc"
 static   void Atm128SpiP$McuPowerState$update(void);
 # 80 "/opt/tinyos-2.x/tos/interfaces/ArbiterInfo.nc"
@@ -6937,7 +6872,7 @@ uint8_t *Atm128SpiP$rxBuffer;
 uint16_t Atm128SpiP$len;
 uint16_t Atm128SpiP$pos;
 
-enum Atm128SpiP$__nesc_unnamed4402 {
+enum Atm128SpiP$__nesc_unnamed4397 {
   Atm128SpiP$SPI_IDLE, 
   Atm128SpiP$SPI_BUSY, 
   Atm128SpiP$SPI_ATOMIC_SIZE = 10
@@ -7005,7 +6940,7 @@ static   void HplAtm128SpiP$SS$clr(void);
 # 44 "/opt/tinyos-2.x/tos/interfaces/McuPowerState.nc"
 static   void HplAtm128SpiP$Mcu$update(void);
 # 92 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
-static   void HplAtm128SpiP$SPI$dataReady(uint8_t arg_0x7cef4f08);
+static   void HplAtm128SpiP$SPI$dataReady(uint8_t arg_0x7de12398);
 # 35 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
 static   void HplAtm128SpiP$MOSI$makeOutput(void);
 # 79 "/opt/tinyos-2.x/tos/chips/atm128/spi/HplAtm128SpiP.nc"
@@ -7035,7 +6970,7 @@ static inline   void HplAtm128SpiP$SPI$setClock(uint8_t v);
 #line 214
 static inline   void HplAtm128SpiP$SPI$setMasterDoubleSpeed(bool on);
 # 39 "/opt/tinyos-2.x/tos/system/FcfsResourceQueueC.nc"
-enum /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$__nesc_unnamed4403 {
+enum /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$__nesc_unnamed4398 {
 #line 39
   FcfsResourceQueueC$1$NO_ENTRY = 0xFF
 };
@@ -7062,21 +6997,21 @@ static inline   error_t /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQue
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
 static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$requested(
 # 54 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce67b40);
+uint8_t arg_0x7dd843e8);
 # 51 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
 static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$immediateRequested(
 # 54 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce67b40);
+uint8_t arg_0x7dd843e8);
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$unconfigure(
 # 58 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce66650);
+uint8_t arg_0x7dd84ed0);
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
 static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$configure(
 # 58 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce66650);
+uint8_t arg_0x7dd84ed0);
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-static   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Queue$enqueue(resource_client_id_t arg_0x7d624010);
+static   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Queue$enqueue(resource_client_id_t arg_0x7e527010);
 #line 43
 static   bool /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Queue$isEmpty(void);
 #line 60
@@ -7084,23 +7019,23 @@ static   resource_client_id_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Que
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static  void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$granted(
 # 53 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x7ce67200);
+uint8_t arg_0x7dd85a48);
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 static   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$grantedTask$postTask(void);
 # 71 "/opt/tinyos-2.x/tos/system/SimpleArbiterP.nc"
-enum /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$__nesc_unnamed4404 {
+enum /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$__nesc_unnamed4399 {
 #line 71
-  SimpleArbiterP$0$grantedTask = 31U
+  SimpleArbiterP$0$grantedTask = 29U
 };
 #line 71
 typedef int /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$__nesc_sillytask_grantedTask[/*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$grantedTask];
 #line 64
-enum /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$__nesc_unnamed4405 {
+enum /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$__nesc_unnamed4400 {
 #line 64
   SimpleArbiterP$0$RES_IDLE = 0, SimpleArbiterP$0$RES_GRANTING = 1, SimpleArbiterP$0$RES_BUSY = 2
 };
 #line 65
-enum /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$__nesc_unnamed4406 {
+enum /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$__nesc_unnamed4401 {
 #line 65
   SimpleArbiterP$0$NO_RES = 0xFF
 };
@@ -7134,7 +7069,7 @@ static   error_t CC2420TransmitP$CaptureSFD$captureFallingEdge(void);
 #line 42
 static   error_t CC2420TransmitP$CaptureSFD$captureRisingEdge(void);
 # 55 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-static   void CC2420TransmitP$BackoffTimer$start(CC2420TransmitP$BackoffTimer$size_type arg_0x7dc018c8);
+static   void CC2420TransmitP$BackoffTimer$start(CC2420TransmitP$BackoffTimer$size_type arg_0x7eb028c8);
 
 
 
@@ -7143,9 +7078,9 @@ static   void CC2420TransmitP$BackoffTimer$start(CC2420TransmitP$BackoffTimer$si
 
 static   void CC2420TransmitP$BackoffTimer$stop(void);
 # 85 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Transmit.nc"
-static   void CC2420TransmitP$Send$sendDone(message_t *arg_0x7d1d6378, error_t arg_0x7d1d6500);
+static   void CC2420TransmitP$Send$sendDone(message_t *arg_0x7e0f9720, error_t arg_0x7e0f98a8);
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
-static   cc2420_status_t CC2420TransmitP$TXCTRL$write(uint16_t arg_0x7d161100);
+static   cc2420_status_t CC2420TransmitP$TXCTRL$write(uint16_t arg_0x7e0835d8);
 # 35 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
 static   void CC2420TransmitP$CSN$makeOutput(void);
 #line 29
@@ -7154,7 +7089,7 @@ static   void CC2420TransmitP$CSN$clr(void);
 # 53 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Receive.nc"
 static   void CC2420TransmitP$CC2420Receive$sfd_dropped(void);
 #line 47
-static   void CC2420TransmitP$CC2420Receive$sfd(uint16_t arg_0x7ce01f08);
+static   void CC2420TransmitP$CC2420Receive$sfd(uint16_t arg_0x7dd1bb40);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t CC2420TransmitP$SpiResource$release(void);
 #line 87
@@ -7172,11 +7107,11 @@ static   void CC2420TransmitP$SFD$makeInput(void);
 #line 32
 static   bool CC2420TransmitP$SFD$get(void);
 # 43 "/opt/tinyos-2.x/tos/interfaces/CsmaBackoff.nc"
-static   uint16_t CC2420TransmitP$CsmaBackoff$congestion(message_t *arg_0x7d1d2e88);
+static   uint16_t CC2420TransmitP$CsmaBackoff$congestion(message_t *arg_0x7e0f42a8);
 #line 36
-static   uint16_t CC2420TransmitP$CsmaBackoff$initial(message_t *arg_0x7d1d28d8);
+static   uint16_t CC2420TransmitP$CsmaBackoff$initial(message_t *arg_0x7e0fbcd0);
 # 39 "/opt/tinyos-2.x/tos/interfaces/RadioTimeStamping.nc"
-static   void CC2420TransmitP$TimeStamp$transmittedSFD(uint16_t arg_0x7ce15030, message_t *arg_0x7ce151e0);
+static   void CC2420TransmitP$TimeStamp$transmittedSFD(uint16_t arg_0x7dd33608, message_t *arg_0x7dd337b8);
 
 
 
@@ -7187,14 +7122,14 @@ static   void CC2420TransmitP$TimeStamp$transmittedSFD(uint16_t arg_0x7ce15030, 
 
 
 
-static   void CC2420TransmitP$TimeStamp$receivedSFD(uint16_t arg_0x7ce15710);
+static   void CC2420TransmitP$TimeStamp$receivedSFD(uint16_t arg_0x7dd33ce8);
 # 82 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-static   cc2420_status_t CC2420TransmitP$TXFIFO$write(uint8_t *arg_0x7cf62dd0, uint8_t arg_0x7cf60010);
+static   cc2420_status_t CC2420TransmitP$TXFIFO$write(uint8_t *arg_0x7de80010, uint8_t arg_0x7de80198);
 # 45 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Strobe.nc"
 static   cc2420_status_t CC2420TransmitP$STXON$strobe(void);
 # 77 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420TransmitP.nc"
 #line 67
-typedef enum CC2420TransmitP$__nesc_unnamed4407 {
+typedef enum CC2420TransmitP$__nesc_unnamed4402 {
   CC2420TransmitP$S_STOPPED, 
   CC2420TransmitP$S_STARTED, 
   CC2420TransmitP$S_LOAD, 
@@ -7210,7 +7145,7 @@ typedef enum CC2420TransmitP$__nesc_unnamed4407 {
 
 
 
-enum CC2420TransmitP$__nesc_unnamed4408 {
+enum CC2420TransmitP$__nesc_unnamed4403 {
   CC2420TransmitP$CC2420_ABORT_PERIOD = 320
 };
 
@@ -7305,12 +7240,12 @@ static   error_t CC2420ReceiveP$receiveDone_task$postTask(void);
 # 32 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
 static   bool CC2420ReceiveP$FIFOP$get(void);
 # 61 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Receive.nc"
-static   void CC2420ReceiveP$CC2420Receive$receive(uint8_t arg_0x7cdfd828, message_t *arg_0x7cdfd9d8);
+static   void CC2420ReceiveP$CC2420Receive$receive(uint8_t arg_0x7dd1a470, message_t *arg_0x7dd1a620);
 # 29 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
 static   void CC2420ReceiveP$CSN$set(void);
 static   void CC2420ReceiveP$CSN$clr(void);
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-static  message_t *CC2420ReceiveP$Receive$receive(message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198);
+static  message_t *CC2420ReceiveP$Receive$receive(message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0);
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 static   error_t CC2420ReceiveP$SpiResource$release(void);
 #line 87
@@ -7318,30 +7253,30 @@ static   error_t CC2420ReceiveP$SpiResource$immediateRequest(void);
 #line 78
 static   error_t CC2420ReceiveP$SpiResource$request(void);
 # 62 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-static   error_t CC2420ReceiveP$RXFIFO$continueRead(uint8_t *arg_0x7cf63d00, uint8_t arg_0x7cf63e88);
+static   error_t CC2420ReceiveP$RXFIFO$continueRead(uint8_t *arg_0x7de83eb0, uint8_t arg_0x7de82068);
 #line 51
-static   cc2420_status_t CC2420ReceiveP$RXFIFO$beginRead(uint8_t *arg_0x7cf63568, uint8_t arg_0x7cf636f0);
+static   cc2420_status_t CC2420ReceiveP$RXFIFO$beginRead(uint8_t *arg_0x7de83718, uint8_t arg_0x7de838a0);
 # 43 "/opt/tinyos-2.x/tos/interfaces/GpioInterrupt.nc"
 static   error_t CC2420ReceiveP$InterruptFIFOP$enableFallingEdge(void);
 # 45 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Strobe.nc"
 static   cc2420_status_t CC2420ReceiveP$SFLUSHRX$strobe(void);
 # 85 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ReceiveP.nc"
-enum CC2420ReceiveP$__nesc_unnamed4409 {
+enum CC2420ReceiveP$__nesc_unnamed4404 {
 #line 85
-  CC2420ReceiveP$receiveDone_task = 32U
+  CC2420ReceiveP$receiveDone_task = 30U
 };
 #line 85
 typedef int CC2420ReceiveP$__nesc_sillytask_receiveDone_task[CC2420ReceiveP$receiveDone_task];
 #line 65
 #line 60
-typedef enum CC2420ReceiveP$__nesc_unnamed4410 {
+typedef enum CC2420ReceiveP$__nesc_unnamed4405 {
   CC2420ReceiveP$S_STOPPED, 
   CC2420ReceiveP$S_STARTED, 
   CC2420ReceiveP$S_RX_HEADER, 
   CC2420ReceiveP$S_RX_PAYLOAD
 } CC2420ReceiveP$cc2420_receive_state_t;
 
-enum CC2420ReceiveP$__nesc_unnamed4411 {
+enum CC2420ReceiveP$__nesc_unnamed4406 {
   CC2420ReceiveP$RXFIFO_SIZE = 128, 
   CC2420ReceiveP$TIMESTAMP_QUEUE_SIZE = 8
 };
@@ -7528,7 +7463,7 @@ static inline uint8_t HplAtm128AdcP$Adcsra2int(Atm128Adcsra_t x)
 #line 52
 {
 #line 52
-  union __nesc_unnamed4412 {
+  union __nesc_unnamed4407 {
 #line 52
     Atm128Adcsra_t f;
 #line 52
@@ -7551,9 +7486,9 @@ static inline   void HplAtm128AdcP$HplAtm128Adc$setAdcsra(Atm128Adcsra_t x)
 }
 
 # 60 "/opt/tinyos-2.x/tos/chips/atm128/adc/HplAtm128Adc.nc"
-inline static   void Atm128AdcP$HplAtm128Adc$setAdcsra(Atm128Adcsra_t arg_0x7d5676f8){
+inline static   void Atm128AdcP$HplAtm128Adc$setAdcsra(Atm128Adcsra_t arg_0x7e46a6f8){
 #line 60
-  HplAtm128AdcP$HplAtm128Adc$setAdcsra(arg_0x7d5676f8);
+  HplAtm128AdcP$HplAtm128Adc$setAdcsra(arg_0x7e46a6f8);
 #line 60
 }
 #line 60
@@ -7581,7 +7516,7 @@ static inline uint16_t HplAtm128Timer1P$TimerCtrlCapture2int(Atm128TimerCtrlCapt
 #line 81
 {
 #line 81
-  union __nesc_unnamed4413 {
+  union __nesc_unnamed4408 {
 #line 81
     Atm128TimerCtrlCapture_t f;
 #line 81
@@ -7623,9 +7558,9 @@ static inline   void HplAtm128Timer1P$Timer$setScale(uint8_t s)
 }
 
 # 95 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
-inline static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$setScale(uint8_t arg_0x7dbd0428){
+inline static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$setScale(uint8_t arg_0x7ead1428){
 #line 95
-  HplAtm128Timer1P$Timer$setScale(arg_0x7dbd0428);
+  HplAtm128Timer1P$Timer$setScale(arg_0x7ead1428);
 #line 95
 }
 #line 95
@@ -7653,9 +7588,9 @@ static inline   void HplAtm128Timer1P$Timer$set(uint16_t t)
 }
 
 # 58 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
-inline static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$set(/*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$timer_size arg_0x7dbd37b0){
+inline static   void /*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$set(/*InitOneP.InitOne*/Atm128TimerInitC$1$Timer$timer_size arg_0x7ead47b0){
 #line 58
-  HplAtm128Timer1P$Timer$set(arg_0x7dbd37b0);
+  HplAtm128Timer1P$Timer$set(arg_0x7ead47b0);
 #line 58
 }
 #line 58
@@ -8010,13 +7945,13 @@ static inline   message_t *CC2420ActiveMessageP$Snoop$default$receive(am_id_t id
 }
 
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-inline static  message_t *CC2420ActiveMessageP$Snoop$receive(am_id_t arg_0x7d250010, message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198){
+inline static  message_t *CC2420ActiveMessageP$Snoop$receive(am_id_t arg_0x7e174320, message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0){
 #line 67
   nx_struct message_t *result;
 #line 67
 
 #line 67
-    result = CC2420ActiveMessageP$Snoop$default$receive(arg_0x7d250010, arg_0x7d2d4e10, arg_0x7d2d3010, arg_0x7d2d3198);
+    result = CC2420ActiveMessageP$Snoop$default$receive(arg_0x7e174320, arg_0x7e1db398, arg_0x7e1db538, arg_0x7e1db6c0);
 #line 67
 
 #line 67
@@ -8024,6 +7959,31 @@ inline static  message_t *CC2420ActiveMessageP$Snoop$receive(am_id_t arg_0x7d250
 #line 67
 }
 #line 67
+# 294 "/usr/lib/ncc/nesc_nx.h"
+static __inline uint32_t __nesc_ntoh_uint32(const void *source)
+#line 294
+{
+  const uint8_t *base = source;
+
+#line 296
+  return ((((uint32_t )base[0] << 24) | (
+  (uint32_t )base[1] << 16)) | (
+  (uint32_t )base[2] << 8)) | base[3];
+}
+
+static __inline uint32_t __nesc_hton_uint32(void *target, uint32_t value)
+#line 301
+{
+  uint8_t *base = target;
+
+#line 303
+  base[3] = value;
+  base[2] = value >> 8;
+  base[1] = value >> 16;
+  base[0] = value >> 24;
+  return value;
+}
+
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 inline static   error_t SerialAppM$setData$postTask(void){
 #line 56
@@ -8049,17 +8009,17 @@ static __inline uint16_t __nesc_ntoh_uint16(const void *source)
   return ((uint16_t )base[0] << 8) | base[1];
 }
 
-# 110 "SerialAppM.nc"
+# 102 "SerialAppM.nc"
 static inline void SerialAppM$packetInsert(SerialAppM$Packet *pkt)
-#line 110
+#line 102
 {
   if (pkt == (void *)0) {
-#line 111
+#line 103
     return;
     }
-#line 112
+#line 104
   if (__nesc_ntoh_uint16((unsigned char *)&pkt->version) <= __nesc_ntoh_uint16((unsigned char *)&SerialAppM$packet.version)) {
-#line 112
+#line 104
     return;
     }
   SerialAppM$currentVersion = __nesc_ntoh_uint16((unsigned char *)&pkt->version);
@@ -8068,214 +8028,81 @@ static inline void SerialAppM$packetInsert(SerialAppM$Packet *pkt)
   SerialAppM$packetIndex = (SerialAppM$packetIndex + 1) % 12;
 }
 
-#line 91
+#line 84
 static inline  void SerialAppM$ComSat$received(void *data)
-#line 91
+#line 84
 {
-  if (SerialAppM$deviceRole != SerialAppM$RX) {
-#line 92
-    return;
-    }
-#line 93
   SerialAppM$packetInsert((SerialAppM$Packet *)data);
   SerialAppM$setData$postTask();
 }
 
 # 5 "ComSat.nc"
-inline static  void ComSatM$ComSat$received(void *arg_0x7e031c70){
+inline static  void ComSatM$ComSat$received(void *arg_0x7ef31ae0){
 #line 5
-  SerialAppM$ComSat$received(arg_0x7e031c70);
+  SerialAppM$ComSat$received(arg_0x7ef31ae0);
 #line 5
 }
 #line 5
-# 171 "ComSatM.nc"
+# 114 "ComSatM.nc"
 static inline void ComSatM$dataReceived(void *payload)
-#line 171
+#line 114
 {
-
   ComSatM$ComSat$received(payload);
 }
 
-# 269 "/usr/lib/ncc/nesc_nx.h"
-static __inline uint16_t __nesc_hton_uint16(void *target, uint16_t value)
-#line 269
+# 152 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+static inline  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$stop(uint8_t num)
 {
-  uint8_t *base = target;
-
-#line 271
-  base[1] = value;
-  base[0] = value >> 8;
-  return value;
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$m_timers[num].isrunning = FALSE;
 }
 
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void ComSatM$Timer$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(15U, arg_0x7e080068);
-#line 62
+# 67 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+inline static  void ComSatM$ElapsedTimer$stop(void){
+#line 67
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$stop(15U);
+#line 67
 }
-#line 62
-# 78 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-static inline  void *CC2420ActiveMessageP$AMSend$getPayload(am_id_t id, message_t *m)
-#line 78
+#line 67
+# 157 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+static inline  bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$isRunning(uint8_t num)
 {
-  return CC2420ActiveMessageP$Packet$getPayload(m, (void *)0);
+  return /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$m_timers[num].isrunning;
 }
 
-# 125 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-inline static  void *ComSatM$AMSend$getPayload(message_t *arg_0x7d2d8c68){
-#line 125
-  void *result;
-#line 125
-
-#line 125
-  result = CC2420ActiveMessageP$AMSend$getPayload(AM_OSCILLOSCOPE, arg_0x7d2d8c68);
-#line 125
-
-#line 125
-  return result;
-#line 125
-}
-#line 125
-# 120 "LCDSetterM.nc"
-static inline  void LCDSetterM$LCDSetter$setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
-{
-  LCDSetterM$LCDDisplayType = type;
-  LCDSetterM$LCDvalue = value;
-  LCDSetterM$LCDavg = avg;
-  LCDSetterM$LCDstdev = stdev;
-}
-
-# 3 "LCDSetter.nc"
-inline static  void ComSatM$LCDSetter$setLCD(uint8_t arg_0x7e061ef0, uint16_t arg_0x7e042090, uint16_t arg_0x7e042220, uint16_t arg_0x7e0423b0){
-#line 3
-  LCDSetterM$LCDSetter$setLCD(arg_0x7e061ef0, arg_0x7e042090, arg_0x7e042220, arg_0x7e0423b0);
-#line 3
-}
-#line 3
-# 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
-inline static   error_t ComSatM$setPriority$postTask(void){
-#line 56
+# 81 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+inline static  bool ComSatM$ElapsedTimer$isRunning(void){
+#line 81
   unsigned char result;
-#line 56
+#line 81
 
-#line 56
-  result = SchedulerBasicP$TaskBasic$postTask(ComSatM$setPriority);
-#line 56
+#line 81
+  result = /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$isRunning(15U);
+#line 81
 
-#line 56
+#line 81
   return result;
-#line 56
+#line 81
 }
-#line 56
-# 158 "/opt/tinyos-2.x/tos/lib/timer/TransformAlarmCounterC.nc"
-static inline   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$getNow(void)
-{
-  return /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Counter$get();
-}
-
-# 98 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-inline static   /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$getNow(void){
-#line 98
-  unsigned long result;
-#line 98
-
-#line 98
-  result = /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$getNow();
-#line 98
-
-#line 98
-  return result;
-#line 98
-}
-#line 98
-# 85 "/opt/tinyos-2.x/tos/lib/timer/AlarmToTimerC.nc"
-static inline  uint32_t /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$getNow(void)
-{
-#line 86
-  return /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$getNow();
-}
-
-# 125 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$getNow(void){
-#line 125
-  unsigned long result;
-#line 125
-
-#line 125
-  result = /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$getNow();
-#line 125
-
-#line 125
-  return result;
-#line 125
-}
-#line 125
-# 177 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-static inline  uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$getNow(uint8_t num)
-{
-  return /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$getNow();
-}
-
-# 125 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  uint32_t ComSatM$PriorityTimer$getNow(void){
-#line 125
-  unsigned long result;
-#line 125
-
-#line 125
-  result = /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$getNow(15U);
-#line 125
-
-#line 125
-  return result;
-#line 125
-}
-#line 125
-# 140 "ComSatM.nc"
-static inline void ComSatM$priorityReceived(void *payload)
-#line 140
-{
-
-
-  ComSatM$priority_t *data = (ComSatM$priority_t *)payload;
-  ComSatM$priority_t *outdata;
-
-#line 145
-  __nesc_hton_uint16((unsigned char *)&ComSatM$devicePriority, (unsigned int )ComSatM$PriorityTimer$getNow());
-  if (__nesc_ntoh_uint16((unsigned char *)&ComSatM$devicePriority) == __nesc_ntoh_uint16((unsigned char *)&data->priority)) {
-
-      ComSatM$setPriority$postTask();
-      return;
-    }
-  if (__nesc_ntoh_uint16((unsigned char *)&ComSatM$devicePriority) < __nesc_ntoh_uint16((unsigned char *)&data->priority)) 
-    {
-      ComSatM$deviceRole = ComSatM$TX;
-    }
-  else 
-    {
-      ComSatM$deviceRole = ComSatM$RX;
-    }
-  ComSatM$LCDSetter$setLCD(ComSatM$Priority, 0, (uint16_t )__nesc_ntoh_uint16((unsigned char *)&ComSatM$devicePriority), (uint16_t )__nesc_ntoh_uint16((unsigned char *)&data->priority));
-  outdata = (ComSatM$priority_t *)ComSatM$AMSend$getPayload(&ComSatM$output);
-  __nesc_hton_uint8((unsigned char *)&outdata->isRolePhase, 0);
-  ComSatM$isRolePhase = 0;
-  ComSatM$Timer$startOneShot(3000);
-}
-
-#line 131
+#line 81
+# 103 "ComSatM.nc"
 static inline  message_t *ComSatM$Receive$receive(message_t *msg, void *payload, uint8_t len)
-#line 131
+#line 103
 {
+  nx_uint32_t packetPriority;
 
-  if (ComSatM$isRolePhase) {
-    ComSatM$priorityReceived(payload);
+#line 105
+  __nesc_hton_uint32((unsigned char *)&packetPriority, __nesc_ntoh_uint32((unsigned char *)&((ComSatM$sensor_data_t *)payload)->priority));
+  if (__nesc_ntoh_uint32((unsigned char *)&ComSatM$devicePriority) >= __nesc_ntoh_uint32((unsigned char *)&packetPriority)) {
+#line 106
+    return msg;
     }
-  else {
-#line 136
-    ComSatM$dataReceived(payload);
+  if (ComSatM$ElapsedTimer$isRunning()) {
+#line 108
+    ComSatM$ElapsedTimer$stop();
     }
-#line 137
+#line 109
+  ComSatM$dataReceived(payload);
+
   return msg;
 }
 
@@ -8287,23 +8114,23 @@ static inline   message_t *CC2420ActiveMessageP$Receive$default$receive(am_id_t 
 }
 
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-inline static  message_t *CC2420ActiveMessageP$Receive$receive(am_id_t arg_0x7d251850, message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198){
+inline static  message_t *CC2420ActiveMessageP$Receive$receive(am_id_t arg_0x7e175b58, message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0){
 #line 67
   nx_struct message_t *result;
 #line 67
 
 #line 67
-  switch (arg_0x7d251850) {
+  switch (arg_0x7e175b58) {
 #line 67
     case AM_OSCILLOSCOPE:
 #line 67
-      result = ComSatM$Receive$receive(arg_0x7d2d4e10, arg_0x7d2d3010, arg_0x7d2d3198);
+      result = ComSatM$Receive$receive(arg_0x7e1db398, arg_0x7e1db538, arg_0x7e1db6c0);
 #line 67
       break;
 #line 67
     default:
 #line 67
-      result = CC2420ActiveMessageP$Receive$default$receive(arg_0x7d251850, arg_0x7d2d4e10, arg_0x7d2d3010, arg_0x7d2d3198);
+      result = CC2420ActiveMessageP$Receive$default$receive(arg_0x7e175b58, arg_0x7e1db398, arg_0x7e1db538, arg_0x7e1db6c0);
 #line 67
       break;
 #line 67
@@ -8392,13 +8219,13 @@ static inline  message_t *CC2420ActiveMessageP$SubReceive$receive(message_t *msg
 }
 
 # 67 "/opt/tinyos-2.x/tos/interfaces/Receive.nc"
-inline static  message_t *CC2420ReceiveP$Receive$receive(message_t *arg_0x7d2d4e10, void *arg_0x7d2d3010, uint8_t arg_0x7d2d3198){
+inline static  message_t *CC2420ReceiveP$Receive$receive(message_t *arg_0x7e1db398, void *arg_0x7e1db538, uint8_t arg_0x7e1db6c0){
 #line 67
   nx_struct message_t *result;
 #line 67
 
 #line 67
-  result = CC2420ActiveMessageP$SubReceive$receive(arg_0x7d2d4e10, arg_0x7d2d3010, arg_0x7d2d3198);
+  result = CC2420ActiveMessageP$SubReceive$receive(arg_0x7e1db398, arg_0x7e1db538, arg_0x7e1db6c0);
 #line 67
 
 #line 67
@@ -8439,106 +8266,6 @@ static inline  void CC2420ReceiveP$receiveDone_task$runTask(void)
   CC2420ReceiveP$waitForNextPacket();
 }
 
-# 55 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer0AsyncC.nc"
-static inline   uint8_t HplAtm128Timer0AsyncC$Timer$get(void)
-#line 55
-{
-#line 55
-  return * (volatile uint8_t *)(0x32 + 0x20);
-}
-
-# 52 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
-inline static   /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$timer_size /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$get(void){
-#line 52
-  unsigned char result;
-#line 52
-
-#line 52
-  result = HplAtm128Timer0AsyncC$Timer$get();
-#line 52
-
-#line 52
-  return result;
-#line 52
-}
-#line 52
-# 41 "/opt/tinyos-2.x/tos/chips/atm128/timer/Atm128CounterC.nc"
-static inline   /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$timer_size /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Counter$get(void)
-{
-  return /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$get();
-}
-
-# 53 "/opt/tinyos-2.x/tos/lib/timer/Counter.nc"
-inline static   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$get(void){
-#line 53
-  unsigned char result;
-#line 53
-
-#line 53
-  result = /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Counter$get();
-#line 53
-
-#line 53
-  return result;
-#line 53
-}
-#line 53
-# 103 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer0AsyncC.nc"
-static inline   Atm128_TIFR_t HplAtm128Timer0AsyncC$TimerCtrl$getInterruptFlag(void)
-#line 103
-{
-  return * (Atm128_TIFR_t *)& * (volatile uint8_t *)(0x36 + 0x20);
-}
-
-#line 120
-static inline bool HplAtm128Timer0AsyncC$overflowed(void)
-#line 120
-{
-  return HplAtm128Timer0AsyncC$TimerCtrl$getInterruptFlag().bits.tov0;
-}
-
-static inline   bool HplAtm128Timer0AsyncC$Timer$test(void)
-#line 124
-{
-  return HplAtm128Timer0AsyncC$overflowed();
-}
-
-# 78 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
-inline static   bool /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$test(void){
-#line 78
-  unsigned char result;
-#line 78
-
-#line 78
-  result = HplAtm128Timer0AsyncC$Timer$test();
-#line 78
-
-#line 78
-  return result;
-#line 78
-}
-#line 78
-# 46 "/opt/tinyos-2.x/tos/chips/atm128/timer/Atm128CounterC.nc"
-static inline   bool /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Counter$isOverflowPending(void)
-{
-  return /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$test();
-}
-
-# 60 "/opt/tinyos-2.x/tos/lib/timer/Counter.nc"
-inline static   bool /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$isOverflowPending(void){
-#line 60
-  unsigned char result;
-#line 60
-
-#line 60
-  result = /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Counter$isOverflowPending();
-#line 60
-
-#line 60
-  return result;
-#line 60
-}
-#line 60
 # 86 "/opt/tinyos-2.x/tos/system/SchedulerBasicP.nc"
 static inline bool SchedulerBasicP$isWaiting(uint8_t id)
 {
@@ -8567,38 +8294,6 @@ static inline bool SchedulerBasicP$pushTask(uint8_t id)
     }
 }
 
-# 246 "/usr/lib/ncc/nesc_nx.h"
-static __inline uint8_t __nesc_ntoh_leuint8(const void *source)
-#line 246
-{
-  const uint8_t *base = source;
-
-#line 248
-  return base[0];
-}
-
-# 167 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-static inline  uint8_t CC2420ActiveMessageP$Packet$payloadLength(message_t *msg)
-#line 167
-{
-  return __nesc_ntoh_leuint8((unsigned char *)&CC2420ActiveMessageP$getHeader(msg)->length) - CC2420ActiveMessageP$CC2420_SIZE;
-}
-
-# 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
-inline static   error_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFromTimer$postTask(void){
-#line 56
-  unsigned char result;
-#line 56
-
-#line 56
-  result = SchedulerBasicP$TaskBasic$postTask(/*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFromTimer);
-#line 56
-
-#line 56
-  return result;
-#line 56
-}
-#line 56
 # 87 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 inline static   error_t CC2420ReceiveP$SpiResource$immediateRequest(void){
 #line 87
@@ -8621,9 +8316,9 @@ static inline    void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceCon
 }
 
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
-inline static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$configure(uint8_t arg_0x7ce66650){
+inline static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$configure(uint8_t arg_0x7dd84ed0){
 #line 49
-    /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$default$configure(arg_0x7ce66650);
+    /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$default$configure(arg_0x7dd84ed0);
 #line 49
 }
 #line 49
@@ -8634,9 +8329,9 @@ static inline    void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceReq
 }
 
 # 51 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
-inline static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$immediateRequested(uint8_t arg_0x7ce67b40){
+inline static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$immediateRequested(uint8_t arg_0x7dd843e8){
 #line 51
-    /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$default$immediateRequested(arg_0x7ce67b40);
+    /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$default$immediateRequested(arg_0x7dd843e8);
 #line 51
 }
 #line 51
@@ -8674,13 +8369,13 @@ static inline   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$
 }
 
 # 87 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static   error_t Atm128SpiP$ResourceArbiter$immediateRequest(uint8_t arg_0x7cefa410){
+inline static   error_t Atm128SpiP$ResourceArbiter$immediateRequest(uint8_t arg_0x7de19870){
 #line 87
   unsigned char result;
 #line 87
 
 #line 87
-  result = /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$immediateRequest(arg_0x7cefa410);
+  result = /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$immediateRequest(arg_0x7de19870);
 #line 87
 
 #line 87
@@ -8848,9 +8543,9 @@ static inline   void HplAtm128SpiP$SPI$setMasterDoubleSpeed(bool on)
 }
 
 # 125 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
-inline static   void Atm128SpiP$Spi$setMasterDoubleSpeed(bool arg_0x7cee4680){
+inline static   void Atm128SpiP$Spi$setMasterDoubleSpeed(bool arg_0x7de03a68){
 #line 125
-  HplAtm128SpiP$SPI$setMasterDoubleSpeed(arg_0x7cee4680);
+  HplAtm128SpiP$SPI$setMasterDoubleSpeed(arg_0x7de03a68);
 #line 125
 }
 #line 125
@@ -8867,9 +8562,9 @@ static inline   void HplAtm128SpiP$SPI$setClockPolarity(bool highWhenIdle)
 }
 
 # 108 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
-inline static   void Atm128SpiP$Spi$setClockPolarity(bool arg_0x7cef0490){
+inline static   void Atm128SpiP$Spi$setClockPolarity(bool arg_0x7de06910){
 #line 108
-  HplAtm128SpiP$SPI$setClockPolarity(arg_0x7cef0490);
+  HplAtm128SpiP$SPI$setClockPolarity(arg_0x7de06910);
 #line 108
 }
 #line 108
@@ -8886,9 +8581,9 @@ static inline   void HplAtm128SpiP$SPI$setClockPhase(bool sampleOnTrailing)
 }
 
 # 111 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
-inline static   void Atm128SpiP$Spi$setClockPhase(bool arg_0x7cef0c70){
+inline static   void Atm128SpiP$Spi$setClockPhase(bool arg_0x7de05108){
 #line 111
-  HplAtm128SpiP$SPI$setClockPhase(arg_0x7cef0c70);
+  HplAtm128SpiP$SPI$setClockPhase(arg_0x7de05108);
 #line 111
 }
 #line 111
@@ -8901,20 +8596,20 @@ static inline   void HplAtm128SpiP$SPI$setClock(uint8_t v)
 }
 
 # 114 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
-inline static   void Atm128SpiP$Spi$setClock(uint8_t arg_0x7cee6480){
+inline static   void Atm128SpiP$Spi$setClock(uint8_t arg_0x7de058d0){
 #line 114
-  HplAtm128SpiP$SPI$setClock(arg_0x7cee6480);
+  HplAtm128SpiP$SPI$setClock(arg_0x7de058d0);
 #line 114
 }
 #line 114
 # 59 "/opt/tinyos-2.x/tos/interfaces/SpiPacket.nc"
-inline static   error_t CC2420SpiImplP$SpiPacket$send(uint8_t *arg_0x7cf417f8, uint8_t *arg_0x7cf419a0, uint16_t arg_0x7cf41b30){
+inline static   error_t CC2420SpiImplP$SpiPacket$send(uint8_t *arg_0x7de61a20, uint8_t *arg_0x7de61bc8, uint16_t arg_0x7de61d58){
 #line 59
   unsigned char result;
 #line 59
 
 #line 59
-  result = Atm128SpiP$SpiPacket$send(arg_0x7cf417f8, arg_0x7cf419a0, arg_0x7cf41b30);
+  result = Atm128SpiP$SpiPacket$send(arg_0x7de61a20, arg_0x7de61bc8, arg_0x7de61d58);
 #line 59
 
 #line 59
@@ -8932,13 +8627,13 @@ uint8_t len)
 }
 
 # 34 "/opt/tinyos-2.x/tos/interfaces/SpiByte.nc"
-inline static   uint8_t CC2420SpiImplP$SpiByte$write(uint8_t arg_0x7cf43088){
+inline static   uint8_t CC2420SpiImplP$SpiByte$write(uint8_t arg_0x7de632b8){
 #line 34
   unsigned char result;
 #line 34
 
 #line 34
-  result = Atm128SpiP$SpiByte$write(arg_0x7cf43088);
+  result = Atm128SpiP$SpiByte$write(arg_0x7de632b8);
 #line 34
 
 #line 34
@@ -8963,13 +8658,13 @@ uint8_t len)
 }
 
 # 51 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-inline static   cc2420_status_t CC2420ReceiveP$RXFIFO$beginRead(uint8_t *arg_0x7cf63568, uint8_t arg_0x7cf636f0){
+inline static   cc2420_status_t CC2420ReceiveP$RXFIFO$beginRead(uint8_t *arg_0x7de83718, uint8_t arg_0x7de838a0){
 #line 51
   unsigned char result;
 #line 51
 
 #line 51
-  result = CC2420SpiImplP$Fifo$beginRead(CC2420_RXFIFO, arg_0x7cf63568, arg_0x7cf636f0);
+  result = CC2420SpiImplP$Fifo$beginRead(CC2420_RXFIFO, arg_0x7de83718, arg_0x7de838a0);
 #line 51
 
 #line 51
@@ -8986,9 +8681,9 @@ static inline   void HplAtm128SpiP$SPI$write(uint8_t d)
 }
 
 # 86 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
-inline static   void Atm128SpiP$Spi$write(uint8_t arg_0x7cef49f8){
+inline static   void Atm128SpiP$Spi$write(uint8_t arg_0x7de13e70){
 #line 86
-  HplAtm128SpiP$SPI$write(arg_0x7cef49f8);
+  HplAtm128SpiP$SPI$write(arg_0x7de13e70);
 #line 86
 }
 #line 86
@@ -9067,13 +8762,13 @@ static inline   error_t /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQue
 }
 
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-inline static   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Queue$enqueue(resource_client_id_t arg_0x7d624010){
+inline static   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Queue$enqueue(resource_client_id_t arg_0x7e527010){
 #line 69
   unsigned char result;
 #line 69
 
 #line 69
-  result = /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQueue$enqueue(arg_0x7d624010);
+  result = /*Atm128SpiC.Arbiter.Queue*/FcfsResourceQueueC$1$FcfsQueue$enqueue(arg_0x7e527010);
 #line 69
 
 #line 69
@@ -9103,9 +8798,9 @@ static inline    void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceReq
 }
 
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
-inline static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$requested(uint8_t arg_0x7ce67b40){
+inline static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$requested(uint8_t arg_0x7dd843e8){
 #line 43
-    /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$default$requested(arg_0x7ce67b40);
+    /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceRequested$default$requested(arg_0x7dd843e8);
 #line 43
 }
 #line 43
@@ -9143,13 +8838,13 @@ static inline   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$
 }
 
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static   error_t Atm128SpiP$ResourceArbiter$request(uint8_t arg_0x7cefa410){
+inline static   error_t Atm128SpiP$ResourceArbiter$request(uint8_t arg_0x7de19870){
 #line 78
   unsigned char result;
 #line 78
 
 #line 78
-  result = /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$request(arg_0x7cefa410);
+  result = /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$request(arg_0x7de19870);
 #line 78
 
 #line 78
@@ -9158,13 +8853,13 @@ inline static   error_t Atm128SpiP$ResourceArbiter$request(uint8_t arg_0x7cefa41
 }
 #line 78
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
-inline static   cc2420_status_t CC2420ControlP$MDMCTRL0$write(uint16_t arg_0x7d161100){
+inline static   cc2420_status_t CC2420ControlP$MDMCTRL0$write(uint16_t arg_0x7e0835d8){
 #line 55
   unsigned char result;
 #line 55
 
 #line 55
-  result = CC2420SpiImplP$Reg$write(CC2420_MDMCTRL0, arg_0x7d161100);
+  result = CC2420SpiImplP$Reg$write(CC2420_MDMCTRL0, arg_0x7e0835d8);
 #line 55
 
 #line 55
@@ -9172,13 +8867,13 @@ inline static   cc2420_status_t CC2420ControlP$MDMCTRL0$write(uint16_t arg_0x7d1
 #line 55
 }
 #line 55
-inline static   cc2420_status_t CC2420ControlP$FSCTRL$write(uint16_t arg_0x7d161100){
+inline static   cc2420_status_t CC2420ControlP$FSCTRL$write(uint16_t arg_0x7e0835d8){
 #line 55
   unsigned char result;
 #line 55
 
 #line 55
-  result = CC2420SpiImplP$Reg$write(CC2420_FSCTRL, arg_0x7d161100);
+  result = CC2420SpiImplP$Reg$write(CC2420_FSCTRL, arg_0x7e0835d8);
 #line 55
 
 #line 55
@@ -9186,13 +8881,13 @@ inline static   cc2420_status_t CC2420ControlP$FSCTRL$write(uint16_t arg_0x7d161
 #line 55
 }
 #line 55
-inline static   cc2420_status_t CC2420ControlP$IOCFG0$write(uint16_t arg_0x7d161100){
+inline static   cc2420_status_t CC2420ControlP$IOCFG0$write(uint16_t arg_0x7e0835d8){
 #line 55
   unsigned char result;
 #line 55
 
 #line 55
-  result = CC2420SpiImplP$Reg$write(CC2420_IOCFG0, arg_0x7d161100);
+  result = CC2420SpiImplP$Reg$write(CC2420_IOCFG0, arg_0x7e0835d8);
 #line 55
 
 #line 55
@@ -9291,13 +8986,13 @@ inline static   error_t CC2420ControlP$InterruptCCA$enableRisingEdge(void){
 }
 #line 42
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
-inline static   cc2420_status_t CC2420ControlP$IOCFG1$write(uint16_t arg_0x7d161100){
+inline static   cc2420_status_t CC2420ControlP$IOCFG1$write(uint16_t arg_0x7e0835d8){
 #line 55
   unsigned char result;
 #line 55
 
 #line 55
-  result = CC2420SpiImplP$Reg$write(CC2420_IOCFG1, arg_0x7d161100);
+  result = CC2420SpiImplP$Reg$write(CC2420_IOCFG1, arg_0x7e0835d8);
 #line 55
 
 #line 55
@@ -9451,13 +9146,13 @@ inline static   void CC2420ControlP$CSN$set(void){
 }
 #line 29
 # 63 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Ram.nc"
-inline static   cc2420_status_t CC2420ControlP$PANID$write(uint8_t arg_0x7d172b18, uint8_t *arg_0x7d172cc0, uint8_t arg_0x7d172e48){
+inline static   cc2420_status_t CC2420ControlP$PANID$write(uint8_t arg_0x7e092090, uint8_t *arg_0x7e092238, uint8_t arg_0x7e0923c0){
 #line 63
   unsigned char result;
 #line 63
 
 #line 63
-  result = CC2420SpiImplP$Ram$write(CC2420_RAM_PANID, arg_0x7d172b18, arg_0x7d172cc0, arg_0x7d172e48);
+  result = CC2420SpiImplP$Ram$write(CC2420_RAM_PANID, arg_0x7e092090, arg_0x7e092238, arg_0x7e0923c0);
 #line 63
 
 #line 63
@@ -9557,9 +9252,9 @@ static inline   void CC2420SpiImplP$Resource$default$granted(uint8_t id)
 }
 
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static  void CC2420SpiImplP$Resource$granted(uint8_t arg_0x7cf556c0){
+inline static  void CC2420SpiImplP$Resource$granted(uint8_t arg_0x7de75878){
 #line 92
-  switch (arg_0x7cf556c0) {
+  switch (arg_0x7de75878) {
 #line 92
     case /*CC2420ControlC.Spi*/CC2420SpiC$0$CLIENT_ID:
 #line 92
@@ -9587,7 +9282,7 @@ inline static  void CC2420SpiImplP$Resource$granted(uint8_t arg_0x7cf556c0){
 #line 92
     default:
 #line 92
-      CC2420SpiImplP$Resource$default$granted(arg_0x7cf556c0);
+      CC2420SpiImplP$Resource$default$granted(arg_0x7de75878);
 #line 92
       break;
 #line 92
@@ -9617,9 +9312,9 @@ static inline   void Atm128SpiP$Resource$default$granted(uint8_t id)
 }
 
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static  void Atm128SpiP$Resource$granted(uint8_t arg_0x7cefd010){
+inline static  void Atm128SpiP$Resource$granted(uint8_t arg_0x7de1c490){
 #line 92
-  switch (arg_0x7cefd010) {
+  switch (arg_0x7de1c490) {
 #line 92
     case 0U:
 #line 92
@@ -9629,7 +9324,7 @@ inline static  void Atm128SpiP$Resource$granted(uint8_t arg_0x7cefd010){
 #line 92
     default:
 #line 92
-      Atm128SpiP$Resource$default$granted(arg_0x7cefd010);
+      Atm128SpiP$Resource$default$granted(arg_0x7de1c490);
 #line 92
       break;
 #line 92
@@ -9645,9 +9340,9 @@ static inline  void Atm128SpiP$ResourceArbiter$granted(uint8_t id)
 }
 
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static  void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$granted(uint8_t arg_0x7ce67200){
+inline static  void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$granted(uint8_t arg_0x7dd85a48){
 #line 92
-  Atm128SpiP$ResourceArbiter$granted(arg_0x7ce67200);
+  Atm128SpiP$ResourceArbiter$granted(arg_0x7dd85a48);
 #line 92
 }
 #line 92
@@ -9675,13 +9370,13 @@ inline static   void CC2420TransmitP$CSN$clr(void){
 }
 #line 30
 # 55 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Register.nc"
-inline static   cc2420_status_t CC2420TransmitP$TXCTRL$write(uint16_t arg_0x7d161100){
+inline static   cc2420_status_t CC2420TransmitP$TXCTRL$write(uint16_t arg_0x7e0835d8){
 #line 55
   unsigned char result;
 #line 55
 
 #line 55
-  result = CC2420SpiImplP$Reg$write(CC2420_TXCTRL, arg_0x7d161100);
+  result = CC2420SpiImplP$Reg$write(CC2420_TXCTRL, arg_0x7e0835d8);
 #line 55
 
 #line 55
@@ -9706,13 +9401,13 @@ uint8_t len)
 }
 
 # 82 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-inline static   cc2420_status_t CC2420TransmitP$TXFIFO$write(uint8_t *arg_0x7cf62dd0, uint8_t arg_0x7cf60010){
+inline static   cc2420_status_t CC2420TransmitP$TXFIFO$write(uint8_t *arg_0x7de80010, uint8_t arg_0x7de80198){
 #line 82
   unsigned char result;
 #line 82
 
 #line 82
-  result = CC2420SpiImplP$Fifo$write(CC2420_TXFIFO, arg_0x7cf62dd0, arg_0x7cf60010);
+  result = CC2420SpiImplP$Fifo$write(CC2420_TXFIFO, arg_0x7de80010, arg_0x7de80198);
 #line 82
 
 #line 82
@@ -9720,6 +9415,16 @@ inline static   cc2420_status_t CC2420TransmitP$TXFIFO$write(uint8_t *arg_0x7cf6
 #line 82
 }
 #line 82
+# 235 "/usr/lib/ncc/nesc_nx.h"
+static __inline uint8_t __nesc_ntoh_uint8(const void *source)
+#line 235
+{
+  const uint8_t *base = source;
+
+#line 237
+  return base[0];
+}
+
 # 45 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Strobe.nc"
 inline static   cc2420_status_t CC2420TransmitP$STXONCCA$strobe(void){
 #line 45
@@ -9792,9 +9497,9 @@ inline static   void Atm128SpiP$Spi$sleep(void){
 }
 #line 72
 #line 99
-inline static   void Atm128SpiP$Spi$enableSpi(bool arg_0x7cef3c48){
+inline static   void Atm128SpiP$Spi$enableSpi(bool arg_0x7de110f8){
 #line 99
-  HplAtm128SpiP$SPI$enableSpi(arg_0x7cef3c48);
+  HplAtm128SpiP$SPI$enableSpi(arg_0x7de110f8);
 #line 99
 }
 #line 99
@@ -9834,9 +9539,9 @@ static inline    void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceCon
 }
 
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
-inline static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$unconfigure(uint8_t arg_0x7ce66650){
+inline static   void /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$unconfigure(uint8_t arg_0x7dd84ed0){
 #line 55
-    /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$default$unconfigure(arg_0x7ce66650);
+    /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$ResourceConfigure$default$unconfigure(arg_0x7dd84ed0);
 #line 55
 }
 #line 55
@@ -9945,13 +9650,13 @@ static inline   error_t /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$
 }
 
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static   error_t Atm128SpiP$ResourceArbiter$release(uint8_t arg_0x7cefa410){
+inline static   error_t Atm128SpiP$ResourceArbiter$release(uint8_t arg_0x7de19870){
 #line 101
   unsigned char result;
 #line 101
 
 #line 101
-  result = /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$release(arg_0x7cefa410);
+  result = /*Atm128SpiC.Arbiter.Arbiter*/SimpleArbiterP$0$Resource$release(arg_0x7de19870);
 #line 101
 
 #line 101
@@ -10020,13 +9725,13 @@ static inline   uint16_t CC2420CsmaP$CsmaBackoff$congestion(message_t *m)
 }
 
 # 43 "/opt/tinyos-2.x/tos/interfaces/CsmaBackoff.nc"
-inline static   uint16_t CC2420TransmitP$CsmaBackoff$congestion(message_t *arg_0x7d1d2e88){
+inline static   uint16_t CC2420TransmitP$CsmaBackoff$congestion(message_t *arg_0x7e0f42a8){
 #line 43
   unsigned int result;
 #line 43
 
 #line 43
-  result = CC2420CsmaP$CsmaBackoff$congestion(arg_0x7d1d2e88);
+  result = CC2420CsmaP$CsmaBackoff$congestion(arg_0x7e0f42a8);
 #line 43
 
 #line 43
@@ -10078,6 +9783,13 @@ inline static   /*Counter32khz32C.Transform32*/TransformCounterC$0$CounterFrom$s
 #line 53
 }
 #line 53
+# 103 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer0AsyncC.nc"
+static inline   Atm128_TIFR_t HplAtm128Timer0AsyncC$TimerCtrl$getInterruptFlag(void)
+#line 103
+{
+  return * (Atm128_TIFR_t *)& * (volatile uint8_t *)(0x36 + 0x20);
+}
+
 # 44 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128TimerCtrl8.nc"
 inline static   Atm128_TIFR_t HplAtm128Timer1P$Timer0Ctrl$getInterruptFlag(void){
 #line 44
@@ -10175,9 +9887,9 @@ static inline   void HplAtm128Timer1P$CompareA$set(uint16_t t)
 }
 
 # 45 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
-inline static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$set(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$size_type arg_0x7dbb3010){
+inline static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$set(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$HplAtm128Compare$size_type arg_0x7eab4010){
 #line 45
-  HplAtm128Timer1P$CompareA$set(arg_0x7dbb3010);
+  HplAtm128Timer1P$CompareA$set(arg_0x7eab4010);
 #line 45
 }
 #line 45
@@ -10242,18 +9954,12 @@ static inline   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm12
 }
 
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-inline static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$startAt(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$size_type arg_0x7dbf59e0, /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$size_type arg_0x7dbf5b70){
+inline static   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$startAt(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$size_type arg_0x7eb019e0, /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$AlarmFrom$size_type arg_0x7eb01b70){
 #line 92
-  /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$startAt(arg_0x7dbf59e0, arg_0x7dbf5b70);
+  /*AlarmMultiplexC.Alarm.Alarm32khz32C.Alarm16.NAlarm*/Atm128AlarmC$1$Alarm$startAt(arg_0x7eb019e0, arg_0x7eb01b70);
 #line 92
 }
 #line 92
-# 152 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-static inline  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$stop(uint8_t num)
-{
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$m_timers[num].isrunning = FALSE;
-}
-
 # 67 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
 inline static  void HplCC2420InterruptsP$CCATimer$stop(void){
 #line 67
@@ -10276,10 +9982,59 @@ static inline void  HplCC2420InterruptsP$stopTask$runTask(void)
     __nesc_atomic_end(__nesc_atomic); }
 }
 
+# 158 "/opt/tinyos-2.x/tos/lib/timer/TransformAlarmCounterC.nc"
+static inline   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$getNow(void)
+{
+  return /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Counter$get();
+}
+
+# 98 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
+inline static   /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$getNow(void){
+#line 98
+  unsigned long result;
+#line 98
+
+#line 98
+  result = /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$getNow();
+#line 98
+
+#line 98
+  return result;
+#line 98
+}
+#line 98
+# 85 "/opt/tinyos-2.x/tos/lib/timer/AlarmToTimerC.nc"
+static inline  uint32_t /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$getNow(void)
+{
+#line 86
+  return /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$getNow();
+}
+
+# 125 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+inline static  uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$getNow(void){
+#line 125
+  unsigned long result;
+#line 125
+
+#line 125
+  result = /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$getNow();
+#line 125
+
+#line 125
+  return result;
+#line 125
+}
+#line 125
+# 147 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+static inline  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(uint8_t num, uint32_t dt)
+{
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$startTimer(num, /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$getNow(), dt, TRUE);
+}
+
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void HplCC2420InterruptsP$CCATimer$startOneShot(uint32_t arg_0x7e080068){
+inline static  void HplCC2420InterruptsP$CCATimer$startOneShot(uint32_t arg_0x7ef80068){
 #line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(14U, arg_0x7e080068);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(14U, arg_0x7ef80068);
 #line 62
 }
 #line 62
@@ -10298,6 +10053,114 @@ static inline  void HplCC2420InterruptsP$CCATask$runTask(void)
     __nesc_atomic_end(__nesc_atomic); }
 }
 
+# 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
+inline static   error_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFromTimer$postTask(void){
+#line 56
+  unsigned char result;
+#line 56
+
+#line 56
+  result = SchedulerBasicP$TaskBasic$postTask(/*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFromTimer);
+#line 56
+
+#line 56
+  return result;
+#line 56
+}
+#line 56
+# 55 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer0AsyncC.nc"
+static inline   uint8_t HplAtm128Timer0AsyncC$Timer$get(void)
+#line 55
+{
+#line 55
+  return * (volatile uint8_t *)(0x32 + 0x20);
+}
+
+# 52 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
+inline static   /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$timer_size /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$get(void){
+#line 52
+  unsigned char result;
+#line 52
+
+#line 52
+  result = HplAtm128Timer0AsyncC$Timer$get();
+#line 52
+
+#line 52
+  return result;
+#line 52
+}
+#line 52
+# 41 "/opt/tinyos-2.x/tos/chips/atm128/timer/Atm128CounterC.nc"
+static inline   /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$timer_size /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Counter$get(void)
+{
+  return /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$get();
+}
+
+# 53 "/opt/tinyos-2.x/tos/lib/timer/Counter.nc"
+inline static   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$get(void){
+#line 53
+  unsigned char result;
+#line 53
+
+#line 53
+  result = /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Counter$get();
+#line 53
+
+#line 53
+  return result;
+#line 53
+}
+#line 53
+# 120 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer0AsyncC.nc"
+static inline bool HplAtm128Timer0AsyncC$overflowed(void)
+#line 120
+{
+  return HplAtm128Timer0AsyncC$TimerCtrl$getInterruptFlag().bits.tov0;
+}
+
+static inline   bool HplAtm128Timer0AsyncC$Timer$test(void)
+#line 124
+{
+  return HplAtm128Timer0AsyncC$overflowed();
+}
+
+# 78 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
+inline static   bool /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$test(void){
+#line 78
+  unsigned char result;
+#line 78
+
+#line 78
+  result = HplAtm128Timer0AsyncC$Timer$test();
+#line 78
+
+#line 78
+  return result;
+#line 78
+}
+#line 78
+# 46 "/opt/tinyos-2.x/tos/chips/atm128/timer/Atm128CounterC.nc"
+static inline   bool /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Counter$isOverflowPending(void)
+{
+  return /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Timer$test();
+}
+
+# 60 "/opt/tinyos-2.x/tos/lib/timer/Counter.nc"
+inline static   bool /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$isOverflowPending(void){
+#line 60
+  unsigned char result;
+#line 60
+
+#line 60
+  result = /*AlarmCounterMilliP.MilliCounter*/Atm128CounterC$0$Counter$isOverflowPending();
+#line 60
+
+#line 60
+  return result;
+#line 60
+}
+#line 60
 # 284 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ControlP.nc"
 static inline   void CC2420ControlP$CC2420Config$default$syncDone(error_t error)
 #line 284
@@ -10305,9 +10168,9 @@ static inline   void CC2420ControlP$CC2420Config$default$syncDone(error_t error)
 }
 
 # 53 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Config.nc"
-inline static  void CC2420ControlP$CC2420Config$syncDone(error_t arg_0x7d183568){
+inline static  void CC2420ControlP$CC2420Config$syncDone(error_t arg_0x7e0b29e8){
 #line 53
-  CC2420ControlP$CC2420Config$default$syncDone(arg_0x7d183568);
+  CC2420ControlP$CC2420Config$default$syncDone(arg_0x7e0b29e8);
 #line 53
 }
 #line 53
@@ -10323,9 +10186,9 @@ static inline  void CC2420ControlP$syncDone_task$runTask(void)
   CC2420ControlP$CC2420Config$syncDone(SUCCESS);
 }
 
-# 129 "ComSatM.nc"
+# 68 "ComSatM.nc"
 static inline  void ComSatM$AMSend$sendDone(message_t *msg, error_t err)
-#line 129
+#line 68
 {
 }
 
@@ -10337,19 +10200,19 @@ static inline   void CC2420ActiveMessageP$AMSend$default$sendDone(uint8_t id, me
 }
 
 # 99 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-inline static  void CC2420ActiveMessageP$AMSend$sendDone(am_id_t arg_0x7d258e78, message_t *arg_0x7d2d8030, error_t arg_0x7d2d81b8){
+inline static  void CC2420ActiveMessageP$AMSend$sendDone(am_id_t arg_0x7e175228, message_t *arg_0x7e1e05f8, error_t arg_0x7e1e0780){
 #line 99
-  switch (arg_0x7d258e78) {
+  switch (arg_0x7e175228) {
 #line 99
     case AM_OSCILLOSCOPE:
 #line 99
-      ComSatM$AMSend$sendDone(arg_0x7d2d8030, arg_0x7d2d81b8);
+      ComSatM$AMSend$sendDone(arg_0x7e1e05f8, arg_0x7e1e0780);
 #line 99
       break;
 #line 99
     default:
 #line 99
-      CC2420ActiveMessageP$AMSend$default$sendDone(arg_0x7d258e78, arg_0x7d2d8030, arg_0x7d2d81b8);
+      CC2420ActiveMessageP$AMSend$default$sendDone(arg_0x7e175228, arg_0x7e1e05f8, arg_0x7e1e0780);
 #line 99
       break;
 #line 99
@@ -10365,9 +10228,9 @@ static inline  void CC2420ActiveMessageP$SubSend$sendDone(message_t *msg, error_
 }
 
 # 89 "/opt/tinyos-2.x/tos/interfaces/Send.nc"
-inline static  void CC2420CsmaP$Send$sendDone(message_t *arg_0x7d23ddf0, error_t arg_0x7d23b010){
+inline static  void CC2420CsmaP$Send$sendDone(message_t *arg_0x7e15e0d0, error_t arg_0x7e15e258){
 #line 89
-  CC2420ActiveMessageP$SubSend$sendDone(arg_0x7d23ddf0, arg_0x7d23b010);
+  CC2420ActiveMessageP$SubSend$sendDone(arg_0x7e15e0d0, arg_0x7e15e258);
 #line 89
 }
 #line 89
@@ -10387,16 +10250,16 @@ static inline  void CC2420CsmaP$sendDone_task$runTask(void)
   CC2420CsmaP$Send$sendDone(CC2420CsmaP$m_msg, packetErr);
 }
 
-# 74 "ComSatM.nc"
+# 64 "ComSatM.nc"
 static inline  void ComSatM$RadioControl$stopDone(error_t error)
-#line 74
+#line 64
 {
 }
 
 # 110 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
-inline static  void CC2420CsmaP$SplitControl$stopDone(error_t arg_0x7d6b4ca0){
+inline static  void CC2420CsmaP$SplitControl$stopDone(error_t arg_0x7e5b6e68){
 #line 110
-  ComSatM$RadioControl$stopDone(arg_0x7d6b4ca0);
+  ComSatM$RadioControl$stopDone(arg_0x7e5b6e68);
 #line 110
 }
 #line 110
@@ -10408,19 +10271,31 @@ static inline  void CC2420CsmaP$stopDone_task$runTask(void)
   CC2420CsmaP$SplitControl$stopDone(SUCCESS);
 }
 
-# 68 "ComSatM.nc"
-static inline  void ComSatM$RadioControl$startDone(error_t error)
-#line 68
+# 62 "SerialAppM.nc"
+static inline  void SerialAppM$ComSat$initDone(void)
+#line 62
 {
+  SerialAppM$Timer$startOneShot(1000);
+}
 
-
-  ComSatM$setPriority$postTask();
+# 3 "ComSat.nc"
+inline static  void ComSatM$ComSat$initDone(void){
+#line 3
+  SerialAppM$ComSat$initDone();
+#line 3
+}
+#line 3
+# 60 "ComSatM.nc"
+static inline  void ComSatM$RadioControl$startDone(error_t error)
+#line 60
+{
+  ComSatM$ComSat$initDone();
 }
 
 # 88 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
-inline static  void CC2420CsmaP$SplitControl$startDone(error_t arg_0x7d6b4168){
+inline static  void CC2420CsmaP$SplitControl$startDone(error_t arg_0x7e5b6330){
 #line 88
-  ComSatM$RadioControl$startDone(arg_0x7d6b4168);
+  ComSatM$RadioControl$startDone(arg_0x7e5b6330);
 #line 88
 }
 #line 88
@@ -10432,6 +10307,168 @@ static inline  void CC2420CsmaP$startDone_task$runTask(void)
   CC2420CsmaP$SplitControl$startDone(SUCCESS);
 }
 
+# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+inline static  void LEDControllerM$LEDTimer2$startOneShot(uint32_t arg_0x7ef80068){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(2U, arg_0x7ef80068);
+#line 62
+}
+#line 62
+# 47 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
+static __inline   void /*HplAtm128GeneralIOC.PortA.Bit0*/HplAtm128GeneralIOPinP$0$IO$clr(void)
+#line 47
+{
+#line 47
+  * (volatile uint8_t *)59U &= ~(1 << 0);
+}
+
+# 30 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
+inline static   void LedsP$Led2$clr(void){
+#line 30
+  /*HplAtm128GeneralIOC.PortA.Bit0*/HplAtm128GeneralIOPinP$0$IO$clr();
+#line 30
+}
+#line 30
+# 93 "/opt/tinyos-2.x/tos/system/LedsP.nc"
+static inline   void LedsP$Leds$led2On(void)
+#line 93
+{
+  LedsP$Led2$clr();
+  ;
+#line 95
+  ;
+}
+
+# 78 "/opt/tinyos-2.x/tos/interfaces/Leds.nc"
+inline static   void LEDControllerM$Leds$led2On(void){
+#line 78
+  LedsP$Leds$led2On();
+#line 78
+}
+#line 78
+# 135 "LEDControllerM.nc"
+static inline  void LEDControllerM$LEDController$BlinkLed2(void)
+#line 135
+{
+  LEDControllerM$Leds$led2On();
+  LEDControllerM$LEDTimer2$startOneShot(200);
+}
+
+# 8 "LEDController.nc"
+inline static  void ComSatM$LEDController$BlinkLed2(void){
+#line 8
+  LEDControllerM$LEDController$BlinkLed2();
+#line 8
+}
+#line 8
+# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+inline static  void LEDControllerM$LEDTimer1$startOneShot(uint32_t arg_0x7ef80068){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(1U, arg_0x7ef80068);
+#line 62
+}
+#line 62
+# 47 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
+static __inline   void /*HplAtm128GeneralIOC.PortA.Bit1*/HplAtm128GeneralIOPinP$1$IO$clr(void)
+#line 47
+{
+#line 47
+  * (volatile uint8_t *)59U &= ~(1 << 1);
+}
+
+# 30 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
+inline static   void LedsP$Led1$clr(void){
+#line 30
+  /*HplAtm128GeneralIOC.PortA.Bit1*/HplAtm128GeneralIOPinP$1$IO$clr();
+#line 30
+}
+#line 30
+# 78 "/opt/tinyos-2.x/tos/system/LedsP.nc"
+static inline   void LedsP$Leds$led1On(void)
+#line 78
+{
+  LedsP$Led1$clr();
+  ;
+#line 80
+  ;
+}
+
+# 61 "/opt/tinyos-2.x/tos/interfaces/Leds.nc"
+inline static   void LEDControllerM$Leds$led1On(void){
+#line 61
+  LedsP$Leds$led1On();
+#line 61
+}
+#line 61
+# 126 "LEDControllerM.nc"
+static inline  void LEDControllerM$LEDController$BlinkLed1(void)
+#line 126
+{
+  LEDControllerM$Leds$led1On();
+  LEDControllerM$LEDTimer1$startOneShot(200);
+}
+
+# 7 "LEDController.nc"
+inline static  void ComSatM$LEDController$BlinkLed1(void){
+#line 7
+  LEDControllerM$LEDController$BlinkLed1();
+#line 7
+}
+#line 7
+# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+inline static  void LEDControllerM$LEDTimer0$startOneShot(uint32_t arg_0x7ef80068){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(3U, arg_0x7ef80068);
+#line 62
+}
+#line 62
+# 47 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
+static __inline   void /*HplAtm128GeneralIOC.PortA.Bit2*/HplAtm128GeneralIOPinP$2$IO$clr(void)
+#line 47
+{
+#line 47
+  * (volatile uint8_t *)59U &= ~(1 << 2);
+}
+
+# 30 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
+inline static   void LedsP$Led0$clr(void){
+#line 30
+  /*HplAtm128GeneralIOC.PortA.Bit2*/HplAtm128GeneralIOPinP$2$IO$clr();
+#line 30
+}
+#line 30
+# 63 "/opt/tinyos-2.x/tos/system/LedsP.nc"
+static inline   void LedsP$Leds$led0On(void)
+#line 63
+{
+  LedsP$Led0$clr();
+  ;
+#line 65
+  ;
+}
+
+# 45 "/opt/tinyos-2.x/tos/interfaces/Leds.nc"
+inline static   void LEDControllerM$Leds$led0On(void){
+#line 45
+  LedsP$Leds$led0On();
+#line 45
+}
+#line 45
+# 119 "LEDControllerM.nc"
+static inline  void LEDControllerM$LEDController$BlinkLed0(void)
+#line 119
+{
+  LEDControllerM$Leds$led0On();
+  LEDControllerM$LEDTimer0$startOneShot(200);
+}
+
+# 6 "LEDController.nc"
+inline static  void ComSatM$LEDController$BlinkLed0(void){
+#line 6
+  LEDControllerM$LEDController$BlinkLed0();
+#line 6
+}
+#line 6
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 inline static   error_t ComSatM$sendDataTask$postTask(void){
 #line 56
@@ -10447,40 +10484,6 @@ inline static   error_t ComSatM$sendDataTask$postTask(void){
 #line 56
 }
 #line 56
-# 69 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
-inline static  error_t ComSatM$AMSend$send(am_addr_t arg_0x7d2dac58, message_t *arg_0x7d2dae08, uint8_t arg_0x7d2d9010){
-#line 69
-  unsigned char result;
-#line 69
-
-#line 69
-  result = CC2420ActiveMessageP$AMSend$send(AM_OSCILLOSCOPE, arg_0x7d2dac58, arg_0x7d2dae08, arg_0x7d2d9010);
-#line 69
-
-#line 69
-  return result;
-#line 69
-}
-#line 69
-# 114 "ComSatM.nc"
-static inline  void ComSatM$sendDataTask$runTask(void)
-#line 114
-{
-
-
-
-
-
-
-
-
-  memcpy(ComSatM$AMSend$getPayload(&ComSatM$output), &ComSatM$currentData, sizeof ComSatM$currentData);
-
-  if (ComSatM$AMSend$send(AM_BROADCAST_ADDR, &ComSatM$output, sizeof(ComSatM$sensor_data_t ) != SUCCESS)) {
-    ComSatM$sendDataTask$postTask();
-    }
-}
-
 # 251 "/usr/lib/ncc/nesc_nx.h"
 static __inline uint8_t __nesc_hton_leuint8(void *target, uint8_t value)
 #line 251
@@ -10489,6 +10492,18 @@ static __inline uint8_t __nesc_hton_leuint8(void *target, uint8_t value)
 
 #line 253
   base[0] = value;
+  return value;
+}
+
+#line 269
+static __inline uint16_t __nesc_hton_uint16(void *target, uint16_t value)
+#line 269
+{
+  uint8_t *base = target;
+
+#line 271
+  base[1] = value;
+  base[0] = value >> 8;
   return value;
 }
 
@@ -10535,13 +10550,13 @@ static inline   error_t CC2420TransmitP$Send$sendCCA(message_t *p_msg)
 }
 
 # 48 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Transmit.nc"
-inline static   error_t CC2420CsmaP$CC2420Transmit$sendCCA(message_t *arg_0x7d1ded10){
+inline static   error_t CC2420CsmaP$CC2420Transmit$sendCCA(message_t *arg_0x7e0fa030){
 #line 48
   unsigned char result;
 #line 48
 
 #line 48
-  result = CC2420TransmitP$Send$sendCCA(arg_0x7d1ded10);
+  result = CC2420TransmitP$Send$sendCCA(arg_0x7e0fa030);
 #line 48
 
 #line 48
@@ -10582,8 +10597,8 @@ static inline cc2420_header_t *CC2420CsmaP$getHeader(message_t *msg)
 static inline  error_t CC2420CsmaP$Send$send(message_t *p_msg, uint8_t len)
 #line 151
 {
-  unsigned char *__nesc_temp43;
-  unsigned char *__nesc_temp42;
+  unsigned char *__nesc_temp45;
+  unsigned char *__nesc_temp44;
 #line 153
   cc2420_header_t *header = CC2420CsmaP$getHeader(p_msg);
   cc2420_metadata_t *metadata = CC2420CsmaP$getMetadata(p_msg);
@@ -10613,8 +10628,8 @@ static inline  error_t CC2420CsmaP$Send$send(message_t *p_msg, uint8_t len)
     __nesc_atomic_end(__nesc_atomic); }
 
   __nesc_hton_leuint8((unsigned char *)&header->length, len);
-  (__nesc_temp42 = (unsigned char *)&header->fcf, __nesc_hton_leuint16(__nesc_temp42, __nesc_ntoh_leuint16(__nesc_temp42) & (1 << IEEE154_FCF_ACK_REQ)));
-  (__nesc_temp43 = (unsigned char *)&header->fcf, __nesc_hton_leuint16(__nesc_temp43, __nesc_ntoh_leuint16(__nesc_temp43) | ((((IEEE154_TYPE_DATA << IEEE154_FCF_FRAME_TYPE) | (
+  (__nesc_temp44 = (unsigned char *)&header->fcf, __nesc_hton_leuint16(__nesc_temp44, __nesc_ntoh_leuint16(__nesc_temp44) & (1 << IEEE154_FCF_ACK_REQ)));
+  (__nesc_temp45 = (unsigned char *)&header->fcf, __nesc_hton_leuint16(__nesc_temp45, __nesc_ntoh_leuint16(__nesc_temp45) | ((((IEEE154_TYPE_DATA << IEEE154_FCF_FRAME_TYPE) | (
   1 << IEEE154_FCF_INTRAPAN)) | (
   IEEE154_ADDR_SHORT << IEEE154_FCF_DEST_ADDR_MODE)) | (
   IEEE154_ADDR_SHORT << IEEE154_FCF_SRC_ADDR_MODE))));
@@ -10630,13 +10645,13 @@ static inline  error_t CC2420CsmaP$Send$send(message_t *p_msg, uint8_t len)
 }
 
 # 64 "/opt/tinyos-2.x/tos/interfaces/Send.nc"
-inline static  error_t CC2420ActiveMessageP$SubSend$send(message_t *arg_0x7d23ebc0, uint8_t arg_0x7d23ed48){
+inline static  error_t CC2420ActiveMessageP$SubSend$send(message_t *arg_0x7e160010, uint8_t arg_0x7e160198){
 #line 64
   unsigned char result;
 #line 64
 
 #line 64
-  result = CC2420CsmaP$Send$send(arg_0x7d23ebc0, arg_0x7d23ed48);
+  result = CC2420CsmaP$Send$send(arg_0x7e160010, arg_0x7e160198);
 #line 64
 
 #line 64
@@ -10644,6 +10659,115 @@ inline static  error_t CC2420ActiveMessageP$SubSend$send(message_t *arg_0x7d23eb
 #line 64
 }
 #line 64
+# 59 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
+static inline  error_t CC2420ActiveMessageP$AMSend$send(am_id_t id, am_addr_t addr, 
+message_t *msg, 
+uint8_t len)
+#line 61
+{
+  cc2420_header_t *header = CC2420ActiveMessageP$getHeader(msg);
+
+#line 63
+  __nesc_hton_leuint8((unsigned char *)&header->type, id);
+  __nesc_hton_leuint16((unsigned char *)&header->dest, addr);
+  __nesc_hton_leuint16((unsigned char *)&header->destpan, TOS_AM_GROUP);
+
+  return CC2420ActiveMessageP$SubSend$send(msg, len + CC2420ActiveMessageP$CC2420_SIZE);
+}
+
+# 69 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
+inline static  error_t ComSatM$AMSend$send(am_addr_t arg_0x7e1e1088, message_t *arg_0x7e1e1238, uint8_t arg_0x7e1e13c0){
+#line 69
+  unsigned char result;
+#line 69
+
+#line 69
+  result = CC2420ActiveMessageP$AMSend$send(AM_OSCILLOSCOPE, arg_0x7e1e1088, arg_0x7e1e1238, arg_0x7e1e13c0);
+#line 69
+
+#line 69
+  return result;
+#line 69
+}
+#line 69
+# 246 "/usr/lib/ncc/nesc_nx.h"
+static __inline uint8_t __nesc_ntoh_leuint8(const void *source)
+#line 246
+{
+  const uint8_t *base = source;
+
+#line 248
+  return base[0];
+}
+
+# 167 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
+static inline  uint8_t CC2420ActiveMessageP$Packet$payloadLength(message_t *msg)
+#line 167
+{
+  return __nesc_ntoh_leuint8((unsigned char *)&CC2420ActiveMessageP$getHeader(msg)->length) - CC2420ActiveMessageP$CC2420_SIZE;
+}
+
+
+
+
+
+
+
+
+
+
+static inline  void *CC2420ActiveMessageP$Packet$getPayload(message_t *msg, uint8_t *len)
+#line 180
+{
+  if (len != (void *)0) {
+      *len = CC2420ActiveMessageP$Packet$payloadLength(msg);
+    }
+  return msg->data;
+}
+
+#line 78
+static inline  void *CC2420ActiveMessageP$AMSend$getPayload(am_id_t id, message_t *m)
+#line 78
+{
+  return CC2420ActiveMessageP$Packet$getPayload(m, (void *)0);
+}
+
+# 125 "/opt/tinyos-2.x/tos/interfaces/AMSend.nc"
+inline static  void *ComSatM$AMSend$getPayload(message_t *arg_0x7e1de248){
+#line 125
+  void *result;
+#line 125
+
+#line 125
+  result = CC2420ActiveMessageP$AMSend$getPayload(AM_OSCILLOSCOPE, arg_0x7e1de248);
+#line 125
+
+#line 125
+  return result;
+#line 125
+}
+#line 125
+# 80 "ComSatM.nc"
+static inline  void ComSatM$sendDataTask$runTask(void)
+#line 80
+{
+
+
+
+
+
+  memcpy(ComSatM$AMSend$getPayload(&ComSatM$output), &ComSatM$currentData, sizeof ComSatM$currentData);
+
+  if (ComSatM$AMSend$send(AM_BROADCAST_ADDR, &ComSatM$output, sizeof(ComSatM$sensor_data_t ) != SUCCESS)) {
+    ComSatM$sendDataTask$postTask();
+    }
+  if (ComSatM$isTX || ComSatM$ElapsedTimer$isRunning()) {
+      ComSatM$LEDController$BlinkLed0();
+      ComSatM$LEDController$BlinkLed1();
+      ComSatM$LEDController$BlinkLed2();
+    }
+}
+
 # 87 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 inline static   error_t CC2420TransmitP$SpiResource$immediateRequest(void){
 #line 87
@@ -10674,61 +10798,6 @@ inline static   error_t CC2420TransmitP$SpiResource$request(void){
 #line 78
 }
 #line 78
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void ComSatM$PriorityTimer$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(15U, arg_0x7e080068);
-#line 62
-}
-#line 62
-# 86 "ComSatM.nc"
-static inline  void ComSatM$sendPriority$runTask(void)
-#line 86
-{
-  if (ComSatM$isRolePhase == 0) {
-#line 87
-    return;
-    }
-  ComSatM$LCDSetter$setLCD(ComSatM$Priority, __nesc_ntoh_uint16((unsigned char *)&ComSatM$devicePriority), 0, 0);
-  ComSatM$PriorityTimer$startOneShot(3000);
-
-  if (ComSatM$AMSend$send(AM_BROADCAST_ADDR, &ComSatM$output, sizeof(ComSatM$priority_t ) != SUCCESS)) {
-    ComSatM$setPriority$postTask();
-    }
-}
-
-# 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
-inline static   error_t ComSatM$sendPriority$postTask(void){
-#line 56
-  unsigned char result;
-#line 56
-
-#line 56
-  result = SchedulerBasicP$TaskBasic$postTask(ComSatM$sendPriority);
-#line 56
-
-#line 56
-  return result;
-#line 56
-}
-#line 56
-# 77 "ComSatM.nc"
-static inline  void ComSatM$setPriority$runTask(void)
-#line 77
-{
-  ComSatM$priority_t *data;
-
-#line 79
-  if (ComSatM$isRolePhase == 0) {
-#line 79
-    return;
-    }
-  __nesc_hton_uint16((unsigned char *)&ComSatM$devicePriority, (unsigned int )ComSatM$PriorityTimer$getNow());
-  data = (ComSatM$priority_t *)ComSatM$AMSend$getPayload(&ComSatM$output);
-  memcpy(& data->priority, &ComSatM$devicePriority, sizeof(uint16_t ));
-  ComSatM$sendPriority$postTask();
-}
-
 # 56 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
 inline static   error_t ComSatM$start$postTask(void){
 #line 56
@@ -10772,9 +10841,9 @@ static inline   void /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/Transfor
 }
 
 # 55 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-inline static   void CC2420ControlP$StartupTimer$start(CC2420ControlP$StartupTimer$size_type arg_0x7dc018c8){
+inline static   void CC2420ControlP$StartupTimer$start(CC2420ControlP$StartupTimer$size_type arg_0x7eb028c8){
 #line 55
-  /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$start(arg_0x7dc018c8);
+  /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$start(arg_0x7eb028c8);
 #line 55
 }
 #line 55
@@ -10869,15 +10938,15 @@ inline static  error_t ComSatM$RadioControl$start(void){
 #line 79
 }
 #line 79
-# 63 "ComSatM.nc"
+# 55 "ComSatM.nc"
 static inline  void ComSatM$start$runTask(void)
-#line 63
+#line 55
 {
   if (ComSatM$RadioControl$start() != SUCCESS) {
-#line 64
+#line 56
     ;
     }
-#line 65
+#line 57
   ComSatM$start$postTask();
 }
 
@@ -10889,13 +10958,13 @@ static inline    error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$de
 }
 
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$request(uint8_t arg_0x7d4ce010){
+inline static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$request(uint8_t arg_0x7e3d1010){
 #line 78
   unsigned char result;
 #line 78
 
 #line 78
-  switch (arg_0x7d4ce010) {
+  switch (arg_0x7e3d1010) {
 #line 78
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$ID:
 #line 78
@@ -10917,7 +10986,7 @@ inline static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$req
 #line 78
     default:
 #line 78
-      result = /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$default$request(arg_0x7d4ce010);
+      result = /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$default$request(arg_0x7e3d1010);
 #line 78
       break;
 #line 78
@@ -10985,9 +11054,9 @@ static inline  void InteractionM$Read_Photo$readDone(error_t err, uint16_t val)
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$Read$readDone(error_t arg_0x7d818f00, /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$Read$val_t arg_0x7d8170b0){
+inline static  void /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$Read$readDone(error_t arg_0x7e719330, /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$Read$val_t arg_0x7e7194b8){
 #line 63
-  InteractionM$Read_Photo$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+  InteractionM$Read_Photo$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
 }
 #line 63
@@ -11025,9 +11094,9 @@ static inline  void InteractionM$Read_Ultrared$readDone(error_t err, uint16_t va
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$Read$readDone(error_t arg_0x7d818f00, /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$Read$val_t arg_0x7d8170b0){
+inline static  void /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$Read$readDone(error_t arg_0x7e719330, /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$Read$val_t arg_0x7e7194b8){
 #line 63
-  InteractionM$Read_Ultrared$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+  InteractionM$Read_Ultrared$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
 }
 #line 63
@@ -11053,19 +11122,10 @@ inline static   error_t SerialAppM$sendPacket$postTask(void){
 #line 56
 }
 #line 56
-# 3 "LCDSetter.nc"
-inline static  void SerialAppM$LCDSetter$setLCD(uint8_t arg_0x7e061ef0, uint16_t arg_0x7e042090, uint16_t arg_0x7e042220, uint16_t arg_0x7e0423b0){
-#line 3
-  LCDSetterM$LCDSetter$setLCD(arg_0x7e061ef0, arg_0x7e042090, arg_0x7e042220, arg_0x7e0423b0);
-#line 3
-}
-#line 3
-# 75 "SerialAppM.nc"
+# 71 "SerialAppM.nc"
 static inline  void SerialAppM$TempSensor$done(uint16_t temp, uint16_t humid, uint16_t ur)
-#line 75
+#line 71
 {
-  SerialAppM$LCDSetter$setLCD(SerialAppM$TXD, temp, humid, ur);
-  __nesc_hton_uint8((unsigned char *)&SerialAppM$packet.isRolePhase, 0);
   __nesc_hton_uint16((unsigned char *)&SerialAppM$packet.temp, temp);
   __nesc_hton_uint16((unsigned char *)&SerialAppM$packet.humid, humid);
   __nesc_hton_uint16((unsigned char *)&SerialAppM$packet.ur, ur);
@@ -11074,9 +11134,9 @@ static inline  void SerialAppM$TempSensor$done(uint16_t temp, uint16_t humid, ui
 }
 
 # 3 "TempSensor.nc"
-inline static  void TempSensorM$TempSensor$done(uint16_t arg_0x7e040998, uint16_t arg_0x7e040b28, uint16_t arg_0x7e040cb8){
+inline static  void TempSensorM$TempSensor$done(uint16_t arg_0x7ef40998, uint16_t arg_0x7ef40b28, uint16_t arg_0x7ef40cb8){
 #line 3
-  SerialAppM$TempSensor$done(arg_0x7e040998, arg_0x7e040b28, arg_0x7e040cb8);
+  SerialAppM$TempSensor$done(arg_0x7ef40998, arg_0x7ef40b28, arg_0x7ef40cb8);
 #line 3
 }
 #line 3
@@ -11094,9 +11154,9 @@ static inline  void TempSensorM$Read_UR$readDone(error_t result, uint16_t data)
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read$readDone(error_t arg_0x7d818f00, /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read$val_t arg_0x7d8170b0){
+inline static  void /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read$readDone(error_t arg_0x7e719330, /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$Read$val_t arg_0x7e7194b8){
 #line 63
-  TempSensorM$Read_UR$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+  TempSensorM$Read_UR$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
 }
 #line 63
@@ -11114,31 +11174,31 @@ static inline   void /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$default$re
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$readDone(uint8_t arg_0x7d4d13a8, error_t arg_0x7d818f00, /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$val_t arg_0x7d8170b0){
+inline static  void /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$readDone(uint8_t arg_0x7e3d43a8, error_t arg_0x7e719330, /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$val_t arg_0x7e7194b8){
 #line 63
-  switch (arg_0x7d4d13a8) {
+  switch (arg_0x7e3d43a8) {
 #line 63
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$ID:
 #line 63
-      /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$subRead$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+      /*InteractionC.PhotoSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$0$subRead$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
       break;
 #line 63
     case /*InteractionC.UltraredSensorC.DemoChannel.UltraredProC.AdcReadClientC*/AdcReadClientC$1$ID:
 #line 63
-      /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$subRead$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+      /*InteractionC.UltraredSensorC.DemoChannel.ADC_ShiftM*/ADC_ShiftM$1$subRead$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
       break;
 #line 63
     case /*TempSensorC.URSensor.DemoChannel.UltraredProC.AdcReadClientC*/AdcReadClientC$2$ID:
 #line 63
-      /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$subRead$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+      /*TempSensorC.URSensor.DemoChannel.ADC_ShiftM*/ADC_ShiftM$2$subRead$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
       break;
 #line 63
     default:
 #line 63
-      /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$default$readDone(arg_0x7d4d13a8, arg_0x7d818f00, arg_0x7d8170b0);
+      /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Read$default$readDone(arg_0x7e3d43a8, arg_0x7e719330, arg_0x7e7194b8);
 #line 63
       break;
 #line 63
@@ -11155,13 +11215,13 @@ static inline    error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$de
 }
 
 # 101 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$release(uint8_t arg_0x7d4ce010){
+inline static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$release(uint8_t arg_0x7e3d1010){
 #line 101
   unsigned char result;
 #line 101
 
 #line 101
-  switch (arg_0x7d4ce010) {
+  switch (arg_0x7e3d1010) {
 #line 101
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$ID:
 #line 101
@@ -11183,7 +11243,7 @@ inline static   error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$rel
 #line 101
     default:
 #line 101
-      result = /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$default$release(arg_0x7d4ce010);
+      result = /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Resource$default$release(arg_0x7e3d1010);
 #line 101
       break;
 #line 101
@@ -11204,9 +11264,9 @@ static inline  void /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$readDone
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void AdcP$Read$readDone(uint8_t arg_0x7d4ea610, error_t arg_0x7d818f00, AdcP$Read$val_t arg_0x7d8170b0){
+inline static  void AdcP$Read$readDone(uint8_t arg_0x7e3ed610, error_t arg_0x7e719330, AdcP$Read$val_t arg_0x7e7194b8){
 #line 63
-  /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$readDone(arg_0x7d4ea610, arg_0x7d818f00, arg_0x7d8170b0);
+  /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$readDone(arg_0x7e3ed610, arg_0x7e719330, arg_0x7e7194b8);
 #line 63
 }
 #line 63
@@ -11439,9 +11499,9 @@ static inline    void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfig
 }
 
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
-inline static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$unconfigure(uint8_t arg_0x7d614910){
+inline static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$unconfigure(uint8_t arg_0x7e517910){
 #line 55
-  switch (arg_0x7d614910) {
+  switch (arg_0x7e517910) {
 #line 55
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$HAL_ID:
 #line 55
@@ -11463,7 +11523,7 @@ inline static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigu
 #line 55
     default:
 #line 55
-      /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$default$unconfigure(arg_0x7d614910);
+      /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$default$unconfigure(arg_0x7e517910);
 #line 55
       break;
 #line 55
@@ -11478,9 +11538,9 @@ static inline    void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceReques
 }
 
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
-inline static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceRequested$requested(uint8_t arg_0x7d6156c8){
+inline static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceRequested$requested(uint8_t arg_0x7e5186c8){
 #line 43
-    /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceRequested$default$requested(arg_0x7d6156c8);
+    /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceRequested$default$requested(arg_0x7e5186c8);
 #line 43
 }
 #line 43
@@ -11515,13 +11575,13 @@ static inline   error_t /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$
 }
 
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-inline static   error_t /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Queue$enqueue(resource_client_id_t arg_0x7d624010){
+inline static   error_t /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Queue$enqueue(resource_client_id_t arg_0x7e527010){
 #line 69
   unsigned char result;
 #line 69
 
 #line 69
-  result = /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$RoundRobinQueue$enqueue(arg_0x7d624010);
+  result = /*Atm128AdcC.AdcArbiter.Queue*/RoundRobinResourceQueueC$0$RoundRobinQueue$enqueue(arg_0x7e527010);
 #line 69
 
 #line 69
@@ -11685,13 +11745,13 @@ static inline  error_t AdcP$Read$read(uint8_t c)
 }
 
 # 55 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$read(uint8_t arg_0x7d4d0250){
+inline static  error_t /*WireAdcP.ArbitrateRead*/ArbitratedReadC$0$Service$read(uint8_t arg_0x7e3d2250){
 #line 55
   unsigned char result;
 #line 55
 
 #line 55
-  result = AdcP$Read$read(arg_0x7d4d0250);
+  result = AdcP$Read$read(arg_0x7e3d2250);
 #line 55
 
 #line 55
@@ -11713,9 +11773,9 @@ static inline   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$defaul
 }
 
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static  void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$granted(uint8_t arg_0x7d617d40){
+inline static  void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$granted(uint8_t arg_0x7e519d40){
 #line 92
-  switch (arg_0x7d617d40) {
+  switch (arg_0x7e519d40) {
 #line 92
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$HAL_ID:
 #line 92
@@ -11737,7 +11797,7 @@ inline static  void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$granted
 #line 92
     default:
 #line 92
-      /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$default$granted(arg_0x7d617d40);
+      /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$Resource$default$granted(arg_0x7e519d40);
 #line 92
       break;
 #line 92
@@ -11796,9 +11856,9 @@ static inline    void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfig
 }
 
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
-inline static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$configure(uint8_t arg_0x7d614910){
+inline static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$configure(uint8_t arg_0x7e517910){
 #line 49
-  switch (arg_0x7d614910) {
+  switch (arg_0x7e517910) {
 #line 49
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$HAL_ID:
 #line 49
@@ -11820,7 +11880,7 @@ inline static   void /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigu
 #line 49
     default:
 #line 49
-      /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$default$configure(arg_0x7d614910);
+      /*Atm128AdcC.AdcArbiter.Arbiter*/ArbiterP$1$ResourceConfigure$default$configure(arg_0x7e517910);
 #line 49
       break;
 #line 49
@@ -11896,7 +11956,7 @@ static inline uint8_t HplAtm128AdcP$Admux2int(Atm128Admux_t x)
 #line 51
 {
 #line 51
-  union __nesc_unnamed4414 {
+  union __nesc_unnamed4409 {
 #line 51
     Atm128Admux_t f;
 #line 51
@@ -11917,9 +11977,9 @@ static inline   void HplAtm128AdcP$HplAtm128Adc$setAdmux(Atm128Admux_t x)
 }
 
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/adc/HplAtm128Adc.nc"
-inline static   void Atm128AdcP$HplAtm128Adc$setAdmux(Atm128Admux_t arg_0x7d568da8){
+inline static   void Atm128AdcP$HplAtm128Adc$setAdmux(Atm128Admux_t arg_0x7e46bda8){
 #line 49
-  HplAtm128AdcP$HplAtm128Adc$setAdmux(arg_0x7d568da8);
+  HplAtm128AdcP$HplAtm128Adc$setAdmux(arg_0x7e46bda8);
 #line 49
 }
 #line 49
@@ -12009,13 +12069,13 @@ bool leftJustify, uint8_t prescaler)
 }
 
 # 61 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcSingle.nc"
-inline static   bool AdcP$Atm128AdcSingle$getData(uint8_t arg_0x7d580868, uint8_t arg_0x7d5809f8, bool arg_0x7d580b98, uint8_t arg_0x7d580d28){
+inline static   bool AdcP$Atm128AdcSingle$getData(uint8_t arg_0x7e482868, uint8_t arg_0x7e4829f8, bool arg_0x7e482b98, uint8_t arg_0x7e482d28){
 #line 61
   unsigned char result;
 #line 61
 
 #line 61
-  result = Atm128AdcP$Atm128AdcSingle$getData(arg_0x7d580868, arg_0x7d5809f8, arg_0x7d580b98, arg_0x7d580d28);
+  result = Atm128AdcP$Atm128AdcSingle$getData(arg_0x7e482868, arg_0x7e4829f8, arg_0x7e482b98, arg_0x7e482d28);
 #line 61
 
 #line 61
@@ -12091,13 +12151,13 @@ static inline    uint8_t AdcP$Atm128AdcConfig$default$getChannel(uint8_t c)
 }
 
 # 25 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
-inline static   uint8_t AdcP$Atm128AdcConfig$getChannel(uint8_t arg_0x7d4e8748){
+inline static   uint8_t AdcP$Atm128AdcConfig$getChannel(uint8_t arg_0x7e3ea748){
 #line 25
   unsigned char result;
 #line 25
 
 #line 25
-  switch (arg_0x7d4e8748) {
+  switch (arg_0x7e3ea748) {
 #line 25
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$ID:
 #line 25
@@ -12119,7 +12179,7 @@ inline static   uint8_t AdcP$Atm128AdcConfig$getChannel(uint8_t arg_0x7d4e8748){
 #line 25
     default:
 #line 25
-      result = AdcP$Atm128AdcConfig$default$getChannel(arg_0x7d4e8748);
+      result = AdcP$Atm128AdcConfig$default$getChannel(arg_0x7e3ea748);
 #line 25
       break;
 #line 25
@@ -12160,13 +12220,13 @@ static inline    uint8_t AdcP$Atm128AdcConfig$default$getRefVoltage(uint8_t c)
 }
 
 # 32 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
-inline static   uint8_t AdcP$Atm128AdcConfig$getRefVoltage(uint8_t arg_0x7d4e8748){
+inline static   uint8_t AdcP$Atm128AdcConfig$getRefVoltage(uint8_t arg_0x7e3ea748){
 #line 32
   unsigned char result;
 #line 32
 
 #line 32
-  switch (arg_0x7d4e8748) {
+  switch (arg_0x7e3ea748) {
 #line 32
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$ID:
 #line 32
@@ -12188,7 +12248,7 @@ inline static   uint8_t AdcP$Atm128AdcConfig$getRefVoltage(uint8_t arg_0x7d4e874
 #line 32
     default:
 #line 32
-      result = AdcP$Atm128AdcConfig$default$getRefVoltage(arg_0x7d4e8748);
+      result = AdcP$Atm128AdcConfig$default$getRefVoltage(arg_0x7e3ea748);
 #line 32
       break;
 #line 32
@@ -12229,13 +12289,13 @@ static inline    uint8_t AdcP$Atm128AdcConfig$default$getPrescaler(uint8_t c)
 }
 
 # 39 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcConfig.nc"
-inline static   uint8_t AdcP$Atm128AdcConfig$getPrescaler(uint8_t arg_0x7d4e8748){
+inline static   uint8_t AdcP$Atm128AdcConfig$getPrescaler(uint8_t arg_0x7e3ea748){
 #line 39
   unsigned char result;
 #line 39
 
 #line 39
-  switch (arg_0x7d4e8748) {
+  switch (arg_0x7e3ea748) {
 #line 39
     case /*InteractionC.PhotoSensorC.DemoChannel.PhotoProC.AdcReadClientC*/AdcReadClientC$0$ID:
 #line 39
@@ -12257,7 +12317,7 @@ inline static   uint8_t AdcP$Atm128AdcConfig$getPrescaler(uint8_t arg_0x7d4e8748
 #line 39
     default:
 #line 39
-      result = AdcP$Atm128AdcConfig$default$getPrescaler(arg_0x7d4e8748);
+      result = AdcP$Atm128AdcConfig$default$getPrescaler(arg_0x7e3ea748);
 #line 39
       break;
 #line 39
@@ -12276,13 +12336,6 @@ static inline uint8_t AdcP$prescaler(void)
   return AdcP$Atm128AdcConfig$getPrescaler(AdcP$client);
 }
 
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void HplSensirionSht11P$Timer$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(11U, arg_0x7e080068);
-#line 62
-}
-#line 62
 # 51 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/HplSensirionSht11P.nc"
 static inline  error_t HplSensirionSht11P$SplitControl$start(void)
 #line 51
@@ -12532,9 +12585,9 @@ static inline  void InteractionM$Read_Temp$readDone(error_t err, uint16_t val)
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$readDone(error_t arg_0x7d818f00, /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$val_t arg_0x7d8170b0){
+inline static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$readDone(error_t arg_0x7e719330, /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Temperature$val_t arg_0x7e7194b8){
 #line 63
-  InteractionM$Read_Temp$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+  InteractionM$Read_Temp$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
 }
 #line 63
@@ -12615,9 +12668,9 @@ static inline  void InteractionM$Read_Humi$readDone(error_t err, uint16_t val)
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$readDone(error_t arg_0x7d818f00, /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$val_t arg_0x7d8170b0){
+inline static  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$readDone(error_t arg_0x7e719330, /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Humidity$val_t arg_0x7e7194b8){
 #line 63
-  InteractionM$Read_Humi$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+  InteractionM$Read_Humi$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
 }
 #line 63
@@ -12665,9 +12718,9 @@ static inline  void /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/Sensir
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$readDone(error_t arg_0x7d818f00, /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$val_t arg_0x7d8170b0){
+inline static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$readDone(error_t arg_0x7e719330, /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Temperature$val_t arg_0x7e7194b8){
 #line 63
-  TempSensorM$Read_Temp$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+  TempSensorM$Read_Temp$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
 }
 #line 63
@@ -12715,9 +12768,9 @@ static inline  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11Re
 }
 
 # 63 "/opt/tinyos-2.x/tos/interfaces/Read.nc"
-inline static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$readDone(error_t arg_0x7d818f00, /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$val_t arg_0x7d8170b0){
+inline static  void /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$readDone(error_t arg_0x7e719330, /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Humidity$val_t arg_0x7e7194b8){
 #line 63
-  TempSensorM$Read_Humidity$readDone(arg_0x7d818f00, arg_0x7d8170b0);
+  TempSensorM$Read_Humidity$readDone(arg_0x7e719330, arg_0x7e7194b8);
 #line 63
 }
 #line 63
@@ -12771,9 +12824,9 @@ static inline   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$d
 }
 
 # 92 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
-inline static  void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$granted(uint8_t arg_0x7d617d40){
+inline static  void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$granted(uint8_t arg_0x7e519d40){
 #line 92
-  switch (arg_0x7d617d40) {
+  switch (arg_0x7e519d40) {
 #line 92
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$TEMP_KEY:
 #line 92
@@ -12801,7 +12854,7 @@ inline static  void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$gr
 #line 92
     default:
 #line 92
-      /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$default$granted(arg_0x7d617d40);
+      /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Resource$default$granted(arg_0x7e519d40);
 #line 92
       break;
 #line 92
@@ -12816,9 +12869,9 @@ static inline    void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceC
 }
 
 # 49 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
-inline static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$configure(uint8_t arg_0x7d614910){
+inline static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$configure(uint8_t arg_0x7e517910){
 #line 49
-    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$default$configure(arg_0x7d614910);
+    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$default$configure(arg_0x7e517910);
 #line 49
 }
 #line 49
@@ -13031,13 +13084,6 @@ inline static   bool /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Lo
 #line 32
 }
 #line 32
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(12U, arg_0x7e080068);
-#line 62
-}
-#line 62
 # 29 "/opt/tinyos-2.x/tos/chips/atm128/pins/Atm128GpioInterruptC.nc"
 static inline   error_t /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Interrupt$enableFallingEdge(void)
 #line 29
@@ -13100,9 +13146,9 @@ static __inline   void /*HplAtm128InterruptC.IntPin1*/HplAtm128InterruptPinP$1$I
 }
 
 # 59 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128Interrupt.nc"
-inline static   void /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Atm128Interrupt$edge(bool arg_0x7d697010){
+inline static   void /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$Atm128Interrupt$edge(bool arg_0x7e59a088){
 #line 59
-  /*HplAtm128InterruptC.IntPin1*/HplAtm128InterruptPinP$1$Irq$edge(arg_0x7d697010);
+  /*HplAtm128InterruptC.IntPin1*/HplAtm128InterruptPinP$1$Irq$edge(arg_0x7e59a088);
 #line 59
 }
 #line 59
@@ -13262,9 +13308,9 @@ static inline    void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceC
 }
 
 # 55 "/opt/tinyos-2.x/tos/interfaces/ResourceConfigure.nc"
-inline static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$unconfigure(uint8_t arg_0x7d614910){
+inline static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$unconfigure(uint8_t arg_0x7e517910){
 #line 55
-    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$default$unconfigure(arg_0x7d614910);
+    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceConfigure$default$unconfigure(arg_0x7e517910);
 #line 55
 }
 #line 55
@@ -13388,9 +13434,9 @@ static inline    void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceR
 }
 
 # 43 "/opt/tinyos-2.x/tos/interfaces/ResourceRequested.nc"
-inline static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceRequested$requested(uint8_t arg_0x7d6156c8){
+inline static   void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceRequested$requested(uint8_t arg_0x7e5186c8){
 #line 43
-    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceRequested$default$requested(arg_0x7d6156c8);
+    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$ResourceRequested$default$requested(arg_0x7e5186c8);
 #line 43
 }
 #line 43
@@ -13440,13 +13486,13 @@ static inline   error_t /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0
 }
 
 # 69 "/opt/tinyos-2.x/tos/interfaces/ResourceQueue.nc"
-inline static   error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Queue$enqueue(resource_client_id_t arg_0x7d624010){
+inline static   error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP$0$Queue$enqueue(resource_client_id_t arg_0x7e527010){
 #line 69
   unsigned char result;
 #line 69
 
 #line 69
-  result = /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$FcfsQueue$enqueue(arg_0x7d624010);
+  result = /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC$0$FcfsQueue$enqueue(arg_0x7e527010);
 #line 69
 
 #line 69
@@ -13508,9 +13554,9 @@ static inline  void /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*
 }
 
 # 110 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
-inline static  void HplSensirionSht11P$SplitControl$stopDone(error_t arg_0x7d6b4ca0){
+inline static  void HplSensirionSht11P$SplitControl$stopDone(error_t arg_0x7e5b6e68){
 #line 110
-  /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$SplitControl$stopDone(arg_0x7d6b4ca0);
+  /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$SplitControl$stopDone(arg_0x7e5b6e68);
 #line 110
 }
 #line 110
@@ -13655,37 +13701,37 @@ static inline   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Lo
 }
 
 # 116 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$writeStatusRegDone(uint8_t arg_0x7d725bb8, error_t arg_0x7d754e78){
+inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$writeStatusRegDone(uint8_t arg_0x7e626200, error_t arg_0x7e6563a0){
 #line 116
-  switch (arg_0x7d725bb8) {
+  switch (arg_0x7e626200) {
 #line 116
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$TEMP_KEY:
 #line 116
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$writeStatusRegDone(arg_0x7d754e78);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$writeStatusRegDone(arg_0x7e6563a0);
 #line 116
       break;
 #line 116
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$HUM_KEY:
 #line 116
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$writeStatusRegDone(arg_0x7d754e78);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$writeStatusRegDone(arg_0x7e6563a0);
 #line 116
       break;
 #line 116
     case /*TempSensorC.Sensor*/SensirionSht11C$1$TEMP_KEY:
 #line 116
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$writeStatusRegDone(arg_0x7d754e78);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$writeStatusRegDone(arg_0x7e6563a0);
 #line 116
       break;
 #line 116
     case /*TempSensorC.Sensor*/SensirionSht11C$1$HUM_KEY:
 #line 116
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$writeStatusRegDone(arg_0x7d754e78);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$writeStatusRegDone(arg_0x7e6563a0);
 #line 116
       break;
 #line 116
     default:
 #line 116
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$writeStatusRegDone(arg_0x7d725bb8, arg_0x7d754e78);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$writeStatusRegDone(arg_0x7e626200, arg_0x7e6563a0);
 #line 116
       break;
 #line 116
@@ -13726,37 +13772,37 @@ static inline   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Lo
 }
 
 # 100 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$readStatusRegDone(uint8_t arg_0x7d725bb8, error_t arg_0x7d754228, uint8_t arg_0x7d7543b0){
+inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$readStatusRegDone(uint8_t arg_0x7e626200, error_t arg_0x7e657730, uint8_t arg_0x7e6578b8){
 #line 100
-  switch (arg_0x7d725bb8) {
+  switch (arg_0x7e626200) {
 #line 100
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$TEMP_KEY:
 #line 100
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$readStatusRegDone(arg_0x7d754228, arg_0x7d7543b0);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$readStatusRegDone(arg_0x7e657730, arg_0x7e6578b8);
 #line 100
       break;
 #line 100
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$HUM_KEY:
 #line 100
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$readStatusRegDone(arg_0x7d754228, arg_0x7d7543b0);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$readStatusRegDone(arg_0x7e657730, arg_0x7e6578b8);
 #line 100
       break;
 #line 100
     case /*TempSensorC.Sensor*/SensirionSht11C$1$TEMP_KEY:
 #line 100
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$readStatusRegDone(arg_0x7d754228, arg_0x7d7543b0);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$readStatusRegDone(arg_0x7e657730, arg_0x7e6578b8);
 #line 100
       break;
 #line 100
     case /*TempSensorC.Sensor*/SensirionSht11C$1$HUM_KEY:
 #line 100
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$readStatusRegDone(arg_0x7d754228, arg_0x7d7543b0);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$readStatusRegDone(arg_0x7e657730, arg_0x7e6578b8);
 #line 100
       break;
 #line 100
     default:
 #line 100
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$readStatusRegDone(arg_0x7d725bb8, arg_0x7d754228, arg_0x7d7543b0);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$readStatusRegDone(arg_0x7e626200, arg_0x7e657730, arg_0x7e6578b8);
 #line 100
       break;
 #line 100
@@ -13824,9 +13870,9 @@ static inline  void InteractionM$SendBasicSensor$runTask(void)
 }
 
 # 24 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-inline static  void InteractionM$CommunicationWithOPT$SendControlMSG(uint8_t arg_0x7d809168, uint8_t arg_0x7d8092f0, uint8_t arg_0x7d809478, uint8_t *arg_0x7d809628){
+inline static  void InteractionM$CommunicationWithOPT$SendControlMSG(uint8_t arg_0x7e712660, uint8_t arg_0x7e7127e8, uint8_t arg_0x7e712970, uint8_t *arg_0x7e712b20){
 #line 24
-  CommunicationWithOPTM$CommunicationWithOPT$SendControlMSG(arg_0x7d809168, arg_0x7d8092f0, arg_0x7d809478, arg_0x7d809628);
+  CommunicationWithOPTM$CommunicationWithOPT$SendControlMSG(arg_0x7e712660, arg_0x7e7127e8, arg_0x7e712970, arg_0x7e712b20);
 #line 24
 }
 #line 24
@@ -13851,9 +13897,9 @@ static inline  void CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG
 }
 
 # 27 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-inline static  void InteractionM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7d808638, uint8_t arg_0x7d8087c0, uint8_t arg_0x7d808948, uint8_t arg_0x7d808ad0, uint8_t *arg_0x7d808c80, uint8_t arg_0x7d808e10){
+inline static  void InteractionM$CommunicationWithOPT$SpecialControlMSG(uint8_t arg_0x7e711ac0, uint8_t arg_0x7e711c48, uint8_t arg_0x7e711dd0, uint8_t arg_0x7e709010, uint8_t *arg_0x7e7091c0, uint8_t arg_0x7e709350){
 #line 27
-  CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG(arg_0x7d808638, arg_0x7d8087c0, arg_0x7d808948, arg_0x7d808ad0, arg_0x7d808c80, arg_0x7d808e10);
+  CommunicationWithOPTM$CommunicationWithOPT$SpecialControlMSG(arg_0x7e711ac0, arg_0x7e711c48, arg_0x7e711dd0, arg_0x7e709010, arg_0x7e7091c0, arg_0x7e709350);
 #line 27
 }
 #line 27
@@ -13864,16 +13910,16 @@ static inline   void NoSCSuartDBGC$SCSuartDBG$UARTSend(uint8_t *data, uint8_t le
 }
 
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBG.nc"
-inline static   void InteractionM$SCSuartDBG$UARTSend(uint8_t *arg_0x7d866390, uint8_t arg_0x7d866518){
+inline static   void InteractionM$SCSuartDBG$UARTSend(uint8_t *arg_0x7e768390, uint8_t arg_0x7e768518){
 #line 30
-  NoSCSuartDBGC$SCSuartDBG$UARTSend(arg_0x7d866390, arg_0x7d866518);
+  NoSCSuartDBGC$SCSuartDBG$UARTSend(arg_0x7e768390, arg_0x7e768518);
 #line 30
 }
 #line 30
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7e081a70){
+inline static  void InteractionM$SensorCheckTimer$startPeriodic(uint32_t arg_0x7ef81a70){
 #line 53
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(9U, arg_0x7e081a70);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(9U, arg_0x7ef81a70);
 #line 53
 }
 #line 53
@@ -13885,9 +13931,9 @@ inline static  void InteractionM$SensorCheckTimer$stop(void){
 }
 #line 67
 # 25 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-inline static  void InteractionM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7d809ad0){
+inline static  void InteractionM$CommunicationWithOPT$RequestSensorMSG(uint8_t arg_0x7e711010){
 #line 25
-  CommunicationWithOPTM$CommunicationWithOPT$RequestSensorMSG(arg_0x7d809ad0);
+  CommunicationWithOPTM$CommunicationWithOPT$RequestSensorMSG(arg_0x7e711010);
 #line 25
 }
 #line 25
@@ -13996,9 +14042,9 @@ static inline  void CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(ui
 }
 
 # 26 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-inline static  void InteractionM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7d808010, uint8_t arg_0x7d808198){
+inline static  void InteractionM$CommunicationWithOPT$RequestLongMSG(uint8_t arg_0x7e711498, uint8_t arg_0x7e711620){
 #line 26
-  CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(arg_0x7d808010, arg_0x7d808198);
+  CommunicationWithOPTM$CommunicationWithOPT$RequestLongMSG(arg_0x7e711498, arg_0x7e711620);
 #line 26
 }
 #line 26
@@ -14042,9 +14088,9 @@ static inline  void LCDSetterM$Interaction$Urgency_Data(uint8_t *Urgency_Payload
 }
 
 # 29 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-inline static  void InteractionM$Interaction$Urgency_Data(uint8_t *arg_0x7d873358, uint8_t arg_0x7d8734e0){
+inline static  void InteractionM$Interaction$Urgency_Data(uint8_t *arg_0x7e774358, uint8_t arg_0x7e7744e0){
 #line 29
-  LCDSetterM$Interaction$Urgency_Data(arg_0x7d873358, arg_0x7d8734e0);
+  LCDSetterM$Interaction$Urgency_Data(arg_0x7e774358, arg_0x7e7744e0);
 #line 29
 }
 #line 29
@@ -14056,9 +14102,9 @@ static inline  void InteractionM$Event_Urgency_Data$runTask(void)
 }
 
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void InteractionM$C328_Reset_Timer$startPeriodic(uint32_t arg_0x7e081a70){
+inline static  void InteractionM$C328_Reset_Timer$startPeriodic(uint32_t arg_0x7ef81a70){
 #line 53
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(10U, arg_0x7e081a70);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(10U, arg_0x7ef81a70);
 #line 53
 }
 #line 53
@@ -14078,9 +14124,9 @@ static inline  void InteractionM$Set_C328_Restart_Timer_START$runTask(void)
 }
 
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBG.nc"
-inline static   void LCDSetterM$SCSuartDBG$UARTSend(uint8_t *arg_0x7d866390, uint8_t arg_0x7d866518){
+inline static   void LCDSetterM$SCSuartDBG$UARTSend(uint8_t *arg_0x7e768390, uint8_t arg_0x7e768518){
 #line 30
-  SCSuartDBGM$SCSuartDBG$UARTSend(arg_0x7d866390, arg_0x7d866518);
+  SCSuartDBGM$SCSuartDBG$UARTSend(arg_0x7e768390, arg_0x7e768518);
 #line 30
 }
 #line 30
@@ -14093,9 +14139,9 @@ static inline  void LCDSetterM$Interaction$getSensorDataDone(App_struct_t *App_P
 }
 
 # 26 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-inline static  void InteractionM$Interaction$getSensorDataDone(App_struct_t *arg_0x7d8746b8, uint8_t arg_0x7d874848){
+inline static  void InteractionM$Interaction$getSensorDataDone(App_struct_t *arg_0x7e7766b8, uint8_t arg_0x7e776848){
 #line 26
-  LCDSetterM$Interaction$getSensorDataDone(arg_0x7d8746b8, arg_0x7d874848);
+  LCDSetterM$Interaction$getSensorDataDone(arg_0x7e7766b8, arg_0x7e776848);
 #line 26
 }
 #line 26
@@ -14108,9 +14154,9 @@ static inline  void InteractionM$TaskGetSensorDataDone$runTask(void)
 }
 
 # 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void LCDSetterM$Timer$startPeriodic(uint32_t arg_0x7e081a70){
+inline static  void LCDSetterM$Timer$startPeriodic(uint32_t arg_0x7ef81a70){
 #line 53
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(7U, arg_0x7e081a70);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(7U, arg_0x7ef81a70);
 #line 53
 }
 #line 53
@@ -14150,9 +14196,9 @@ static inline  void LCDSetterM$Interaction$StartDoneConfiguration(uint8_t appTyp
 }
 
 # 22 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-inline static  void InteractionM$Interaction$StartDoneConfiguration(uint8_t arg_0x7d8768a0, uint8_t arg_0x7d876a28){
+inline static  void InteractionM$Interaction$StartDoneConfiguration(uint8_t arg_0x7e7778a0, uint8_t arg_0x7e777a28){
 #line 22
-  LCDSetterM$Interaction$StartDoneConfiguration(arg_0x7d8768a0, arg_0x7d876a28);
+  LCDSetterM$Interaction$StartDoneConfiguration(arg_0x7e7778a0, arg_0x7e777a28);
 #line 22
 }
 #line 22
@@ -14174,9 +14220,9 @@ static inline  void InteractionM$TaskStartDoneConfiguration$runTask(void)
 }
 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void InteractionM$SensorCheckTimer$startOneShot(uint32_t arg_0x7e080068){
+inline static  void InteractionM$SensorCheckTimer$startOneShot(uint32_t arg_0x7ef80068){
 #line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(9U, arg_0x7e080068);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(9U, arg_0x7ef80068);
 #line 62
 }
 #line 62
@@ -14196,9 +14242,9 @@ static inline  void InteractionM$Interaction$SetSamplingTime(uint16_t SamplingIn
 }
 
 # 24 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-inline static  void LCDSetterM$Interaction$SetSamplingTime(uint16_t arg_0x7d876ec8){
+inline static  void LCDSetterM$Interaction$SetSamplingTime(uint16_t arg_0x7e777ec8){
 #line 24
-  InteractionM$Interaction$SetSamplingTime(arg_0x7d876ec8);
+  InteractionM$Interaction$SetSamplingTime(arg_0x7e777ec8);
 #line 24
 }
 #line 24
@@ -14211,9 +14257,9 @@ static inline  void LCDSetterM$TryToSetTimer$runTask(void)
 }
 
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void InteractionM$ConfigTimeout$startOneShot(uint32_t arg_0x7e080068){
+inline static  void InteractionM$ConfigTimeout$startOneShot(uint32_t arg_0x7ef80068){
 #line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(8U, arg_0x7e080068);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(8U, arg_0x7ef80068);
 #line 62
 }
 #line 62
@@ -14386,9 +14432,9 @@ static inline  void InteractionM$Interaction$StartConfiguration(App_struct_t *Ap
 }
 
 # 21 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-inline static  void LCDSetterM$Interaction$StartConfiguration(App_struct_t *arg_0x7d876410){
+inline static  void LCDSetterM$Interaction$StartConfiguration(App_struct_t *arg_0x7e777410){
 #line 21
-  InteractionM$Interaction$StartConfiguration(arg_0x7d876410);
+  InteractionM$Interaction$StartConfiguration(arg_0x7e777410);
 #line 21
 }
 #line 21
@@ -14401,9 +14447,9 @@ static inline  void LCDSetterM$TryToConfigure$runTask(void)
 }
 
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-inline static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$startAt(/*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7dbf59e0, /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7dbf5b70){
+inline static   void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$startAt(/*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb019e0, /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Alarm$size_type arg_0x7eb01b70){
 #line 92
-  /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(arg_0x7dbf59e0, arg_0x7dbf5b70);
+  /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(arg_0x7eb019e0, arg_0x7eb01b70);
 #line 92
 }
 #line 92
@@ -14423,9 +14469,9 @@ static inline  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startO
 }
 
 # 118 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$startOneShotAt(uint32_t arg_0x7e072cd0, uint32_t arg_0x7e072e60){
+inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$startOneShotAt(uint32_t arg_0x7ef72cd0, uint32_t arg_0x7ef72e60){
 #line 118
-  /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startOneShotAt(arg_0x7e072cd0, arg_0x7e072e60);
+  /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$startOneShotAt(arg_0x7ef72cd0, arg_0x7ef72e60);
 #line 118
 }
 #line 118
@@ -14528,13 +14574,6 @@ static inline  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$update
     }
 }
 
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void SerialAppM$Timer$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(0U, arg_0x7e080068);
-#line 62
-}
-#line 62
 # 78 "/opt/tinyos-2.x/tos/interfaces/Resource.nc"
 inline static   error_t /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$TempResource$request(void){
 #line 78
@@ -14587,14 +14626,11 @@ inline static  void SerialAppM$TempSensor$start(void){
 #line 2
 }
 #line 2
-# 68 "SerialAppM.nc"
+# 65 "SerialAppM.nc"
 static inline  void SerialAppM$Timer$fired(void)
-#line 68
+#line 65
 {
-  if (SerialAppM$deviceRole != SerialAppM$TX) {
-#line 69
-    return;
-    }
+
   SerialAppM$TempSensor$start();
   SerialAppM$Timer$startOneShot(8000);
 }
@@ -14671,17 +14707,17 @@ static inline  void LEDControllerM$LEDTimer0$fired(void)
   LEDControllerM$Leds$led0Off();
 }
 
-# 126 "SerialAppM.nc"
+# 118 "SerialAppM.nc"
 static inline  void SerialAppM$LEDController$BlinkDone(void)
-#line 126
+#line 118
 {
 
   SerialAppM$isUsingLEDs = 0;
 }
 
-# 168 "ComSatM.nc"
+# 99 "ComSatM.nc"
 static inline  void ComSatM$LEDController$BlinkDone(void)
-#line 168
+#line 99
 {
 }
 
@@ -14694,45 +14730,6 @@ inline static  void LEDControllerM$LEDController$BlinkDone(void){
 #line 13
 }
 #line 13
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void LEDControllerM$LEDIntervalTimer0$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(6U, arg_0x7e080068);
-#line 62
-}
-#line 62
-# 47 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static __inline   void /*HplAtm128GeneralIOC.PortA.Bit2*/HplAtm128GeneralIOPinP$2$IO$clr(void)
-#line 47
-{
-#line 47
-  * (volatile uint8_t *)59U &= ~(1 << 2);
-}
-
-# 30 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
-inline static   void LedsP$Led0$clr(void){
-#line 30
-  /*HplAtm128GeneralIOC.PortA.Bit2*/HplAtm128GeneralIOPinP$2$IO$clr();
-#line 30
-}
-#line 30
-# 63 "/opt/tinyos-2.x/tos/system/LedsP.nc"
-static inline   void LedsP$Leds$led0On(void)
-#line 63
-{
-  LedsP$Led0$clr();
-  ;
-#line 65
-  ;
-}
-
-# 45 "/opt/tinyos-2.x/tos/interfaces/Leds.nc"
-inline static   void LEDControllerM$Leds$led0On(void){
-#line 45
-  LedsP$Leds$led0On();
-#line 45
-}
-#line 45
 # 41 "LEDControllerM.nc"
 static inline void LEDControllerM$led0Blink(uint16_t interval)
 #line 41
@@ -14805,9 +14802,9 @@ static inline  void InteractionM$Interaction$Process_CMD(void *PayLoad, uint8_t 
 }
 
 # 28 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/Interaction.nc"
-inline static  void LCDSetterM$Interaction$Process_CMD(void *arg_0x7d874cf0, uint8_t arg_0x7d874e78){
+inline static  void LCDSetterM$Interaction$Process_CMD(void *arg_0x7e776cf0, uint8_t arg_0x7e776e78){
 #line 28
-  InteractionM$Interaction$Process_CMD(arg_0x7d874cf0, arg_0x7d874e78);
+  InteractionM$Interaction$Process_CMD(arg_0x7e776cf0, arg_0x7e776e78);
 #line 28
 }
 #line 28
@@ -14829,27 +14826,17 @@ static inline char *LCDSetterM$getType(void)
 #line 86
     return "URed ";
     }
-#line 87
-  if (LCDSetterM$LCDDisplayType == LCDSetterM$Priority) {
-#line 87
-    return "PRIOD";
-    }
-#line 88
-  if (LCDSetterM$LCDDisplayType == LCDSetterM$TXD) {
-#line 88
-    return "TRANS";
-    }
 }
 
-#line 90
+#line 88
 static inline  void LCDSetterM$Timer$fired(void)
-#line 90
+#line 88
 {
   Cmd_struct_t CMD_Frame;
   char SetDataBuff[32];
   static uint8_t turn = 0;
 
-#line 94
+#line 92
   CMD_Frame.CMDType = 0x09;
   CMD_Frame.CMD_Data.OptConfig.packetType = 0x09;
   CMD_Frame.CMD_Data.OptConfig.optType = 0x05;
@@ -15049,9 +15036,9 @@ static inline  void /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*
 }
 
 # 88 "/opt/tinyos-2.x/tos/interfaces/SplitControl.nc"
-inline static  void HplSensirionSht11P$SplitControl$startDone(error_t arg_0x7d6b4168){
+inline static  void HplSensirionSht11P$SplitControl$startDone(error_t arg_0x7e5b6330){
 #line 88
-  /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$SplitControl$startDone(arg_0x7d6b4168);
+  /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP$0$SplitControl$startDone(arg_0x7e5b6330);
 #line 88
 }
 #line 88
@@ -15095,37 +15082,37 @@ static inline   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Lo
 }
 
 # 54 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$resetDone(uint8_t arg_0x7d725bb8, error_t arg_0x7d7573e0){
+inline static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$resetDone(uint8_t arg_0x7e626200, error_t arg_0x7e65a820){
 #line 54
-  switch (arg_0x7d725bb8) {
+  switch (arg_0x7e626200) {
 #line 54
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$TEMP_KEY:
 #line 54
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$resetDone(arg_0x7d7573e0);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$resetDone(arg_0x7e65a820);
 #line 54
       break;
 #line 54
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$HUM_KEY:
 #line 54
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$resetDone(arg_0x7d7573e0);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$resetDone(arg_0x7e65a820);
 #line 54
       break;
 #line 54
     case /*TempSensorC.Sensor*/SensirionSht11C$1$TEMP_KEY:
 #line 54
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$resetDone(arg_0x7d7573e0);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$resetDone(arg_0x7e65a820);
 #line 54
       break;
 #line 54
     case /*TempSensorC.Sensor*/SensirionSht11C$1$HUM_KEY:
 #line 54
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$resetDone(arg_0x7d7573e0);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$resetDone(arg_0x7e65a820);
 #line 54
       break;
 #line 54
     default:
 #line 54
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$resetDone(arg_0x7d725bb8, arg_0x7d7573e0);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$resetDone(arg_0x7e626200, arg_0x7e65a820);
 #line 54
       break;
 #line 54
@@ -15323,9 +15310,9 @@ static __inline   void /*HplAtm128InterruptC.IntPin6*/HplAtm128InterruptPinP$6$I
 }
 
 # 59 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128Interrupt.nc"
-inline static   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm128Interrupt$edge(bool arg_0x7d697010){
+inline static   void /*HplCC2420InterruptsC.InterruptFIFOPC*/Atm128GpioInterruptC$1$Atm128Interrupt$edge(bool arg_0x7e59a088){
 #line 59
-  /*HplAtm128InterruptC.IntPin6*/HplAtm128InterruptPinP$6$Irq$edge(arg_0x7d697010);
+  /*HplAtm128InterruptC.IntPin6*/HplAtm128InterruptPinP$6$Irq$edge(arg_0x7e59a088);
 #line 59
 }
 #line 59
@@ -15588,55 +15575,19 @@ static inline  void HplCC2420InterruptsP$CCATimer$fired(void)
   return;
 }
 
-# 62 "ComSatM.nc"
+# 47 "ComSatM.nc"
 static inline  void ComSatM$ElapsedTimer$fired(void)
-#line 62
+#line 47
 {
-}
+  unsigned long __nesc_temp43;
+  unsigned char *__nesc_temp42;
 
-# 235 "/usr/lib/ncc/nesc_nx.h"
-static __inline uint8_t __nesc_ntoh_uint8(const void *source)
-#line 235
-{
-  const uint8_t *base = source;
-
-#line 237
-  return base[0];
-}
-
-# 95 "ComSatM.nc"
-static inline  void ComSatM$PriorityTimer$fired(void)
-#line 95
-{
-  ComSatM$priority_t *data = (ComSatM$priority_t *)ComSatM$AMSend$getPayload(&ComSatM$output);
-
-#line 97
-  if (__nesc_ntoh_uint8((unsigned char *)&data->isRolePhase)) {
-      ComSatM$setPriority$postTask();
-      ComSatM$PriorityTimer$startOneShot(3000);
+#line 48
+  (__nesc_temp42 = (unsigned char *)&ComSatM$devicePriority, __nesc_hton_uint32(__nesc_temp42, (__nesc_temp43 = __nesc_ntoh_uint32(__nesc_temp42)) + 1), __nesc_temp43);
+  if (__nesc_ntoh_uint32((unsigned char *)&ComSatM$devicePriority) == 100000) {
+      ComSatM$ElapsedTimer$stop();
+      ComSatM$isTX = 1;
     }
-}
-
-# 64 "SerialAppM.nc"
-static inline  void SerialAppM$ComSat$initDone(uint8_t role)
-#line 64
-{
-  SerialAppM$deviceRole = role;
-  SerialAppM$Timer$startOneShot(1000);
-}
-
-# 3 "ComSat.nc"
-inline static  void ComSatM$ComSat$initDone(uint8_t arg_0x7e031330){
-#line 3
-  SerialAppM$ComSat$initDone(arg_0x7e031330);
-#line 3
-}
-#line 3
-# 165 "ComSatM.nc"
-static inline  void ComSatM$Timer$fired(void)
-#line 165
-{
-  ComSatM$ComSat$initDone(ComSatM$deviceRole);
 }
 
 # 192 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
@@ -15645,9 +15596,9 @@ static inline   void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer
 }
 
 # 72 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$fired(uint8_t arg_0x7da41cd8){
+inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$fired(uint8_t arg_0x7e943cd8){
 #line 72
-  switch (arg_0x7da41cd8) {
+  switch (arg_0x7e943cd8) {
 #line 72
     case 0U:
 #line 72
@@ -15735,17 +15686,13 @@ inline static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$
 #line 72
     case 15U:
 #line 72
-      ComSatM$PriorityTimer$fired();
-#line 72
       ComSatM$ElapsedTimer$fired();
-#line 72
-      ComSatM$Timer$fired();
 #line 72
       break;
 #line 72
     default:
 #line 72
-      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$default$fired(arg_0x7da41cd8);
+      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$default$fired(arg_0x7e943cd8);
 #line 72
       break;
 #line 72
@@ -15784,9 +15731,9 @@ static inline   void HplAtm128Timer1P$Capture$setEdge(bool up)
 }
 
 # 79 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Capture.nc"
-inline static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$setEdge(bool arg_0x7d0db7d0){
+inline static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$setEdge(bool arg_0x7dffde78){
 #line 79
-  HplAtm128Timer1P$Capture$setEdge(arg_0x7d0db7d0);
+  HplAtm128Timer1P$Capture$setEdge(arg_0x7dffde78);
 #line 79
 }
 #line 79
@@ -15848,9 +15795,9 @@ static inline   void HplAtm128Timer0AsyncC$Compare$set(uint8_t t)
 }
 
 # 45 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Compare.nc"
-inline static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$set(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$size_type arg_0x7dbb3010){
+inline static   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$set(/*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$HplAtm128Compare$size_type arg_0x7eab4010){
 #line 45
-  HplAtm128Timer0AsyncC$Compare$set(arg_0x7dbb3010);
+  HplAtm128Timer0AsyncC$Compare$set(arg_0x7eab4010);
 #line 45
 }
 #line 45
@@ -15915,9 +15862,9 @@ static inline   void /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$start
 }
 
 # 92 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-inline static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7dbf59e0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7dbf5b70){
+inline static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb019e0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$AlarmFrom$size_type arg_0x7eb01b70){
 #line 92
-  /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$startAt(arg_0x7dbf59e0, arg_0x7dbf5b70);
+  /*AlarmCounterMilliP.MilliAlarm*/Atm128AlarmC$0$Alarm$startAt(arg_0x7eb019e0, arg_0x7eb01b70);
 #line 92
 }
 #line 92
@@ -15980,14 +15927,29 @@ static inline  void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$fired$runTas
   /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC$0$Timer$fired();
 }
 
-# 130 "SerialAppM.nc"
+# 118 "LCDSetterM.nc"
+static inline  void LCDSetterM$LCDSetter$setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
+{
+  LCDSetterM$LCDDisplayType = type;
+  LCDSetterM$LCDvalue = value;
+  LCDSetterM$LCDavg = avg;
+  LCDSetterM$LCDstdev = stdev;
+}
+
+# 3 "LCDSetter.nc"
+inline static  void SerialAppM$LCDSetter$setLCD(uint8_t arg_0x7ef61ef0, uint16_t arg_0x7ef42090, uint16_t arg_0x7ef42220, uint16_t arg_0x7ef423b0){
+#line 3
+  LCDSetterM$LCDSetter$setLCD(arg_0x7ef61ef0, arg_0x7ef42090, arg_0x7ef42220, arg_0x7ef423b0);
+#line 3
+}
+#line 3
+# 122 "SerialAppM.nc"
 static inline void SerialAppM$setMessage(uint16_t temp, uint16_t humid, uint16_t ur)
-#line 130
+#line 122
 {
   { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 131
+#line 123
     {
-      SerialAppM$isUsingLEDs = 1;
       if (SerialAppM$turn == SerialAppM$TEMP) {
           SerialAppM$setValues(temp);
           SerialAppM$IntervalBlink(temp - SerialAppM$ret_avg[SerialAppM$turn]);
@@ -15995,7 +15957,7 @@ static inline void SerialAppM$setMessage(uint16_t temp, uint16_t humid, uint16_t
           SerialAppM$turn = SerialAppM$HUMID;
         }
       else {
-#line 139
+#line 130
         if (SerialAppM$turn == SerialAppM$HUMID) {
             SerialAppM$setValues(humid);
             SerialAppM$IntervalBlink(humid - SerialAppM$ret_avg[SerialAppM$turn]);
@@ -16003,7 +15965,7 @@ static inline void SerialAppM$setMessage(uint16_t temp, uint16_t humid, uint16_t
             SerialAppM$turn = SerialAppM$UR;
           }
         else {
-#line 145
+#line 136
           if (SerialAppM$turn == SerialAppM$UR) {
               SerialAppM$setValues(ur);
               SerialAppM$IntervalBlink(ur - SerialAppM$ret_avg[SerialAppM$turn]);
@@ -16013,28 +15975,28 @@ static inline void SerialAppM$setMessage(uint16_t temp, uint16_t humid, uint16_t
           }
         }
     }
-#line 153
+#line 144
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-#line 120
+#line 112
 static inline SerialAppM$Packet *SerialAppM$packetPop(void)
-#line 120
+#line 112
 {
   SerialAppM$Packet *result = &SerialAppM$packetQueue[SerialAppM$currentPacketIndex];
 
-#line 122
+#line 114
   SerialAppM$currentPacketIndex = (SerialAppM$currentPacketIndex + 1) % 12;
   return result;
 }
 
-#line 96
+#line 88
 static inline  void SerialAppM$setData$runTask(void)
-#line 96
+#line 88
 {
   SerialAppM$Packet *data;
 
-#line 98
+#line 90
   if (SerialAppM$isUsingLEDs == 1) {
       SerialAppM$setData$postTask();
       return;
@@ -16042,7 +16004,7 @@ static inline  void SerialAppM$setData$runTask(void)
 
   data = SerialAppM$packetPop();
   if (data == (void *)0) {
-#line 104
+#line 96
     return;
     }
   memcpy(&SerialAppM$packet, data, sizeof(SerialAppM$Packet ));
@@ -16063,51 +16025,19 @@ static inline  void LEDControllerM$LEDController$IntervalBlinkLed0(uint16_t inte
 }
 
 # 10 "LEDController.nc"
-inline static  void SerialAppM$LEDController$IntervalBlinkLed0(uint16_t arg_0x7e053770){
+inline static  void SerialAppM$LEDController$IntervalBlinkLed0(uint16_t arg_0x7ef53770){
 #line 10
-  LEDControllerM$LEDController$IntervalBlinkLed0(arg_0x7e053770);
+  LEDControllerM$LEDController$IntervalBlinkLed0(arg_0x7ef53770);
 #line 10
 }
 #line 10
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void LEDControllerM$LEDIntervalTimer1$startOneShot(uint32_t arg_0x7e080068){
+inline static  void LEDControllerM$LEDIntervalTimer1$startOneShot(uint32_t arg_0x7ef80068){
 #line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(4U, arg_0x7e080068);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(4U, arg_0x7ef80068);
 #line 62
 }
 #line 62
-# 47 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static __inline   void /*HplAtm128GeneralIOC.PortA.Bit1*/HplAtm128GeneralIOPinP$1$IO$clr(void)
-#line 47
-{
-#line 47
-  * (volatile uint8_t *)59U &= ~(1 << 1);
-}
-
-# 30 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
-inline static   void LedsP$Led1$clr(void){
-#line 30
-  /*HplAtm128GeneralIOC.PortA.Bit1*/HplAtm128GeneralIOPinP$1$IO$clr();
-#line 30
-}
-#line 30
-# 78 "/opt/tinyos-2.x/tos/system/LedsP.nc"
-static inline   void LedsP$Leds$led1On(void)
-#line 78
-{
-  LedsP$Led1$clr();
-  ;
-#line 80
-  ;
-}
-
-# 61 "/opt/tinyos-2.x/tos/interfaces/Leds.nc"
-inline static   void LEDControllerM$Leds$led1On(void){
-#line 61
-  LedsP$Leds$led1On();
-#line 61
-}
-#line 61
 # 63 "LEDControllerM.nc"
 static inline void LEDControllerM$led1Blink(uint16_t interval)
 #line 63
@@ -16130,51 +16060,19 @@ static inline  void LEDControllerM$LEDController$IntervalBlinkLed1(uint16_t inte
 }
 
 # 11 "LEDController.nc"
-inline static  void SerialAppM$LEDController$IntervalBlinkLed1(uint16_t arg_0x7e053c10){
+inline static  void SerialAppM$LEDController$IntervalBlinkLed1(uint16_t arg_0x7ef53c10){
 #line 11
-  LEDControllerM$LEDController$IntervalBlinkLed1(arg_0x7e053c10);
+  LEDControllerM$LEDController$IntervalBlinkLed1(arg_0x7ef53c10);
 #line 11
 }
 #line 11
 # 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void LEDControllerM$LEDIntervalTimer2$startOneShot(uint32_t arg_0x7e080068){
+inline static  void LEDControllerM$LEDIntervalTimer2$startOneShot(uint32_t arg_0x7ef80068){
 #line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(5U, arg_0x7e080068);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(5U, arg_0x7ef80068);
 #line 62
 }
 #line 62
-# 47 "/opt/tinyos-2.x/tos/chips/atm128/pins/HplAtm128GeneralIOPinP.nc"
-static __inline   void /*HplAtm128GeneralIOC.PortA.Bit0*/HplAtm128GeneralIOPinP$0$IO$clr(void)
-#line 47
-{
-#line 47
-  * (volatile uint8_t *)59U &= ~(1 << 0);
-}
-
-# 30 "/opt/tinyos-2.x/tos/interfaces/GeneralIO.nc"
-inline static   void LedsP$Led2$clr(void){
-#line 30
-  /*HplAtm128GeneralIOC.PortA.Bit0*/HplAtm128GeneralIOPinP$0$IO$clr();
-#line 30
-}
-#line 30
-# 93 "/opt/tinyos-2.x/tos/system/LedsP.nc"
-static inline   void LedsP$Leds$led2On(void)
-#line 93
-{
-  LedsP$Led2$clr();
-  ;
-#line 95
-  ;
-}
-
-# 78 "/opt/tinyos-2.x/tos/interfaces/Leds.nc"
-inline static   void LEDControllerM$Leds$led2On(void){
-#line 78
-  LedsP$Leds$led2On();
-#line 78
-}
-#line 78
 # 85 "LEDControllerM.nc"
 static inline void LEDControllerM$led2Blink(uint16_t interval)
 #line 85
@@ -16197,20 +16095,20 @@ static inline  void LEDControllerM$LEDController$IntervalBlinkLed2(uint16_t inte
 }
 
 # 12 "LEDController.nc"
-inline static  void SerialAppM$LEDController$IntervalBlinkLed2(uint16_t arg_0x7e0510c8){
+inline static  void SerialAppM$LEDController$IntervalBlinkLed2(uint16_t arg_0x7ef510c8){
 #line 12
-  LEDControllerM$LEDController$IntervalBlinkLed2(arg_0x7e0510c8);
+  LEDControllerM$LEDController$IntervalBlinkLed2(arg_0x7ef510c8);
 #line 12
 }
 #line 12
-# 104 "ComSatM.nc"
+# 70 "ComSatM.nc"
 static inline  void ComSatM$ComSat$sendData(void *pData)
-#line 104
+#line 70
 {
   ComSatM$sensor_data_t *data = (ComSatM$sensor_data_t *)pData;
 
-#line 106
-  __nesc_hton_uint8((unsigned char *)&ComSatM$currentData.isRolePhase, 0);
+#line 72
+  __nesc_hton_uint32((unsigned char *)&ComSatM$currentData.priority, __nesc_ntoh_uint32((unsigned char *)&ComSatM$devicePriority));
   __nesc_hton_uint16((unsigned char *)&ComSatM$currentData.temp, __nesc_ntoh_uint16((unsigned char *)&data->temp));
   __nesc_hton_uint16((unsigned char *)&ComSatM$currentData.humid, __nesc_ntoh_uint16((unsigned char *)&data->humid));
   __nesc_hton_uint16((unsigned char *)&ComSatM$currentData.ur, __nesc_ntoh_uint16((unsigned char *)&data->ur));
@@ -16219,62 +16117,16 @@ static inline  void ComSatM$ComSat$sendData(void *pData)
 }
 
 # 4 "ComSat.nc"
-inline static  void SerialAppM$ComSat$sendData(void *arg_0x7e0317d0){
+inline static  void SerialAppM$ComSat$sendData(void *arg_0x7ef31640){
 #line 4
-  ComSatM$ComSat$sendData(arg_0x7e0317d0);
+  ComSatM$ComSat$sendData(arg_0x7ef31640);
 #line 4
 }
 #line 4
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void LEDControllerM$LEDTimer2$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(2U, arg_0x7e080068);
-#line 62
-}
-#line 62
-# 135 "LEDControllerM.nc"
-static inline  void LEDControllerM$LEDController$BlinkLed2(void)
-#line 135
-{
-  LEDControllerM$Leds$led2On();
-  LEDControllerM$LEDTimer2$startOneShot(200);
-}
-
-# 8 "LEDController.nc"
-inline static  void SerialAppM$LEDController$BlinkLed2(void){
-#line 8
-  LEDControllerM$LEDController$BlinkLed2();
-#line 8
-}
-#line 8
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void LEDControllerM$LEDTimer1$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(1U, arg_0x7e080068);
-#line 62
-}
-#line 62
-# 126 "LEDControllerM.nc"
-static inline  void LEDControllerM$LEDController$BlinkLed1(void)
-#line 126
-{
-  LEDControllerM$Leds$led1On();
-  LEDControllerM$LEDTimer1$startOneShot(200);
-}
-
-# 7 "LEDController.nc"
-inline static  void SerialAppM$LEDController$BlinkLed1(void){
-#line 7
-  LEDControllerM$LEDController$BlinkLed1();
-#line 7
-}
-#line 7
-# 84 "SerialAppM.nc"
+# 78 "SerialAppM.nc"
 static inline  void SerialAppM$sendPacket$runTask(void)
-#line 84
+#line 78
 {
-  SerialAppM$LEDController$BlinkLed1();
-  SerialAppM$LEDController$BlinkLed2();
   SerialAppM$ComSat$sendData((void *)&SerialAppM$packet);
 }
 
@@ -16306,9 +16158,9 @@ static inline   void HplAtm128Timer0AsyncC$Timer$setScale(uint8_t s)
 }
 
 # 95 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
-inline static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$setScale(uint8_t arg_0x7dbd0428){
+inline static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$setScale(uint8_t arg_0x7ead1428){
 #line 95
-  HplAtm128Timer0AsyncC$Timer$setScale(arg_0x7dbd0428);
+  HplAtm128Timer0AsyncC$Timer$setScale(arg_0x7ead1428);
 #line 95
 }
 #line 95
@@ -16337,9 +16189,9 @@ static inline   void HplAtm128Timer0AsyncC$Timer$set(uint8_t t)
 }
 
 # 58 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Timer.nc"
-inline static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$set(/*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$timer_size arg_0x7dbd37b0){
+inline static   void /*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$set(/*AlarmCounterMilliP.MilliInit*/Atm128TimerInitC$0$Timer$timer_size arg_0x7ead47b0){
 #line 58
-  HplAtm128Timer0AsyncC$Timer$set(arg_0x7dbd37b0);
+  HplAtm128Timer0AsyncC$Timer$set(arg_0x7ead47b0);
 #line 58
 }
 #line 58
@@ -16382,13 +16234,13 @@ static inline   uint16_t MeasureClockC$Atm128Calibrate$baudrateRegister(uint32_t
 }
 
 # 60 "/opt/tinyos-2.x/tos/chips/atm128/timer/Atm128Calibrate.nc"
-inline static   uint16_t HplAtm128UartP$Atm128Calibrate$baudrateRegister(uint32_t arg_0x7df61898){
+inline static   uint16_t HplAtm128UartP$Atm128Calibrate$baudrateRegister(uint32_t arg_0x7ee62520){
 #line 60
   unsigned int result;
 #line 60
 
 #line 60
-  result = MeasureClockC$Atm128Calibrate$baudrateRegister(arg_0x7df61898);
+  result = MeasureClockC$Atm128Calibrate$baudrateRegister(arg_0x7ee62520);
 #line 60
 
 #line 60
@@ -16636,23 +16488,18 @@ inline static  error_t RealMainP$SoftwareInit$init(void){
 #line 51
 }
 #line 51
-# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
-inline static  void ComSatM$ElapsedTimer$startOneShot(uint32_t arg_0x7e080068){
-#line 62
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(15U, arg_0x7e080068);
-#line 62
+# 53 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+inline static  void ComSatM$ElapsedTimer$startPeriodic(uint32_t arg_0x7ef81a70){
+#line 53
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startPeriodic(15U, arg_0x7ef81a70);
+#line 53
 }
-#line 62
-# 55 "ComSatM.nc"
+#line 53
+# 43 "ComSatM.nc"
 static inline  void ComSatM$ComSat$init(void)
-#line 55
+#line 43
 {
-  ComSatM$priority_t *data = (ComSatM$priority_t *)ComSatM$AMSend$getPayload(&ComSatM$output);
-
-#line 57
-  ComSatM$isRolePhase = 1;
-  __nesc_hton_uint8((unsigned char *)&data->isRolePhase, 1);
-  ComSatM$ElapsedTimer$startOneShot(10000);
+  ComSatM$ElapsedTimer$startPeriodic(107);
   ComSatM$start$postTask();
 }
 
@@ -16803,9 +16650,9 @@ inline static  void SerialAppM$LCDSetter$init(void){
 #line 2
 }
 #line 2
-# 59 "SerialAppM.nc"
+# 57 "SerialAppM.nc"
 static inline  void SerialAppM$Boot$booted(void)
-#line 59
+#line 57
 {
   SerialAppM$LCDSetter$init();
   SerialAppM$ComSat$init();
@@ -17474,13 +17321,13 @@ uint8_t *newChannel, uint8_t *newRefVoltage)
 }
 
 # 110 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcMultiple.nc"
-inline static   bool Atm128AdcP$Atm128AdcMultiple$dataReady(uint16_t arg_0x7d577a68, bool arg_0x7d577bf0, uint8_t arg_0x7d577d78, uint8_t *arg_0x7d576010, uint8_t *arg_0x7d5761c0){
+inline static   bool Atm128AdcP$Atm128AdcMultiple$dataReady(uint16_t arg_0x7e47aa68, bool arg_0x7e47abf0, uint8_t arg_0x7e47ad78, uint8_t *arg_0x7e478010, uint8_t *arg_0x7e4781c0){
 #line 110
   unsigned char result;
 #line 110
 
 #line 110
-  result = Atm128AdcP$Atm128AdcMultiple$default$dataReady(arg_0x7d577a68, arg_0x7d577bf0, arg_0x7d577d78, arg_0x7d576010, arg_0x7d5761c0);
+  result = Atm128AdcP$Atm128AdcMultiple$default$dataReady(arg_0x7e47aa68, arg_0x7e47abf0, arg_0x7e47ad78, arg_0x7e478010, arg_0x7e4781c0);
 #line 110
 
 #line 110
@@ -17495,9 +17342,9 @@ static inline    void AdcP$ReadNow$default$readDone(uint8_t c, error_t e, uint16
 }
 
 # 65 "/opt/tinyos-2.x/tos/interfaces/ReadNow.nc"
-inline static   void AdcP$ReadNow$readDone(uint8_t arg_0x7d4e9440, error_t arg_0x7d58bb10, AdcP$ReadNow$val_t arg_0x7d58bc98){
+inline static   void AdcP$ReadNow$readDone(uint8_t arg_0x7e3ec440, error_t arg_0x7e48db10, AdcP$ReadNow$val_t arg_0x7e48dc98){
 #line 65
-    AdcP$ReadNow$default$readDone(arg_0x7d4e9440, arg_0x7d58bb10, arg_0x7d58bc98);
+    AdcP$ReadNow$default$readDone(arg_0x7e3ec440, arg_0x7e48db10, arg_0x7e48dc98);
 #line 65
 }
 #line 65
@@ -17548,9 +17395,9 @@ static inline   void AdcP$Atm128AdcSingle$dataReady(uint16_t data, bool precise)
 }
 
 # 72 "/opt/tinyos-2.x/tos/chips/atm128/adc/Atm128AdcSingle.nc"
-inline static   void Atm128AdcP$Atm128AdcSingle$dataReady(uint16_t arg_0x7d57d8b8, bool arg_0x7d57da40){
+inline static   void Atm128AdcP$Atm128AdcSingle$dataReady(uint16_t arg_0x7e4818b8, bool arg_0x7e481a40){
 #line 72
-  AdcP$Atm128AdcSingle$dataReady(arg_0x7d57d8b8, arg_0x7d57da40);
+  AdcP$Atm128AdcSingle$dataReady(arg_0x7e4818b8, arg_0x7e481a40);
 #line 72
 }
 #line 72
@@ -17643,9 +17490,9 @@ static inline   void Atm128AdcP$HplAtm128Adc$dataReady(uint16_t data)
 }
 
 # 147 "/opt/tinyos-2.x/tos/chips/atm128/adc/HplAtm128Adc.nc"
-inline static   void HplAtm128AdcP$HplAtm128Adc$dataReady(uint16_t arg_0x7d562120){
+inline static   void HplAtm128AdcP$HplAtm128Adc$dataReady(uint16_t arg_0x7e464120){
 #line 147
-  Atm128AdcP$HplAtm128Adc$dataReady(arg_0x7d562120);
+  Atm128AdcP$HplAtm128Adc$dataReady(arg_0x7e464120);
 #line 147
 }
 #line 147
@@ -17658,9 +17505,9 @@ static inline    void SCSuartDBGM$SCSuartDBGRecv$default$UARTRecv(uint8_t recv_C
 }
 
 # 30 "/opt/tinyos-2.x/tos/platforms/zigbex/SCSuartDBGRecv.nc"
-inline static   void SCSuartDBGM$SCSuartDBGRecv$UARTRecv(uint8_t arg_0x7d3a08f8){
+inline static   void SCSuartDBGM$SCSuartDBGRecv$UARTRecv(uint8_t arg_0x7e2a28f8){
 #line 30
-  SCSuartDBGM$SCSuartDBGRecv$default$UARTRecv(arg_0x7d3a08f8);
+  SCSuartDBGM$SCSuartDBGRecv$default$UARTRecv(arg_0x7e2a28f8);
 #line 30
 }
 #line 30
@@ -17672,16 +17519,16 @@ static inline   void SCSuartDBGM$HPLUART$rxDone(uint8_t data)
 }
 
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/HplAtm128Uart.nc"
-inline static   void HplAtm128UartP$HplUart0$rxDone(uint8_t arg_0x7d4696b0){
+inline static   void HplAtm128UartP$HplUart0$rxDone(uint8_t arg_0x7e36c6b0){
 #line 49
-  SCSuartDBGM$HPLUART$rxDone(arg_0x7d4696b0);
+  SCSuartDBGM$HPLUART$rxDone(arg_0x7e36c6b0);
 #line 49
 }
 #line 49
 #line 46
-inline static   void SCSuartDBGM$HPLUART$tx(uint8_t arg_0x7d46abc8){
+inline static   void SCSuartDBGM$HPLUART$tx(uint8_t arg_0x7e36dbc8){
 #line 46
-  HplAtm128UartP$HplUart0$tx(arg_0x7d46abc8);
+  HplAtm128UartP$HplUart0$tx(arg_0x7e36dbc8);
 #line 46
 }
 #line 46
@@ -17756,9 +17603,9 @@ static inline   void InteractionM$CommunicationWithOPT$parsing_longDT(uint8_t *R
 }
 
 # 32 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-inline static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_longDT(uint8_t *arg_0x7d8051f0){
+inline static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_longDT(uint8_t *arg_0x7e7086b8){
 #line 32
-  InteractionM$CommunicationWithOPT$parsing_longDT(arg_0x7d8051f0);
+  InteractionM$CommunicationWithOPT$parsing_longDT(arg_0x7e7086b8);
 #line 32
 }
 #line 32
@@ -17824,9 +17671,9 @@ static inline   void InteractionM$CommunicationWithOPT$parsing_control(uint8_t *
 }
 
 # 31 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-inline static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_control(uint8_t *arg_0x7d807d00){
+inline static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_control(uint8_t *arg_0x7e7081f0){
 #line 31
-  InteractionM$CommunicationWithOPT$parsing_control(arg_0x7d807d00);
+  InteractionM$CommunicationWithOPT$parsing_control(arg_0x7e7081f0);
 #line 31
 }
 #line 31
@@ -17855,9 +17702,9 @@ static inline   void InteractionM$CommunicationWithOPT$parsing_sensor(uint8_t *R
 }
 
 # 30 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-inline static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_sensor(uint8_t *arg_0x7d807838){
+inline static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_sensor(uint8_t *arg_0x7e709d08){
 #line 30
-  InteractionM$CommunicationWithOPT$parsing_sensor(arg_0x7d807838);
+  InteractionM$CommunicationWithOPT$parsing_sensor(arg_0x7e709d08);
 #line 30
 }
 #line 30
@@ -17898,9 +17745,9 @@ static inline   void InteractionM$CommunicationWithOPT$parsing_config(uint8_t *R
 }
 
 # 29 "/opt/tinyos-2.x/contrib/OptModuleEX/LIB_Header/CommunicationWithOPT.nc"
-inline static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_config(uint8_t *arg_0x7d807370){
+inline static   void CommunicationWithOPTM$CommunicationWithOPT$parsing_config(uint8_t *arg_0x7e709840){
 #line 29
-  InteractionM$CommunicationWithOPT$parsing_config(arg_0x7d807370);
+  InteractionM$CommunicationWithOPT$parsing_config(arg_0x7e709840);
 #line 29
 }
 #line 29
@@ -18044,16 +17891,16 @@ static inline   void CommunicationWithOPTM$HPLUART$rxDone(uint8_t data)
 }
 
 # 49 "/opt/tinyos-2.x/tos/chips/atm128/HplAtm128Uart.nc"
-inline static   void HplAtm128UartP$HplUart1$rxDone(uint8_t arg_0x7d4696b0){
+inline static   void HplAtm128UartP$HplUart1$rxDone(uint8_t arg_0x7e36c6b0){
 #line 49
-  CommunicationWithOPTM$HPLUART$rxDone(arg_0x7d4696b0);
+  CommunicationWithOPTM$HPLUART$rxDone(arg_0x7e36c6b0);
 #line 49
 }
 #line 49
 #line 46
-inline static   void CommunicationWithOPTM$HPLUART$tx(uint8_t arg_0x7d46abc8){
+inline static   void CommunicationWithOPTM$HPLUART$tx(uint8_t arg_0x7e36dbc8){
 #line 46
-  HplAtm128UartP$HplUart1$tx(arg_0x7d46abc8);
+  HplAtm128UartP$HplUart1$tx(arg_0x7e36dbc8);
 #line 46
 }
 #line 46
@@ -18203,9 +18050,9 @@ static inline   void CC2420CsmaP$CC2420Transmit$sendDone(message_t *p_msg, error
 }
 
 # 85 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Transmit.nc"
-inline static   void CC2420TransmitP$Send$sendDone(message_t *arg_0x7d1d6378, error_t arg_0x7d1d6500){
+inline static   void CC2420TransmitP$Send$sendDone(message_t *arg_0x7e0f9720, error_t arg_0x7e0f98a8){
 #line 85
-  CC2420CsmaP$CC2420Transmit$sendDone(arg_0x7d1d6378, arg_0x7d1d6500);
+  CC2420CsmaP$CC2420Transmit$sendDone(arg_0x7e0f9720, arg_0x7e0f98a8);
 #line 85
 }
 #line 85
@@ -18220,9 +18067,9 @@ static inline void CC2420TransmitP$signalDone(error_t err)
 }
 
 # 55 "/opt/tinyos-2.x/tos/lib/timer/Alarm.nc"
-inline static   void CC2420TransmitP$BackoffTimer$start(CC2420TransmitP$BackoffTimer$size_type arg_0x7dc018c8){
+inline static   void CC2420TransmitP$BackoffTimer$start(CC2420TransmitP$BackoffTimer$size_type arg_0x7eb028c8){
 #line 55
-  /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$start(arg_0x7dc018c8);
+  /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform32*/TransformAlarmC$0$Alarm$start(arg_0x7eb028c8);
 #line 55
 }
 #line 55
@@ -18431,9 +18278,9 @@ static inline   void CC2420ReceiveP$CC2420Receive$sfd(uint16_t time)
 }
 
 # 47 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Receive.nc"
-inline static   void CC2420TransmitP$CC2420Receive$sfd(uint16_t arg_0x7ce01f08){
+inline static   void CC2420TransmitP$CC2420Receive$sfd(uint16_t arg_0x7dd1bb40){
 #line 47
-  CC2420ReceiveP$CC2420Receive$sfd(arg_0x7ce01f08);
+  CC2420ReceiveP$CC2420Receive$sfd(arg_0x7dd1bb40);
 #line 47
 }
 #line 47
@@ -18444,9 +18291,9 @@ static inline    void CC2420TransmitP$TimeStamp$default$receivedSFD(uint16_t tim
 }
 
 # 50 "/opt/tinyos-2.x/tos/interfaces/RadioTimeStamping.nc"
-inline static   void CC2420TransmitP$TimeStamp$receivedSFD(uint16_t arg_0x7ce15710){
+inline static   void CC2420TransmitP$TimeStamp$receivedSFD(uint16_t arg_0x7dd33ce8){
 #line 50
-  CC2420TransmitP$TimeStamp$default$receivedSFD(arg_0x7ce15710);
+  CC2420TransmitP$TimeStamp$default$receivedSFD(arg_0x7dd33ce8);
 #line 50
 }
 #line 50
@@ -18526,9 +18373,9 @@ static inline    void CC2420TransmitP$TimeStamp$default$transmittedSFD(uint16_t 
 }
 
 # 39 "/opt/tinyos-2.x/tos/interfaces/RadioTimeStamping.nc"
-inline static   void CC2420TransmitP$TimeStamp$transmittedSFD(uint16_t arg_0x7ce15030, message_t *arg_0x7ce151e0){
+inline static   void CC2420TransmitP$TimeStamp$transmittedSFD(uint16_t arg_0x7dd33608, message_t *arg_0x7dd337b8){
 #line 39
-  CC2420TransmitP$TimeStamp$default$transmittedSFD(arg_0x7ce15030, arg_0x7ce151e0);
+  CC2420TransmitP$TimeStamp$default$transmittedSFD(arg_0x7dd33608, arg_0x7dd337b8);
 #line 39
 }
 #line 39
@@ -18601,9 +18448,9 @@ static inline   void CC2420TransmitP$CaptureSFD$captured(uint16_t time)
 }
 
 # 50 "/opt/tinyos-2.x/tos/interfaces/GpioCapture.nc"
-inline static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Capture$captured(uint16_t arg_0x7cfb47f8){
+inline static   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Capture$captured(uint16_t arg_0x7ded4ab8){
 #line 50
-  CC2420TransmitP$CaptureSFD$captured(arg_0x7cfb47f8);
+  CC2420TransmitP$CaptureSFD$captured(arg_0x7ded4ab8);
 #line 50
 }
 #line 50
@@ -18631,9 +18478,9 @@ static inline   void /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$At
 }
 
 # 51 "/opt/tinyos-2.x/tos/chips/atm128/timer/HplAtm128Capture.nc"
-inline static   void HplAtm128Timer1P$Capture$captured(HplAtm128Timer1P$Capture$size_type arg_0x7d0dc1d8){
+inline static   void HplAtm128Timer1P$Capture$captured(HplAtm128Timer1P$Capture$size_type arg_0x7dffe880){
 #line 51
-  /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$captured(arg_0x7d0dc1d8);
+  /*HplCC2420InterruptsC.CaptureSFDC*/Atm128GpioCaptureC$0$Atm128Capture$captured(arg_0x7dffe880);
 #line 51
 }
 #line 51
@@ -18707,13 +18554,13 @@ static inline   uint16_t CC2420CsmaP$CsmaBackoff$initial(message_t *m)
 }
 
 # 36 "/opt/tinyos-2.x/tos/interfaces/CsmaBackoff.nc"
-inline static   uint16_t CC2420TransmitP$CsmaBackoff$initial(message_t *arg_0x7d1d28d8){
+inline static   uint16_t CC2420TransmitP$CsmaBackoff$initial(message_t *arg_0x7e0fbcd0){
 #line 36
   unsigned int result;
 #line 36
 
 #line 36
-  result = CC2420CsmaP$CsmaBackoff$initial(arg_0x7d1d28d8);
+  result = CC2420CsmaP$CsmaBackoff$initial(arg_0x7e0fbcd0);
 #line 36
 
 #line 36
@@ -18767,25 +18614,25 @@ static inline    void CC2420SpiImplP$Fifo$default$writeDone(uint8_t addr, uint8_
 }
 
 # 91 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-inline static   void CC2420SpiImplP$Fifo$writeDone(uint8_t arg_0x7cf54068, uint8_t *arg_0x7cf60610, uint8_t arg_0x7cf60798, error_t arg_0x7cf60920){
+inline static   void CC2420SpiImplP$Fifo$writeDone(uint8_t arg_0x7de74228, uint8_t *arg_0x7de80798, uint8_t arg_0x7de80920, error_t arg_0x7de80aa8){
 #line 91
-  switch (arg_0x7cf54068) {
+  switch (arg_0x7de74228) {
 #line 91
     case CC2420_TXFIFO:
 #line 91
-      CC2420TransmitP$TXFIFO$writeDone(arg_0x7cf60610, arg_0x7cf60798, arg_0x7cf60920);
+      CC2420TransmitP$TXFIFO$writeDone(arg_0x7de80798, arg_0x7de80920, arg_0x7de80aa8);
 #line 91
       break;
 #line 91
     case CC2420_RXFIFO:
 #line 91
-      CC2420ReceiveP$RXFIFO$writeDone(arg_0x7cf60610, arg_0x7cf60798, arg_0x7cf60920);
+      CC2420ReceiveP$RXFIFO$writeDone(arg_0x7de80798, arg_0x7de80920, arg_0x7de80aa8);
 #line 91
       break;
 #line 91
     default:
 #line 91
-      CC2420SpiImplP$Fifo$default$writeDone(arg_0x7cf54068, arg_0x7cf60610, arg_0x7cf60798, arg_0x7cf60920);
+      CC2420SpiImplP$Fifo$default$writeDone(arg_0x7de74228, arg_0x7de80798, arg_0x7de80920, arg_0x7de80aa8);
 #line 91
       break;
 #line 91
@@ -18860,20 +18707,20 @@ static inline   void CC2420TransmitP$CC2420Receive$receive(uint8_t type, message
 }
 
 # 61 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Receive.nc"
-inline static   void CC2420ReceiveP$CC2420Receive$receive(uint8_t arg_0x7cdfd828, message_t *arg_0x7cdfd9d8){
+inline static   void CC2420ReceiveP$CC2420Receive$receive(uint8_t arg_0x7dd1a470, message_t *arg_0x7dd1a620){
 #line 61
-  CC2420TransmitP$CC2420Receive$receive(arg_0x7cdfd828, arg_0x7cdfd9d8);
+  CC2420TransmitP$CC2420Receive$receive(arg_0x7dd1a470, arg_0x7dd1a620);
 #line 61
 }
 #line 61
 # 62 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-inline static   error_t CC2420ReceiveP$RXFIFO$continueRead(uint8_t *arg_0x7cf63d00, uint8_t arg_0x7cf63e88){
+inline static   error_t CC2420ReceiveP$RXFIFO$continueRead(uint8_t *arg_0x7de83eb0, uint8_t arg_0x7de82068){
 #line 62
   unsigned char result;
 #line 62
 
 #line 62
-  result = CC2420SpiImplP$Fifo$continueRead(CC2420_RXFIFO, arg_0x7cf63d00, arg_0x7cf63e88);
+  result = CC2420SpiImplP$Fifo$continueRead(CC2420_RXFIFO, arg_0x7de83eb0, arg_0x7de82068);
 #line 62
 
 #line 62
@@ -19029,25 +18876,25 @@ static inline    void CC2420SpiImplP$Fifo$default$readDone(uint8_t addr, uint8_t
 }
 
 # 71 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420Fifo.nc"
-inline static   void CC2420SpiImplP$Fifo$readDone(uint8_t arg_0x7cf54068, uint8_t *arg_0x7cf624f8, uint8_t arg_0x7cf62680, error_t arg_0x7cf62808){
+inline static   void CC2420SpiImplP$Fifo$readDone(uint8_t arg_0x7de74228, uint8_t *arg_0x7de82698, uint8_t arg_0x7de82820, error_t arg_0x7de829a8){
 #line 71
-  switch (arg_0x7cf54068) {
+  switch (arg_0x7de74228) {
 #line 71
     case CC2420_TXFIFO:
 #line 71
-      CC2420TransmitP$TXFIFO$readDone(arg_0x7cf624f8, arg_0x7cf62680, arg_0x7cf62808);
+      CC2420TransmitP$TXFIFO$readDone(arg_0x7de82698, arg_0x7de82820, arg_0x7de829a8);
 #line 71
       break;
 #line 71
     case CC2420_RXFIFO:
 #line 71
-      CC2420ReceiveP$RXFIFO$readDone(arg_0x7cf624f8, arg_0x7cf62680, arg_0x7cf62808);
+      CC2420ReceiveP$RXFIFO$readDone(arg_0x7de82698, arg_0x7de82820, arg_0x7de829a8);
 #line 71
       break;
 #line 71
     default:
 #line 71
-      CC2420SpiImplP$Fifo$default$readDone(arg_0x7cf54068, arg_0x7cf624f8, arg_0x7cf62680, arg_0x7cf62808);
+      CC2420SpiImplP$Fifo$default$readDone(arg_0x7de74228, arg_0x7de82698, arg_0x7de82820, arg_0x7de829a8);
 #line 71
       break;
 #line 71
@@ -19070,9 +18917,9 @@ uint16_t len, error_t error)
 }
 
 # 71 "/opt/tinyos-2.x/tos/interfaces/SpiPacket.nc"
-inline static   void Atm128SpiP$SpiPacket$sendDone(uint8_t *arg_0x7cf40290, uint8_t *arg_0x7cf40438, uint16_t arg_0x7cf405c8, error_t arg_0x7cf40760){
+inline static   void Atm128SpiP$SpiPacket$sendDone(uint8_t *arg_0x7de60610, uint8_t *arg_0x7de607b8, uint16_t arg_0x7de60948, error_t arg_0x7de60ae0){
 #line 71
-  CC2420SpiImplP$SpiPacket$sendDone(arg_0x7cf40290, arg_0x7cf40438, arg_0x7cf405c8, arg_0x7cf40760);
+  CC2420SpiImplP$SpiPacket$sendDone(arg_0x7de60610, arg_0x7de607b8, arg_0x7de60948, arg_0x7de60ae0);
 #line 71
 }
 #line 71
@@ -19100,9 +18947,9 @@ inline static   uint8_t Atm128SpiP$Spi$read(void){
 }
 #line 80
 #line 96
-inline static   void Atm128SpiP$Spi$enableInterrupt(bool arg_0x7cef3478){
+inline static   void Atm128SpiP$Spi$enableInterrupt(bool arg_0x7de128e0){
 #line 96
-  HplAtm128SpiP$SPI$enableInterrupt(arg_0x7cef3478);
+  HplAtm128SpiP$SPI$enableInterrupt(arg_0x7de128e0);
 #line 96
 }
 #line 96
@@ -19154,9 +19001,9 @@ static inline   void Atm128SpiP$Spi$dataReady(uint8_t data)
 }
 
 # 92 "/opt/tinyos-2.x/tos/chips/atm128/spi/Atm128Spi.nc"
-inline static   void HplAtm128SpiP$SPI$dataReady(uint8_t arg_0x7cef4f08){
+inline static   void HplAtm128SpiP$SPI$dataReady(uint8_t arg_0x7de12398){
 #line 92
-  Atm128SpiP$Spi$dataReady(arg_0x7cef4f08);
+  Atm128SpiP$Spi$dataReady(arg_0x7de12398);
 #line 92
 }
 #line 92
@@ -19237,9 +19084,9 @@ static   void SchedulerBasicP$TaskBasic$default$runTask(uint8_t id)
 }
 
 # 64 "/opt/tinyos-2.x/tos/interfaces/TaskBasic.nc"
-static  void SchedulerBasicP$TaskBasic$runTask(uint8_t arg_0x7e162030){
+static  void SchedulerBasicP$TaskBasic$runTask(uint8_t arg_0x7f062030){
 #line 64
-  switch (arg_0x7e162030) {
+  switch (arg_0x7f062030) {
 #line 64
     case SerialAppM$sendPacket:
 #line 64
@@ -19373,18 +19220,6 @@ static  void SchedulerBasicP$TaskBasic$runTask(uint8_t arg_0x7e162030){
 #line 64
       break;
 #line 64
-    case ComSatM$setPriority:
-#line 64
-      ComSatM$setPriority$runTask();
-#line 64
-      break;
-#line 64
-    case ComSatM$sendPriority:
-#line 64
-      ComSatM$sendPriority$runTask();
-#line 64
-      break;
-#line 64
     case ComSatM$sendDataTask:
 #line 64
       ComSatM$sendDataTask$runTask();
@@ -19441,7 +19276,7 @@ static  void SchedulerBasicP$TaskBasic$runTask(uint8_t arg_0x7e162030){
 #line 64
     default:
 #line 64
-      SchedulerBasicP$TaskBasic$default$runTask(arg_0x7e162030);
+      SchedulerBasicP$TaskBasic$default$runTask(arg_0x7f062030);
 #line 64
       break;
 #line 64
@@ -19449,42 +19284,6 @@ static  void SchedulerBasicP$TaskBasic$runTask(uint8_t arg_0x7e162030){
 #line 64
 }
 #line 64
-# 92 "/opt/tinyos-2.x/tos/lib/timer/TransformAlarmCounterC.nc"
-static   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Counter$get(void)
-{
-  /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type rv = 0;
-
-#line 95
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-    {
-      /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$upper_count_type high = /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$m_upper;
-      /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$from_size_type low = /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$get();
-
-#line 99
-      if (/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$isOverflowPending()) 
-        {
-
-
-
-
-
-
-          high++;
-          low = /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$get();
-        }
-      {
-        /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type high_to = high;
-        /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type low_to = low >> /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$LOW_SHIFT_RIGHT;
-
-#line 113
-        rv = (high_to << /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$HIGH_SHIFT_LEFT) | low_to;
-      }
-    }
-#line 115
-    __nesc_atomic_end(__nesc_atomic); }
-  return rv;
-}
-
 # 159 "/opt/tinyos-2.x/tos/system/SchedulerBasicP.nc"
 static   error_t SchedulerBasicP$TaskBasic$postTask(uint8_t id)
 {
@@ -19507,35 +19306,6 @@ static   error_t SchedulerBasicP$TaskBasic$postTask(uint8_t id)
     }
 #line 164
     __nesc_atomic_end(__nesc_atomic); }
-}
-
-# 180 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-static  void *CC2420ActiveMessageP$Packet$getPayload(message_t *msg, uint8_t *len)
-#line 180
-{
-  if (len != (void *)0) {
-      *len = CC2420ActiveMessageP$Packet$payloadLength(msg);
-    }
-  return msg->data;
-}
-
-# 147 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
-static  void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(uint8_t num, uint32_t dt)
-{
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$startTimer(num, /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$TimerFrom$getNow(), dt, TRUE);
-}
-
-#line 132
-static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot)
-{
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer_t *timer = &/*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$m_timers[num];
-
-#line 135
-  timer->t0 = t0;
-  timer->dt = dt;
-  timer->isoneshot = isoneshot;
-  timer->isrunning = TRUE;
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFromTimer$postTask();
 }
 
 # 142 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
@@ -20141,22 +19911,62 @@ uint8_t len)
   return status;
 }
 
-# 59 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-static  error_t CC2420ActiveMessageP$AMSend$send(am_id_t id, am_addr_t addr, 
-message_t *msg, 
-uint8_t len)
-#line 61
+# 132 "/opt/tinyos-2.x/tos/lib/timer/VirtualizeTimerC.nc"
+static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot)
 {
-  cc2420_header_t *header = CC2420ActiveMessageP$getHeader(msg);
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer_t *timer = &/*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$m_timers[num];
 
-#line 63
-  __nesc_hton_leuint8((unsigned char *)&header->type, id);
-  __nesc_hton_leuint16((unsigned char *)&header->dest, addr);
-  __nesc_hton_leuint16((unsigned char *)&header->destpan, TOS_AM_GROUP);
-
-  return CC2420ActiveMessageP$SubSend$send(msg, len + CC2420ActiveMessageP$CC2420_SIZE);
+#line 135
+  timer->t0 = t0;
+  timer->dt = dt;
+  timer->isoneshot = isoneshot;
+  timer->isrunning = TRUE;
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$updateFromTimer$postTask();
 }
 
+# 92 "/opt/tinyos-2.x/tos/lib/timer/TransformAlarmCounterC.nc"
+static   /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Counter$get(void)
+{
+  /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type rv = 0;
+
+#line 95
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+    {
+      /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$upper_count_type high = /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$m_upper;
+      /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$from_size_type low = /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$get();
+
+#line 99
+      if (/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$isOverflowPending()) 
+        {
+
+
+
+
+
+
+          high++;
+          low = /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$CounterFrom$get();
+        }
+      {
+        /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type high_to = high;
+        /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type low_to = low >> /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$LOW_SHIFT_RIGHT;
+
+#line 113
+        rv = (high_to << /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$HIGH_SHIFT_LEFT) | low_to;
+      }
+    }
+#line 115
+    __nesc_atomic_end(__nesc_atomic); }
+  return rv;
+}
+
+# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+static  void SerialAppM$Timer$startOneShot(uint32_t arg_0x7ef80068){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(0U, arg_0x7ef80068);
+#line 62
+}
+#line 62
 # 113 "/opt/tinyos-2.x/tos/chips/cc2420/CC2420TransmitP.nc"
 static error_t CC2420TransmitP$acquireSpiResource(void)
 #line 113
@@ -20243,6 +20053,13 @@ static void AdcP$sample(void)
   AdcP$Atm128AdcSingle$getData(AdcP$channel(), AdcP$refVoltage(), TRUE, AdcP$prescaler());
 }
 
+# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+static  void HplSensirionSht11P$Timer$startOneShot(uint32_t arg_0x7ef80068){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(11U, arg_0x7ef80068);
+#line 62
+}
+#line 62
 # 121 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11LogicP.nc"
 static  error_t /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureHumidity(uint8_t client)
 #line 121
@@ -20388,6 +20205,13 @@ static error_t /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0
   return SUCCESS;
 }
 
+# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$Timer$startOneShot(uint32_t arg_0x7ef80068){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(12U, arg_0x7ef80068);
+#line 62
+}
+#line 62
 # 15 "/opt/tinyos-2.x/tos/chips/atm128/pins/Atm128GpioInterruptC.nc"
 static error_t /*HplSensirionSht11C.InterruptDATAC*/Atm128GpioInterruptC$0$enable(bool rising)
 #line 15
@@ -20589,37 +20413,37 @@ static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$
 }
 
 # 69 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureTemperatureDone(uint8_t arg_0x7d725bb8, error_t arg_0x7d757c88, uint16_t arg_0x7d757e18){
+static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureTemperatureDone(uint8_t arg_0x7e626200, error_t arg_0x7e6580f8, uint16_t arg_0x7e658288){
 #line 69
-  switch (arg_0x7d725bb8) {
+  switch (arg_0x7e626200) {
 #line 69
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$TEMP_KEY:
 #line 69
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureTemperatureDone(arg_0x7d757c88, arg_0x7d757e18);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureTemperatureDone(arg_0x7e6580f8, arg_0x7e658288);
 #line 69
       break;
 #line 69
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$HUM_KEY:
 #line 69
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureTemperatureDone(arg_0x7d757c88, arg_0x7d757e18);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureTemperatureDone(arg_0x7e6580f8, arg_0x7e658288);
 #line 69
       break;
 #line 69
     case /*TempSensorC.Sensor*/SensirionSht11C$1$TEMP_KEY:
 #line 69
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$measureTemperatureDone(arg_0x7d757c88, arg_0x7d757e18);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$measureTemperatureDone(arg_0x7e6580f8, arg_0x7e658288);
 #line 69
       break;
 #line 69
     case /*TempSensorC.Sensor*/SensirionSht11C$1$HUM_KEY:
 #line 69
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureTemperatureDone(arg_0x7d757c88, arg_0x7d757e18);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureTemperatureDone(arg_0x7e6580f8, arg_0x7e658288);
 #line 69
       break;
 #line 69
     default:
 #line 69
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$measureTemperatureDone(arg_0x7d725bb8, arg_0x7d757c88, arg_0x7d757e18);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$measureTemperatureDone(arg_0x7e626200, arg_0x7e6580f8, arg_0x7e658288);
 #line 69
       break;
 #line 69
@@ -20634,37 +20458,37 @@ static   void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$
 }
 
 # 84 "/opt/tinyos-2.x/tos/sensorboards/zigbex_sensor/sht11/SensirionSht11.nc"
-static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureHumidityDone(uint8_t arg_0x7d725bb8, error_t arg_0x7d756718, uint16_t arg_0x7d7568a8){
+static  void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$measureHumidityDone(uint8_t arg_0x7e626200, error_t arg_0x7e658b70, uint16_t arg_0x7e658d00){
 #line 84
-  switch (arg_0x7d725bb8) {
+  switch (arg_0x7e626200) {
 #line 84
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$TEMP_KEY:
 #line 84
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureHumidityDone(arg_0x7d756718, arg_0x7d7568a8);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Temp$measureHumidityDone(arg_0x7e658b70, arg_0x7e658d00);
 #line 84
       break;
 #line 84
     case /*InteractionC.SensirionSht11C*/SensirionSht11C$0$HUM_KEY:
 #line 84
-      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureHumidityDone(arg_0x7d756718, arg_0x7d7568a8);
+      /*InteractionC.SensirionSht11C.SensirionSht11ReaderP*/SensirionSht11ReaderP$0$Sht11Hum$measureHumidityDone(arg_0x7e658b70, arg_0x7e658d00);
 #line 84
       break;
 #line 84
     case /*TempSensorC.Sensor*/SensirionSht11C$1$TEMP_KEY:
 #line 84
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$measureHumidityDone(arg_0x7d756718, arg_0x7d7568a8);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Temp$measureHumidityDone(arg_0x7e658b70, arg_0x7e658d00);
 #line 84
       break;
 #line 84
     case /*TempSensorC.Sensor*/SensirionSht11C$1$HUM_KEY:
 #line 84
-      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureHumidityDone(arg_0x7d756718, arg_0x7d7568a8);
+      /*TempSensorC.Sensor.SensirionSht11ReaderP*/SensirionSht11ReaderP$1$Sht11Hum$measureHumidityDone(arg_0x7e658b70, arg_0x7e658d00);
 #line 84
       break;
 #line 84
     default:
 #line 84
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$measureHumidityDone(arg_0x7d725bb8, arg_0x7d756718, arg_0x7d7568a8);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP$0$SensirionSht11$default$measureHumidityDone(arg_0x7e626200, arg_0x7e658b70, arg_0x7e658d00);
 #line 84
       break;
 #line 84
@@ -20855,6 +20679,13 @@ static void CC2420ReceiveP$reset_state(void)
   CC2420ReceiveP$m_missed_packets = 0;
 }
 
+# 62 "/opt/tinyos-2.x/tos/lib/timer/Timer.nc"
+static  void LEDControllerM$LEDIntervalTimer0$startOneShot(uint32_t arg_0x7ef80068){
+#line 62
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC$0$Timer$startOneShot(6U, arg_0x7ef80068);
+#line 62
+}
+#line 62
 # 221 "/opt/tinyos-2.x/tos/lib/timer/TransformAlarmCounterC.nc"
 static   void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$Alarm$startAt(/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type t0, /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$to_size_type dt)
 {
@@ -20920,9 +20751,9 @@ static void /*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$set_alarm
   (/*AlarmCounterMilliP.Transform32*/TransformAlarmCounterC$0$from_size_type )remaining << 0);
 }
 
-# 158 "SerialAppM.nc"
+# 150 "SerialAppM.nc"
 static void SerialAppM$setValues(uint16_t newValue)
-#line 158
+#line 150
 {
 
   float delta = 0;
@@ -20935,7 +20766,7 @@ static void SerialAppM$setValues(uint16_t newValue)
   if (SerialAppM$con_i[SerialAppM$turn] == 1) {
     }
   else 
-#line 168
+#line 160
     {
 
       delta2 = newValue - SerialAppM$ret_avg[SerialAppM$turn];
@@ -20944,24 +20775,25 @@ static void SerialAppM$setValues(uint16_t newValue)
     }
 }
 
-#line 153
+#line 144
 static void SerialAppM$IntervalBlink(uint8_t interval)
-#line 153
+#line 144
 {
+  SerialAppM$isUsingLEDs = 1;
   if (SerialAppM$turn == SerialAppM$TEMP) {
-#line 154
+#line 146
     SerialAppM$LEDController$IntervalBlinkLed0(interval);
     }
   else {
-#line 155
+#line 147
     if (SerialAppM$turn == SerialAppM$HUMID) {
-#line 155
+#line 147
       SerialAppM$LEDController$IntervalBlinkLed1(interval);
       }
     else {
-#line 156
+#line 148
       if (SerialAppM$turn == SerialAppM$UR) {
-#line 156
+#line 148
         SerialAppM$LEDController$IntervalBlinkLed2(interval);
         }
       }

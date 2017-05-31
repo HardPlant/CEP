@@ -6,7 +6,6 @@ module ComSatM
     }
   uses {
     interface Timer<TMilli> as ElapsedTimer;
-    interface Timer<TMilli>;
     interface SplitControl as RadioControl;
     interface AMSend;
     interface Receive;
@@ -36,12 +35,9 @@ implementation
 ////////////////////////////// Function prototype
     task void start();
 
-    task void setPriority();
-    task void sendPriority();
-    void priorityReceived(void *payload);
-
     task void sendDataTask();
     void dataReceived(void *payload);
+
 ////////////////////////////// 
 
     command void ComSat.init(){
@@ -51,7 +47,7 @@ implementation
     event void ElapsedTimer.fired(){
         devicePriority++;
         if(devicePriority == 100000){
-            ElapsedTimer.stop(); // 오버플로우 방지
+            call ElapsedTimer.stop(); // 오버플로우 방지
             isTX = 1; // 사실상 TX
         }
     }
@@ -91,8 +87,8 @@ implementation
 
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
             post sendDataTask();
-            
-        if(isTx || call ElapsedTimer.isRunning()){
+
+        if(isTX || call ElapsedTimer.isRunning()){
             call LEDController.BlinkLed0();
             call LEDController.BlinkLed1();
             call LEDController.BlinkLed2();
@@ -105,7 +101,9 @@ implementation
     ////////////////////RX
 
     event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
-        if(devicePriority >= (sensor_data_t*)payload->priority) return msg; // 받은 패킷보다 장비 우선도가 높으면 무시한다.
+        nx_uint32_t packetPriority;
+        packetPriority = ((sensor_data_t*)payload)->priority;
+        if(devicePriority >= packetPriority) return msg; // 받은 패킷보다 장비 우선도가 높으면 무시한다.
                                                                             // 장비 우선도가 같아도 달라질 때까지 무시한다.
         if(call ElapsedTimer.isRunning()) call ElapsedTimer.stop();
         dataReceived(payload);
