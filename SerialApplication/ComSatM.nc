@@ -24,7 +24,6 @@ implementation
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;
-        nx_uint16_t version;
     } sensor_data_t;
 //////////////////////////////  Globals
     
@@ -75,7 +74,6 @@ implementation
         currentData.temp = data->temp;
         currentData.humid = data->humid;
         currentData.ur = data->ur;
-        currentData.version = data->version;
         post sendDataTask();
     }
 

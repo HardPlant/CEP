@@ -14872,7 +14872,7 @@ static inline char *LCDSetterM$getType(void)
 {
   if (LCDSetterM$LCDDisplayType == LCDSetterM$TEMP) {
 #line 91
-    return "TEMP ";
+    return "TEMP";
     }
 #line 92
   if (LCDSetterM$LCDDisplayType == LCDSetterM$HUMID) {
@@ -14882,7 +14882,7 @@ static inline char *LCDSetterM$getType(void)
 #line 93
   if (LCDSetterM$LCDDisplayType == LCDSetterM$UR) {
 #line 93
-    return "URed ";
+    return "URed";
     }
 }
 
@@ -14896,7 +14896,7 @@ static inline void LCDSetterM$LCDSW1(char SetDataBuff[])
   static uint8_t turn = LCDSetterM$UPPER;
 
   if (turn == LCDSetterM$UPPER) {
-      sprintf(SetDataBuff, "%s AVG StDev ", LCDSetterM$getType());
+      sprintf(SetDataBuff, "%5s AVG StDev ", LCDSetterM$getType());
       LCDSetterM$LCDConfigure(turn, SetDataBuff);
       turn = LCDSetterM$LOWER;
     }

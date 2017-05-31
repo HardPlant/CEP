@@ -30,13 +30,11 @@ implementation {
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;
-        nx_uint16_t version;
     } Packet;
 
     Packet packet;
 
     uint8_t turn;
-    uint16_t currentVersion;
     Packet packetQueue[PACKET_QUEUE_LEN];
     uint8_t packetIndex;
     uint8_t currentPacketIndex;
@@ -72,7 +70,6 @@ implementation {
         packet.temp = temp;
         packet.humid = humid;
         packet.ur = ur;
-        packet.version = currentVersion++;
         post sendPacket();
     }
     task void sendPacket(){
@@ -101,10 +98,6 @@ implementation {
 
     void packetInsert(Packet* pkt){
         if(pkt == NULL) return;
-        if(pkt->version <= packet.version) return;
-
-        currentVersion = pkt->version;
-
         memcpy(&(packetQueue[packetIndex]),pkt, sizeof(Packet));
         packetIndex = (packetIndex + 1) % PACKET_QUEUE_LEN;
 
