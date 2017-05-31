@@ -78,14 +78,12 @@ module LCDSetterM {
   }
 
   //////////////////////////////////////////////////////////
-typedef enum {TEMP, HUMID, UR, Priority, TXD} TYPE;
+typedef enum {TEMP, HUMID, UR} TYPE;
 
   char* getType(){
     if(LCDDisplayType == TEMP) return "TEMP ";
     if(LCDDisplayType == HUMID) return "HUMID";
     if(LCDDisplayType == UR) return "URed ";
-    if(LCDDisplayType == Priority) return "PRIOD";
-    if(LCDDisplayType == TXD) return "TRANS";
   }
   event void Timer.fired(){
     Cmd_struct_t CMD_Frame;

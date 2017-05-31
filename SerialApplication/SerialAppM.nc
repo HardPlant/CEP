@@ -18,10 +18,7 @@ implementation {
     #define FALSE 0
     #define BOOL char
 ////////////Globals
-    typedef enum {TEMP, HUMID, UR, Priority, TXD} TYPE;
-    typedef enum {RX,TX} ROLE;
-    
-    uint8_t deviceRole;
+    typedef enum {TEMP, HUMID, UR} TYPE;
 
     uint8_t con_i[3] = {0,};
     float ret_avg[3] = {0,};
@@ -29,14 +26,15 @@ implementation {
     float m2[3] = {0,};
 
     typedef nx_struct message{
-        nx_uint8_t isRolePhase;
+        nx_uint32_t priority;
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;
         nx_uint16_t version;
     } Packet;
-    
+
     Packet packet;
+
     uint8_t turn;
     uint16_t currentVersion;
     Packet packetQueue[PACKET_QUEUE_LEN];
@@ -62,19 +60,15 @@ implementation {
     }
 
     event void ComSat.initDone(uint8_t role){
-        deviceRole = role;
         call Timer.startOneShot(1000);
     }
     event void Timer.fired(){
-        if (deviceRole != TX) return;
 
         call TempSensor.start();
         call Timer.startOneShot(8000);
     }
-    ////TX
+    ////TX  
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
-        call LCDSetter.setLCD(TXD,temp, humid,ur);
-        packet.isRolePhase = FALSE;
         packet.temp = temp;
         packet.humid = humid;
         packet.ur = ur;
@@ -82,15 +76,13 @@ implementation {
         post sendPacket();
     }
     task void sendPacket(){
-        call LEDController.BlinkLed1();
-        call LEDController.BlinkLed2();
-        call ComSat.sendData((void*)&packet);
+        call ComSat.sendData((void*)&packet); // 모든 장비가 이 시도를 하지만..
     }
+
     ////RX
     
-    event void ComSat.received(void* data){
-        if(deviceRole != RX) return;
-        packetInsert((Packet*)data);
+    event void ComSat.received(void* data){ // 모든 타 장비가 이 장치보다 우선순위 낮다면
+        packetInsert((Packet*)data);        // 절대 이 이벤트는 일어나지 않음
         post setData();
     }
     task void setData(){
@@ -129,7 +121,6 @@ implementation {
     }
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         atomic{
-            isUsingLEDs = TRUE;
             if(turn == TEMP){           
                 setValues(temp);
                 IntervalBlink(temp - ret_avg[turn]); // float->uint16_t로 캐스팅됨
@@ -151,7 +142,8 @@ implementation {
         }
     }
     void IntervalBlink(uint8_t interval){
-        if(turn == TEMP) call LEDController.IntervalBlinkLed0(interval);
+        isUsingLEDs = TRUE;
+        if(turn == TEMP)       call LEDController.IntervalBlinkLed0(interval);
         else if(turn == HUMID) call LEDController.IntervalBlinkLed1(interval);
         else if(turn == UR)    call LEDController.IntervalBlinkLed2(interval);
     } 

@@ -5,40 +5,32 @@ module ComSatM
         interface ComSat;
     }
   uses {
-    interface Timer<TMilli> as PriorityTimer;
     interface Timer<TMilli> as ElapsedTimer;
     interface Timer<TMilli>;
     interface SplitControl as RadioControl;
     interface AMSend;
     interface Receive;
     interface LEDController;
-    interface LCDSetter;
   }
 }
 implementation
 {
-//////////////////////////////  Structs
-    typedef nx_struct{
-        nx_uint8_t isRolePhase;
-        nx_uint16_t priority;
-    } priority_t;
+//////////////////////////////  Custom Types
+
+    typedef enum {TEMP, HUMID, UR} TYPE;
 
     typedef nx_struct{
-        nx_uint8_t isRolePhase;
+        nx_uint32_t priority;
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;
         nx_uint16_t version;
     } sensor_data_t;
 //////////////////////////////  Globals
-
-    typedef enum {TEMP, HUMID, UR, Priority} TYPE;
-    typedef enum {RX,TX} ROLE;
     
-    uint8_t deviceRole;
-    uint8_t isRolePhase = 1;
+    uint8_t isTX;
     message_t output;
-    nx_uint16_t devicePriority;
+    nx_uint32_t devicePriority;
 
     sensor_data_t currentData;
 ////////////////////////////// Function prototype
@@ -53,57 +45,35 @@ implementation
 ////////////////////////////// 
 
     command void ComSat.init(){
-        priority_t* data = (priority_t*) call AMSend.getPayload(&output);
-        isRolePhase = 1;
-        data->isRolePhase = 1;
-        call ElapsedTimer.startOneShot(10000);
-        post start();
+        call ElapsedTimer.startPeriodic(107); // 우선도 증가 주기와 센서 샘플링 주기가 서로소가 되게 하면 
+        post start();                         // 우선도가 서로 달라지는 시점이 나온다.
     }
-    event void ElapsedTimer.fired(){} // do nothing
+    event void ElapsedTimer.fired(){
+        devicePriority++;
+        if(devicePriority == 100000){
+            ElapsedTimer.stop(); // 오버플로우 방지
+            isTX = 1; // 사실상 TX
+        }
+    }
+
     task void start(){
         if(call RadioControl.start() != SUCCESS);
-        post start(); // restarts task
+        post start();
     }
 
     event void RadioControl.startDone(error_t error) {
- //       call LEDController.BlinkLed0();
-//        call LEDController.BlinkLed2();
-        post setPriority();
+        signal ComSat.initDone();
     }
 
     event void RadioControl.stopDone(error_t error) {
     }
-//////Role Routine
-    task void setPriority(){
-        priority_t* data;
-        if(isRolePhase == 0 ) return;
 
-        devicePriority = (nx_uint16_t)(call PriorityTimer.getNow());
-        data = (priority_t*) call AMSend.getPayload(&output);
-        memcpy(&(data->priority), &devicePriority, sizeof(uint16_t));
-        post sendPriority();
-    }
-    task void sendPriority(){
-        if(isRolePhase == 0 ) return;
-        
-        call LCDSetter.setLCD(Priority, devicePriority, 0, 0);
-        call PriorityTimer.startOneShot(3000);
-//        call LEDController.BlinkLed1();
-        if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(priority_t) != SUCCESS))
-            post setPriority();
-    }
-    event void PriorityTimer.fired(){
-        priority_t* data = (priority_t*) call AMSend.getPayload(&output);
-        if(data->isRolePhase){
-            post setPriority();
-            call PriorityTimer.startOneShot(3000);
-            
-        }
-    }
     //TX
+    event void AMSend.sendDone(message_t *msg, error_t err) {}
+
     command void ComSat.sendData(void* pData){
         sensor_data_t* data = (sensor_data_t*)pData;
-        currentData.isRolePhase = 0;
+        currentData.priority = devicePriority; // 패킷에 장비 우선순위 삽입
         currentData.temp = data->temp;
         currentData.humid = data->humid;
         currentData.ur = data->ur;
@@ -115,61 +85,35 @@ implementation
         // getPayload로 output의 payload 영역을 구해, 그곳에 페이로드를 작성한다.
         /* memcpy로 다음과 같은 일을 한다.
             sensor_data_t* data = (sensor_data_t*) call AMSend.getPayload(&output);
-            data->temp = currentData.temp;
-            data->humid = currentData.humid;
-            data->ur = currentData.ur;
-            data->version = currentData.version;
+            data->temp = currentData.temp; ....
         */
         memcpy(call AMSend.getPayload(&output), &currentData, sizeof(currentData));
 
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
             post sendDataTask();
+            
+        if(isTx || call ElapsedTimer.isRunning()){
+            call LEDController.BlinkLed0();
+            call LEDController.BlinkLed1();
+            call LEDController.BlinkLed2();
+        }
     }
 
-    event void AMSend.sendDone(message_t *msg, error_t err) {}
 
-    event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
-        // 상태를 가진 간단한 router.
-        if(isRolePhase)
-            priorityReceived(payload);
-        else
-            dataReceived(payload);
-        return msg;
-    }
-
-    void priorityReceived(void *payload){
-        // 장비 역할을 정하고 initDone()을 발생한다.
-        // 한 번 receive()할 때 마다 
-        priority_t* data = (priority_t*)payload;
-        priority_t* outdata;
-        devicePriority = (nx_uint16_t)(call PriorityTimer.getNow());
-        if(devicePriority == data->priority){
-            //우선도가 같으면 재시도한다.
-            post setPriority(); // retry
-            return;
-        }
-        if(devicePriority < data->priority)
-        {
-            deviceRole = TX;
-        }
-        else // devicePriority > data->priority
-        {
-            deviceRole = RX;
-        }
-        call LCDSetter.setLCD(Priority, 0, (uint16_t)devicePriority, (uint16_t)data->priority);
-        outdata = (priority_t*) call AMSend.getPayload(&output);
-        outdata->isRolePhase = 0;
-        isRolePhase = 0;
-        call Timer.startOneShot(3000);
-    }
-    event void Timer.fired(){
-        signal ComSat.initDone(deviceRole);
-    }
     event void LEDController.BlinkDone(){
     };
     ////////////////////RX
+
+    event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
+        if(devicePriority >= (sensor_data_t*)payload->priority) return msg; // 받은 패킷보다 장비 우선도가 높으면 무시한다.
+                                                                            // 장비 우선도가 같아도 달라질 때까지 무시한다.
+        if(call ElapsedTimer.isRunning()) call ElapsedTimer.stop();
+        dataReceived(payload);
+
+        return msg;
+    }
+
     void dataReceived(void *payload){
-        /*sensor_data_t* data = (sensor_data_t*)payload;*/
         signal ComSat.received(payload);
     }
 }

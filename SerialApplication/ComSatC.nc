@@ -14,13 +14,9 @@ implementation {
   //Timer
   components new TimerMilliC();
   ComSatM.Timer -> TimerMilliC;
-  ComSatM.PriorityTimer -> TimerMilliC;
   ComSatM.ElapsedTimer -> TimerMilliC;
   
   // LED
   components LEDControllerC;
   ComSatM.LEDController -> LEDControllerC;
-  // LCD
-  components LCDSetterC;
-  ComSatM.LCDSetter -> LCDSetterC;
 }
