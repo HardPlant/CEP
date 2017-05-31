@@ -76,13 +76,13 @@ implementation {
         post sendPacket();
     }
     task void sendPacket(){
-        call ComSat.sendData((void*)&packet); // 모든 장비가 이 시도를 하지만..
+        call ComSat.sendData((void*)&packet); // ComSat 모듈에서는 가장 우선순위가 높은 장비만이 TX가 된다.
     }
 
     ////RX
     
-    event void ComSat.received(void* data){ // 모든 타 장비가 이 장치보다 우선순위 낮다면
-        packetInsert((Packet*)data);        // 절대 이 이벤트는 일어나지 않음
+    event void ComSat.received(void* data){ // 장비 우선도가 가장 높으면 발생하지 않는다.
+        packetInsert((Packet*)data);
         post setData();
     }
     task void setData(){

@@ -104,7 +104,7 @@ implementation
         nx_uint32_t packetPriority;
         packetPriority = ((sensor_data_t*)payload)->priority;
         if(devicePriority >= packetPriority) return msg; // 받은 패킷보다 장비 우선도가 높으면 무시한다.
-                                                                            // 장비 우선도가 같아도 달라질 때까지 무시한다.
+                                                         // 장비 우선도가 같아도 달라질 때까지 무시한다.
         if(call ElapsedTimer.isRunning()) call ElapsedTimer.stop();
         dataReceived(payload);
 

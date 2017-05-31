@@ -122,6 +122,7 @@ typedef enum {TEMP, HUMID, UR} TYPE;
       LCDavg = avg;
       LCDstdev = stdev;
   }
+  
   //////////////////////////////////////////////////////////
 
 }
