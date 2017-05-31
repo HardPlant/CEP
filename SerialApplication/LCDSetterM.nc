@@ -88,9 +88,9 @@ module LCDSetterM {
 typedef enum {TEMP, HUMID, UR} TYPE;
 typedef enum {UPPER,LOWER} TURNTYPE;
   char* getType(){
-    if(LCDDisplayType == TEMP) return "TEMP ";
+    if(LCDDisplayType == TEMP) return "TEMP";
     if(LCDDisplayType == HUMID) return "HUMID";
-    if(LCDDisplayType == UR) return "URed ";
+    if(LCDDisplayType == UR) return "URed";
   }
   event void Timer.fired(){
     char SetDataBuff[32];
@@ -102,7 +102,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     static uint8_t turn = UPPER;
     
     if(turn == UPPER){
-      sprintf(SetDataBuff, "%s AVG StDev ", getType());
+      sprintf(SetDataBuff, "%5s AVG StDev ", getType());
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER;
     }
