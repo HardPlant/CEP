@@ -37,7 +37,7 @@ module LCDSetterM {
   norace App_struct_t AP_Frame;
   norace uint8_t MsgBuff[64], myAppType, myOptType, LCDDisplayType;
   norace uint16_t LCDvalue, LCDavg, LCDstdev;
-  norace nx_uint32_t LCD2value;
+  norace uint32_t LCD2value;
   norace uint8_t LCDStatus = 2;
   norace uint16_t LCDpriority;
   norace uint16_t LCDreadings[3];
@@ -169,7 +169,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
       LCDstdev = stdev;
   }
 
-  command void LCDSetter.setLCD2(nx_uint32_t value)
+  command void LCDSetter.setLCD2(uint32_t value)
   {
       LCD2value = value;
   }
