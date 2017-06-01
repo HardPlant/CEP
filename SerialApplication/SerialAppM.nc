@@ -27,17 +27,12 @@ implementation {
 
     typedef nx_struct message{
         nx_uint32_t priority;
-        nx_uint16_t temp;
-        nx_uint16_t humid;
-        nx_uint16_t ur;
+        nx_uint16_t readings[3];
     } Packet;
 
     Packet packet;
 
     uint8_t turn;
-    Packet packetQueue[PACKET_QUEUE_LEN];
-    uint8_t packetIndex;
-    uint8_t currentPacketIndex;
     BOOL isUsingLEDs;
 
 ////////////Function primitives
@@ -47,9 +42,6 @@ implementation {
     void IntervalBlink(uint8_t interval);
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
     
-    void packetInsert(Packet* pkt);
-    Packet* packetPop();
-
 ////////////Entry
 
     event void Boot.booted() {
@@ -67,9 +59,9 @@ implementation {
     }
     ////TX  
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
-        packet.temp = temp;
-        packet.humid = humid;
-        packet.ur = ur;
+        packet.readings[TEMP] = temp;
+        packet.readings[HUMID] = humid;
+        packet.readings[UR] = ur;
         post sendPacket();
     }
     task void sendPacket(){
@@ -79,66 +71,48 @@ implementation {
     ////RX
     
     event void ComSat.received(void* data){ // 장비 우선도가 가장 높으면 발생하지 않는다.
-        packetInsert((Packet*)data);
+        Packet* pkt = data;
+        packet.readings[TEMP] = pkt->readings[TEMP];
+        packet.readings[HUMID] = pkt->readings[HUMID];
+        packet.readings[UR] = pkt->readings[UR];
         post setData();
     }
     task void setData(){
-        Packet* data;
-        if(isUsingLEDs == TRUE){
-            post setData();
-            return;
-        }
-
-        data = packetPop();
-        if(data == NULL) return;
-
-        memcpy(&packet,data, sizeof(Packet));
-        setMessage(packet.temp, packet.humid, packet.ur);
-    }
-
-    void packetInsert(Packet* pkt){
-        if(pkt == NULL) return;
-        memcpy(&(packetQueue[packetIndex]),pkt, sizeof(Packet));
-        packetIndex = (packetIndex + 1) % PACKET_QUEUE_LEN;
-
-    }
-    Packet* packetPop(){
-        Packet* result = &(packetQueue[currentPacketIndex]);
-        currentPacketIndex = (currentPacketIndex + 1) % PACKET_QUEUE_LEN;
-        return result;
+        setMessage(packet.readings[TEMP], packet.readings[HUMID], packet.readings[UR]);
     }
 
     event void LEDController.BlinkDone(){
-        // IntervalBlink가 끝날 때까지 LED를 block한다.
-        isUsingLEDs = FALSE;
     }
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
+        // atomic 내의 call문 등은 주석 쳐도 실행됨. 조심할 것.
         atomic{
             if(turn == TEMP){           
                 setValues(temp);
-                IntervalBlink(temp - ret_avg[turn]); // float->uint16_t로 캐스팅됨
-                call LCDSetter.setLCD(turn,temp, ret_avg[turn],ret_std[turn]);
+                IntervalBlink(temp - ret_avg[turn]);
                 turn = HUMID;
             }
             else if(turn == HUMID){
                 setValues(humid);
                 IntervalBlink(humid - ret_avg[turn]);
-                call LCDSetter.setLCD(turn,humid, ret_avg[turn],ret_std[turn]);
                 turn = UR;
             }            
             else if(turn == UR){
                 setValues(ur);
                 IntervalBlink(ur - ret_avg[turn]);
-                call LCDSetter.setLCD(turn,ur, ret_avg[turn],ret_std[turn]);
                 turn = TEMP;
             }
         }
     }
+    
+  //              call LCDSetter.setLCD(turn,temp, ret_avg[turn],ret_std[turn]);
+  
+   //             call LCDSetter.setLCD(turn,humid, ret_avg[turn],ret_std[turn]);
+   
+     //           call LCDSetter.setLCD(turn,ur, ret_avg[turn],ret_std[turn]);
     void IntervalBlink(uint8_t interval){
-        isUsingLEDs = TRUE;
-        if(turn == TEMP)       call LEDController.IntervalBlinkLed0(interval);
-        else if(turn == HUMID) call LEDController.IntervalBlinkLed1(interval);
-        else if(turn == UR)    call LEDController.IntervalBlinkLed2(interval);
+        if(turn == TEMP)       call LEDController.BlinkLed0();
+        else if(turn == HUMID) call LEDController.BlinkLed1();
+        else if(turn == UR)    call LEDController.BlinkLed2();
     } 
     void setValues(uint16_t newValue){
         

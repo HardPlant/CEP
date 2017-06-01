@@ -36,5 +36,9 @@ implementation {
   components SCSuartDBGC;
   LCDSetterM.SCSuartDBGstd -> SCSuartDBGC;
   LCDSetterM.SCSuartDBG -> SCSuartDBGC;
+  
+  // LED
+  components LEDControllerC;
+  LCDSetterM.LEDController -> LEDControllerC;
 
 }

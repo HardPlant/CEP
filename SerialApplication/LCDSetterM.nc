@@ -28,6 +28,8 @@ module LCDSetterM {
     interface Interaction;
     interface StdControl as SCSuartDBGstd;
     interface SCSuartDBG;
+
+    interface LEDController;
   }
 
 } implementation {
@@ -39,11 +41,14 @@ module LCDSetterM {
   norace uint16_t LCDvalue, LCDavg, LCDstdev;
   norace nx_uint32_t LCD2value;
   norace uint8_t LCDStatus = 1;
+  norace uint16_t LCDpriority;
+  norace uint16_t LCDreadings[3];
 
   void SensorsPrint (uint8_t App_size);
   ////////////////Setters and Configurators.
-  void LCDSW1(char SetDataBuff[]);
-  void LCDSW2(char SetDataBuff[]);
+  void LCDSW1();
+  void LCDSW2();
+  void LCDSW3();
   void LCDConfigure(uint8_t turn, char SetDataBuff[]);
 
   
@@ -77,29 +82,40 @@ module LCDSetterM {
   }
 
   event void Interaction.getSensorDataDone(App_struct_t *App_Payload, uint8_t App_size){
-    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 0) signal LCDSetter.SW0Pressed();
-    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 1) LCDStatus = 1;
-    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 2) LCDStatus = 2;
-  }
+    call LEDController.BlinkLed0();
+    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 1) signal LCDSetter.SW0Pressed();
+    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 4){
+      if (LCDStatus == 1) LCDStatus = 3;
+        else if (LCDStatus == 3) LCDStatus = 1;
+      }
 
+    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 6){
+        if (LCDStatus == 1) LCDStatus = 2;
+        else if (LCDStatus == 2) LCDStatus = 1;
+    }
+  }
+  event void LEDController.BlinkDone(){}
   event void Interaction.Urgency_Data (uint8_t *Urgency_Payload, uint8_t len) {
   }
 
   //////////////////////////////////////////////////////////
-typedef enum {TEMP, HUMID, UR} TYPE;
+typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
 typedef enum {UPPER,LOWER} TURNTYPE;
   char* getType(){
     if(LCDDisplayType == TEMP) return "TEMP";
     if(LCDDisplayType == HUMID) return "HUMID";
     if(LCDDisplayType == UR) return "URed";
+    if(LCDDisplayType == SEND) return "SEND";
+    if(LCDDisplayType == RECEIVE) return "RECEIVE";
   }
   event void Timer.fired(){
-    char SetDataBuff[32];
-    if(LCDStatus == 1) LCDSW1(SetDataBuff);
-    if(LCDStatus == 2) LCDSW2(SetDataBuff);
+    if(LCDStatus == 1) LCDSW1();
+    if(LCDStatus == 2) LCDSW2();
+    if(LCDStatus == 3) LCDSW3();
   }
 
-  void LCDSW1(char SetDataBuff[]){
+  void LCDSW1(){
+    char SetDataBuff[32];
     static uint8_t turn = UPPER;
     
     if(turn == UPPER){
@@ -108,15 +124,31 @@ typedef enum {UPPER,LOWER} TURNTYPE;
       turn = LOWER;
     }
     else {
-      sprintf(SetDataBuff, "%4d %4d %6d", LCDvalue, LCDavg, LCDstdev);
+      sprintf(SetDataBuff, "%4u %4u %6u", LCDvalue, LCDavg, LCDstdev);
+      LCDConfigure(turn, SetDataBuff);
+      turn = UPPER;
+    }
+  }
+  void LCDSW2(){
+    char SetDataBuff[32];
+    static uint8_t turn = UPPER;
+    sprintf(SetDataBuff, "%9s %6u", "PRIORITY:", LCD2value);
+    LCDConfigure(turn, SetDataBuff);
+  }
+  void LCDSW3(){
+    char SetDataBuff[32];
+    static uint8_t turn = UPPER;
+    if(turn == UPPER){
+      sprintf(SetDataBuff, "%16s", "RECEIVE PACKET:");
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER;
     }
-  }
-  void LCDSW2(char SetDataBuff[]){
-    static uint8_t turn = UPPER;
-    sprintf(SetDataBuff, "%9s %6d", "PRIORITY:", LCD2value);
-    LCDConfigure(turn, SetDataBuff);
+    else {
+      sprintf(SetDataBuff, "%3u %3u %3u %3u", LCDpriority
+        ,LCDreadings[0],LCDreadings[1],LCDreadings[2]);
+      LCDConfigure(turn, SetDataBuff);
+      turn = UPPER;
+    }
   }
 
   /////////////////////Set LCD.
@@ -146,6 +178,12 @@ typedef enum {UPPER,LOWER} TURNTYPE;
   command void LCDSetter.setLCD2(nx_uint32_t value)
   {
       LCD2value = value;
+  }
+  command void LCDSetter.setLCD3(nx_uint32_t priority, nx_uint16_t* readings){
+    LCDpriority = priority;
+    LCDreadings[0] = readings[0];
+    LCDreadings[1] = readings[1];
+    LCDreadings[2] = readings[2];
   }
   //////////////////////////////////////////////////////////
 

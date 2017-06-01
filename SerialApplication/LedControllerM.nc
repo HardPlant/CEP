@@ -10,6 +10,7 @@ module LEDControllerM {
     interface Timer<TMilli> as LEDIntervalTimer0;
     interface Timer<TMilli> as LEDIntervalTimer1;
     interface Timer<TMilli> as LEDIntervalTimer2;
+    
   }
 }
 
