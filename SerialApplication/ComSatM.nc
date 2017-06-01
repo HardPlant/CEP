@@ -28,6 +28,7 @@ implementation
 //////////////////////////////  Globals
     
     uint8_t isTX;
+    uint8_t isCounterpartMode;
     message_t output;
     nx_uint32_t devicePriority;
 
@@ -103,9 +104,11 @@ implementation
     event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
         nx_uint32_t packetPriority;
         packetPriority = ((sensor_data_t*)payload)->priority;
-        if(devicePriority >= packetPriority) return msg; // 받은 패킷보다 장비 우선도가 높으면 무시한다.
-                                                         // 장비 우선도가 같아도 달라질 때까지 무시한다.
-        if(call ElapsedTimer.isRunning()) call ElapsedTimer.stop();
+        if(!isCounterpartMode){
+            if(devicePriority >= packetPriority) return msg; // 받은 패킷보다 장비 우선도가 높으면 무시한다.
+                                                            // 장비 우선도가 같아도 달라질 때까지 무시한다.
+            if(call ElapsedTimer.isRunning()) call ElapsedTimer.stop();
+        }
         dataReceived(payload);
 
         return msg;
@@ -113,5 +116,11 @@ implementation
 
     void dataReceived(void *payload){
         signal ComSat.received(payload);
+    }
+    event void LCDSetter.SW0Pressed(){
+        atomic{
+        if(isCounterpartMode == 1) isCounterpartMode == 0;
+        else if(isCounterpartMode == 0) isCounterpartMode == 1;
+        }
     }
 }
