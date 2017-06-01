@@ -20,15 +20,18 @@ implementation
     typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
 
     typedef nx_struct{
+        nx_uint16_t temp;
+        nx_uint16_t humid;
+        nx_uint16_t ur;
         nx_uint32_t priority;
-        nx_uint16_t readings[3];
     } sensor_data_t;
+
 //////////////////////////////  Globals
     
     uint8_t isTX;
     uint8_t isCounterpartMode;
     message_t output;
-    nx_uint32_t devicePriority;
+    uint32_t devicePriority;
 
     sensor_data_t currentData;
 ////////////////////////////// Function prototype
@@ -67,17 +70,17 @@ implementation
     //TX
     event void AMSend.sendDone(message_t *msg, error_t err) {}
 
-    command void ComSat.sendData(void* pData){
-        sensor_data_t* data = (sensor_data_t*)pData;
+    command void ComSat.sendData(void* data){
+        sensor_data_t* pkt = data;
+        currentData.temp = data->temp;
+        currentData.humid = data->humid;
+        currentData.ur = data->ur;
         currentData.priority = devicePriority; // 패킷에 장비 우선순위 삽입
-        memcpy(currentData.readings, data->readings, sizeof(currentData.readings));
         post sendDataTask();
     }
 
     task void sendDataTask(){
-        call LCDSetter.setLCD(SEND,currentData.readings[TEMP]
-        , currentData.readings[HUMID]
-        , currentData.readings[UR]);
+        call LCDSetter.setLCD(SEND,currentData.temp, currentData.humid, currentData.ur);
         memcpy(call AMSend.getPayload(&output), &currentData, sizeof(sensor_data_t));
 
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
@@ -90,31 +93,27 @@ implementation
     ////////////////////RX
 
     event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
-        nx_uint32_t packetPriority;
         sensor_data_t* data = payload;
-        call LCDSetter.setLCD3(data ->priority, data->readings);
-
-        packetPriority = data->priority;
+        uint32_t packetPriority = data->priority;
+        uint16_t datas[3];
+        datas[0] = data->temp;
+        datas[1] = data->humid;
+        datas[2] = data->ur;
+        call LCDSetter.setLCD3(prt, datas);
 
         if(devicePriority >= packetPriority)
             return msg;
+
         if(call ElapsedTimer.isRunning()) call ElapsedTimer.stop();
 
-        call LCDSetter.setLCD(RECEIVE,data->readings[TEMP], data->readings[HUMID],data->readings[UR]);
+        call LCDSetter.setLCD(RECEIVE,datas[0], datas[1], datas[2]);
 
         signal ComSat.received(payload);
-
         return msg;
     }
 
     void dataReceived(void *payload){
     }
     event void LCDSetter.SW0Pressed(){
-        call LEDController.BlinkLed0();
-        call LEDController.BlinkLed1();
-        call LEDController.BlinkLed2();
-
-        if(isCounterpartMode == 1) isCounterpartMode == 0;
-        else if(isCounterpartMode == 0) isCounterpartMode == 1;
     }
 }

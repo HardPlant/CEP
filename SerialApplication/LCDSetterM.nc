@@ -179,7 +179,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
   {
       LCD2value = value;
   }
-  command void LCDSetter.setLCD3(nx_uint32_t priority, nx_uint16_t* readings){
+  command void LCDSetter.setLCD3(uint32_t priority, uint16_t* readings){
     LCDpriority = priority;
     LCDreadings[0] = readings[0];
     LCDreadings[1] = readings[1];
