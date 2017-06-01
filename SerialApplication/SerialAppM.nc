@@ -82,7 +82,7 @@ implementation {
         post setData();
     }
     task void setData(){
-        uint16_t temp = localData.temp;
+        uint16_t temp = localData.temp; //묵시적 ntoul32
         uint16_t humid = localData.humid;
         uint16_t ur = localData.ur;
         setMessage(temp, humid, ur);

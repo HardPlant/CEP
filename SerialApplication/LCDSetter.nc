@@ -4,5 +4,4 @@ interface LCDSetter{
     command void setLCD2(nx_uint32_t value);
     command void setLCD3(uint32_t priority, uint16_t* readings);
 
-    event void SW0Pressed();
 }

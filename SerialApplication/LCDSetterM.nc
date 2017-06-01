@@ -80,8 +80,7 @@ module LCDSetterM {
   }
 
   event void Interaction.getSensorDataDone(App_struct_t *App_Payload, uint8_t App_size){
-    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 1) signal LCDSetter.SW0Pressed();
-    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 4){
+    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 1){
       if (LCDStatus == 1) LCDStatus = 3;
         else if (LCDStatus == 3) LCDStatus = 1;
       }
