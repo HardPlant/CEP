@@ -38,7 +38,7 @@ module LCDSetterM {
   norace uint8_t MsgBuff[64], myAppType, myOptType, LCDDisplayType;
   norace uint16_t LCDvalue, LCDavg, LCDstdev;
   norace nx_uint32_t LCD2value;
-  norace uint8_t LCDStatus = 1;
+  norace uint8_t LCDStatus = 2;
   norace uint16_t LCDpriority;
   norace uint16_t LCDreadings[3];
 
@@ -108,7 +108,6 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     if(LCDStatus == 2) LCDSW2();
     if(LCDStatus == 3) LCDSW3();
   }
-
   void LCDSW1(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
@@ -179,6 +178,9 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     LCDreadings[0] = readings[0];
     LCDreadings[1] = readings[1];
     LCDreadings[2] = readings[2];
+  }
+  command void LCDSetter.setLCDStatus(uint8_t stat){
+    LCDStatus = stat;
   }
   //////////////////////////////////////////////////////////
 

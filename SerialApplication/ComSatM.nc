@@ -87,6 +87,7 @@ implementation
     }
 
     ////////////////////RX
+    uint8_t doOnce = 1;
 
     event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
         sensor_data_t* data = payload;
@@ -96,7 +97,10 @@ implementation
         datas[1] = data->humid;
         datas[2] = data->ur;
         call LCDSetter.setLCD3(packetPriority, datas);
-
+        if(doOnce){
+            doOnce = !doOnce;
+            call LCDSetter.setLCDStatus(1);
+        }
         if(devicePriority >= packetPriority)
             return msg;
 
@@ -109,7 +113,5 @@ implementation
     }
 
     void dataReceived(void *payload){
-    }
-    event void LCDSetter.SW0Pressed(){
     }
 }

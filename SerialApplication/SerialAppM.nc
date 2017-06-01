@@ -135,5 +135,4 @@ implementation {
             ret_std[turn] = sqrt(m2[turn]/(con_i[turn]-1));
         }
     }
-    event void LCDSetter.SW0Pressed(){}
 }
