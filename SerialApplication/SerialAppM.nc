@@ -84,7 +84,7 @@ implementation {
     task void setData(){
         uint16_t temp = localData.temp;
         uint16_t humid = localData.humid;
-        uint16_T ur = localData.ur;
+        uint16_t ur = localData.ur;
         setMessage(temp, humid, ur);
     }
 

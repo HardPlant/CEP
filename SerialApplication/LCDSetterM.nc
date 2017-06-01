@@ -28,8 +28,6 @@ module LCDSetterM {
     interface Interaction;
     interface StdControl as SCSuartDBGstd;
     interface SCSuartDBG;
-
-    interface LEDController;
   }
 
 } implementation {
@@ -82,7 +80,6 @@ module LCDSetterM {
   }
 
   event void Interaction.getSensorDataDone(App_struct_t *App_Payload, uint8_t App_size){
-    call LEDController.BlinkLed0();
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 1) signal LCDSetter.SW0Pressed();
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 4){
       if (LCDStatus == 1) LCDStatus = 3;
@@ -94,7 +91,6 @@ module LCDSetterM {
         else if (LCDStatus == 2) LCDStatus = 1;
     }
   }
-  event void LEDController.BlinkDone(){}
   event void Interaction.Urgency_Data (uint8_t *Urgency_Payload, uint8_t len) {
   }
 

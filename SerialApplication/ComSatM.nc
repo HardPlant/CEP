@@ -9,7 +9,6 @@ module ComSatM
     interface SplitControl as RadioControl;
     interface AMSend;
     interface Receive;
-    interface LEDController;
     interface LCDSetter;
   }
 }
@@ -72,9 +71,9 @@ implementation
 
     command void ComSat.sendData(void* data){
         sensor_data_t* pkt = data;
-        currentData.temp = data->temp;
-        currentData.humid = data->humid;
-        currentData.ur = data->ur;
+        currentData.temp = pkt->temp;
+        currentData.humid = pkt->humid;
+        currentData.ur = pkt->ur;
         currentData.priority = devicePriority; // 패킷에 장비 우선순위 삽입
         post sendDataTask();
     }
@@ -87,9 +86,6 @@ implementation
             post sendDataTask();
     }
 
-
-    event void LEDController.BlinkDone(){
-    };
     ////////////////////RX
 
     event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
@@ -99,7 +95,7 @@ implementation
         datas[0] = data->temp;
         datas[1] = data->humid;
         datas[2] = data->ur;
-        call LCDSetter.setLCD3(prt, datas);
+        call LCDSetter.setLCD3(packetPriority, datas);
 
         if(devicePriority >= packetPriority)
             return msg;
