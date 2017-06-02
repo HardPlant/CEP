@@ -18,8 +18,6 @@ implementation
     #include "sensor.h"
 //////////////////////////////  Globals
     
-    uint8_t isTX;
-    uint8_t isCounterpartMode;
     message_t output;
     uint32_t devicePriority;
 
@@ -28,8 +26,6 @@ implementation
     task void start();
 
     task void sendDataTask();
-    void dataReceived(void *payload);
-
 ////////////////////////////// 
 
     command void ComSat.init(){
@@ -41,7 +37,6 @@ implementation
         call LCDSetter.setLCD2(devicePriority);
         if(devicePriority == 100000){
             call ElapsedTimer.stop(); // 오버플로우 방지
-            isTX = 1; // 사실상 TX
         }
     }
 
@@ -49,16 +44,13 @@ implementation
         if(call RadioControl.start() != SUCCESS);
         post start();
     }
-
     event void RadioControl.startDone(error_t error) {
         signal ComSat.initDone();
     }
-
     event void RadioControl.stopDone(error_t error) {
     }
 
-    //TX
-    event void AMSend.sendDone(message_t *msg, error_t err) {}
+    ////////////////////TX
 
     command void ComSat.sendData(void* data){
         sensor_data_t* pkt = data;
@@ -76,6 +68,8 @@ implementation
         if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
             post sendDataTask();
     }
+    
+    event void AMSend.sendDone(message_t *msg, error_t err) {}
 
     ////////////////////RX
     uint8_t doOnce = 1;
@@ -88,10 +82,6 @@ implementation
         datas[1] = data->humid;
         datas[2] = data->ur;
         call LCDSetter.setLCD3(packetPriority, datas);
-        if(doOnce){
-            doOnce = !doOnce;
-            call LCDSetter.setLCDStatus(1);
-        }
         if(devicePriority >= packetPriority)
             return msg;
 
@@ -101,8 +91,5 @@ implementation
 
         signal ComSat.received(payload);
         return msg;
-    }
-
-    void dataReceived(void *payload){
     }
 }

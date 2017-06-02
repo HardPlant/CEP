@@ -39,6 +39,7 @@ module LCDSetterM {
 
   void SensorsPrint (uint8_t App_size);
   ////////////////Setters and Configurators.
+  void LCDShowAdjust();
   void LCDShowDatas();
   void LCDShowPriority();
   void LCDShowReceivePacket();
@@ -77,15 +78,16 @@ module LCDSetterM {
 /////////////////////Initiaze Routine. DO NOT EDIT HERE/////////////////////////////////////////
 
 /////////////////////////////////////////Custom setLCD Functions//////////////////////////////
+  norace uint8_t LCDStatus;
 
   norace uint16_t LCDvalue, LCDavg, LCDstdev;
   norace uint32_t LCD2value;
-  norace uint8_t LCDStatus = 2;
   norace uint16_t LCDpriority;
   norace uint16_t LCDreadings[3];
   
   command void LCDSetter.setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
   {//Show sensor_data
+      if(LCDStatus == 0) LCDStatus = 1;
       LCDDisplayType=type;
       LCDvalue = value;
       LCDavg = avg;
@@ -98,7 +100,7 @@ module LCDSetterM {
   }
   command void LCDSetter.setLCD3(uint32_t priority, uint16_t* readings){
     //Show receive packet
-    
+
     LCDpriority = priority;
     LCDreadings[0] = readings[0];
     LCDreadings[1] = readings[1];
@@ -134,9 +136,19 @@ typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
     if(LCDDisplayType == RECEIVE) return "RECEIVE";
   }
   event void Timer.fired(){
+    if(LCDStatus == 0) LCDShowAdjust();
     if(LCDStatus == 1) LCDShowDatas();
     if(LCDStatus == 2) LCDShowPriority();
     if(LCDStatus == 3) LCDShowReceivePacket();
+  }
+  void LCDShowAdjust(){
+    char SetDataBuff[32];
+    static uint8_t turn = UPPER;
+    
+    if(turn == UPPER){
+      sprintf(SetDataBuff, "FINDING OTHERS ");
+      LCDConfigure(turn, SetDataBuff);
+    }
   }
   void LCDShowDatas(){
     char SetDataBuff[32];
