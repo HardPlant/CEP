@@ -36,44 +36,15 @@ module LCDSetterM {
 
   norace App_struct_t AP_Frame;
   norace uint8_t MsgBuff[64], myAppType, myOptType, LCDDisplayType;
-  norace uint16_t LCDvalue, LCDavg, LCDstdev;
-  norace uint32_t LCD2value;
-  norace uint8_t LCDStatus = 2;
-  norace uint16_t LCDpriority;
-  norace uint16_t LCDreadings[3];
 
   void SensorsPrint (uint8_t App_size);
   ////////////////Setters and Configurators.
-  void LCDSW1();
-  void LCDSW2();
-  void LCDSW3();
+  void LCDShowDatas();
+  void LCDShowPriority();
+  void LCDShowReceivePacket();
   void LCDConfigure(uint8_t turn, char SetDataBuff[]);
 
   
-/////////////////////////////////////////Custom setLCD Functions//////////////////////////////
-  command void LCDSetter.setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
-  {
-      LCDDisplayType=type;
-      LCDvalue = value;
-      LCDavg = avg;
-      LCDstdev = stdev;
-  }
-
-  command void LCDSetter.setLCD2(uint32_t value)
-  {
-      LCD2value = value;
-  }
-  command void LCDSetter.setLCD3(uint32_t priority, uint16_t* readings){
-    LCDpriority = priority;
-    LCDreadings[0] = readings[0];
-    LCDreadings[1] = readings[1];
-    LCDreadings[2] = readings[2];
-  }
-  command void LCDSetter.setLCDStatus(uint8_t stat){
-    LCDStatus = stat;
-  }
-  //////////////////////////////////////////////////////////
-
   /////////////////////Initiaze Routine. DO NOT EDIT HERE/////////////////////////////////////////
   task void TryToConfigure() {call Interaction.StartConfiguration (&AP_Frame);}
   task void TryToSetTimer()  {call Interaction.SetSamplingTime(Default_Sampling_Time);}
@@ -105,6 +76,39 @@ module LCDSetterM {
   }
 /////////////////////Initiaze Routine. DO NOT EDIT HERE/////////////////////////////////////////
 
+/////////////////////////////////////////Custom setLCD Functions//////////////////////////////
+
+  norace uint16_t LCDvalue, LCDavg, LCDstdev;
+  norace uint32_t LCD2value;
+  norace uint8_t LCDStatus = 2;
+  norace uint16_t LCDpriority;
+  norace uint16_t LCDreadings[3];
+  
+  command void LCDSetter.setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
+  {//Show sensor_data
+      LCDDisplayType=type;
+      LCDvalue = value;
+      LCDavg = avg;
+      LCDstdev = stdev;
+  }
+
+  command void LCDSetter.setLCD2(uint32_t value)
+  {//Show priority
+      LCD2value = value;
+  }
+  command void LCDSetter.setLCD3(uint32_t priority, uint16_t* readings){
+    //Show receive packet
+    
+    LCDpriority = priority;
+    LCDreadings[0] = readings[0];
+    LCDreadings[1] = readings[1];
+    LCDreadings[2] = readings[2];
+  }
+  command void LCDSetter.setLCDStatus(uint8_t stat){
+    LCDStatus = stat;
+  }
+  //////////////////////////////////////////////////////////
+
 /////////////////////LCD Button Events////////////////////
   event void Interaction.getSensorDataDone(App_struct_t *App_Payload, uint8_t App_size){
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 1){
@@ -130,11 +134,11 @@ typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
     if(LCDDisplayType == RECEIVE) return "RECEIVE";
   }
   event void Timer.fired(){
-    if(LCDStatus == 1) LCDSW1();
-    if(LCDStatus == 2) LCDSW2();
-    if(LCDStatus == 3) LCDSW3();
+    if(LCDStatus == 1) LCDShowDatas();
+    if(LCDStatus == 2) LCDShowPriority();
+    if(LCDStatus == 3) LCDShowReceivePacket();
   }
-  void LCDSW1(){
+  void LCDShowDatas(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
     
@@ -149,13 +153,13 @@ typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
       turn = UPPER;
     }
   }
-  void LCDSW2(){
+  void LCDShowPriority(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
     sprintf(SetDataBuff, "%9s %6u", "PRIORITY:", LCD2value);
     LCDConfigure(turn, SetDataBuff);
   }
-  void LCDSW3(){
+  void LCDShowReceivePacket(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
     if(turn == UPPER){
