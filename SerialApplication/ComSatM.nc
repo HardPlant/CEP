@@ -22,6 +22,7 @@ implementation
     
     message_t output;
     uint32_t devicePriority;
+    uint8_t isRunning;
 
     sensor_data_t currentData;
 ////////////////////////////// Function prototype
@@ -31,6 +32,7 @@ implementation
 ////////////////////////////// 
 
     command void ComSat.init(){
+        isRunning = 1;
         call ElapsedTimer.startPeriodic(107); // 우선도 증가 주기와 센서 샘플링 주기가 서로소가 되게 하면 
         post start();                         // 우선도가 서로 달라지는 시점이 나온다.
     }
@@ -39,6 +41,7 @@ implementation
         call LCDSetter.setLCD2(devicePriority);
         if(devicePriority == 100000){
             call ElapsedTimer.stop(); // 오버플로우 방지
+            isRunning = 0;
         }
     }
 
@@ -88,7 +91,10 @@ implementation
         if(devicePriority >= packetPriority)
             return msg;
 
-        if(call ElapsedTimer.isRunning()) call ElapsedTimer.stop();
+        if(isRunning){
+            isRunning = 0;
+            call ElapsedTimer.stop();
+        }
 
         call LCDSetter.setLCD(RECEIVE,datas[0], datas[1], datas[2]);
 
