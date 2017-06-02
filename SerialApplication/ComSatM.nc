@@ -1,4 +1,5 @@
-#include "Oscilloscope.h" // id 식별을 위해
+
+#include "AM.h"
 module ComSatM
 {
     provides{
@@ -7,8 +8,9 @@ module ComSatM
   uses {
     interface Timer<TMilli> as ElapsedTimer;
     interface SplitControl as RadioControl;
-    interface AMSend;
-    interface Receive;
+    interface AMSend as RadioSend;
+    interface Receive as RadioReceive;
+
     interface LCDSetter;
   }
 }
@@ -54,27 +56,28 @@ implementation
 
     command void ComSat.sendData(void* data){
         sensor_data_t* pkt = data;
+
         currentData.temp = pkt->temp;
         currentData.humid = pkt->humid;
         currentData.ur = pkt->ur;
         currentData.priority = devicePriority; // 패킷에 장비 우선순위 삽입
+    
         post sendDataTask();
     }
 
     task void sendDataTask(){
+        memcpy(call RadioSend.getPayload(&output), &currentData, sizeof(sensor_data_t));
         call LCDSetter.setLCD(SEND,currentData.temp, currentData.humid, currentData.ur);
-        memcpy(call AMSend.getPayload(&output), &currentData, sizeof(sensor_data_t));
 
-        if(call AMSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
+        if(call RadioSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
             post sendDataTask();
     }
     
-    event void AMSend.sendDone(message_t *msg, error_t err) {}
+    event void RadioSend.sendDone(message_t *msg, error_t err) {}
 
     ////////////////////RX
-    uint8_t doOnce = 1;
 
-    event message_t* Receive.receive(message_t *msg, void *payload, uint8_t len){
+    event message_t* RadioReceive.receive(message_t *msg, void *payload, uint8_t len){
         sensor_data_t* data = payload;
         uint32_t packetPriority = data->priority;
         uint16_t datas[3];
