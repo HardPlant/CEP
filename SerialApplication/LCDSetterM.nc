@@ -50,7 +50,31 @@ module LCDSetterM {
   void LCDConfigure(uint8_t turn, char SetDataBuff[]);
 
   
+/////////////////////////////////////////Custom setLCD Functions//////////////////////////////
+  command void LCDSetter.setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
+  {
+      LCDDisplayType=type;
+      LCDvalue = value;
+      LCDavg = avg;
+      LCDstdev = stdev;
+  }
+
+  command void LCDSetter.setLCD2(uint32_t value)
+  {
+      LCD2value = value;
+  }
+  command void LCDSetter.setLCD3(uint32_t priority, uint16_t* readings){
+    LCDpriority = priority;
+    LCDreadings[0] = readings[0];
+    LCDreadings[1] = readings[1];
+    LCDreadings[2] = readings[2];
+  }
+  command void LCDSetter.setLCDStatus(uint8_t stat){
+    LCDStatus = stat;
+  }
   //////////////////////////////////////////////////////////
+
+  /////////////////////Initiaze Routine. DO NOT EDIT HERE/////////////////////////////////////////
   task void TryToConfigure() {call Interaction.StartConfiguration (&AP_Frame);}
   task void TryToSetTimer()  {call Interaction.SetSamplingTime(Default_Sampling_Time);}
   //////////////////////////////////////////////////////////
@@ -61,7 +85,6 @@ module LCDSetterM {
   }
 
   //////////////////////////////////////////////////////////
-
   event void Interaction.StartDoneConfiguration(uint8_t appType, uint8_t optType) {
 
     sprintf(MsgBuff, "%d myAppType:%X, myOptType:%X\r\n", TOS_NODE_ID, appType, optType);
@@ -78,7 +101,11 @@ module LCDSetterM {
 
     call Timer.startPeriodic(500);
   }
+  event void Interaction.Urgency_Data (uint8_t *Urgency_Payload, uint8_t len) {
+  }
+/////////////////////Initiaze Routine. DO NOT EDIT HERE/////////////////////////////////////////
 
+/////////////////////LCD Button Events////////////////////
   event void Interaction.getSensorDataDone(App_struct_t *App_Payload, uint8_t App_size){
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 1){
       if (LCDStatus == 1) LCDStatus = 3;
@@ -90,12 +117,11 @@ module LCDSetterM {
         else if (LCDStatus == 2) LCDStatus = 1;
     }
   }
-  event void Interaction.Urgency_Data (uint8_t *Urgency_Payload, uint8_t len) {
-  }
+/////////////////////LCD Setting Events////////////////////
 
-  //////////////////////////////////////////////////////////
-typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
 typedef enum {UPPER,LOWER} TURNTYPE;
+
+typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
   char* getType(){
     if(LCDDisplayType == TEMP) return "TEMP";
     if(LCDDisplayType == HUMID) return "HUMID";
@@ -160,28 +186,5 @@ typedef enum {UPPER,LOWER} TURNTYPE;
 
     call Interaction.Process_CMD((void*)&CMD_Frame, sizeof(Cmd_struct_t));
   }
-
-  command void LCDSetter.setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
-  {
-      LCDDisplayType=type;
-      LCDvalue = value;
-      LCDavg = avg;
-      LCDstdev = stdev;
-  }
-
-  command void LCDSetter.setLCD2(uint32_t value)
-  {
-      LCD2value = value;
-  }
-  command void LCDSetter.setLCD3(uint32_t priority, uint16_t* readings){
-    LCDpriority = priority;
-    LCDreadings[0] = readings[0];
-    LCDreadings[1] = readings[1];
-    LCDreadings[2] = readings[2];
-  }
-  command void LCDSetter.setLCDStatus(uint8_t stat){
-    LCDStatus = stat;
-  }
-  //////////////////////////////////////////////////////////
 
 }

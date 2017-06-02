@@ -15,16 +15,7 @@ module ComSatM
 implementation
 {
 //////////////////////////////  Custom Types
-
-    typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
-
-    typedef nx_struct{
-        nx_uint16_t temp;
-        nx_uint16_t humid;
-        nx_uint16_t ur;
-        nx_uint32_t priority;
-    } sensor_data_t;
-
+    #include "sensor.h"
 //////////////////////////////  Globals
     
     uint8_t isTX;

@@ -96,10 +96,11 @@ implementation {
         signal LEDController.BlinkDone();
       }
     }
-    
+/////////////////////////////////////////////////////////////
 //**** Digits
 //* 2진수로 0~7까지의 범위를 나타낼 수 있다.
 //****
+////////////////////////////////////////////////////////////
   void setDigit(uint8_t mask){
     if(mask & 4) call Leds.led0On();
     else call Leds.led1Off();
@@ -113,10 +114,12 @@ implementation {
     call Leds.led1Off();
     call Leds.led2Off();
   }
-
+////////////////////////////////////////////////////////////
 //**** Blinks
 //* Led0,1,2를 깜빡이게 해 준다.
 //****
+////////////////////////////////////////////////////////////
+
   command void LEDController.BlinkLed0(){
     call Leds.led0On();
     call LEDTimer0.startOneShot(MORSE_UNIT);
