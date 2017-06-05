@@ -10,7 +10,7 @@
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;
-        nx_uint32_t priority;
+        nx_uint16_t priority;
     } sensor_data_t;
 
 #endif

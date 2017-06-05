@@ -10,12 +10,13 @@ module LEDControllerM {
     interface Timer<TMilli> as LEDIntervalTimer0;
     interface Timer<TMilli> as LEDIntervalTimer1;
     interface Timer<TMilli> as LEDIntervalTimer2;
+
+
     
   }
 }
 
 implementation {
-  #define MORSE_UNIT 200
   #define stdMillSec 6000
   //******Test Entry*********
   command void LEDController.test(){}
@@ -40,16 +41,13 @@ implementation {
     }
     
     void led0Blink(uint16_t interval){
-      call Leds.led0On();
-      call LEDIntervalTimer0.startOneShot(interval);
+      call LEDIntervalTimer0.startPeriodic(interval);
     }
     event void LEDIntervalTimer0.fired(){
-      call Leds.led0Off();
-      if(--currentCount[0] > 0){
-        led0Blink(currentInterval[0]);
-      }
+      call LEDController.BlinkLed0();
+      if(--currentCount[0] > 0){}
       else{
-        signal LEDController.BlinkDone();
+        call LEDIntervalTimer0.stop();
       }
     }
 ///////////////////////////////////////////////
@@ -62,16 +60,13 @@ implementation {
     }
     
     void led1Blink(uint16_t interval){
-      call Leds.led1On();
-      call LEDIntervalTimer1.startOneShot(interval);
+      call LEDIntervalTimer1.startPeriodic(interval);
     }
     event void LEDIntervalTimer1.fired(){
-      call Leds.led0Off();
-      if(--currentCount[1] > 0){
-        led0Blink(currentInterval[1]);
-      }
+        call LEDController.BlinkLed1();
+      if(--currentCount[1] > 0){}
       else{
-        signal LEDController.BlinkDone();
+        call LEDIntervalTimer1.stop();
       }
     }
 
@@ -84,16 +79,13 @@ implementation {
     }
 
     void led2Blink(uint16_t interval){
-      call Leds.led2On();
-      call LEDIntervalTimer2.startOneShot(interval);
+      call LEDIntervalTimer2.startPeriodic(interval/2);
     }
     event void LEDIntervalTimer2.fired(){
-      call Leds.led0Off();
-      if(--currentCount[2] > 0){
-        led0Blink(currentInterval[2]);
-      }
+      call LEDController.BlinkLed2();
+      if(--currentCount[2] > 0){}
       else{
-        signal LEDController.BlinkDone();
+        call LEDIntervalTimer2.stop();
       }
     }
 /////////////////////////////////////////////////////////////
@@ -122,14 +114,14 @@ implementation {
 
   command void LEDController.BlinkLed0(){
     call Leds.led0On();
-    call LEDTimer0.startOneShot(MORSE_UNIT);
+    call LEDTimer0.startOneShot(currentInterval[0]);
   }
   event void LEDTimer0.fired(){
     call Leds.led0Off();
   }
   command void LEDController.BlinkLed1(){
     call Leds.led1On();
-    call LEDTimer1.startOneShot(MORSE_UNIT);
+    call LEDTimer1.startOneShot(currentInterval[1]);
   }
   
   event void LEDTimer1.fired(){
@@ -138,7 +130,7 @@ implementation {
 
   command void LEDController.BlinkLed2(){
     call Leds.led2On();
-    call LEDTimer2.startOneShot(MORSE_UNIT);
+    call LEDTimer2.startOneShot(currentInterval[2]);
   }
 
   event void LEDTimer2.fired(){

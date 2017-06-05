@@ -81,8 +81,8 @@ module LCDSetterM {
   norace uint8_t LCDStatus;
 
   norace uint16_t LCDvalue, LCDavg, LCDstdev;
-  norace uint32_t LCD2value;
-  norace uint16_t LCDpriority;
+  norace uint32_t LCDDevicePriority;
+  norace uint16_t LCDcounterpartpriority;
   norace uint16_t LCDreadings[3];
   
   command void LCDSetter.setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
@@ -96,12 +96,12 @@ module LCDSetterM {
 
   command void LCDSetter.setLCD2(uint32_t value)
   {//Show priority
-      LCD2value = value;
+      LCDDevicePriority = value;
   }
   command void LCDSetter.setLCD3(uint32_t priority, uint16_t* readings){
     //Show receive packet
 
-    LCDpriority = priority;
+    LCDcounterpartpriority = priority;
     LCDreadings[0] = readings[0];
     LCDreadings[1] = readings[1];
     LCDreadings[2] = readings[2];
@@ -168,20 +168,33 @@ typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
   void LCDShowPriority(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
-    sprintf(SetDataBuff, "%9s %6u", "PRIORITY:", LCD2value);
-    LCDConfigure(turn, SetDataBuff);
+    if(turn == UPPER){
+      sprintf(SetDataBuff, "%9s %6u", "PRIORITY:", LCDDevicePriority);
+      LCDConfigure(turn, SetDataBuff);
+      turn = LOWER;
+    }
+    else{
+      sprintf(SetDataBuff, "%9s %6u", "CPPRIORI:", LCDcounterpartpriority);
+      LCDConfigure(turn, SetDataBuff);
+      turn = UPPER;
+    }
   }
   void LCDShowReceivePacket(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
+    unsigned char* p = (unsigned char*)LCDreadings;
     if(turn == UPPER){
-      sprintf(SetDataBuff, "%16s", "RECEIVE PACKET:");
+      sprintf(SetDataBuff, "%2x%2x%2x%2x%2x%2x%2x%2x", p[0], p[1], p[2], p[3], p[4], p[5], p[6],p[7]);
       LCDConfigure(turn, SetDataBuff);
-      turn = LOWER;
+      turn = LOWER; 
     }
     else {
-      sprintf(SetDataBuff, "%3u %3u %3u %3u", LCDpriority
+      sprintf(SetDataBuff, "%2x%2x%2x%2x%2x%2x%2x%2x", p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
+
+      /*
+      sprintf(SetDataBuff, "%3u %3u %3u %3u", LCDcounterpartpriority
         ,LCDreadings[0],LCDreadings[1],LCDreadings[2]);
+        */
       LCDConfigure(turn, SetDataBuff);
       turn = UPPER;
     }
