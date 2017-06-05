@@ -14,4 +14,9 @@ implementation {
   components LCDSetterC;
   ComSatM.LCDSetter -> LCDSetterC;
 
+  //Radio
+  components ActiveMessageC as Radio;
+  ComSatM.RadioControl -> Radio;
+  ComSatM.RadioSend -> Radio.AMSend[0x97]; // Oscilloscope.h에 정의
+  ComSatM.RadioReceive -> Radio.Receive[0x97]; //
 }

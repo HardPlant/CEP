@@ -56,13 +56,12 @@ implementation
     }
     
 //////////////////////////////////////////TX
-    command void sendData(void* data){
-        sensor_data_t* pkt = (sensor_data_t*) data;
-        memcpy(&TxData, data, sizeof(sensor_data_t)); //
+    command void ComSat.sendData(void* data){ // sensor_data_t->void*->memcpy(sensor_data_t*,void*)
+        memcpy(&TxData, data, sizeof(sensor_data_t)); //only memcpy
         post sendDataTask();
     }
     task void sendDataTask(){
-        memcpy(call RadioSend.getPayload(&output), &TxData, sizeof(sensor_data_t));
+        memcpy(call RadioSend.getPayload(&output), &TxData, sizeof(sensor_data_t)); //only memcpy
 
         if(call RadioSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
             post sendDataTask();
@@ -72,9 +71,9 @@ implementation
 
 //////////////////////////////////////////RX
     event message_t* RadioReceive.receive(message_t *msg, void *payload, uint8_t len){
-        uint16_t packetPriority;
-        sensor_data_t* pkt = payload;
-        packetPriority = pkt->priority;
+        uint16_t packetPriority; 
+        sensor_data_t* pkt = payload; // void*-> sensor_data_t
+        packetPriority = pkt->priority; // sensor_data_t -> uint16_t
 
         if(devicePriority >= packetPriority)
             return msg;
@@ -83,8 +82,8 @@ implementation
             isRunning = 0;
             call ElapsedTimer.stop();
         }
-
-        signal ComSat.received(payload);
+                                        //only memcpy
+        signal ComSat.received(payload);//void*->memcpy(&sensor_data_t,void)->uint16_t = *sensor_data_t->_
         
         return msg;
     }

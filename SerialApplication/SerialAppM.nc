@@ -27,10 +27,89 @@ implementation {
     task void sendDataTask();
     
 ////////////Entry
+    task void test1(){
+        sensor_data_t mock;
+        void* pVoid;
+        sensor_data_t* pSDT;
+
+        sensor_data_t result;
+        uint16_t temp, humid, ur;
+        uint32_t priority;
+
+        mock.temp = 0x12;
+        mock.humid = 0x34;
+        mock.ur = 0x56;
+        mock.priority = 0x78;
+
+        pVoid = (void*)&mock;
+        memcpy(&result, pVoid, sizeof(sensor_data_t));
+        pSDT = pVoid;
+        temp = pSDT->temp;
+        humid = pSDT->humid;
+        ur = pSDT->ur;
+
+////////sensor_data_t -> void* -> senson_data_t* -> uint16_t
+        if(temp != 0x12) call LEDController.BlinkLed0();
+        if(humid != 0x34) call LEDController.BlinkLed0();
+        if(ur != 0x56) call LEDController.BlinkLed0();
+
+////////sensor_data_t->memcpy(sensor_data_t)
+        if(result.temp != 0x12) call LEDController.BlinkLed1();
+        if(result.humid != 0x34) call LEDController.BlinkLed1();
+        if(result.ur != 0x56) call LEDController.BlinkLed1();
+        
+        temp = result.temp;
+        humid = result.humid;
+        ur = result.ur;
+        
+////////sensor_data_t->memcpy(sensor_data_t)->uint16_t
+        if(result.temp != 0x12) call LEDController.BlinkLed2();
+        if(result.humid != 0x34) call LEDController.BlinkLed2();
+        if(result.ur != 0x56) call LEDController.BlinkLed2();
+
+///////sensor_data_t->void*->uint16_t->sensor_data_t->uint16_t
+    }
+    task void test2(){
+        sensor_data_t mock;
+        void* pSend;
+        void* pReceive;
+        sensor_data_t result;
+        uint16_t temp, humid, ur;
+        uint32_t priority;
+        
+        mock.temp = 0x12;
+        mock.humid = 0x34;
+        mock.ur = 0x56;
+        mock.priority = 0x78;
+
+        pSend = &mock;
+        pReceive = pSend;
+        memcpy(&result, pReceive, sizeof(sensor_data_t));
+        if(result.temp != 0x12) call LEDController.BlinkLed0();
+        if(result.humid != 0x34) call LEDController.BlinkLed0();
+        if(result.ur != 0x56) call LEDController.BlinkLed0();
+
+        temp = result.temp;
+        humid = result.humid;
+        ur = result.ur;
+        if(temp != 0x12) call LEDController.BlinkLed1();
+        if(humid != 0x34) call LEDController.BlinkLed1();
+        if(ur != 0x56) call LEDController.BlinkLed1();
+    }
+    task void testInit(){
+        post test1();
+        post test2();
+    }
 
     event void Boot.booted() {
+        /*
         call LCDSetter.init();
         call ComSat.init();
+        */
+        uint16_t counter = 0;
+        post test1();
+        while(counter != 500) counter++;
+        post test2();
 
     }
     event void ComSat.initDone(){
@@ -38,7 +117,6 @@ implementation {
     }
 
     event void Timer.fired(){
-
         call TempSensor.start();
         call Timer.startOneShot(8000);
     }
@@ -52,7 +130,7 @@ implementation {
         
         localData.temp = temp;
         localData.humid = humid;
-        localData.ur = ur;
+        localData.ur = ur; // sensor_data_t = uint16_t ((byte reverse))
         
         post sendDataTask();
     }
@@ -63,13 +141,13 @@ implementation {
     ////RX
 
     event void ComSat.received(void* data){
-        sensor_data_t* pkt = data;
+        sensor_data_t* pkt = data; //void*->memcpy(&sensor_data_t,void)
         memcpy(&localData, pkt, sizeof(sensor_data_t));
         post setData();
     }
 
     task void setData(){
-        uint16_t temp = localData.temp;
+        uint16_t temp = localData.temp; // uint16_t = sensor_data_t.x (byte reverse)
         uint16_t humid = localData.humid;
         uint16_t ur = localData.ur;
         setMessage(temp, humid, ur);

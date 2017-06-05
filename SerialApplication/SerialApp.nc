@@ -5,9 +5,8 @@ implementation
   components SerialAppM, MainC;
   SerialAppM.Boot -> MainC;
   //Timer
-  components new TimerMilliC() as Timer, new TimerMilliC() as ElapsedTimer;
+  components new TimerMilliC() as Timer;
   SerialAppM.Timer -> Timer;
-  SerialAppM.ElapsedTimer -> ElapsedTimer;
 
   // LED
   components LEDControllerC;
@@ -21,10 +20,7 @@ implementation
   components TempSensorC;
   SerialAppM.TempSensor -> TempSensorC;
 
-  //Radio
-  components ActiveMessageC as Radio;
-  SerialAppM.RadioControl -> Radio;
-  SerialAppM.RadioSend -> Radio.AMSend[0x97]; // Oscilloscope.h에 정의
-  SerialAppM.RadioReceive -> Radio.Receive[0x97]; //
-
+  //ComSat
+  components ComSatC;
+  SerialAppM.ComSat -> ComSatC;
 }
