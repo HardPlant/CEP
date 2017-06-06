@@ -132,6 +132,8 @@ implementation {
         localData.temp = temp;
         localData.humid = humid;
         localData.ur = ur; // sensor_data_t = uint16_t ((byte reverse))
+        localData.priority++;
+        call LCDSetter.setLCDDevicePriorty(localData.priority);
         
         post sendDataTask();
     }
