@@ -24,3 +24,4 @@ implementation
   components ComSatC;
   SerialAppM.ComSat -> ComSatC;
 }
+

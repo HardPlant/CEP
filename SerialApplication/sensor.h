@@ -4,7 +4,10 @@
     #define TRUE 1
     #define FALSE 0
 
-    typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
+    enum {TEMP, HUMID, UR, SEND, RECEIVE};
+    enum {
+        AM_SENSING_ID = 0xde
+    };
     
     typedef nx_struct{
         nx_uint16_t temp;
@@ -14,3 +17,4 @@
     } sensor_data_t;
 
 #endif
+

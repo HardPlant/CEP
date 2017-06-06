@@ -171,17 +171,17 @@ implementation {
 
         if(turn == TEMP){
             IntervalBlink(temp - ret_avg[turn]);
-            call LCDSetter.setLCD(turn,temp, ret_avg[turn],ret_std[turn]);
+            call LCDSetter.setLCDData(turn,temp, ret_avg[turn],ret_std[turn]);
             turn = HUMID;
         }
         else if(turn == HUMID){
             IntervalBlink(humid - ret_avg[turn]);
-           call LCDSetter.setLCD(turn,humid, ret_avg[turn],ret_std[turn]);
+           call LCDSetter.setLCDData(turn,humid, ret_avg[turn],ret_std[turn]);
             turn = UR;
         }            
         else if(turn == UR){
             IntervalBlink(ur - ret_avg[turn]);
-              call LCDSetter.setLCD(turn,ur, ret_avg[turn],ret_std[turn]);
+              call LCDSetter.setLCDData(turn,ur, ret_avg[turn],ret_std[turn]);
             turn = TEMP;
         }
     }
@@ -209,3 +209,4 @@ implementation {
         else if(turn == UR)    call LEDController.IntervalBlinkLed2(interval);
     } 
 }
+

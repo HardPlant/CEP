@@ -1,3 +1,4 @@
+
 /******************************************************************************/
 /*                                                                            */
 /*                       Copyright (c) HANBACK ELECTRONICS                    */
@@ -31,7 +32,7 @@ module LCDSetterM {
   }
 
 } implementation {
-
+  #include "sensor.h"
  #define MyOPT_Type OPT_TEXTLCD
 
   norace App_struct_t AP_Frame;
@@ -85,7 +86,7 @@ module LCDSetterM {
   norace uint16_t LCDcounterpartpriority;
   norace uint16_t LCDreadings[3];
   
-  command void LCDSetter.setLCD(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
+  command void LCDSetter.setLCDData(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
   {//Show sensor_data
       if(LCDStatus == 0) LCDStatus = 1;
       LCDDisplayType=type;
@@ -94,17 +95,18 @@ module LCDSetterM {
       LCDstdev = stdev;
   }
 
-  command void LCDSetter.setLCD2(uint32_t value)
+  command void LCDSetter.setLCDDevicePriorty(uint32_t value)
   {//Show priority
       LCDDevicePriority = value;
   }
-  command void LCDSetter.setLCD3(uint32_t priority, uint16_t* readings){
+  command void LCDSetter.setLCDReceivePacket(void* payload){
     //Show receive packet
+    sensor_data_t* pkt;
 
-    LCDcounterpartpriority = priority;
-    LCDreadings[0] = readings[0];
-    LCDreadings[1] = readings[1];
-    LCDreadings[2] = readings[2];
+    LCDcounterpartpriority = pkt->priority;
+    LCDreadings[0] = pkt->temp;
+    LCDreadings[1] = pkt->humid;
+    LCDreadings[2] = pkt->ur;
   }
   command void LCDSetter.setLCDStatus(uint8_t stat){
     LCDStatus = stat;
@@ -127,7 +129,6 @@ module LCDSetterM {
 
 typedef enum {UPPER,LOWER} TURNTYPE;
 
-typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
   char* getType(){
     if(LCDDisplayType == TEMP) return "TEMP";
     if(LCDDisplayType == HUMID) return "HUMID";
@@ -169,7 +170,7 @@ typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
     if(turn == UPPER){
-      sprintf(SetDataBuff, "%9s %6u", "PRIORITY:", LCDDevicePriority);
+      sprintf(SetDataBuff, "%9s %6lu", "PRIORITY:", LCDDevicePriority);
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER;
     }
@@ -217,3 +218,4 @@ typedef enum {TEMP, HUMID, UR, SEND, RECEIVE} TYPE;
   }
 
 }
+
