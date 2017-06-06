@@ -101,7 +101,7 @@ module LCDSetterM {
   }
   command void LCDSetter.setLCDReceivePacket(void* payload){
     //Show receive packet
-    sensor_data_t* pkt;
+    sensor_data_t* pkt = payload;
 
     LCDcounterpartpriority = pkt->priority;
     LCDreadings[0] = pkt->temp;
