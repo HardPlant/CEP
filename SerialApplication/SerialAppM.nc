@@ -126,7 +126,8 @@ implementation {
         /*
         sendData.temp = temp;
         sendData.humid = humid;
-        sendData.ur = ur; */
+        sendData.ur = ur;
+        sendData.priority++; */
         
         localData.temp = temp;
         localData.humid = humid;
@@ -142,8 +143,10 @@ implementation {
 
     event void ComSat.received(void* data){
         sensor_data_t* pkt = data; //void*->memcpy(&sensor_data_t,void)
-        memcpy(&localData, pkt, sizeof(sensor_data_t));
-        post setData();
+        if(pkt->priority > localData.priority){
+            memcpy(&localData, pkt, sizeof(sensor_data_t));
+            post setData();
+        }
     }
 
     task void setData(){
