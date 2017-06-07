@@ -45,7 +45,7 @@ implementation
 //////////////////////////////////////////TX
     command void ComSat.sendData(void* payload){ // sensor_data_t->void*->memcpy(sensor_data_t*,void*)
         sensor_data_t* target = (sensor_data_t*)(call RadioSend.getPayload(&output));
-        sensor_data_t* data = payload;
+        sensor_data_t* data = (sensor_data_t*)payload;
 
         target->temp = data->temp;
         target->humid = data->humid;
@@ -75,12 +75,12 @@ implementation
         call LCDSetter.setLCDReceivePacket(payload);
     }
     event message_t* RadioReceive.receive(message_t *msg, void *payload, uint8_t len){
-        sensor_data_t* data = payload;
+        sensor_data_t* data = (sensor_data_t*)payload;
         uint16_t temp = data->temp;
         uint16_t humid = data->humid;
         uint16_t ur = data->ur;
         uint16_t priority = data->priority;
-        
+
         if(len != sizeof(sensor_data_t)) return msg;
 
         memcpy(&RxData, payload, sizeof(sensor_data_t));
