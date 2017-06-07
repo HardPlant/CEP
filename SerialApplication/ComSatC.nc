@@ -18,4 +18,5 @@ implementation {
     , new AMReceiverC(AM_SENSING_ID);
   ComSatM.RadioSend -> AMSenderC; // Oscilloscope.h에 정의
   ComSatM.RadioReceive -> AMReceiverC; //
+  
 }

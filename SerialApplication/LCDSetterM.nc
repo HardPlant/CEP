@@ -184,7 +184,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     
     if(turn == UPPER){
       sprintf(SetDataBuff, "FINDING OTHERS ");
-      sprintf(SetDataBuff, "%8u %8u ", ntohl(data2), ntohs(data1));
+      sprintf(SetDataBuff, "%8u %8u ", ntohs(data2), ntohs(data1));
       LCDConfigure(turn, SetDataBuff);turn = LOWER;
     }
     else {
@@ -229,7 +229,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
 
     if(turn == UPPER){
       sprintf(SetDataBuff, "%3u %3u %3u %3u",
-      ntohl(LCDcounterpartpriority),ntohs(LCDreadings[0]),ntohs(LCDreadings[1]),ntohs(LCDreadings[2]));
+      ntohs(LCDcounterpartpriority),ntohs(LCDreadings[0]),ntohs(LCDreadings[1]),ntohs(LCDreadings[2]));
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER; 
     }
