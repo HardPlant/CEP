@@ -44,6 +44,8 @@ module LCDSetterM {
   void LCDShowDatas();
   void LCDShowPriority();
   void LCDShowReceivePacket();
+  void LCDShowPayload();
+  void LCDShowSend();
   void LCDConfigure(uint8_t turn, char SetDataBuff[]);
 
   
@@ -85,6 +87,10 @@ module LCDSetterM {
   norace uint32_t LCDDevicePriority;
   norace uint16_t LCDcounterpartpriority;
   norace uint16_t LCDreadings[3];
+  norace uint16_t LCDPayloadData[3];
+  norace uint16_t LCDPayloadPriority;
+  norace uint16_t LCDSendData[3];
+  norace uint16_t LCDSendPriority;
   
   command void LCDSetter.setLCDData(uint8_t type, uint16_t value, uint16_t avg, uint16_t stdev)
   {//Show sensor_data
@@ -112,6 +118,18 @@ module LCDSetterM {
   command void LCDSetter.setLCDStatus(uint8_t stat){
     LCDStatus = stat;
   }
+    command void LCDSetter.setLCDPayload(uint16_t temp, uint16_t humid, uint16_t ur, uint32_t priority){
+    LCDPayloadData[0] = temp;
+    LCDPayloadData[1] = humid;
+    LCDPayloadData[2] = ur;
+    LCDPayloadPriority = priority;
+  }
+    command void LCDSetter.setLCDSender(uint16_t temp, uint16_t humid, uint16_t ur, uint32_t priority){
+    LCDSendData[0] = temp;
+    LCDSendData[1] = humid;
+    LCDSendData[2] = ur;
+    LCDSendPriority = priority;
+  }
   //////////////////////////////////////////////////////////
 
 /////////////////////LCD Button Events////////////////////
@@ -120,6 +138,15 @@ module LCDSetterM {
       if (LCDStatus == 1) LCDStatus = 3;
         else if (LCDStatus == 3) LCDStatus = 1;
       }
+      
+    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 3){
+        if (LCDStatus == 1) LCDStatus = 4;
+        else if (LCDStatus == 4) LCDStatus = 1;
+    }
+    if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 4){
+        if (LCDStatus == 1) LCDStatus = 5;
+        else if (LCDStatus == 5) LCDStatus = 1;
+    }
 
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 6){
         if (LCDStatus == 1) LCDStatus = 2;
@@ -142,6 +169,8 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     if(LCDStatus == 1) LCDShowDatas();
     if(LCDStatus == 2) LCDShowPriority();
     if(LCDStatus == 3) LCDShowReceivePacket();
+    if(LCDStatus == 4) LCDShowPayload();
+    if(LCDStatus == 5) LCDShowSend();
   }
   void LCDShowAdjust(){
     char SetDataBuff[32];
@@ -155,11 +184,11 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     
     if(turn == UPPER){
       sprintf(SetDataBuff, "FINDING OTHERS ");
-      sprintf(SetDataBuff, "%3lu %2u %3lu %2u", ntohl(data2), ntohs(data1), ntohl(d2), ntohs(d1));
+      sprintf(SetDataBuff, "%8lu %8u ", ntohl(data2), ntohs(data1));
       LCDConfigure(turn, SetDataBuff);turn = LOWER;
     }
     else {
-      sprintf(SetDataBuff, "%3lu %2u %3lu %2u", data2,data1, d2, d1);
+      sprintf(SetDataBuff, "%8lu %8u ",d2, d1);
       LCDConfigure(turn, SetDataBuff);
       turn = UPPER;
     }
@@ -211,7 +240,42 @@ typedef enum {UPPER,LOWER} TURNTYPE;
       turn = UPPER;
     }
   }
+  void LCDShowPayload(){
+    char SetDataBuff[32];
+    static uint8_t turn = UPPER;
+    
 
+    if(turn == UPPER){
+      sprintf(SetDataBuff, "%2u %2u %2u %4lu",
+      LCDPayloadData[0],LCDPayloadData[1],LCDPayloadData[2],LCDPayloadPriority );
+      LCDConfigure(turn, SetDataBuff);
+      turn = LOWER; 
+    }
+    else {
+      sprintf(SetDataBuff, "%2u %2u %2u %4lu",
+      ntohs(LCDPayloadData[0]),ntohs(LCDPayloadData[1]),ntohs(LCDPayloadData[2]),LCDPayloadPriority);
+      LCDConfigure(turn, SetDataBuff);
+      turn = UPPER;
+    }
+  }
+    void LCDShowSend(){
+    char SetDataBuff[32];
+    static uint8_t turn = UPPER;
+    
+
+    if(turn == UPPER){
+      sprintf(SetDataBuff, "%2u %2u %2u %4lu",
+      LCDSendData[0],LCDSendData[1],LCDSendData[2],LCDSendPriority );
+      LCDConfigure(turn, SetDataBuff);
+      turn = LOWER; 
+    }
+    else {
+      sprintf(SetDataBuff, "%2u %2u %2u %4lu",
+      ntohs(LCDSendData[0]),ntohs(LCDSendData[1]),ntohs(LCDSendData[2]),LCDSendPriority);
+      LCDConfigure(turn, SetDataBuff);
+      turn = UPPER;
+    }
+  }
   /////////////////////Set LCD.
   void LCDConfigure(uint8_t turn, char SetDataBuff[]){
     Cmd_struct_t CMD_Frame;

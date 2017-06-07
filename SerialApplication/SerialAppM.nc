@@ -118,7 +118,7 @@ implementation {
 
     ////TX  
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
-        /*
+        //*
         sendData.temp = temp;
         sendData.humid = humid;
         sendData.ur = ur;
@@ -135,7 +135,7 @@ implementation {
         post sendDataTask();
     }
     task void sendDataTask(){
-        /*
+        //*
         call ComSat.sendData(&sendData);
         /*/
         post setData();
@@ -151,7 +151,14 @@ implementation {
             post setData();
         }
     }
-
+    event void ComSat.received2(uint16_t temp, uint16_t humid, uint16_t ur, uint32_t priority){
+        if(priority > localData.priority){
+            localData.temp = temp;
+            localData.humid = humid;
+            localData.ur = ur;
+            post setData();
+        }
+    }
     task void setData(){
         uint16_t temp = localData.temp; // uint16_t = sensor_data_t.x (byte reverse)
         uint16_t humid = localData.humid;
@@ -169,24 +176,27 @@ implementation {
     float ret_std[3] = {0,};
     float m2[3] = {0,};
     uint8_t turn;
-
+    uint16_t getDiff(uint16_t data1, uint16_t data2){
+        if(data1<data2) return data2-data1;
+        return data1-data2;
+    }
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur){
         setValues(temp,TEMP);
         setValues(humid,HUMID);
         setValues(ur,UR);
 
         if(turn == TEMP){
-            IntervalBlink(temp - ret_avg[turn]);
+            IntervalBlink(getDiff(temp,ret_avg[turn]));
             call LCDSetter.setLCDData(turn,temp, ret_avg[turn],ret_std[turn]);
             turn = HUMID;
         }
         else if(turn == HUMID){
-            IntervalBlink(humid - ret_avg[turn]);
+            IntervalBlink(getDiff(humid,ret_avg[turn]));
            call LCDSetter.setLCDData(turn,humid, ret_avg[turn],ret_std[turn]);
             turn = UR;
         }            
         else if(turn == UR){
-            IntervalBlink(ur - ret_avg[turn]);
+            IntervalBlink(getDiff(ur,ret_avg[turn]));
               call LCDSetter.setLCDData(turn,ur, ret_avg[turn],ret_std[turn]);
             turn = TEMP;
         }

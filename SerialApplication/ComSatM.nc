@@ -42,8 +42,18 @@ implementation
     }
     
 //////////////////////////////////////////TX
-    command void ComSat.sendData(void* data){ // sensor_data_t->void*->memcpy(sensor_data_t*,void*)
-        memcpy(&TxData, data, sizeof(sensor_data_t)); //only memcpy
+    command void ComSat.sendData(void* payload){ // sensor_data_t->void*->memcpy(sensor_data_t*,void*)
+        
+        sensor_data_t* data = payload;
+        uint16_t temp = data->temp;
+        uint16_t humid = data->humid;
+        uint16_t ur = data->ur;
+        uint32_t priority = data->priority;
+        if(call RadioSend.maxPayloadLength() < sizeof(sensor_data_t))
+            command void setLCDData(SEND, temp, humid, ur);
+
+        memcpy(&TxData, payload, sizeof(sensor_data_t)); //only memcpy
+        
         post sendDataTask();
     }
     task void sendDataTask(){
@@ -60,10 +70,20 @@ implementation
         call LCDSetter.setLCDReceivePacket(payload);
     }
     event message_t* RadioReceive.receive(message_t *msg, void *payload, uint8_t len){
+        uint16_t* pkt = payload;
+        sensor_data_t* data = payload;
+        uint16_t temp = data->temp;
+        uint16_t humid = data->humid;
+        uint16_t ur = data->ur;
+        uint32_t priority = data->priority;
+        
         memcpy(&RxData, payload, sizeof(sensor_data_t));
+        
+        call LCDSetter.setLCDPayload(temp, humid, ur, priority);
         setLCDReceived(&RxData);
                                         //only memcpy
-        signal ComSat.received(&RxData);//void*->memcpy(&sensor_data_t,void)->uint16_t = *sensor_data_t->_
+        //signal ComSat.received(&RxData);//void*->memcpy(&sensor_data_t,void)->uint16_t = *sensor_data_t->_
+        signal ComSat.received2(temp, humid, ur, priority);
         
         return msg;
     }
