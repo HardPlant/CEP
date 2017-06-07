@@ -183,9 +183,10 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     memcpy(&data2,&d2,sizeof(uint16_t));
     
     if(turn == UPPER){
-      sprintf(SetDataBuff, "FINDING OTHERS ");
+      sprintf(SetDataBuff, "%16s", "FINDING OTHERS");
       sprintf(SetDataBuff, "%8u %8u ", ntohs(data2), ntohs(data1));
-      LCDConfigure(turn, SetDataBuff);turn = LOWER;
+      LCDConfigure(turn, SetDataBuff);
+      turn = LOWER;
     }
     else {
       sprintf(SetDataBuff, "%8u %8u ",d2, d1);

@@ -17,8 +17,7 @@ module ComSatM
 implementation
 {
 //////////////////////////////  Custom Types
-//////////////////////////////  Globals\
-
+//////////////////////////////  Globals
     message_t output;
 
     sensor_data_t RxData;

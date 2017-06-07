@@ -14,8 +14,7 @@ implementation {
   ComSatM.RadioControl -> Radio;
 
   //Sender&Receive
-  components new AMSenderC(AM_SENSING_ID)
-    , new AMReceiverC(AM_SENSING_ID);
+  components new AMSenderC(AM_SENSING_ID), new AMReceiverC(AM_SENSING_ID);
   ComSatM.RadioSend -> AMSenderC; // Oscilloscope.h에 정의
   ComSatM.RadioReceive -> AMReceiverC; //
   
