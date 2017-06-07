@@ -34,7 +34,7 @@ implementation {
 
         sensor_data_t result;
         uint16_t temp, humid, ur;
-        uint32_t priority;
+        uint16_t priority;
 
         mock.temp = 0x12;
         mock.humid = 0x34;
@@ -75,7 +75,7 @@ implementation {
         void* pReceive;
         sensor_data_t result;
         uint16_t temp, humid, ur;
-        uint32_t priority;
+        uint16_t priority;
         
         mock.temp = 0x12;
         mock.humid = 0x34;
@@ -151,7 +151,7 @@ implementation {
             post setData();
         }
     }
-    event void ComSat.received2(uint16_t temp, uint16_t humid, uint16_t ur, uint32_t priority){
+    event void ComSat.received2(uint16_t temp, uint16_t humid, uint16_t ur, uint16_t priority){
         if(priority > localData.priority){
             localData.temp = temp;
             localData.humid = humid;

@@ -17,7 +17,8 @@ module ComSatM
 implementation
 {
 //////////////////////////////  Custom Types
-//////////////////////////////  Globals
+//////////////////////////////  Globals\
+
     message_t output;
     sensor_data_t TxData;
     sensor_data_t RxData;
@@ -48,22 +49,27 @@ implementation
         uint16_t temp = data->temp;
         uint16_t humid = data->humid;
         uint16_t ur = data->ur;
-        uint32_t priority = data->priority;
-        if(call RadioSend.maxPayloadLength() < sizeof(sensor_data_t))
-            command void setLCDData(SEND, temp, humid, ur);
+        uint16_t priority = data->priority;
+        call LCDSetter.setLCDSender(temp, humid, ur,priority);
 
         memcpy(&TxData, payload, sizeof(sensor_data_t)); //only memcpy
         
         post sendDataTask();
     }
+    uint8_t busy = FALSE;
+
     task void sendDataTask(){
         memcpy(call RadioSend.getPayload(&output), &TxData, sizeof(sensor_data_t)); //only memcpy
 
-        if(call RadioSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) != SUCCESS))
+        if(call RadioSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) == SUCCESS))
+            busy = TRUE;
+        else
             post sendDataTask();
     }
     
-    event void RadioSend.sendDone(message_t *msg, error_t err) {}
+    event void RadioSend.sendDone(message_t *msg, error_t err) {
+        busy = FALSE;
+    }
 
 //////////////////////////////////////////RX
     void setLCDReceived(void *payload){
@@ -75,7 +81,7 @@ implementation
         uint16_t temp = data->temp;
         uint16_t humid = data->humid;
         uint16_t ur = data->ur;
-        uint32_t priority = data->priority;
+        uint16_t priority = data->priority;
         
         memcpy(&RxData, payload, sizeof(sensor_data_t));
         

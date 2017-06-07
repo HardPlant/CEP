@@ -1,4 +1,4 @@
-        /*
+        //*
         sendData.temp = temp;
         sendData.humid = humid;
         sendData.ur = ur;
