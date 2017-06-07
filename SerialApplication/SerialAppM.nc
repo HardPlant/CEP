@@ -97,20 +97,15 @@ implementation {
         if(ur != 0x56) call LEDController.BlinkLed1();
     }
     task void testInit(){
-        post test1();
-        post test2();
-    }
-
-    event void Boot.booted() {
-        /*
-        call LCDSetter.init();
-        call ComSat.init();
-        */
         uint16_t counter = 0;
         post test1();
         while(counter != 500) counter++;
         post test2();
+    }
 
+    event void Boot.booted() {
+        call LCDSetter.init();
+        call ComSat.init();
     }
     event void ComSat.initDone(){
         call Timer.startOneShot(1000);
@@ -127,18 +122,24 @@ implementation {
         sendData.temp = temp;
         sendData.humid = humid;
         sendData.ur = ur;
-        sendData.priority++; */
-        
+        sendData.priority++;
+        call LCDSetter.setLCDDevicePriorty(sendData.priority);
+        /*/
         localData.temp = temp;
         localData.humid = humid;
         localData.ur = ur; // sensor_data_t = uint16_t ((byte reverse))
-        localData.priority++;
         call LCDSetter.setLCDDevicePriorty(localData.priority);
-        
+        localData.priority++;
+        //*/
+
         post sendDataTask();
     }
     task void sendDataTask(){
+        /*
         call ComSat.sendData(&sendData);
+        /*/
+        post setData();
+        //*/
     }
 
     ////RX

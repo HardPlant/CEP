@@ -15,6 +15,23 @@
         nx_uint16_t ur;
         nx_uint16_t priority;
     } sensor_data_t;
+    
+uint16_t ntohs(uint16_t const net) {
+    uint8_t data[4] = {};
+    memcpy(&data, &net, sizeof(data));
+
+    return ((uint16_t) data[1] << 0)
+         | ((uint16_t) data[0] << 8);
+}
+uint32_t ntohl(uint32_t const net) {
+    uint8_t data[4] = {};
+    memcpy(&data, &net, sizeof(data));
+
+    return ((uint32_t) data[3] << 0)
+         | ((uint32_t) data[2] << 8)
+         | ((uint32_t) data[1] << 16)
+         | ((uint32_t) data[0] << 24);
+}
 
 #endif
 

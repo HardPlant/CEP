@@ -36,7 +36,7 @@ implementation {
       if(interval == 0) interval = 1;
 
       currentCount[0] = interval;
-      currentInterval[0] = stdMillSec / interval;
+      currentInterval[0] = stdMillSec / currentCount[0];
       led0Blink(currentInterval[0]);
     }
     
@@ -55,7 +55,7 @@ implementation {
       if(interval == 0) interval = 1;
 
       currentCount[1] = interval;
-      currentInterval[1] = stdMillSec / interval;
+      currentInterval[1] = stdMillSec / currentCount[1];
       led1Blink(currentInterval[1]);
     }
     
@@ -74,12 +74,12 @@ implementation {
       if(interval == 0) interval = 1;
 
       currentCount[2] = interval;
-      currentInterval[2] = stdMillSec / interval;
+      currentInterval[2] = stdMillSec / currentCount[2];
       led2Blink(currentInterval[2]);
     }
 
     void led2Blink(uint16_t interval){
-      call LEDIntervalTimer2.startPeriodic(interval/2);
+      call LEDIntervalTimer2.startPeriodic(interval);
     }
     event void LEDIntervalTimer2.fired(){
       call LEDController.BlinkLed2();
@@ -114,14 +114,14 @@ implementation {
 
   command void LEDController.BlinkLed0(){
     call Leds.led0On();
-    call LEDTimer0.startOneShot(currentInterval[0]);
+    call LEDTimer0.startOneShot(currentInterval[0]/8);
   }
   event void LEDTimer0.fired(){
     call Leds.led0Off();
   }
   command void LEDController.BlinkLed1(){
     call Leds.led1On();
-    call LEDTimer1.startOneShot(currentInterval[1]);
+    call LEDTimer1.startOneShot(currentInterval[1]/8);
   }
   
   event void LEDTimer1.fired(){
@@ -130,7 +130,7 @@ implementation {
 
   command void LEDController.BlinkLed2(){
     call Leds.led2On();
-    call LEDTimer2.startOneShot(currentInterval[2]);
+    call LEDTimer2.startOneShot(currentInterval[2]/8);
   }
 
   event void LEDTimer2.fired(){

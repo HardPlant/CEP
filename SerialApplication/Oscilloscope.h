@@ -21,7 +21,7 @@ enum {
   /* Default sampling period. */
   DEFAULT_INTERVAL = 500,
 
-  AM_OSCILLOSCOPE = 0x93
+  AM_OSCILLOSCOPE = 0xde
 };
 
 typedef nx_struct oscilloscope {

@@ -99,6 +99,7 @@ module LCDSetterM {
   {//Show priority
       LCDDevicePriority = value;
   }
+  
   command void LCDSetter.setLCDReceivePacket(void* payload){
     //Show receive packet
     sensor_data_t* pkt = payload;
@@ -145,12 +146,25 @@ typedef enum {UPPER,LOWER} TURNTYPE;
   void LCDShowAdjust(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
+    nx_uint16_t data1;
+    nx_uint32_t data2;
+    uint16_t d1 = 12;
+    uint32_t d2 = 1234;
+    memcpy(&data1,&d1,sizeof(uint16_t));
+    memcpy(&data2,&d2,sizeof(uint32_t));
     
     if(turn == UPPER){
       sprintf(SetDataBuff, "FINDING OTHERS ");
+      sprintf(SetDataBuff, "%3lu %2u %3lu %2u", ntohl(data2), ntohs(data1), ntohl(d2), ntohs(d1));
+      LCDConfigure(turn, SetDataBuff);turn = LOWER;
+    }
+    else {
+      sprintf(SetDataBuff, "%3lu %2u %3lu %2u", data2,data1, d2, d1);
       LCDConfigure(turn, SetDataBuff);
+      turn = UPPER;
     }
   }
+  
   void LCDShowDatas(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
@@ -183,19 +197,16 @@ typedef enum {UPPER,LOWER} TURNTYPE;
   void LCDShowReceivePacket(){
     char SetDataBuff[32];
     static uint8_t turn = UPPER;
-    unsigned char* p = (unsigned char*)LCDreadings;
+
     if(turn == UPPER){
-      sprintf(SetDataBuff, "%2x%2x%2x%2x%2x%2x%2x%2x", p[0], p[1], p[2], p[3], p[4], p[5], p[6],p[7]);
+      sprintf(SetDataBuff, "%3lu %3u %3u %3u",
+      ntohl(LCDcounterpartpriority),ntohs(LCDreadings[0]),ntohs(LCDreadings[1]),ntohs(LCDreadings[2]));
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER; 
     }
     else {
-      sprintf(SetDataBuff, "%2x%2x%2x%2x%2x%2x%2x%2x", p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15]);
-
-      /*
-      sprintf(SetDataBuff, "%3u %3u %3u %3u", LCDcounterpartpriority
-        ,LCDreadings[0],LCDreadings[1],LCDreadings[2]);
-        */
+      sprintf(SetDataBuff, "%3lu %3u %3u %3u",
+      LCDcounterpartpriority,LCDreadings[0],LCDreadings[1],LCDreadings[2]);
       LCDConfigure(turn, SetDataBuff);
       turn = UPPER;
     }

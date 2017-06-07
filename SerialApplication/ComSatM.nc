@@ -60,9 +60,10 @@ implementation
         call LCDSetter.setLCDReceivePacket(payload);
     }
     event message_t* RadioReceive.receive(message_t *msg, void *payload, uint8_t len){
-        setLCDReceived(payload);
+        memcpy(&RxData, payload, sizeof(sensor_data_t));
+        setLCDReceived(&RxData);
                                         //only memcpy
-        signal ComSat.received(payload);//void*->memcpy(&sensor_data_t,void)->uint16_t = *sensor_data_t->_
+        signal ComSat.received(&RxData);//void*->memcpy(&sensor_data_t,void)->uint16_t = *sensor_data_t->_
         
         return msg;
     }
