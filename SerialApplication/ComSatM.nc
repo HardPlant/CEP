@@ -70,9 +70,6 @@ implementation
     }
 
 //////////////////////////////////////////RX
-    void setLCDReceived(void *payload){
-        call LCDSetter.setLCDReceivePacket(payload);
-    }
     event message_t* RadioReceive.receive(message_t *msg, void *payload, uint8_t len){
         sensor_data_t* data = (sensor_data_t*)payload;
         uint16_t temp = data->temp;
@@ -83,7 +80,7 @@ implementation
         if(len != sizeof(sensor_data_t)) return msg;
 
         memcpy(&RxData, payload, sizeof(sensor_data_t));
-        setLCDReceived(payload);
+        call LCDSetter.setLCDReceivePacket(payload);
                                         //only memcpy
         signal ComSat.received(temp, humid, ur, priority);
         

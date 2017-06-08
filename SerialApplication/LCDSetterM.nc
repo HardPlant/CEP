@@ -165,7 +165,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     if(LCDDisplayType == RECEIVE) return "RECEIVE";
   }
   event void Timer.fired(){
-    if(LCDStatus == 0) LCDShowAdjust();
+    if(LCDStatus == 0) LCDShowAdjust(); // LCD Init Status
     if(LCDStatus == 1) LCDShowDatas();
     if(LCDStatus == 2) LCDShowPriority();
     if(LCDStatus == 3) LCDShowReceivePacket();
@@ -174,22 +174,13 @@ typedef enum {UPPER,LOWER} TURNTYPE;
   }
   void LCDShowAdjust(){
     char SetDataBuff[32];
-    static uint8_t turn = UPPER;
-    nx_uint16_t data1;
-    nx_uint16_t data2;
-    uint16_t d1 = 12;
-    uint16_t d2 = 1234;
-    memcpy(&data1,&d1,sizeof(uint16_t));
-    memcpy(&data2,&d2,sizeof(uint16_t));
-    
+
     if(turn == UPPER){
       sprintf(SetDataBuff, "%16s", "FINDING OTHERS");
-      sprintf(SetDataBuff, "%8u %8u ", ntohs(data2), ntohs(data1));
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER;
     }
     else {
-      sprintf(SetDataBuff, "%8u %8u ",d2, d1);
       LCDConfigure(turn, SetDataBuff);
       turn = UPPER;
     }
@@ -229,8 +220,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     static uint8_t turn = UPPER;
 
     if(turn == UPPER){
-      sprintf(SetDataBuff, "%3u %3u %3u %3u",
-      ntohs(LCDcounterpartpriority),ntohs(LCDreadings[0]),ntohs(LCDreadings[1]),ntohs(LCDreadings[2]));
+      sprintf(SetDataBuff, "%16s","RECV PACKET:");
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER; 
     }
@@ -247,14 +237,13 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     
 
     if(turn == UPPER){
-      sprintf(SetDataBuff, "%2u %2u %2u %4u",
-      LCDPayloadData[0],LCDPayloadData[1],LCDPayloadData[2],LCDPayloadPriority );
+      sprintf(SetDataBuff, "%16s","PAYLOAD:");
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER; 
     }
     else {
       sprintf(SetDataBuff, "%2u %2u %2u %4u",
-      ntohs(LCDPayloadData[0]),ntohs(LCDPayloadData[1]),ntohs(LCDPayloadData[2]),LCDPayloadPriority);
+      LCDPayloadData[0],LCDPayloadData[1],LCDPayloadData[2],LCDPayloadPriority);
       LCDConfigure(turn, SetDataBuff);
       turn = UPPER;
     }
@@ -265,14 +254,13 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     
 
     if(turn == UPPER){
-      sprintf(SetDataBuff, "%2u %2u %2u %4u",
-      LCDSendData[0],LCDSendData[1],LCDSendData[2],LCDSendPriority );
+      sprintf(SetDataBuff, "%16s","SEND PACKET:");
       LCDConfigure(turn, SetDataBuff);
       turn = LOWER; 
     }
     else {
       sprintf(SetDataBuff, "%2u %2u %2u %4u",
-      ntohs(LCDSendData[0]),ntohs(LCDSendData[1]),ntohs(LCDSendData[2]),LCDSendPriority);
+      LCDSendData[0],LCDSendData[1],LCDSendData[2],LCDSendPriority );
       LCDConfigure(turn, SetDataBuff);
       turn = UPPER;
     }
