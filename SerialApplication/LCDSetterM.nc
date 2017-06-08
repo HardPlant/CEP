@@ -156,6 +156,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     if(LCDDisplayType == TEMP) return "TEMP";
     if(LCDDisplayType == HUMID) return "HUMID";
     if(LCDDisplayType == UR) return "URed";
+    if(LCDDisplayType == PHOTO) return "PHOTO";
     if(LCDDisplayType == SEND) return "SEND";
     if(LCDDisplayType == RECEIVE) return "RECEIVE";
   }

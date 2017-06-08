@@ -32,6 +32,7 @@ implementation
 
   components new UltraredSensorC() as URSensor;
   TempSensorM.Read_UR -> URSensor;
-
+  components new PhotoSensorC() as PSensor;
+  TempSensorM.Read_PHOTO -> PSensor;
 }
 

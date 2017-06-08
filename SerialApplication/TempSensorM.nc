@@ -29,6 +29,7 @@ module TempSensorM
 	interface Read<uint16_t> as Read_Humidity;
 	interface Read<uint16_t> as Read_Temp;
   interface Read<uint16_t> as Read_UR;
+  interface Read<uint16_t> as Read_PHOTO;
   }
 }
 implementation
@@ -70,13 +71,21 @@ implementation
     if (result == SUCCESS)
     {
       atomic myur = data;
-      signal TempSensor.done(mytemp, myhumi, myur);
+      call Read_PHOTO.read();
     }
     else
     {
     }
   }
-
+   event void Read_PHOTO.readDone(error_t result, uint16_t data) {
+    if (result == SUCCESS)
+    {
+      signal TempSensor.done(mytemp, myhumi, myur, data);
+    }
+    else
+    {
+    }
+  }
   void calc_SHT11(uint16_t p_humidity ,uint16_t p_temperature)
   //----------------------------------------------------------------------------------------
   // calculates temperature [C] and humidity [%RH]

@@ -4,7 +4,7 @@
     #define TRUE 1
     #define FALSE 0
 
-    enum {TEMP, HUMID, UR, SEND, RECEIVE};
+    enum {TEMP, HUMID, UR, PHOTO, SEND, RECEIVE};
     enum {
         AM_SENSING_ID = 0xde
     };
@@ -13,6 +13,7 @@
         nx_uint16_t temp;
         nx_uint16_t humid;
         nx_uint16_t ur;
+        nx_uint16_t photo;
         nx_uint16_t priority;
     } sensor_data_t;
     
