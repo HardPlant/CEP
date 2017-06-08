@@ -15,7 +15,6 @@ implementation {
     #include "sensor.h"
 
 ////////////Globals
-    sensor_data_t localData;
     sensor_data_t sendData;
 
 ////////////Function primitives
@@ -53,18 +52,9 @@ implementation {
 
     ////RX
     event void ComSat.received(uint16_t temp, uint16_t humid, uint16_t ur, uint16_t priority){
-        if(priority > localData.priority){
-            localData.temp = temp;
-            localData.humid = humid;
-            localData.ur = ur;
-            post setData();
+        if(priority > sendData.priority){
+            setMessage(temp, humid, ur);
         }
-    }
-    task void setData(){
-        uint16_t temp = localData.temp; // uint16_t = sensor_data_t.x (byte reverse)
-        uint16_t humid = localData.humid;
-        uint16_t ur = localData.ur;
-        setMessage(temp, humid, ur);
     }
 
     event void LEDController.BlinkDone(){
