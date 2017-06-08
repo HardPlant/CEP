@@ -174,6 +174,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
   }
   void LCDShowAdjust(){
     char SetDataBuff[32];
+    static uint8_t turn = UPPER;
 
     if(turn == UPPER){
       sprintf(SetDataBuff, "%16s", "FINDING OTHERS");
@@ -182,6 +183,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
     }
     else {
       LCDConfigure(turn, SetDataBuff);
+      sprintf(SetDataBuff, "%16s", "");
       turn = UPPER;
     }
   }
