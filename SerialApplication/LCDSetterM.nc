@@ -86,7 +86,7 @@ module LCDSetterM {
   norace uint16_t LCDvalue, LCDavg, LCDstdev;
   norace uint16_t LCDDevicePriority;
   norace uint16_t LCDcounterpartpriority;
-  norace uint16_t LCDreadings[3];
+  norace sensor_data_t* LCDreadings;
   norace uint16_t LCDPayloadData[3];
   norace uint16_t LCDPayloadPriority;
   norace uint16_t LCDSendData[3];
@@ -108,12 +108,7 @@ module LCDSetterM {
   
   command void LCDSetter.setLCDReceivePacket(void* payload){
     //Show receive packet
-    sensor_data_t* pkt = payload;
-
-    LCDcounterpartpriority = pkt->priority;
-    LCDreadings[0] = pkt->temp;
-    LCDreadings[1] = pkt->humid;
-    LCDreadings[2] = pkt->ur;
+    LCDreadings = payload;
   }
   command void LCDSetter.setLCDStatus(uint8_t stat){
     LCDStatus = stat;
@@ -135,21 +130,21 @@ module LCDSetterM {
 /////////////////////LCD Button Events////////////////////
   event void Interaction.getSensorDataDone(App_struct_t *App_Payload, uint8_t App_size){
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 1){
-      if (LCDStatus == 1) LCDStatus = 3;
+      if (LCDStatus != 3) LCDStatus = 3;
         else if (LCDStatus == 3) LCDStatus = 1;
       }
       
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 3){
-        if (LCDStatus == 1) LCDStatus = 4; // ShowPayload
+        if (LCDStatus != 4) LCDStatus = 4; // ShowPayload
         else if (LCDStatus == 4) LCDStatus = 1;
     }
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 4){
-        if (LCDStatus == 1) LCDStatus = 5; // ShowSend
+        if (LCDStatus != 5) LCDStatus = 5; // ShowSend
         else if (LCDStatus == 5) LCDStatus = 1;
     }
 
     if (AP_Frame.AppData.sensor.Sdata.CHA_data[0] == 6){
-        if (LCDStatus == 1) LCDStatus = 2;
+        if (LCDStatus != 2) LCDStatus = 2;
         else if (LCDStatus == 2) LCDStatus = 1;
     }
   }
@@ -182,8 +177,8 @@ typedef enum {UPPER,LOWER} TURNTYPE;
       turn = LOWER;
     }
     else {
+      sprintf(SetDataBuff, "%16s", "FINDING OTHERS");
       LCDConfigure(turn, SetDataBuff);
-      sprintf(SetDataBuff, "%16s", "");
       turn = UPPER;
     }
   }
@@ -227,8 +222,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
       turn = LOWER; 
     }
     else {
-      sprintf(SetDataBuff, "%3u %3u %3u %3u",
-      LCDcounterpartpriority,LCDreadings[0],LCDreadings[1],LCDreadings[2]);
+    //  sprintf(SetDataBuff, "%3u %3u %3u %3u", LCDreadings[0],LCDreadings[1],LCDreadings[2],LCDReadings[3]);
       LCDConfigure(turn, SetDataBuff);
       turn = UPPER;
     }

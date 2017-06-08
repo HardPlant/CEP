@@ -1,70 +1,43 @@
-#include "sensor.h"
+
 module SerialAppM {
   uses {
 	interface Boot;
   
   interface Timer<TMilli> as Timer;
 
-    interface SplitControl as RadioControl;
-    interface AMSend as RadioSend;
-    interface Receive as RadioReceive;
-
   interface LEDController;
   interface LCDSetter;
   interface TempSensor;
-//  interface ComSat;
+  interface ComSat;
   }
 }
 implementation {
+    #include "sensor.h"
 
 ////////////Globals
     sensor_data_t sendData;
-
-    message_t output;
-
-    sensor_data_t RxData;
 
 ////////////Function primitives
     
     void setValues(uint16_t newValue, uint8_t type);
     void IntervalBlink(uint8_t interval);
     void setMessage(uint16_t temp, uint16_t humid, uint16_t ur);
-    void sendstart();
-    void sendDataPayload();
-
-    task void start();
-    task void sendDataTask();
     
 ////////////Entry
 
     event void Boot.booted() {
         call LCDSetter.init();
-        post start();
-        //call ComSat.init();
-    }/*
+        call ComSat.init();
+    }
     event void ComSat.initDone(){
         call Timer.startOneShot(1000);
-    }*/
+    }
 
     event void Timer.fired(){
         call TempSensor.start();
         call Timer.startOneShot(8000);
     }
 
-    task void start(){
-        if(call RadioControl.start() != SUCCESS);
-        post start();
-    }
-    
-    event void RadioControl.startDone(error_t error) {
-        sendstart();
-    }
-    void sendstart(){
-        call Timer.startOneShot(1000);
-    }
-
-    event void RadioControl.stopDone(error_t error) {
-    }
     ////TX  
     event void TempSensor.done(uint16_t temp, uint16_t humid, uint16_t ur){
         sendData.temp = temp;
@@ -73,57 +46,26 @@ implementation {
         sendData.priority++;
         call LCDSetter.setLCDDevicePriorty(sendData.priority);
 
-        //call ComSat.sendData(&sendData);
-        sendDataPayload();
-    }
-    uint8_t busy = FALSE;
-
-    void sendDataPayload(){ // sensor_data_t->void*->memcpy(sensor_data_t*,void*)
-        sensor_data_t* target = (sensor_data_t*)(call RadioSend.getPayload(&output));
-
-        target->temp = sendData.temp;
-        target->humid = sendData.humid;
-        target->ur = sendData.ur;
-        target->priority = sendData.priority;
-
-        call LCDSetter.setLCDSender(target->temp, target->humid, target->ur,target->priority);
-        
-        if(call RadioSend.send(AM_BROADCAST_ADDR, &output, sizeof(sensor_data_t) == SUCCESS))
-            busy = TRUE;
+        call ComSat.sendData(&sendData);
     }
 
-    task void sendDataTask(){
-    }
-    
-    event void RadioSend.sendDone(message_t *msg, error_t err) {
-        if(&output == msg)
-            busy = FALSE;
-    }
     ////RX
-    /*
-    event void ComSat.received(uint16_t temp, uint16_t humid, uint16_t ur, uint16_t priority){
-        if(priority > sendData.priority){
-            setMessage(temp, humid, ur);
-        }
-    }
-    */
-    
-    event message_t* RadioReceive.receive(message_t *msg, void *payload, uint8_t len){
-        sensor_data_t* data = (sensor_data_t*)payload;
-        uint16_t temp = data->temp;
-        uint16_t humid = data->humid;
-        uint16_t ur = data->ur;
-        uint16_t priority = data->priority;
-
-        if(len != sizeof(sensor_data_t)) return msg;
+    event void ComSat.received(void* data){
+        sensor_data_t RxData;
+        uint16_t temp;
+        uint16_t humid;
+        uint16_t ur;
+        uint16_t priority;
+        memcpy(&RxData, data, sizeof(sensor_data_t));
+        temp = RxData.temp;
+        humid = RxData.humid;
+        ur = RxData.ur;
+        priority = RxData.priority;
 
         if(priority > sendData.priority){
             setMessage(temp, humid, ur);
         }
-        
-        return msg;
     }
-
 
     event void LEDController.BlinkDone(){
     }
@@ -156,7 +98,7 @@ implementation {
         }            
         else if(turn == UR){
             IntervalBlink(getDiff(ur,ret_avg[turn]));
-              call LCDSetter.setLCDData(turn,ur, ret_avg[turn],ret_std[turn]);
+              call LCDSetter.setLCDData(turn,ur,ret_avg[turn],ret_std[turn]);
             turn = TEMP;
         }
     }

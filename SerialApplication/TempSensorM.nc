@@ -35,7 +35,7 @@ implementation
 {
   void calc_SHT11(uint16_t p_humidity ,uint16_t p_temperature);
   
-  uint16_t myhumi,mytemp;
+  uint16_t myhumi,mytemp, myur;
   uint16_t T_temp,T_humi;
 
   // Use LEDs to report various status issues.
@@ -69,7 +69,8 @@ implementation
     event void Read_UR.readDone(error_t result, uint16_t data) {
     if (result == SUCCESS)
     {
-      signal TempSensor.done(mytemp, myhumi, data);
+      atomic myur = data;
+      signal TempSensor.done(mytemp, myhumi, myur);
     }
     else
     {
