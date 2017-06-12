@@ -86,7 +86,7 @@ module LCDSetterM {
   norace uint16_t LCDvalue, LCDavg, LCDstdev;
   norace uint16_t LCDDevicePriority;
   norace uint16_t LCDcounterpartpriority;
-  norace sensor_data_t* LCDreadings;
+  norace sensor_data_t LCDreadings;
   norace uint16_t LCDPayloadData[3];
   norace uint16_t LCDPayloadPriority;
   norace uint16_t LCDSendData[3];
@@ -108,7 +108,7 @@ module LCDSetterM {
   
   command void LCDSetter.setLCDReceivePacket(void* payload){
     //Show receive packet
-    LCDreadings = payload;
+    memcpy(&LCDreadings, payload, sizeof(sensor_data_t));
   }
   command void LCDSetter.setLCDStatus(uint8_t stat){
     LCDStatus = stat;
@@ -223,7 +223,7 @@ typedef enum {UPPER,LOWER} TURNTYPE;
       turn = LOWER; 
     }
     else {
-    //  sprintf(SetDataBuff, "%3u %3u %3u %3u", LCDreadings[0],LCDreadings[1],LCDreadings[2],LCDReadings[3]);
+      sprintf(SetDataBuff, "%3u %3u %3u %3u", LCDreadings.temp,LCDreadings.humid,LCDreadings.ur,LCDreadings.photo);
       LCDConfigure(turn, SetDataBuff);
       turn = UPPER;
     }
